@@ -1,0 +1,45 @@
+// .font-clash-display {
+//   font-family: 'Clash Display', sans-serif;
+// }
+
+.heading1,
+.heading2,
+.heading3,
+.heading4,
+.heading5 {
+  font-family: $font-clash-display;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.heading1 {
+  font-size: clamp(4rem, 6vw, 8rem);
+  line-height: clamp(4rem, 6vw, 8rem);
+}
+.heading2 {
+  font-size: clamp(2rem, 4.5vw, 6rem);
+  line-height: clamp(2rem, 4.5vw, 6rem);
+}
+.heading3 {
+  font-size: clamp(1.5rem, 4vw, 5rem);
+  line-height: clamp(1.5rem, 4vw, 5rem);
+}
+.heading4 {
+  font-size: clamp(1.4rem, 3.5vw, 4rem);
+  line-height: clamp(1.4rem, 3.5vw, 4rem);
+}
+.heading5 {
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  line-height: clamp(1.3rem, 3vw, 2rem);
+}
+.heading6 {
+  font-size: 20px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+.text {
+  font-family: $font-clash-display;
+}
+
+p {
+  font-family: $font-clash-display;
+}

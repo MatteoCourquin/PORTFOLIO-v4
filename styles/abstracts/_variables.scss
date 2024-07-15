@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'Clash Display';
+  src: url('/fonts/ClashDisplay.ttf') format('truetype');
+  font-display: auto;
+}
+
+// COLORS
+$color-white: #ffffff;
+$color-black: #333333;
+
+// RESPONSIVE
+$breakpoint-sm: 639px;
+
+// FONTS
+$font-clash-display: 'Clash Display', sans-serif;
+
+// RADIUS
+$radius-default: 20px;
+
+// TRANSITIONS
+$transition-default: all 0.15s ease-in-out;
+
+// PADDING
+$padding-x-default: clamp(20px, 8vw, 100px);
+$padding-y-default: clamp(20px, 8vh, 100px);
