@@ -11,11 +11,16 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.1",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.50.0",
     "@studio-freight/react-lenis": "^0.0.47",
     "clsx": "^2.1.1",
     "next": "14.2.5",
+    "next-sanity": "^9.4.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sanity": "^3.50.0",
+    "styled-components": "^6.1.11"
   },
   "devDependencies": {
     "@types/node": "^20",
