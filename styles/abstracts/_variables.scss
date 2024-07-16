@@ -6,13 +6,16 @@
 
 // COLORS
 $color-white: #ffffff;
-$color-black: #333333;
+$color-black: #181818;
 
 // RESPONSIVE
 $breakpoint-sm: 639px;
 
 // FONTS
 $font-clash-display: 'Clash Display', sans-serif;
+$font-size-s: 16px;
+$font-size-m: 20px;
+$font-size-l: 24px;
 
 // RADIUS
 $radius-default: 20px;
@@ -23,3 +26,23 @@ $transition-default: all 0.15s ease-in-out;
 // PADDING
 $padding-x-default: clamp(20px, 8vw, 100px);
 $padding-y-default: clamp(20px, 8vh, 100px);
+
+.bg-gradient {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 0;
+    min-height: 200%;
+    min-width: 100%;
+    min-height: 200%;
+    aspect-ratio: 1/1;
+    transform: translateX(-50%);
+    background-image: radial-gradient(#d9e3f1, #e347b5, #e8603c);
+  }
+}

@@ -7,8 +7,6 @@
 .heading3,
 .heading4,
 .heading5 {
-  font-family: $font-clash-display;
-  text-transform: uppercase;
   font-weight: bold;
 }
 .heading1 {
@@ -36,10 +34,59 @@
   line-height: 20px;
   text-transform: uppercase;
 }
+.subtitle {
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  line-height: clamp(1.3rem, 3vw, 2rem);
+}
+
 .text {
   font-family: $font-clash-display;
 }
 
 p {
   font-family: $font-clash-display;
+}
+
+.link {
+  position: relative;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 10px;
+    opacity: 0;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 999px;
+    transition: $transition-default;
+    font-weight: 500;
+  }
+  &:hover::after {
+    top: 23px;
+    opacity: 1;
+  }
+
+  &.active::after {
+    top: 23px;
+    opacity: 1;
+  }
+  &.active {
+    font-weight: 600;
+  }
+}
+
+.link_white {
+  color: $color-white;
+  &::after {
+    background-color: $color-white;
+  }
+}
+.link_black {
+  color: $color-black;
+  &::after {
+    background-color: $color-black;
+  }
 }
