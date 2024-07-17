@@ -1,42 +1,42 @@
-// .font-clash-display {
-//   font-family: 'Clash Display', sans-serif;
-// }
-
-.heading1,
-.heading2,
-.heading3,
-.heading4,
-.heading5 {
-  font-weight: bold;
+.font-clash-display {
+  font-family: 'Clash Display', sans-serif;
 }
+
 .heading1 {
   font-size: clamp(4rem, 6vw, 8rem);
   line-height: clamp(4rem, 6vw, 8rem);
+  font-weight: 590;
 }
 .heading2 {
   font-size: clamp(2rem, 4.5vw, 6rem);
   line-height: clamp(2rem, 4.5vw, 6rem);
+  font-weight: 590;
 }
 .heading3 {
   font-size: clamp(1.5rem, 4vw, 5rem);
   line-height: clamp(1.5rem, 4vw, 5rem);
+  font-weight: 520;
 }
 .heading4 {
   font-size: clamp(1.4rem, 3.5vw, 4rem);
   line-height: clamp(1.4rem, 3.5vw, 4rem);
+  font-weight: 520;
 }
 .heading5 {
   font-size: clamp(1.3rem, 3vw, 2rem);
   line-height: clamp(1.3rem, 3vw, 2rem);
+  font-weight: 520;
 }
 .heading6 {
   font-size: 20px;
   line-height: 20px;
   text-transform: uppercase;
+  font-weight: 520;
 }
 .subtitle {
   font-size: clamp(1.3rem, 3vw, 2rem);
   line-height: clamp(1.3rem, 3vw, 2rem);
+  font-weight: regular;
 }
 
 .text {
@@ -54,32 +54,21 @@ p {
   &::after {
     content: '';
     position: absolute;
-    left: 50%;
-    top: 10px;
-    opacity: 0;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 4px;
-    border-radius: 999px;
+    bottom: 0px;
+    left: 0;
+    width: 0px;
+    height: 2px;
     transition: $transition-default;
-    font-weight: 500;
-  }
-  &:hover::after {
-    top: 23px;
-    opacity: 1;
-  }
-
-  &.active::after {
-    top: 23px;
-    opacity: 1;
-  }
-  &.active {
-    font-weight: 600;
   }
 }
 
 .link_white {
   color: $color-white;
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
   &::after {
     background-color: $color-white;
   }
