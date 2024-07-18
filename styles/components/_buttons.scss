@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  background-color: $color-black;
   border-radius: 9999px;
 }
 
@@ -11,46 +10,41 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-.button-s {
-  padding: 0 24px;
-  font-size: $font-size-s;
-  height: 40px;
-}
-.button-m {
-  padding: 0 32px;
-  font-size: $font-size-m;
-  height: 50px;
-}
-.button-l {
-  padding: 0 64px;
-  font-size: $font-size-l;
-  height: 60px;
-}
-
-.button-text {
-  color: $color-white;
   width: fit-content;
   white-space: nowrap;
   font-family: $font-clash-display;
   text-transform: uppercase;
+  width: 100%;
+  height: 100%;
 }
 
-// .button {
-//   border: 0;
-//   border-radius: 9999px;
-//   background: $color-black;
-//   color: $color-white;
-//   padding: 14px 32px;
-//   text-transform: uppercase;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   text-decoration: none;
-//   cursor: pointer;
-//   width: 100%;
-//   height: 100%;
-// }
+.button-primary.button-white {
+  background: $color-white;
+  color: $color-black;
+}
+.button-primary.button-black {
+  background: $color-black;
+  color: $color-white;
+}
+
+.button-secondary.button-white {
+  border: 2px solid $color-white;
+  color: $color-white;
+}
+.button-secondary.button-black {
+  border: 2px solid $color-black;
+  color: $color-black;
+}
+
+.button-s {
+  padding: 4px 24px;
+  font-size: $font-size-s;
+}
+.button-m {
+  padding: 6px 32px;
+  font-size: $font-size-m;
+}
+.button-l {
+  padding: 12px 64px;
+  font-size: $font-size-l;
+}
