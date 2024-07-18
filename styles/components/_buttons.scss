@@ -16,6 +16,8 @@
   text-transform: uppercase;
   width: 100%;
   height: 100%;
+  display: flex;
+  
 }
 
 .button-primary.button-white {
@@ -38,13 +40,13 @@
 
 .button-s {
   padding: 4px 24px;
-  font-size: $font-size-s;
+  font-size: 16px;
 }
 .button-m {
   padding: 6px 32px;
-  font-size: $font-size-m;
+  font-size: clamp(0.5rem, 1.5vw, 3rem);
 }
 .button-l {
   padding: 12px 64px;
-  font-size: $font-size-l;
+  font-size: clamp(1rem, 2vw, 2rem);
 }

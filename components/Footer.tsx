@@ -4,9 +4,9 @@ import Button, { BUTTON_SIZE, BUTTON_TYPE } from './atoms/Button';
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white">
-      <div>
-        <Typography type={TYPOGRAPHY_TYPE.HEADING4}>
+    <footer className="flex bg-black px-x-default py-y-default text-center text-white md:gap-10 md:text-left">
+      <div className="flex flex-col items-center gap-4 md:items-start">
+        <Typography type={TYPOGRAPHY_TYPE.HEADING4} className="w-2/3 uppercase">
           Let's talk about your next project 🔥
         </Typography>
         <Button as="button" className="font-medium uppercase" color="white" size={BUTTON_SIZE.L}>
@@ -23,20 +23,27 @@ const Footer = () => {
           matteo.courquin@gmail.com
         </Button>
       </div>
-      <div className="flex flex-col items-end gap-1">
-        <Typography type={TYPOGRAPHY_TYPE.TEXT} className="pb-2 text-xl font-medium uppercase">
+      <div className="hidden flex-col items-end gap-3 md:flex">
+        <Typography
+          type={TYPOGRAPHY_TYPE.TEXT}
+          as={TYPOGRAPHY_TYPE.HEADING5}
+          className="pb-4 uppercase"
+        >
           Menu
         </Typography>
-        <Link className="link link_white text-xl font-thin uppercase opacity-80" href="/">
+        <Link className="link link_white heading5 !font-thin uppercase !opacity-80" href="/">
           Home
         </Link>
-        <Link className="link link_white text-xl font-thin uppercase opacity-80" href="/projects">
+        <Link
+          className="link link_white heading5 !font-thin uppercase !opacity-80"
+          href="/projects"
+        >
           Projects
         </Link>
-        <Link className="link link_white text-xl font-thin uppercase opacity-80" href="/about">
+        <Link className="link link_white heading5 !font-thin uppercase !opacity-80" href="/about">
           About
         </Link>
-        <Link className="link link_white text-xl font-thin uppercase opacity-80" href="/contact">
+        <Link className="link link_white heading5 !font-thin uppercase !opacity-80" href="/contact">
           Contact
         </Link>
       </div>

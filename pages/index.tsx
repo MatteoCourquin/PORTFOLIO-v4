@@ -113,7 +113,7 @@ export default function Home({ projects }: { projects: TypePreviewProjects[] }) 
               as="button"
               className="-translate-y-4 opacity-0"
             >
-              Start Project <IconArrowTopRight className="ml-2 h-4" />
+              Start Project <IconArrowTopRight className="ml-2 h-full" />
             </Button>
           </div>
           <div className="absolute bottom-0 flex w-full items-end justify-between overflow-hidden p-4">

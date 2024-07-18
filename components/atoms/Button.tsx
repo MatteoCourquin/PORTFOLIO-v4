@@ -77,13 +77,13 @@ const Button = forwardRef<any, ButtonProps>(
             onMouseMove={(e) => useMagnet(e, 1)}
             onMouseOut={(e) => useResetMagnet(e)}
           >
-            <span
+            <p
               className={clsx('button', `button-${size}`)}
               onMouseMove={(e) => useMagnet(e, 0.4)}
               onMouseOut={(e) => useResetMagnet(e)}
             >
               {children}
-            </span>
+            </p>
           </button>
         )}
       </>
