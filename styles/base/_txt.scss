@@ -54,15 +54,15 @@ p {
     height: 2px;
     transition: $transition-default;
   }
-}
-
-.link_white {
-  color: $color-white;
   &:hover {
     &::after {
       width: 100%;
     }
   }
+}
+
+.link_white {
+  color: $color-white;
   &::after {
     background-color: $color-white;
   }

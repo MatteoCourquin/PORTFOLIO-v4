@@ -1,10 +1,22 @@
-export type TypeProjects = {
+export type TypeProject = {
   index: string;
   title: string;
   description: string;
   mainImageUrl: string;
   imagesUrl?: Array<string>;
-  websiteUrl: string;
+  websiteUrl?: string;
 };
 
-export type TypePreviewProjects = Omit<TypeProjects, 'description' | 'imagesUrl'>;
+export type TypePreviewProject = Omit<TypeProject, 'description' | 'imagesUrl'>;
+
+export type TypeCareer = {
+  startDate: string;
+  endDate: string;
+  title: string;
+  description: string;
+};
+
+export type TypeQuestion = {
+  question: string;
+  answer: string;
+};

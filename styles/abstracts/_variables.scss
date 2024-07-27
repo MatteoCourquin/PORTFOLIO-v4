@@ -7,6 +7,7 @@
 // COLORS
 $color-white: #ffffff;
 $color-black: #181818;
+$color-primary: #ff4615;
 
 // RESPONSIVE
 $breakpoint-sm: 639px;
@@ -21,11 +22,15 @@ $font-size-l: 24px;
 $radius-default: 20px;
 
 // TRANSITIONS
-$transition-default: all 0.15s ease-in-out;
+$transition-default: all 0.3s cubic-bezier(0.84, 0, 0.16, 1);
 
 // PADDING
 $padding-x-default: clamp(20px, 8vw, 100px);
 $padding-y-default: clamp(20px, 8vh, 100px);
+
+.transition-max-height {
+  transition: max-height 0.3s ease-out;
+}
 
 .bg-gradient {
   position: relative;
