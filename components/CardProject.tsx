@@ -1,16 +1,9 @@
+import { TypePreviewProject } from '@/data/types';
 import Button, { BUTTON_SIZE } from './atoms/Button';
 import { IconArrowTopRight } from './atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 
-const CardProject = ({
-  index,
-  title,
-  mainImageUrl,
-}: {
-  index: string;
-  title: string;
-  mainImageUrl: string;
-}) => {
+const CardProject = ({ index, title, mainImageUrl, websiteUrl }: TypePreviewProject) => {
   return (
     <div>
       <div className="relative">
@@ -35,9 +28,9 @@ const CardProject = ({
         >
           DEV.{title.replace(/ /g, '')}
         </Typography>
-        <Button as="button" size={BUTTON_SIZE.S}>
+        <Button as="a" href={websiteUrl} target="_blank" size={BUTTON_SIZE.S}>
           View
-          <IconArrowTopRight className="h-3" />
+          <IconArrowTopRight className="ml-2 h-3" />
         </Button>
       </div>
     </div>
