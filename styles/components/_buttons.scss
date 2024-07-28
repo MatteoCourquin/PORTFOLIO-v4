@@ -17,24 +17,29 @@
   width: 100%;
   height: 100%;
   display: flex;
-  
+}
+
+.wrapper-button.button-active {
+  border: 1px solid $color-primary !important;
+  background-color: $color-primary !important;
+  color: $color-white !important;
 }
 
 .button-primary.button-white {
-  background: $color-white;
+  background-color: $color-white;
   color: $color-black;
 }
 .button-primary.button-black {
-  background: $color-black;
+  background-color: $color-black;
   color: $color-white;
 }
 
 .button-secondary.button-white {
-  border: 2px solid $color-white;
+  border: 1px solid $color-white;
   color: $color-white;
 }
 .button-secondary.button-black {
-  border: 2px solid $color-black;
+  border: 1px solid $color-black;
   color: $color-black;
 }
 
@@ -44,7 +49,7 @@
 }
 .button-m {
   padding: 6px 32px;
-  font-size: clamp(0.5rem, 1.5vw, 3rem);
+  font-size: clamp(1rem, 1.5vw, 3rem);
 }
 .button-l {
   padding: 12px 64px;

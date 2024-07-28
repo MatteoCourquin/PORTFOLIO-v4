@@ -188,7 +188,7 @@ export default function About({
         <Typography className="w-full py-y-default text-center" type={TYPOGRAPHY_TYPE.HEADING3}>
           My Career
         </Typography>
-        <div className="gap-y-default relative flex flex-col pb-y-default">
+        <div className="relative flex flex-col gap-y-default pb-y-default">
           <div className="absolute bottom-0 left-0 h-full w-px bg-black md:left-x-default"></div>
           {career.map((career, index) => (
             <CardCareer key={career.title + index} {...career} />
@@ -246,7 +246,6 @@ export async function getStaticProps() {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
     },
   ];
-
   const questions = [
     {
       question: 'How to contact you ?',
@@ -269,6 +268,7 @@ export async function getStaticProps() {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
     },
   ];
+
   return {
     props: {
       career,

@@ -24,6 +24,7 @@ type ButtonProps = {
   className?: string;
   onClick?: () => void;
   size?: BUTTON_SIZE;
+  isActive?: boolean;
 };
 
 const Button = forwardRef<any, ButtonProps>(
@@ -38,6 +39,7 @@ const Button = forwardRef<any, ButtonProps>(
       className,
       onClick,
       size = BUTTON_SIZE.M,
+      isActive = false,
     },
     ref,
   ) => {
@@ -53,6 +55,7 @@ const Button = forwardRef<any, ButtonProps>(
             className={clsx(
               'wrapper-button button-text w-fit',
               `button-${type} button-${color}`,
+              isActive && 'button-active',
               className,
             )}
           >
@@ -72,6 +75,7 @@ const Button = forwardRef<any, ButtonProps>(
             className={clsx(
               'wrapper-button button-text w-fit',
               `button-${type} button-${color}`,
+              isActive && 'button-active',
               className,
             )}
             onMouseMove={(e) => useMagnet(e, 1)}

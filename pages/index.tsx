@@ -265,7 +265,7 @@ export default function Home({ projects }: { projects: TypePreviewProject[] }) {
         />
       </section>
       <section className="px-x-default py-y-default">
-        <div className="grid min-h-screen grid-cols-2 gap-10">
+        <div className="grid min-h-screen grid-cols-1 gap-10 md:grid-cols-2">
           {projects.map((project, index) => (
             <CardProject {...project} key={project.title + index} />
           ))}
@@ -309,6 +309,7 @@ export async function getStaticProps() {
       websiteUrl: 'https://www.google.com',
     },
   ];
+
   return {
     props: {
       projects,
