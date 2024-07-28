@@ -5,6 +5,7 @@ export type TypeProject = {
   mainImageUrl: string;
   imagesUrl?: Array<string>;
   websiteUrl?: string;
+  type: string;
 };
 
 export type TypePreviewProject = Omit<TypeProject, 'description' | 'imagesUrl'>;

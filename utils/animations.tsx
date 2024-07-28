@@ -16,6 +16,7 @@ export const useResetMagnet = (event: MouseEvent<HTMLElement>) => {
   if (useTouchDevice()) return;
   gsap.to(event.currentTarget, {
     duration: 1,
+    ease: 'elastic.out',
     x: 0,
     y: 0,
   });
