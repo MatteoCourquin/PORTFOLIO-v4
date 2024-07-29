@@ -22,7 +22,7 @@ const CardProject = ({ index, title, mainImageUrl, websiteUrl }: TypePreviewProj
             <img
               src={mainImageUrl}
               alt={title}
-              className="transition-transform group-hover/card-project:scale-105"
+              className="transition-transform duration-300 group-hover/card-project:scale-105"
             />
           </div>
         </div>
