@@ -23,6 +23,7 @@ type ButtonProps = {
   children: ReactNode;
   className?: string;
   onClick?: () => void;
+  inForm?: boolean;
   size?: BUTTON_SIZE;
   isActive?: boolean;
 };
@@ -38,6 +39,7 @@ const Button = forwardRef<any, ButtonProps>(
       children,
       className,
       onClick,
+      inForm = false,
       size = BUTTON_SIZE.M,
       isActive = false,
     },
@@ -72,6 +74,7 @@ const Button = forwardRef<any, ButtonProps>(
           <button
             ref={ref}
             onClick={onClick}
+            type={inForm ? 'submit' : 'button'}
             className={clsx(
               'wrapper-button button-text w-fit',
               `button-${type} button-${color}`,

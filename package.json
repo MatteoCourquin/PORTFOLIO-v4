@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@gsap/react": "^2.1.1",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.50.0",
