@@ -29,11 +29,11 @@ const CardCareer = ({ startDate, endDate, title, description }: TypeCareer) => {
     <div className="md:h-screen">
       <div className="md:sticky md:top-1/3">
         <div className="flex items-center">
-          <div className="w-x-default hidden md:block">
+          <div className="hidden w-x-default md:block">
             <Typography
               type={TYPOGRAPHY_TYPE.TEXT}
               as={TYPOGRAPHY_TYPE.HEADING6}
-              className="w-x-default hidden lg:block"
+              className="hidden w-x-default lg:block"
             >
               {startDate}
               <br />
@@ -47,7 +47,7 @@ const CardCareer = ({ startDate, endDate, title, description }: TypeCareer) => {
           <Typography
             type={TYPOGRAPHY_TYPE.TEXT}
             as={TYPOGRAPHY_TYPE.HEADING4}
-            className="text-primary pl-[6vw] !font-semibold md:pl-[4vw]"
+            className="pl-[6vw] !font-semibold text-primary md:pl-[4vw]"
           >
             {startDate} - {endDate}
           </Typography>
