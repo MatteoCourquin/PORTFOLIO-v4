@@ -2,10 +2,13 @@ import Button, { BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
 import { TypePreviewProject } from '@/data/types';
+import { LanguageContext } from '@/layout/default';
 import gsap from 'gsap';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 export default function Projects({ projects }: { projects: TypePreviewProject[] }) {
+  const { data } = useContext(LanguageContext);
+
   const filters = ['All', 'Developement', 'Design'];
   const [activeFilter, setActiveFilter] = useState('All');
 
@@ -79,7 +82,7 @@ export default function Projects({ projects }: { projects: TypePreviewProject[] 
           type={TYPOGRAPHY_TYPE.HEADING1}
           className="-translate-y-4 opacity-0"
         >
-          Projects
+          {data.projects.title}
         </Typography>
       </section>
       <section className="">

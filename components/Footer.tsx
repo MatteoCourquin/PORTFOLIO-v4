@@ -1,16 +1,20 @@
+import { LanguageContext } from '@/layout/default';
 import Link from 'next/link';
-import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
+import { useContext } from 'react';
 import Button, { BUTTON_SIZE, BUTTON_TYPE } from './atoms/Button';
+import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 
 const Footer = () => {
+  const { data } = useContext(LanguageContext);
+
   return (
     <footer className="flex bg-black px-x-default py-y-default text-center text-white md:gap-10 md:text-left">
       <div className="flex flex-col items-center gap-4 md:items-start">
         <Typography type={TYPOGRAPHY_TYPE.HEADING4} className="w-2/3 uppercase">
-          Let’s talk about your next project 🔥
+          {data.footer.title}
         </Typography>
         <Button as="button" className="font-medium uppercase" color="white" size={BUTTON_SIZE.L}>
-          i’m ready
+          {data.footer.button}
         </Button>
         <Button
           href="mailto:matteo.courquin@gmail.com"
@@ -32,19 +36,19 @@ const Footer = () => {
           Menu
         </Typography>
         <Link className="link link_white heading5 !font-thin uppercase !opacity-80" href="/">
-          Home
+          {data.nav.home}
         </Link>
         <Link
           className="link link_white heading5 !font-thin uppercase !opacity-80"
           href="/projects"
         >
-          Projects
+          {data.nav.projects}
         </Link>
         <Link className="link link_white heading5 !font-thin uppercase !opacity-80" href="/about">
-          About
+          {data.nav.about}
         </Link>
         <Link className="link link_white heading5 !font-thin uppercase !opacity-80" href="/contact">
-          Contact
+          {data.nav.contact}
         </Link>
       </div>
     </footer>

@@ -2,9 +2,11 @@ import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardCareer from '@/components/CardCareer';
 import CardQuestion from '@/components/CardQuestion';
 import { TypeCareer, TypeQuestion } from '@/data/types';
+import { LanguageContext } from '@/layout/default';
+import { interpolate } from '@/utils/functions';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 
 export default function About({
   career,
@@ -13,6 +15,8 @@ export default function About({
   career: TypeCareer[];
   questions: TypeQuestion[];
 }) {
+  const { data } = useContext(LanguageContext);
+
   const [openQuestionIndex, setOpenQuestionIndex] = useState<number | null>(null);
 
   const heroRefs = {
@@ -121,7 +125,7 @@ export default function About({
           type={TYPOGRAPHY_TYPE.HEADING1}
           className="-translate-y-4 opacity-0"
         >
-          My Story
+          {data.story.title}
         </Typography>
       </section>
       <section className="relative flex flex-col">
@@ -156,24 +160,21 @@ export default function About({
               type={TYPOGRAPHY_TYPE.HEADING2}
               as={TYPOGRAPHY_TYPE.HEADING4}
             >
-              Let me introduce myself 👋
+              {data.story.about.title}
             </Typography>
-            <Typography
+            <div
               ref={heroRefs.texts.text3}
-              className="-translate-y-10 px-x-default"
-              type={TYPOGRAPHY_TYPE.TEXT}
-            >
-              Torem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie,
-              dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem
-              sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum
-              velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per
-              conubia nostra, per inceptos himenaeos. Praesent auctor purus luctus enim egestas, ac
-              scelerisque ante pulvinar. Donec ut rhoncus ex. Suspendisse ac rhoncus nisl, eu tempor
-              urna. Curabitur vel bibendum lorem. Morbi convallis convallis diam sit amet lacinia.
-              Aliquam in elementum tellus. Curabitur tempor quis eros tempus lacinia. Nam bibendum
-              pellentesque quam a convallis. Sed ut vulputate nisi. Integer in felis sed leo
-              vestibulum venenatis. Suspendisse.
-            </Typography>
+              className="text -translate-y-10 px-x-default"
+              dangerouslySetInnerHTML={{
+                __html: interpolate(data.home.about.description, {
+                  yearsExperience: Math.floor(
+                    (new Date().getTime() -
+                      new Date('Wed Jan 15 2019 16:00:00 GMT+0100').getTime()) /
+                      31536000000,
+                  ).toString(),
+                }),
+              }}
+            />
           </div>
         </div>
         <div className="relative h-24">
@@ -186,7 +187,7 @@ export default function About({
       </section>
       <section className="relative px-x-default">
         <Typography className="w-full py-y-default text-center" type={TYPOGRAPHY_TYPE.HEADING3}>
-          My Career
+          {data.story.carreer.title}
         </Typography>
         <div className="relative flex flex-col gap-y-default pb-y-default">
           <div className="absolute bottom-0 left-0 h-full w-px bg-black md:left-x-default"></div>
@@ -198,7 +199,7 @@ export default function About({
       </section>
       <section className="px-x-default py-y-default">
         <Typography className="w-full text-center" type={TYPOGRAPHY_TYPE.HEADING3}>
-          Any questions ?
+          {data.story.questions.title}
         </Typography>
         <div className="flex flex-col pt-y-default">
           {questions.map((question, index) => (

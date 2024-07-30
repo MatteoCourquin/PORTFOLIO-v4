@@ -1,10 +1,13 @@
+import { LanguageContext } from '@/layout/default';
 import { isEmail } from '@/utils/functions';
 import emailjs from '@emailjs/browser';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useContext, useState } from 'react';
 import Button, { BUTTON_SIZE, BUTTON_TYPE } from './atoms/Button';
 import Input from './atoms/Input';
 
 const FormContact = () => {
+  const { data } = useContext(LanguageContext);
+
   const [formValues, setFormValues] = useState({
     tel: '0652647110',
     name: '',
@@ -33,7 +36,7 @@ const FormContact = () => {
 
   const isNameValid = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (e.target.value === '') {
-      setFormErrors({ ...formErrors, name: 'This field is required' });
+      setFormErrors({ ...formErrors, name: data.contact.form.errors.name });
     } else {
       setFormErrors({ ...formErrors, name: '' });
     }
@@ -41,9 +44,9 @@ const FormContact = () => {
 
   const isEmailValid = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (e.target.value === '') {
-      setFormErrors({ ...formErrors, email: 'This field is required' });
+      setFormErrors({ ...formErrors, email: data.contact.form.errors.email });
     } else if (!isEmail(e.target.value)) {
-      setFormErrors({ ...formErrors, email: 'Please enter a valid email' });
+      setFormErrors({ ...formErrors, email: data.contact.form.errors.emailValid });
     } else {
       setFormErrors({ ...formErrors, email: '' });
     }
@@ -55,15 +58,15 @@ const FormContact = () => {
     if (formValues.name === '' && formValues.email === '') {
       setFormErrors({
         ...formErrors,
-        name: 'This field is required',
-        email: 'This field is required',
+        name: data.contact.form.errors.name,
+        email: data.contact.form.errors.email,
       });
     } else if (formValues.name === '') {
-      setFormErrors({ ...formErrors, name: 'This field is required' });
+      setFormErrors({ ...formErrors, name: data.contact.form.errors.name });
     } else if (formValues.email === '') {
-      setFormErrors({ ...formErrors, email: 'This field is required' });
+      setFormErrors({ ...formErrors, email: data.contact.form.errors.email });
     } else if (!isEmail(formValues.email)) {
-      setFormErrors({ ...formErrors, email: 'Please enter a valid email' });
+      setFormErrors({ ...formErrors, email: data.contact.form.errors.emailValid });
     }
 
     if (!formValues.name || !formValues.email || !isEmail(formValues.email)) return;
@@ -100,8 +103,8 @@ const FormContact = () => {
           <Input
             name="name"
             type="text"
-            placeholder="John Doe"
-            label="What’s your name ?"
+            placeholder={data.contact.form.name.placeholder}
+            label={data.contact.form.name.label}
             value={formValues.name}
             required={true}
             onChange={(e) => {
@@ -115,8 +118,8 @@ const FormContact = () => {
           <Input
             name="email"
             type="mail"
-            placeholder="johndoe@gmail.com"
-            label="What’s your e-mail ?"
+            placeholder={data.contact.form.email.placeholder}
+            label={data.contact.form.email.label}
             value={formValues.email}
             required={true}
             onChange={(e) => {
@@ -131,8 +134,8 @@ const FormContact = () => {
         <Input
           name="message"
           type="textarea"
-          placeholder="Hey, I love what you’re doing ..."
-          label="Your message"
+          placeholder={data.contact.form.message.placeholder}
+          label={data.contact.form.message.label}
           value={formValues.message}
           onChange={(e) => setFormValues({ ...formValues, message: e.target.value })}
         />
@@ -143,7 +146,7 @@ const FormContact = () => {
           type={BUTTON_TYPE.PRIMARY}
           className="mx-auto"
         >
-          SEND
+          {data.contact.form.button}
         </Button>
       </form>
     </>
