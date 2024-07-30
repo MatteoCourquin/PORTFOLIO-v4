@@ -3,12 +3,16 @@ import { IconArrowTopRight } from '@/components/atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
 import { TypePreviewProject } from '@/data/types';
+import { LanguageContext } from '@/layout/default';
+import { interpolate } from '@/utils/functions';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 
 export default function Home({ projects }: { projects: TypePreviewProject[] }) {
+  const { data } = useContext(LanguageContext);
+
   const heroRefs = {
     lines: {
       H1: useRef(null),
@@ -155,7 +159,7 @@ export default function Home({ projects }: { projects: TypePreviewProject[] }) {
               type={TYPOGRAPHY_TYPE.HEADING1}
               className="texts.text-center -translate-y-4 opacity-0"
             >
-              Hey👋 I’m
+              {data.home.hero.title}
             </Typography>
             <Typography
               ref={heroRefs.texts.text2}
@@ -169,7 +173,7 @@ export default function Home({ projects }: { projects: TypePreviewProject[] }) {
               type={TYPOGRAPHY_TYPE.SUBTITLE}
               className="-translate-y-4 pb-20 opacity-0"
             >
-              WEB DEVELOPER ( SINCE 2019 )
+              {data.home.hero.subtitle}
             </Typography>
             <Button
               ref={heroRefs.button}
@@ -177,7 +181,7 @@ export default function Home({ projects }: { projects: TypePreviewProject[] }) {
               as="button"
               className="-translate-y-4 opacity-0"
             >
-              Start Project <IconArrowTopRight className="ml-2 h-full py-[0.6vw]" />
+              {data.home.hero.button} <IconArrowTopRight className="ml-2 h-full py-[0.6vw]" />
             </Button>
           </div>
           <div className="absolute bottom-0 flex w-full items-end justify-between overflow-hidden p-4">
@@ -208,54 +212,20 @@ export default function Home({ projects }: { projects: TypePreviewProject[] }) {
             type={TYPOGRAPHY_TYPE.HEADING3}
             className="-translate-y-4 pb-10 uppercase opacity-0 md:pb-0"
           >
-            Qui suis-je ?
+            {data.home.about.title}
           </Typography>
-          <Typography
+          <div
             ref={aboutRefs.texts.text2}
-            type={TYPOGRAPHY_TYPE.TEXT}
-            className="-translate-y-4 text-2xl opacity-0"
-          >
-            Salut 👋 ! Moi c’est Matteo, développeur FullStack depuis{' '}
-            {Math.floor(
-              (new Date().getTime() - new Date('Wed Jan 15 2019 16:00:00 GMT+0100').getTime()) /
-                31536000000,
-            )}{' '}
-            ans. <br />
-            <br />
-            Initialement parti pour être architecte, ma passion pour le développement web a émergé
-            pendant le confinement, consolidée par un Bachelor à l’
-            <a
-              href="heroRefs.ht://www.iim.fr/cursus/bachelor-coding-digital-innovation/"
-              target="_blank"
-              className="underline"
-            >
-              IIM
-            </a>{' '}
-            et un Master à l’
-            <a
-              href="heroRefs.ht://www.hetic.net/formations/mastere-cto-tech-lead"
-              target="_blank"
-              className="underline"
-            >
-              HETIC
-            </a>
-            . 💻
-            <br />
-            <br />
-            Tout a commencé depuis{' '}
-            <a href="heroRefs.ht://openclassrooms.com/fr/" target="_blank" className="underline">
-              OpenClassrooms
-            </a>
-            . Le premier site vers lequel on se dirige lorsque l’on s’intéresse au web !<br />
-            <br />
-            Actuellement en Freelance, j’ai l’habitude de créer de multiple projets. 🚀
-            <br />
-            <br />
-            Ma rigueur, ma persévérance et ma sensibilité esthétique se reflètent dans ma vision du
-            développement.
-            <br />
-            <br />« Un code propre en vaut 10 » 😉
-          </Typography>
+            className="text -translate-y-4 text-2xl opacity-0"
+            dangerouslySetInnerHTML={{
+              __html: interpolate(data.home.about.description, {
+                yearsExperience: Math.floor(
+                  (new Date().getTime() - new Date('Wed Jan 15 2019 16:00:00 GMT+0100').getTime()) /
+                    31536000000,
+                ).toString(),
+              }),
+            }}
+          />
         </div>
         <img
           ref={aboutRefs.img}
@@ -271,7 +241,7 @@ export default function Home({ projects }: { projects: TypePreviewProject[] }) {
           ))}
         </div>
         <Button as="button" size={BUTTON_SIZE.L} className="mx-auto my-20">
-          more
+          {data.home.projects.button}
         </Button>
       </section>
     </>

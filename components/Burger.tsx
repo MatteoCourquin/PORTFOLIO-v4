@@ -2,10 +2,14 @@ import { useMagnet, useResetMagnet } from '@/utils/animations';
 import clsx from 'clsx';
 import gsap from 'gsap';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
+import Button from './atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
+import { LanguageContext } from '@/layout/default';
 
 const Burger = () => {
+  const { language, setLanguage, data } = useContext(LanguageContext);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const text1Ref = useRef(null);
@@ -80,6 +84,13 @@ const Burger = () => {
 
   return (
     <>
+      <Button
+        className="fixed left-10 top-10 z-[90]"
+        as="button"
+        onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
+      >
+        {language}
+      </Button>
       <div
         ref={wrapperRef}
         className="invisible fixed left-0 right-0 top-0 z-[90] h-screen w-screen scale-0"
@@ -91,22 +102,22 @@ const Burger = () => {
         <nav className="z-[90] flex h-screen w-screen flex-col items-center justify-center gap-8 uppercase text-white">
           <Link ref={text1Ref} href="/" onClick={handdleClose}>
             <Typography type={TYPOGRAPHY_TYPE.TEXT} as={TYPOGRAPHY_TYPE.HEADING3}>
-              Home
+              {data.nav.home}
             </Typography>
           </Link>
           <Link ref={text2Ref} href="/projects" onClick={handdleClose}>
             <Typography type={TYPOGRAPHY_TYPE.TEXT} as={TYPOGRAPHY_TYPE.HEADING3}>
-              Projects
+              {data.nav.projects}
             </Typography>
           </Link>
           <Link ref={text3Ref} href="/about" onClick={handdleClose}>
             <Typography type={TYPOGRAPHY_TYPE.TEXT} as={TYPOGRAPHY_TYPE.HEADING3}>
-              About
+              {data.nav.about}
             </Typography>
           </Link>
           <Link ref={text4Ref} href="/contact" onClick={handdleClose}>
             <Typography type={TYPOGRAPHY_TYPE.TEXT} as={TYPOGRAPHY_TYPE.HEADING3}>
-              Contact
+              {data.nav.contact}
             </Typography>
           </Link>
         </nav>
