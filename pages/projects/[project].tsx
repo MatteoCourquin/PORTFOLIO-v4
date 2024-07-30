@@ -10,6 +10,7 @@ import { useEffect, useRef } from 'react';
 
 export default function Page({ project }: InferGetStaticPropsType<typeof getStaticProps>) {
   if (!project) {
+    // console.log(any)
     return <div>Projet non trouvé.</div>;
   }
 
@@ -115,7 +116,7 @@ export default function Page({ project }: InferGetStaticPropsType<typeof getStat
         </section>
       </div>
       <section className="flex justify-between px-x-default py-y-default">
-        <div className="flex gap-2">
+        <div className="flex justify-between gap-2">
           <Typography>Made by 🤝</Typography>
           <div>
             <Link href="/" target="_blank" className="text block font-medium hover:underline">
@@ -126,8 +127,8 @@ export default function Page({ project }: InferGetStaticPropsType<typeof getStat
             </Link>
           </div>
         </div>
-        <Button size={BUTTON_SIZE.L} as="button">
-          Check the website <IconArrowTopRight className="ml-2 h-full" />
+        <Button size={BUTTON_SIZE.M} as="button">
+          Check the website <IconArrowTopRight className="ml-2 h-full w-4" />
         </Button>
       </section>
       <section className="flex flex-col gap-y-default px-x-default pb-y-default">

@@ -7,10 +7,10 @@ const Footer = () => {
     <footer className="flex bg-black px-x-default py-y-default text-center text-white md:gap-10 md:text-left">
       <div className="flex flex-col items-center gap-4 md:items-start">
         <Typography type={TYPOGRAPHY_TYPE.HEADING4} className="w-2/3 uppercase">
-          Let's talk about your next project 🔥
+          Let’s talk about your next project 🔥
         </Typography>
         <Button as="button" className="font-medium uppercase" color="white" size={BUTTON_SIZE.L}>
-          i'm ready
+          i’m ready
         </Button>
         <Button
           href="mailto:matteo.courquin@gmail.com"
