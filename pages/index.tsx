@@ -253,29 +253,29 @@ export async function getStaticProps() {
     {
       index: '1',
       title: 'Super projet',
-      mainImageUrl: '/images/matteo.png',
+      mainImageUrlDesktop: '/images/site.png',
       websiteUrl: 'https://www.google.com',
     },
     {
       index: '2',
       title: 'Project Master',
-      mainImageUrl: '/images/matteo.png',
+      mainImageUrlDesktop: '/images/site.png',
     },
     {
       index: '3',
       title: '2.26 Tours',
-      mainImageUrl: '/images/matteo.png',
+      mainImageUrlDesktop: '/images/site.png',
       websiteUrl: 'https://www.google.com',
     },
     {
       index: '4',
       title: 'Bel',
-      mainImageUrl: '/images/matteo.png',
+      mainImageUrlDesktop: '/images/site.png',
     },
     {
       index: '5',
       title: 'zLawyer',
-      mainImageUrl: '/images/matteo.png',
+      mainImageUrlDesktop: '/images/site.png',
       websiteUrl: 'https://www.google.com',
     },
   ];

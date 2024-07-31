@@ -2,7 +2,8 @@ export type TypeProject = {
   index: string;
   title: string;
   description: string;
-  mainImageUrl: string;
+  mainImageUrlDesktop: string;
+  mainImageUrlMobile: string;
   imagesUrl?: Array<string>;
   websiteUrl?: string;
   type: string;

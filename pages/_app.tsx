@@ -27,3 +27,28 @@ export default function App({ Component, pageProps }: AppProps) {
     </>
   );
 }
+
+{/* <AnimatePresence>
+  {filteredApps.map((data, index) => (
+    <motion.div
+      key={data.application.Id}
+      layout
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        duration: 0.15,
+        ease: 'easeInOut',
+        delay: index * 0.01,
+      }}
+    >
+      <AppCard
+        idx={index}
+        lastPipelineExecution={data.lastMasterExecution}
+        application={data.application}
+      />
+    </motion.div>
+  ))}
+</AnimatePresence>; */}
+
+// https://www.framer.com/motion/animate-presence/

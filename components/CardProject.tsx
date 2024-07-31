@@ -5,7 +5,7 @@ import Button, { BUTTON_SIZE } from './atoms/Button';
 import { IconArrowTopRight } from './atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 
-const CardProject = ({ index, title, mainImageUrl, websiteUrl }: TypePreviewProject) => {
+const CardProject = ({ index, title, mainImageUrlDesktop, websiteUrl }: TypePreviewProject) => {
   return (
     <div>
       <Link href={'/projects/' + formatSlug(title)} className="group/card-project relative">
@@ -20,9 +20,9 @@ const CardProject = ({ index, title, mainImageUrl, websiteUrl }: TypePreviewProj
           <div className="absolute right-0 top-0 h-px w-full bg-black"></div>
           <div className="overflow-hidden">
             <img
-              src={mainImageUrl}
+              src={mainImageUrlDesktop}
               alt={title}
-              className="transition-transform duration-300 group-hover/card-project:scale-105"
+              className="cursor-pointer transition-transform duration-300 group-hover/card-project:scale-105"
             />
           </div>
         </div>
