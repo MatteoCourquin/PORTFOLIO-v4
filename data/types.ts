@@ -21,3 +21,9 @@ export type TypeQuestion = {
   question: string;
   answer: string;
 };
+
+export type TypeContactFormData = {
+  name: string;
+  email: string;
+  message: string;
+};

@@ -1,6 +1,8 @@
+import { TypeContactFormData } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
+import { submitContactForm } from '@/services/api';
 import { isEmail } from '@/utils/functions';
-import emailjs from '@emailjs/browser';
+import { useMutation } from '@tanstack/react-query';
 import { ChangeEvent, useContext, useState } from 'react';
 import Button, { BUTTON_SIZE, BUTTON_TYPE } from './atoms/Button';
 import Input from './atoms/Input';
@@ -8,31 +10,31 @@ import Input from './atoms/Input';
 const FormContact = () => {
   const { data } = useContext(LanguageContext);
 
-  const [formValues, setFormValues] = useState({
-    tel: '0652647110',
-    name: '',
-    email: '',
-    message: '',
+  const submitFormMutation = useMutation({
+    mutationFn: submitContactForm,
+    onMutate: () => {
+      console.log('onMutate');
+    },
+    onError: (error) => {
+      console.log('onError', error);
+    },
+    onSuccess: (data) => {
+      resetForm();
+      console.log('onSuccess', data);
+    },
   });
-  const [formErrors, setFormErrors] = useState({
+
+  const [formValues, setFormValues] = useState<TypeContactFormData>({
     name: '',
     email: '',
     message: '',
   });
 
-  const resetForm = () => {
-    setFormValues({
-      tel: '0652647110',
-      name: '',
-      email: '',
-      message: '',
-    });
-    setFormErrors({
-      name: '',
-      email: '',
-      message: '',
-    });
-  };
+  const [formErrors, setFormErrors] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
 
   const isNameValid = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     if (e.target.value === '') {
@@ -50,6 +52,11 @@ const FormContact = () => {
     } else {
       setFormErrors({ ...formErrors, email: '' });
     }
+  };
+
+  const resetForm = () => {
+    setFormValues({ name: '', email: '', message: '' });
+    setFormErrors({ name: '', email: '', message: '' });
   };
 
   const handdleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -71,31 +78,9 @@ const FormContact = () => {
 
     if (!formValues.name || !formValues.email || !isEmail(formValues.email)) return;
 
-    if (
-      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID === undefined ||
-      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID === undefined
-    ) {
-      console.error('EmailJS is not configured');
-      return;
-    }
-
-    emailjs
-      .send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-        formValues,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
-      )
-      .then(
-        (response) => {
-          resetForm();
-          console.log('SUCCESS', response.status, response.text);
-        },
-        (error) => {
-          console.log('FAILED', error);
-        },
-      );
+    submitFormMutation.mutate(formValues);
   };
+
   return (
     <>
       <form onSubmit={(e) => handdleFormSubmit(e)} className="flex w-full flex-col gap-16">
@@ -122,10 +107,7 @@ const FormContact = () => {
             label={data.contact.form.email.label}
             value={formValues.email}
             required={true}
-            onChange={(e) => {
-              isEmailValid(e);
-              setFormValues({ ...formValues, email: e.target.value });
-            }}
+            onChange={(e) => setFormValues({ ...formValues, email: e.target.value })}
             onBlur={(e) => isEmailValid(e)}
             error={formErrors.email !== ''}
             errorMessage={formErrors.email}
