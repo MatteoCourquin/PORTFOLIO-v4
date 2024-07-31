@@ -4,6 +4,7 @@ import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
 import { TypePreviewProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
+import { client } from '@/sanity/lib/client';
 import { interpolate } from '@/utils/functions';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
@@ -133,6 +134,7 @@ export default function Home({ projects }: { projects: TypePreviewProject[] }) {
     playAnimation();
     scrollTriggerAnimation();
   }, []);
+
   return (
     <>
       <section className="bg-gradient relative h-screen w-screen px-x-default py-y-default text-center text-white">
@@ -235,7 +237,7 @@ export default function Home({ projects }: { projects: TypePreviewProject[] }) {
         />
       </section>
       <section className="px-x-default py-y-default">
-        <div className="grid min-h-screen grid-cols-1 gap-10 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
           {projects.map((project, index) => (
             <CardProject {...project} key={project.title + index} />
           ))}
@@ -249,37 +251,15 @@ export default function Home({ projects }: { projects: TypePreviewProject[] }) {
 }
 
 export async function getStaticProps() {
-  const projects = [
-    {
-      index: '1',
-      title: 'Super projet',
-      mainImageUrlDesktop: '/images/site.png',
-      websiteUrl: 'https://www.google.com',
-    },
-    {
-      index: '2',
-      title: 'Project Master',
-      mainImageUrlDesktop: '/images/site.png',
-    },
-    {
-      index: '3',
-      title: '2.26 Tours',
-      mainImageUrlDesktop: '/images/site.png',
-      websiteUrl: 'https://www.google.com',
-    },
-    {
-      index: '4',
-      title: 'Bel',
-      mainImageUrlDesktop: '/images/site.png',
-    },
-    {
-      index: '5',
-      title: 'zLawyer',
-      mainImageUrlDesktop: '/images/site.png',
-      websiteUrl: 'https://www.google.com',
-    },
-  ];
+  const query = `
+    *[_type == "projects"] {
+      title,
+      slug,
+      mainImageDesktop,
+      mainImageMobile,
+    }`;
 
+  const projects = await client.fetch(query);
   return {
     props: {
       projects,
