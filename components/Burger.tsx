@@ -87,9 +87,12 @@ const Burger = () => {
       <Button
         className="fixed left-10 top-10 z-[90]"
         as="button"
-        onClick={() => setLanguage(language === 'en' ? 'fr' : 'en')}
+        onClick={() => {
+          localStorage.setItem('language', language === 'en' ? 'fr' : 'en');
+          setLanguage(language === 'en' ? 'fr' : 'en');
+        }}
       >
-        {language}
+        {language === 'en' ? 'fr' : 'en'}
       </Button>
       <div
         ref={wrapperRef}
@@ -118,7 +121,7 @@ const Burger = () => {
               {data.nav.projects}
             </Typography>
           </Link>
-          <Link ref={text3Ref} href="/about" onClick={handdleClose}>
+          <Link ref={text3Ref} href="/story" onClick={handdleClose}>
             <Typography
               type={TYPOGRAPHY_TYPE.TEXT}
               as={TYPOGRAPHY_TYPE.HEADING3}

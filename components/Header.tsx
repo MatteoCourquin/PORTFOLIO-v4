@@ -62,7 +62,7 @@ const Header = () => {
             'link -translate-y-4 text-xl font-medium uppercase opacity-0',
             pathname === '/' ? 'link_white' : 'link_black',
           )}
-          href="/about"
+          href="/story"
         >
           About
         </Link>

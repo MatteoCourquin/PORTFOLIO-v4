@@ -3,19 +3,29 @@ import Footer from '@/components/Footer';
 import english from '@/data/languages/english.json';
 import french from '@/data/languages/french.json';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createContext, ReactNode, useState } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 
-export const LanguageContext = createContext({
+type TypeLanguageContext = {
+  language: string;
+  setLanguage: (language: string) => void;
+  data: any;
+};
+
+export const LanguageContext = createContext<TypeLanguageContext>({
   language: 'en',
-  setLanguage: (language: string) => {},
+  setLanguage: () => {},
   data: english,
 });
 
 const queryClient = new QueryClient();
 
 const Layout = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState('en');
+  const [language, setLanguage] = useState<string>('en');
   const data = language === 'en' ? english : french;
+
+  useEffect(() => {
+    setLanguage(localStorage.getItem('language') || navigator.language.split('-')[0]);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
