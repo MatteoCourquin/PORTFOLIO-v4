@@ -1,14 +1,21 @@
 import { TypePreviewProject } from '@/data/types';
-import { formatSlug } from '@/utils/functions';
 import Link from 'next/link';
 import Button, { BUTTON_SIZE } from './atoms/Button';
 import { IconArrowTopRight } from './atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
+import { urlForImage } from '@/sanity/lib/image';
 
-const CardProject = ({ index, title, mainImageUrlDesktop, websiteUrl }: TypePreviewProject) => {
+const CardProject = ({
+  index,
+  title,
+  slug,
+  mainImageDesktop,
+  mainImageMobile,
+  websiteUrl,
+}: TypePreviewProject) => {
   return (
     <div>
-      <Link href={'/projects/' + formatSlug(title)} className="group/card-project relative">
+      <Link href={'/projects/' + slug.current} className="group/card-project relative">
         <div className="absolute left-0 top-0 h-px w-full bg-black"></div>
         <div className="absolute bottom-0 right-0 h-px w-full bg-black"></div>
         <div className="absolute bottom-0 left-0 h-full w-px bg-black"></div>
@@ -20,9 +27,14 @@ const CardProject = ({ index, title, mainImageUrlDesktop, websiteUrl }: TypePrev
           <div className="absolute right-0 top-0 h-px w-full bg-black"></div>
           <div className="overflow-hidden">
             <img
-              src={mainImageUrlDesktop}
+              src={urlForImage(mainImageDesktop)}
               alt={title}
-              className="cursor-pointer transition-transform duration-300 group-hover/card-project:scale-105"
+              className="cursor-pointer transition-transform duration-300 group-hover/card-project:scale-105 hidden md:block"
+            />
+            <img
+              src={urlForImage(mainImageMobile)}
+              alt={title}
+              className="cursor-pointer transition-transform duration-300 group-hover/card-project:scale-105 block md:hidden"
             />
           </div>
         </div>

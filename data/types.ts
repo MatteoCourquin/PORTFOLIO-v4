@@ -1,10 +1,15 @@
+import { Image, Slug } from 'sanity';
+
+
+
 export type TypeProject = {
   index: string;
   title: string;
+  slug: Slug;
   description: string;
-  mainImageUrlDesktop: string;
-  mainImageUrlMobile: string;
-  imagesUrl?: Array<string>;
+  mainImageDesktop: Image;
+  mainImageMobile: Image;
+  gallery?: Image[];
   websiteUrl?: string;
   type: string;
 };

@@ -1,12 +1,13 @@
 import Button, { BUTTON_SIZE } from '@/components/atoms/Button';
 import { IconArrowTopRight } from '@/components/atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
-import { TypeProject } from '@/data/types';
-import { formatSlug } from '@/utils/functions';
+import { client } from '@/sanity/lib/client';
+import { urlForImage } from '@/sanity/lib/image';
 import gsap from 'gsap';
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import { Image, Slug } from 'sanity';
 
 export default function Page({ project }: InferGetStaticPropsType<typeof getStaticProps>) {
   if (!project) {
@@ -93,13 +94,13 @@ export default function Page({ project }: InferGetStaticPropsType<typeof getStat
             <img
               ref={heroRefs.img}
               className="hidden h-[calc(100%+100px)] w-full object-cover object-top md:block"
-              src={project.mainImageUrlDesktop}
+              src={urlForImage(project.mainImageDesktop)}
               alt=""
             />
             <img
               ref={heroRefs.img}
               className="block h-[calc(100%+100px)] w-full object-cover object-top md:hidden"
-              src={project.mainImageUrlMobile}
+              src={urlForImage(project.mainImageMobile)}
               alt=""
             />
           </div>
@@ -128,19 +129,43 @@ export default function Page({ project }: InferGetStaticPropsType<typeof getStat
             <Link href="/" target="_blank" className="text block font-medium hover:underline">
               Matteo Couruqin
             </Link>
-            <Link href="/" target="_blank" className="text block font-medium hover:underline">
-              Erwan Donisa
-            </Link>
+            {project.authors?.map((author: { name: string; websiteUrl: string }) => {
+              if (!author.websiteUrl) {
+                return (
+                  <Typography key={author.name} className="text block font-medium">
+                    {author.name}
+                  </Typography>
+                );
+              }
+              return (
+                <Link
+                  key={author.name}
+                  href={author.websiteUrl}
+                  target="_blank"
+                  className="text block font-medium hover:underline"
+                >
+                  {author.name}
+                </Link>
+              );
+            })}
           </div>
         </div>
-        <Button size={BUTTON_SIZE.M} as="button">
-          Check the website <IconArrowTopRight className="ml-2 h-full w-4" />
-        </Button>
+        {project.websiteUrl && (
+          <Button
+            size={BUTTON_SIZE.M}
+            as="a"
+            href={project.websiteUrl}
+            target="_blank"
+            className="h-fit"
+          >
+            Check the website <IconArrowTopRight className="ml-2 h-full w-4" />
+          </Button>
+        )}
       </section>
       <section className="flex flex-col gap-y-default px-x-default pb-y-default">
-        {project.imagesUrl?.map((imageUrl, index) => (
+        {project.gallery?.map((image: Image, index: number) => (
           <div key={index}>
-            <img src={imageUrl} alt="" className="w-full" />
+            <img src={urlForImage(image)} alt="" className="w-full" />
           </div>
         ))}
       </section>
@@ -148,137 +173,52 @@ export default function Page({ project }: InferGetStaticPropsType<typeof getStat
   );
 }
 
-export async function getStaticProps(context: GetStaticPropsContext) {
-  const projects: TypeProject[] = [
-    {
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      index: '1',
-      title: 'Super projet',
-      mainImageUrlDesktop: '/images/image.png',
-      mainImageUrlMobile: '/images/image.png',
-      websiteUrl: 'https://www.google.com',
-      imagesUrl: [
-        '/images/image.png',
-        '/images/image.png',
-        '/images/image.png',
-        '/images/image.png',
-      ],
-      type: 'Developement',
-    },
-    {
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      index: '2',
-      title: 'Project Master',
-      mainImageUrlDesktop: '/images/matteo.png',
-      mainImageUrlMobile: '/images/matteo.png',
-      imagesUrl: ['/images/matteo.png', '/images/matteo.png'],
-      type: 'Design',
-    },
-    {
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      index: '3',
-      title: '2.26 Tours',
-      mainImageUrlDesktop: '/images/site.png',
-      mainImageUrlMobile: '/images/mobile.png',
-      websiteUrl: 'https://www.google.com',
-      imagesUrl: ['/images/exemple1.png', '/images/exemple2.png', '/images/exemple3.png'],
-      type: 'Developement',
-    },
-    {
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      index: '4',
-      title: 'Bel',
-      mainImageUrlDesktop: '/images/matteo.png',
-      mainImageUrlMobile: '/images/matteo.png',
-      type: 'Design',
-    },
-    {
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      index: '5',
-      title: 'zLawyer',
-      mainImageUrlDesktop: '/images/matteo.png',
-      mainImageUrlMobile: '/images/matteo.png',
-      websiteUrl: 'https://www.google.com',
-      type: 'Developement',
-    },
-  ];
-
+export const getStaticProps = async (context: GetStaticPropsContext) => {
   const { params } = context;
-  const project = projects.find((project) => formatSlug(project.title) === params?.project);
+
+  const query = `
+    *[_type == "projects" {
+      title,
+      slug,
+      mainImageDesktop,
+      mainImageMobile,
+      descriptionEn,
+      descriptionFr,
+      websiteUrl,
+      gallery,
+      "authors": authors[]->{
+        name,
+        websiteUrl
+      },
+    }
+  `;
+
+  const project = await client.fetch(query, {
+    slug: params?.project,
+  });
 
   return {
     props: {
       project: project || null,
     },
   };
-}
+};
 
-export async function getStaticPaths() {
-  const projects: TypeProject[] = [
-    {
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      index: '1',
-      title: 'Super projet',
-      mainImageUrlDesktop: '/images/matteo.png',
-      mainImageUrlMobile: '/images/matteo.png',
-      websiteUrl: 'https://www.google.com',
-      imagesUrl: ['/images/matteo.png', '/images/matteo.png'],
-      type: 'Developement',
-    },
-    {
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      index: '2',
-      title: 'Project Master',
-      mainImageUrlDesktop: '/images/matteo.png',
-      mainImageUrlMobile: '/images/matteo.png',
-      imagesUrl: ['/images/matteo.png', '/images/matteo.png'],
-      type: 'Design',
-    },
-    {
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      index: '3',
-      title: '2.26 Tours',
-      mainImageUrlMobile: '/images/site.png',
-      mainImageUrlDesktop: '/images/mobile.png',
-      websiteUrl: 'https://www.google.com',
-      imagesUrl: ['/images/matteo.png', '/images/matteo.png'],
-      type: 'Developement',
-    },
-    {
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      index: '4',
-      title: 'Bel',
-      mainImageUrlDesktop: '/images/matteo.png',
-      mainImageUrlMobile: '/images/matteo.png',
-      type: 'Design',
-    },
-    {
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-      index: '5',
-      title: 'zLawyer',
-      mainImageUrlDesktop: '/images/matteo.png',
-      mainImageUrlMobile: '/images/matteo.png',
-      websiteUrl: 'https://www.google.com',
-      type: 'Developement',
-    },
-  ];
+export const getStaticPaths = async () => {
+  const query = `
+    *[_type == "projects"] {
+      slug
+    }
+  `;
 
-  const paths = projects.map((project) => ({
-    params: { project: formatSlug(project.title) },
+  const projects = await client.fetch(query);
+
+  const paths = projects.map((project: any) => ({
+    params: { project: project.slug.current },
   }));
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   };
-}
+};

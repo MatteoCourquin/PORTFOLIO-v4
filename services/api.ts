@@ -1,7 +1,9 @@
 import { TypeContactFormData } from '@/data/types';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 
-export const submitContactForm = async (data: TypeContactFormData): Promise<EmailJSResponseStatus> => {
+export const submitContactForm = async (
+  data: TypeContactFormData,
+): Promise<EmailJSResponseStatus> => {
   if (
     !process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ||
     !process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ||
@@ -12,7 +14,6 @@ export const submitContactForm = async (data: TypeContactFormData): Promise<Emai
   }
 
   try {
-    // Envoyez l'email en utilisant EmailJS
     const response = await emailjs.send(
       process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
       process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
@@ -24,6 +25,6 @@ export const submitContactForm = async (data: TypeContactFormData): Promise<Emai
     return response;
   } catch (error) {
     console.error('FAILED', error);
-    throw error; // Rejetez l'erreur pour que React Query la capture
+    throw error;
   }
 };

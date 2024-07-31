@@ -100,7 +100,7 @@ const Burger = () => {
       >
         <div
           ref={backgroundRef}
-          className="absolute right-x-default top-10 aspect-square h-16 w-16 translate-x-8 scale-100 rounded-full bg-black sm:h-20 sm:w-20 sm:translate-x-10"
+          className="absolute right-10 sm:right-x-default top-10 aspect-square h-16 w-16 translate-x-8 scale-100 rounded-full bg-black sm:h-20 sm:w-20 sm:translate-x-10"
         ></div>
         <nav className="z-[90] flex h-screen w-screen flex-col items-center justify-center gap-8 uppercase text-white">
           <Link ref={text1Ref} href="/" onClick={handdleClose}>
@@ -141,7 +141,7 @@ const Burger = () => {
           </Link>
         </nav>
       </div>
-      <div className="fixed right-x-default top-10 z-[100] translate-x-8 sm:translate-x-10">
+      <div className="fixed right-10 sm:right-x-default top-10 z-[100] translate-x-8 sm:translate-x-10">
         <div
           onClick={() => (isOpen ? handdleClose() : handdleOpen())}
           onMouseMove={(e) => useMagnet(e, 1)}
