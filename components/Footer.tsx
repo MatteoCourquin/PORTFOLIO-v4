@@ -39,15 +39,21 @@ const Footer = () => {
           {data.nav.home}
         </Link>
         <Link
-          className="link link_white heading5 !font-thin uppercase !opacity-80"
+          className="link link_white heading5 whitespace-nowrap !font-thin uppercase !opacity-80"
           href="/projects"
         >
           {data.nav.projects}
         </Link>
-        <Link className="link link_white heading5 !font-thin uppercase !opacity-80" href="/about">
+        <Link
+          className="link link_white heading5 whitespace-nowrap !font-thin uppercase !opacity-80"
+          href="/about"
+        >
           {data.nav.about}
         </Link>
-        <Link className="link link_white heading5 !font-thin uppercase !opacity-80" href="/contact">
+        <Link
+          className="link link_white heading5 whitespace-nowrap !font-thin uppercase !opacity-80"
+          href="/contact"
+        >
           {data.nav.contact}
         </Link>
       </div>

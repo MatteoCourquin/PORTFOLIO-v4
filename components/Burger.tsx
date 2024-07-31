@@ -1,3 +1,4 @@
+import { LanguageContext } from '@/layout/default';
 import { useMagnet, useResetMagnet } from '@/utils/animations';
 import clsx from 'clsx';
 import gsap from 'gsap';
@@ -5,7 +6,6 @@ import Link from 'next/link';
 import { useContext, useRef, useState } from 'react';
 import Button from './atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
-import { LanguageContext } from '@/layout/default';
 
 const Burger = () => {
   const { language, setLanguage, data } = useContext(LanguageContext);
@@ -101,22 +101,38 @@ const Burger = () => {
         ></div>
         <nav className="z-[90] flex h-screen w-screen flex-col items-center justify-center gap-8 uppercase text-white">
           <Link ref={text1Ref} href="/" onClick={handdleClose}>
-            <Typography type={TYPOGRAPHY_TYPE.TEXT} as={TYPOGRAPHY_TYPE.HEADING3}>
+            <Typography
+              type={TYPOGRAPHY_TYPE.TEXT}
+              as={TYPOGRAPHY_TYPE.HEADING3}
+              className="whitespace-nowrap"
+            >
               {data.nav.home}
             </Typography>
           </Link>
           <Link ref={text2Ref} href="/projects" onClick={handdleClose}>
-            <Typography type={TYPOGRAPHY_TYPE.TEXT} as={TYPOGRAPHY_TYPE.HEADING3}>
+            <Typography
+              type={TYPOGRAPHY_TYPE.TEXT}
+              as={TYPOGRAPHY_TYPE.HEADING3}
+              className="whitespace-nowrap"
+            >
               {data.nav.projects}
             </Typography>
           </Link>
           <Link ref={text3Ref} href="/about" onClick={handdleClose}>
-            <Typography type={TYPOGRAPHY_TYPE.TEXT} as={TYPOGRAPHY_TYPE.HEADING3}>
+            <Typography
+              type={TYPOGRAPHY_TYPE.TEXT}
+              as={TYPOGRAPHY_TYPE.HEADING3}
+              className="whitespace-nowrap"
+            >
               {data.nav.about}
             </Typography>
           </Link>
           <Link ref={text4Ref} href="/contact" onClick={handdleClose}>
-            <Typography type={TYPOGRAPHY_TYPE.TEXT} as={TYPOGRAPHY_TYPE.HEADING3}>
+            <Typography
+              type={TYPOGRAPHY_TYPE.TEXT}
+              as={TYPOGRAPHY_TYPE.HEADING3}
+              className="whitespace-nowrap"
+            >
               {data.nav.contact}
             </Typography>
           </Link>
