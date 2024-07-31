@@ -84,7 +84,7 @@ export default function Page({ project }: InferGetStaticPropsType<typeof getStat
           ref={heroRefs.lines.V2}
           className="absolute right-x-default top-0 h-0 w-px bg-black"
         ></div>
-        <section className="relative px-x-default pb-24">
+        <section className="relative px-x-default pb-px">
           <div
             ref={heroRefs.lines.H2}
             className="absolute bottom-0 right-0 h-px w-0 bg-black"
@@ -92,8 +92,14 @@ export default function Page({ project }: InferGetStaticPropsType<typeof getStat
           <div ref={heroRefs.wrappers.wrapperImg} className="h-screen w-0 overflow-hidden p-px">
             <img
               ref={heroRefs.img}
-              className="h-[calc(100%+100px)] w-full object-cover object-top"
-              src="/images/image.png"
+              className="hidden h-[calc(100%+100px)] w-full object-cover object-top md:block"
+              src={project.mainImageUrlDesktop}
+              alt=""
+            />
+            <img
+              ref={heroRefs.img}
+              className="block h-[calc(100%+100px)] w-full object-cover object-top md:hidden"
+              src={project.mainImageUrlMobile}
               alt=""
             />
           </div>
@@ -149,7 +155,8 @@ export async function getStaticProps(context: GetStaticPropsContext) {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
       index: '1',
       title: 'Super projet',
-      mainImageUrl: '/images/image.png',
+      mainImageUrlDesktop: '/images/image.png',
+      mainImageUrlMobile: '/images/image.png',
       websiteUrl: 'https://www.google.com',
       imagesUrl: [
         '/images/image.png',
@@ -164,7 +171,8 @@ export async function getStaticProps(context: GetStaticPropsContext) {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
       index: '2',
       title: 'Project Master',
-      mainImageUrl: '/images/matteo.png',
+      mainImageUrlDesktop: '/images/matteo.png',
+      mainImageUrlMobile: '/images/matteo.png',
       imagesUrl: ['/images/matteo.png', '/images/matteo.png'],
       type: 'Design',
     },
@@ -173,9 +181,10 @@ export async function getStaticProps(context: GetStaticPropsContext) {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
       index: '3',
       title: '2.26 Tours',
-      mainImageUrl: '/images/matteo.png',
+      mainImageUrlDesktop: '/images/site.png',
+      mainImageUrlMobile: '/images/mobile.png',
       websiteUrl: 'https://www.google.com',
-      imagesUrl: ['/images/matteo.png', '/images/matteo.png'],
+      imagesUrl: ['/images/exemple1.png', '/images/exemple2.png', '/images/exemple3.png'],
       type: 'Developement',
     },
     {
@@ -183,7 +192,8 @@ export async function getStaticProps(context: GetStaticPropsContext) {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
       index: '4',
       title: 'Bel',
-      mainImageUrl: '/images/matteo.png',
+      mainImageUrlDesktop: '/images/matteo.png',
+      mainImageUrlMobile: '/images/matteo.png',
       type: 'Design',
     },
     {
@@ -191,7 +201,8 @@ export async function getStaticProps(context: GetStaticPropsContext) {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
       index: '5',
       title: 'zLawyer',
-      mainImageUrl: '/images/matteo.png',
+      mainImageUrlDesktop: '/images/matteo.png',
+      mainImageUrlMobile: '/images/matteo.png',
       websiteUrl: 'https://www.google.com',
       type: 'Developement',
     },
@@ -214,7 +225,8 @@ export async function getStaticPaths() {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
       index: '1',
       title: 'Super projet',
-      mainImageUrl: '/images/matteo.png',
+      mainImageUrlDesktop: '/images/matteo.png',
+      mainImageUrlMobile: '/images/matteo.png',
       websiteUrl: 'https://www.google.com',
       imagesUrl: ['/images/matteo.png', '/images/matteo.png'],
       type: 'Developement',
@@ -224,7 +236,8 @@ export async function getStaticPaths() {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
       index: '2',
       title: 'Project Master',
-      mainImageUrl: '/images/matteo.png',
+      mainImageUrlDesktop: '/images/matteo.png',
+      mainImageUrlMobile: '/images/matteo.png',
       imagesUrl: ['/images/matteo.png', '/images/matteo.png'],
       type: 'Design',
     },
@@ -233,7 +246,8 @@ export async function getStaticPaths() {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
       index: '3',
       title: '2.26 Tours',
-      mainImageUrl: '/images/matteo.png',
+      mainImageUrlMobile: '/images/site.png',
+      mainImageUrlDesktop: '/images/mobile.png',
       websiteUrl: 'https://www.google.com',
       imagesUrl: ['/images/matteo.png', '/images/matteo.png'],
       type: 'Developement',
@@ -243,7 +257,8 @@ export async function getStaticPaths() {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
       index: '4',
       title: 'Bel',
-      mainImageUrl: '/images/matteo.png',
+      mainImageUrlDesktop: '/images/matteo.png',
+      mainImageUrlMobile: '/images/matteo.png',
       type: 'Design',
     },
     {
@@ -251,7 +266,8 @@ export async function getStaticPaths() {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
       index: '5',
       title: 'zLawyer',
-      mainImageUrl: '/images/matteo.png',
+      mainImageUrlDesktop: '/images/matteo.png',
+      mainImageUrlMobile: '/images/matteo.png',
       websiteUrl: 'https://www.google.com',
       type: 'Developement',
     },
