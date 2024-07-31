@@ -46,7 +46,7 @@ const Footer = () => {
         </Link>
         <Link
           className="link link_white heading5 whitespace-nowrap !font-thin uppercase !opacity-80"
-          href="/about"
+          href="/story"
         >
           {data.nav.about}
         </Link>
