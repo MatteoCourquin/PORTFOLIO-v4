@@ -113,17 +113,10 @@ export default defineType({
     }),
     defineField({
       name: 'types',
-      title: 'Type of Project 🏷️',
+      title: 'Types 🏷️',
       type: 'array',
-      of: [{ type: 'string' }],
-      description: 'Select one or more types or categories for the project.',
-      options: {
-        list: [
-          { title: 'Développement', value: 'development' },
-          { title: 'Design', value: 'design' },
-        ],
-        layout: 'list',
-      },
+      of: [{ type: 'reference', to: [{ type: 'projectType' }] }],
+      description: 'Select the type(s) of the project.',
     }),
   ],
   preview: {

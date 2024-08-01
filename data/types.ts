@@ -1,7 +1,5 @@
 import { Image, Slug } from 'sanity';
 
-
-
 export type TypeProject = {
   index: string;
   title: string;
@@ -11,21 +9,31 @@ export type TypeProject = {
   mainImageMobile: Image;
   gallery?: Image[];
   websiteUrl?: string;
-  type: string;
+  types: string[];
 };
 
 export type TypePreviewProject = Omit<TypeProject, 'description' | 'imagesUrl'>;
 
+export type TypeFilters = {
+  labelFr: string;
+  labelEn: string;
+  value: string;
+};
+
 export type TypeCareer = {
   startDate: string;
   endDate: string;
-  title: string;
-  description: string;
+  titleFr: string;
+  titleEn: string;
+  descriptionFr: string;
+  descriptionEn: string;
 };
 
 export type TypeQuestion = {
-  question: string;
-  answer: string;
+  questionFr: string;
+  questionEn: string;
+  answerFr: string;
+  answerEn: string;
 };
 
 export type TypeContactFormData = {

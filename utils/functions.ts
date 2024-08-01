@@ -14,3 +14,14 @@ export const interpolate = (template: string, variables: { [key: string]: string
     return variables[key] || '';
   });
 };
+
+export const formatDate = (date: string, language: string) => {
+  return new Date(date).toLocaleDateString(language, {
+    year: 'numeric',
+    month: 'short',
+  });
+};
+
+export const formatDateToYear = (date: string) => {
+  return new Date(date).getFullYear();
+}

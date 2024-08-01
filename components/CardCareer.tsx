@@ -1,10 +1,21 @@
 import { TypeCareer } from '@/data/types';
+import { LanguageContext } from '@/layout/default';
+import { formatDate, formatDateToYear } from '@/utils/functions';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import { useEffect, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 
-const CardCareer = ({ startDate, endDate, title, description }: TypeCareer) => {
+const CardCareer = ({
+  startDate,
+  endDate,
+  titleFr,
+  titleEn,
+  descriptionFr,
+  descriptionEn,
+}: TypeCareer) => {
+  const { language } = useContext(LanguageContext);
+
   const dotRef = useRef(null);
 
   const scrollTriggerAnimation = () => {
@@ -35,9 +46,9 @@ const CardCareer = ({ startDate, endDate, title, description }: TypeCareer) => {
               as={TYPOGRAPHY_TYPE.HEADING6}
               className="hidden w-x-default lg:block"
             >
-              {startDate}
+              {formatDateToYear(startDate)}
               <br />
-              {endDate}
+              {formatDateToYear(endDate) || 'now'}
             </Typography>
           </div>
           <div
@@ -49,7 +60,7 @@ const CardCareer = ({ startDate, endDate, title, description }: TypeCareer) => {
             as={TYPOGRAPHY_TYPE.HEADING4}
             className="pl-[6vw] !font-semibold text-primary md:pl-[4vw]"
           >
-            {startDate} - {endDate}
+            {formatDate(startDate, language)} - {formatDate(endDate, language) || 'now'}
           </Typography>
         </div>
         <div className="w-full pl-0 md:pl-x-default lg:w-3/4">
@@ -58,10 +69,10 @@ const CardCareer = ({ startDate, endDate, title, description }: TypeCareer) => {
             as={TYPOGRAPHY_TYPE.HEADING5}
             className="pl-[6vw] md:pl-[4vw]"
           >
-            {title}
+            {language === 'fr' ? titleFr : titleEn}
           </Typography>
           <Typography type={TYPOGRAPHY_TYPE.TEXT} className="pl-[6vw] md:pl-[4vw]">
-            {description}
+            {language === 'fr' ? descriptionFr : descriptionEn}
           </Typography>
         </div>
       </div>
