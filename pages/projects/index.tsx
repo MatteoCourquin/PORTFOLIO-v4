@@ -141,6 +141,7 @@ export async function getStaticProps() {
       slug,
       mainImageDesktop,
       mainImageMobile,
+      websiteUrl,
       "types": types[]->value,
     }`;
 

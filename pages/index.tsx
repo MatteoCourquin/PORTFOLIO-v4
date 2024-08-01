@@ -258,6 +258,7 @@ export async function getStaticProps() {
       slug,
       mainImageDesktop,
       mainImageMobile,
+      websiteUrl,
     }`;
 
   const projects = await client.fetch(query);
