@@ -29,7 +29,7 @@ export default defineType({
       description: 'The title of the project.',
       validation: (Rule) =>
         Rule.required()
-          .min(5)
+          .min(1)
           .max(100)
           .error('The title is required and should be between 5 and 100 characters.'),
       fieldset: 'titleInfo',

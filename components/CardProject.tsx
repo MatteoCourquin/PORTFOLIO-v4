@@ -1,9 +1,9 @@
 import { TypePreviewProject } from '@/data/types';
+import { urlForImage } from '@/sanity/lib/image';
 import Link from 'next/link';
 import Button, { BUTTON_SIZE } from './atoms/Button';
 import { IconArrowTopRight } from './atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
-import { urlForImage } from '@/sanity/lib/image';
 
 const CardProject = ({
   index,
@@ -29,12 +29,12 @@ const CardProject = ({
             <img
               src={urlForImage(mainImageDesktop)}
               alt={title}
-              className="cursor-pointer transition-transform duration-300 group-hover/card-project:scale-105 hidden md:block"
+              className="hidden cursor-pointer transition-transform duration-300 group-hover/card-project:scale-105 md:block"
             />
             <img
               src={urlForImage(mainImageMobile)}
               alt={title}
-              className="cursor-pointer transition-transform duration-300 group-hover/card-project:scale-105 block md:hidden"
+              className="block cursor-pointer transition-transform duration-300 group-hover/card-project:scale-105 md:hidden"
             />
           </div>
         </div>
@@ -48,10 +48,12 @@ const CardProject = ({
         >
           DEV.{title.replace(/ /g, '')}
         </Typography>
-        <Button as="a" href={websiteUrl} target="_blank" size={BUTTON_SIZE.S}>
-          View
-          <IconArrowTopRight className="ml-2 h-3" />
-        </Button>
+        {websiteUrl && (
+          <Button as="a" href={websiteUrl} target="_blank" size={BUTTON_SIZE.S}>
+            View
+            <IconArrowTopRight className="ml-2 h-3" />
+          </Button>
+        )}
       </div>
     </div>
   );
