@@ -29,12 +29,12 @@ const CardProject = ({
             <img
               src={urlForImage(mainImageDesktop)}
               alt={title}
-              className="hidden cursor-pointer transition-transform duration-300 group-hover/card-project:scale-105 md:block"
+              className="hidden cursor-pointer grayscale transition-[transform,filter] duration-300 group-hover/card-project:scale-105 group-hover/card-project:grayscale-0 md:block"
             />
             <img
               src={urlForImage(mainImageMobile)}
               alt={title}
-              className="block cursor-pointer transition-transform duration-300 group-hover/card-project:scale-105 md:hidden"
+              className="block cursor-pointer grayscale transition-[transform,filter] duration-300 group-hover/card-project:scale-105 group-hover/card-project:grayscale-0 md:hidden"
             />
           </div>
         </div>
