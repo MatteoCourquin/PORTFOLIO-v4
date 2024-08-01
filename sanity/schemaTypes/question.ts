@@ -68,8 +68,8 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'question',
-      subtitle: 'answer',
+      title: 'questionEn',
+      subtitle: 'answerEn',
     },
   },
 });

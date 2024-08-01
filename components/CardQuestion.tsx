@@ -1,5 +1,7 @@
 import { TypeQuestion } from '@/data/types';
+import { LanguageContext } from '@/layout/default';
 import clsx from 'clsx';
+import { useContext } from 'react';
 import { IconAdd } from './atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 
@@ -8,12 +10,20 @@ interface CardQuestionProps extends TypeQuestion {
   onToggle: () => void;
 }
 
-const CardQuestion = ({ isOpen, onToggle, question, answer }: CardQuestionProps) => {
+const CardQuestion = ({
+  isOpen,
+  onToggle,
+  questionFr,
+  questionEn,
+  answerFr,
+  answerEn,
+}: CardQuestionProps) => {
+  const { language } = useContext(LanguageContext);
   return (
     <div className="cursor-pointer border-t border-t-black py-6 md:py-10" onClick={onToggle}>
       <div className="flex items-center justify-between">
         <Typography className="!font-normal" type={TYPOGRAPHY_TYPE.HEADING5}>
-          {question}
+          {language === 'fr' ? questionFr : questionEn}
         </Typography>
         <IconAdd
           className={clsx(isOpen ? 'rotate-[135deg]' : 'rotate-0', 'transition-transform')}
@@ -27,7 +37,7 @@ const CardQuestion = ({ isOpen, onToggle, question, answer }: CardQuestionProps)
         )}
       >
         <Typography className="pt-4" type={TYPOGRAPHY_TYPE.TEXT}>
-          {answer}
+          {language === 'fr' ? answerFr : answerEn}
         </Typography>
       </div>
     </div>

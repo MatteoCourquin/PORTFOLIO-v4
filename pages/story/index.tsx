@@ -3,6 +3,7 @@ import CardCareer from '@/components/CardCareer';
 import CardQuestion from '@/components/CardQuestion';
 import { TypeCareer, TypeQuestion } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
+import { client } from '@/sanity/lib/client';
 import { interpolate } from '@/utils/functions';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
@@ -17,7 +18,7 @@ export default function About({
 }) {
   const { data } = useContext(LanguageContext);
 
-  const [openQuestionIndex, setOpenQuestionIndex] = useState<number | null>(null);
+  const [openQuestionIndex, setOpenQuestionIndex] = useState<number>(0);
 
   const heroRefs = {
     lines: {
@@ -192,7 +193,7 @@ export default function About({
         <div className="relative flex flex-col gap-y-default pb-y-default">
           <div className="absolute bottom-0 left-0 h-full w-px bg-black md:left-x-default"></div>
           {career.map((career, index) => (
-            <CardCareer key={career.title + index} {...career} />
+            <CardCareer key={career.titleEn + index} {...career} />
           ))}
         </div>
         <div className="absolute bottom-0 right-0 h-px w-full bg-black"></div>
@@ -204,9 +205,9 @@ export default function About({
         <div className="flex flex-col pt-y-default">
           {questions.map((question, index) => (
             <CardQuestion
-              onToggle={() => setOpenQuestionIndex(openQuestionIndex === index ? null : index)}
+              onToggle={() => setOpenQuestionIndex(index)}
               isOpen={openQuestionIndex === index}
-              key={question.question + index}
+              key={question.questionEn + index}
               {...question}
             />
           ))}
@@ -217,58 +218,26 @@ export default function About({
 }
 
 export async function getStaticProps() {
-  const career = [
-    {
-      startDate: '2020',
-      endDate: '2023',
-      title: 'Bachelor • IIM',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    },
-    {
-      startDate: '2020',
-      endDate: '2023',
-      title: 'Bachelor • IIM',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    },
-    {
-      startDate: '2020',
-      endDate: '2023',
-      title: 'Bachelor • IIM',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    },
-    {
-      startDate: '2020',
-      endDate: '2023',
-      title: 'Bachelor • IIM',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    },
-  ];
-  const questions = [
-    {
-      question: 'How to contact you ?',
-      answer:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    },
-    {
-      question: 'How to contact you ?',
-      answer:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    },
-    {
-      question: 'How to contact you ?',
-      answer:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    },
-    {
-      question: 'How to contact you ?',
-      answer:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. Maecenas eget condimentum velit, sit amet feugiat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    },
-  ];
+  const queryCarreer = `
+    *[_type == "careers"] {
+      startDate,
+      endDate,
+      titleEn,
+      titleFr,
+      descriptionEn,
+      descriptionFr,
+    }`;
+
+  const queryQuestions = `
+    *[_type == "questions"] {
+      questionEn,
+      questionFr,
+      answerEn,
+      answerFr,
+    }`;
+
+  const career = await client.fetch(queryCarreer);
+  const questions = await client.fetch(queryQuestions);
 
   return {
     props: {

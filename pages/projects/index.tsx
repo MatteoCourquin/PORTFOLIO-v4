@@ -1,16 +1,24 @@
 import Button, { BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
-import { TypePreviewProject } from '@/data/types';
+import { TypeFilters, TypePreviewProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
+import { client } from '@/sanity/lib/client';
 import gsap from 'gsap';
 import { useContext, useEffect, useRef, useState } from 'react';
 
-export default function Projects({ projects }: { projects: TypePreviewProject[] }) {
-  const { data } = useContext(LanguageContext);
+export default function Projects({
+  projects,
+  filters,
+}: {
+  projects: TypePreviewProject[];
+  filters: TypeFilters[];
+}) {
+  const { data, language } = useContext(LanguageContext);
 
-  const filters = ['All', 'Developement', 'Design'];
-  const [activeFilter, setActiveFilter] = useState('All');
+  const [activeFilter, setActiveFilter] = useState('all');
+
+  console.log(projects);
 
   const heroRefs = {
     lines: {
@@ -74,6 +82,7 @@ export default function Projects({ projects }: { projects: TypePreviewProject[] 
   useEffect(() => {
     playAnimation();
   });
+
   return (
     <>
       <section className="flex h-[60vh] items-center justify-center">
@@ -99,21 +108,24 @@ export default function Projects({ projects }: { projects: TypePreviewProject[] 
           ></div>
           {filters.map((filter, index) => (
             <Button
-              key={filter + index}
+              key={filter.value + index}
               ref={(el) => (heroRefs.buttons.filters[index].current = el)}
-              isActive={activeFilter === filter}
+              isActive={activeFilter === filter.value}
               as="button"
               type={BUTTON_TYPE.SECONDARY}
-              onClick={() => setActiveFilter(filter)}
+              onClick={() => setActiveFilter(filter.value)}
               className="translate-y-24"
             >
-              {filter}
+              {language === 'fr' ? filter.labelFr : filter.labelEn}
             </Button>
           ))}
         </div>
-        <div className="grid min-h-screen grid-cols-1 gap-10 px-x-default py-y-default md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-10 px-x-default py-y-default md:grid-cols-2">
           {projects
-            .filter((project) => project.type === activeFilter || activeFilter === 'All')
+            .filter(
+              (project) =>
+                project.types.join().includes(activeFilter.toLowerCase()) || activeFilter === 'all',
+            )
             .map((project, index) => (
               <CardProject {...project} key={project.title + index} />
             ))}
@@ -124,45 +136,37 @@ export default function Projects({ projects }: { projects: TypePreviewProject[] 
 }
 
 export async function getStaticProps() {
-  const projects = [
+  const queryProjects = `
+    *[_type == "projects"] {
+      title,
+      slug,
+      mainImageDesktop,
+      mainImageMobile,
+      "types": types[]->value,
+    }`;
+
+  const queryProjectType = `
+    *[_type == "projectType"] {
+      labelFr,
+      labelEn,
+      value,
+    }`;
+
+  const projects = await client.fetch(queryProjects);
+  const projectTypes = await client.fetch(queryProjectType);
+  const filters = [
     {
-      index: '1',
-      title: 'Super projet',
-      mainImageUrlDesktop: '/images/site.png',
-      websiteUrl: 'https://www.google.com',
-      type: 'Developement',
+      labelFr: 'Tous',
+      labelEn: 'All',
+      value: 'all',
     },
-    {
-      index: '2',
-      title: 'Project Master',
-      mainImageUrlDesktop: '/images/site.png',
-      type: 'Design',
-    },
-    {
-      index: '3',
-      title: '2.26 Tours',
-      mainImageUrlDesktop: '/images/site.png',
-      websiteUrl: 'https://www.google.com',
-      type: 'Developement',
-    },
-    {
-      index: '4',
-      title: 'Bel',
-      mainImageUrlDesktop: '/images/site.png',
-      type: 'Design',
-    },
-    {
-      index: '5',
-      title: 'zLawyer',
-      mainImageUrlDesktop: '/images/site.png',
-      websiteUrl: 'https://www.google.com',
-      type: 'Developement',
-    },
+    ...projectTypes,
   ];
 
   return {
     props: {
       projects,
+      filters,
     },
   };
 }

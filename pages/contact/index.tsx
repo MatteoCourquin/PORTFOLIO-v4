@@ -2,8 +2,6 @@ import Button, { BUTTON_SIZE, BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import FormContact from '@/components/FormContact';
 import { LanguageContext } from '@/layout/default';
-import { submitContactForm } from '@/services/api';
-import { useMutation } from '@tanstack/react-query';
 import { useContext } from 'react';
 
 export default function Contact() {

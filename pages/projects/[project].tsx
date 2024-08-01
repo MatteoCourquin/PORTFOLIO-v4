@@ -1,15 +1,19 @@
 import Button, { BUTTON_SIZE } from '@/components/atoms/Button';
 import { IconArrowTopRight } from '@/components/atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
+import { TypeProject } from '@/data/types';
 import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
 import gsap from 'gsap';
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import { groq } from 'next-sanity';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
 import { Image, Slug } from 'sanity';
 
 export default function Page({ project }: InferGetStaticPropsType<typeof getStaticProps>) {
+  console.log(project);
+
   if (!project) {
     // console.log(any)
     return <div>Projet non trouvé.</div>;
@@ -177,7 +181,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
   const { params } = context;
 
   const query = `
-    *[_type == "projects" {
+    *[_type == "projects" && slug.current == $project][0] {
       title,
       slug,
       mainImageDesktop,
@@ -194,12 +198,13 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
   `;
 
   const project = await client.fetch(query, {
-    slug: params?.project,
+    project: params?.project,
   });
 
   return {
     props: {
       project: project || null,
+      params,
     },
   };
 };
@@ -213,12 +218,12 @@ export const getStaticPaths = async () => {
 
   const projects = await client.fetch(query);
 
-  const paths = projects.map((project: any) => ({
+  const paths = projects.map((project: TypeProject) => ({
     params: { project: project.slug.current },
   }));
 
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   };
 };
