@@ -1,5 +1,6 @@
 import { LanguageContext } from '@/layout/default';
 import { useMagnet, useResetMagnet } from '@/utils/animations';
+import { useGSAP } from '@gsap/react';
 import clsx from 'clsx';
 import gsap from 'gsap';
 import Link from 'next/link';
@@ -16,12 +17,14 @@ const Burger = () => {
   const text2Ref = useRef(null);
   const text3Ref = useRef(null);
   const text4Ref = useRef(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef(null);
   const backgroundRef = useRef(null);
-  const timelineRef = useRef(gsap.timeline({ paused: true }));
 
-  const playAnimation = () => {
-    timelineRef.current
+  const { contextSafe } = useGSAP();
+
+  const openBurger = contextSafe(() => {
+    const timelineOpen = gsap.timeline({ paused: true });
+    timelineOpen
       .add(
         gsap.fromTo(
           wrapperRef.current,
@@ -67,19 +70,73 @@ const Burger = () => {
             stagger: 0.1,
           },
         ),
-        '-=0.4',
+        '-=0.6',
       )
       .play();
-  };
+
+    return timelineOpen;
+  });
+
+  const closeBurger = contextSafe(() => {
+    const timelineOpen = gsap.timeline({ paused: true });
+    timelineOpen
+      .add(
+        gsap.fromTo(
+          [text1Ref.current, text2Ref.current, text3Ref.current, text4Ref.current].reverse(),
+          {
+            y: 0,
+            opacity: 1,
+          },
+          {
+            y: -16,
+            opacity: 0,
+            duration: 1,
+            ease: 'power4.inOut',
+            stagger: 0.1,
+          },
+        ),
+      )
+      .add(
+        gsap.fromTo(
+          backgroundRef.current,
+          {
+            scale: 60,
+          },
+          {
+            scale: 0,
+            duration: 0.8,
+            ease: 'power3.inOut',
+          },
+        ),
+        '-=0.7',
+      )
+      .add(
+        gsap.fromTo(
+          wrapperRef.current,
+          {
+            visibility: 'visible',
+            scale: 1,
+          },
+          {
+            visibility: 'hidden',
+            scale: 0,
+            duration: 0,
+          },
+        ),
+      )
+      .play();
+
+    return timelineOpen;
+  });
 
   const handdleOpen = () => {
     setIsOpen(true);
-    playAnimation();
+    openBurger();
   };
 
   const handdleClose = () => {
     setIsOpen(false);
-    timelineRef.current.reverse();
+    closeBurger();
   };
 
   return (
@@ -100,7 +157,7 @@ const Burger = () => {
       >
         <div
           ref={backgroundRef}
-          className="absolute right-10 sm:right-x-default top-10 aspect-square h-16 w-16 translate-x-8 scale-100 rounded-full bg-black sm:h-20 sm:w-20 sm:translate-x-10"
+          className="absolute right-10 top-10 aspect-square h-16 w-16 translate-x-8 scale-100 rounded-full bg-black sm:right-x-default sm:h-20 sm:w-20 sm:translate-x-10"
         ></div>
         <nav className="z-[90] flex h-screen w-screen flex-col items-center justify-center gap-8 uppercase text-white">
           <Link ref={text1Ref} href="/" onClick={handdleClose}>
@@ -141,7 +198,7 @@ const Burger = () => {
           </Link>
         </nav>
       </div>
-      <div className="fixed right-10 sm:right-x-default top-10 z-[100] translate-x-8 sm:translate-x-10">
+      <div className="fixed right-10 top-10 z-[100] translate-x-8 sm:right-x-default sm:translate-x-10">
         <div
           onClick={() => (isOpen ? handdleClose() : handdleOpen())}
           onMouseMove={(e) => useMagnet(e, 1)}

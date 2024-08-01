@@ -1,9 +1,10 @@
 import { TypeCareer } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { formatDate, formatDateToYear } from '@/utils/functions';
+import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useRef } from 'react';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 
 const CardCareer = ({
@@ -32,12 +33,12 @@ const CardCareer = ({
     });
   };
 
-  useEffect(() => {
+  useGSAP(() => {
     scrollTriggerAnimation();
-  });
+  }, [dotRef.current, language]);
 
   return (
-    <div className="md:h-screen">
+    <div className="md:min-h-screen">
       <div className="md:sticky md:top-1/3">
         <div className="flex items-center">
           <div className="hidden w-x-default md:block">
@@ -48,7 +49,7 @@ const CardCareer = ({
             >
               {formatDateToYear(startDate)}
               <br />
-              {formatDateToYear(endDate) || 'now'}
+              {endDate ? formatDateToYear(endDate) : 'now'}
             </Typography>
           </div>
           <div
@@ -60,7 +61,8 @@ const CardCareer = ({
             as={TYPOGRAPHY_TYPE.HEADING4}
             className="pl-[6vw] !font-semibold text-primary md:pl-[4vw]"
           >
-            {formatDate(startDate, language)} - {formatDate(endDate, language) || 'now'}
+            {formatDate(startDate, language)} -{' '}
+            {endDate ? formatDate(endDate, language) : language === 'fr' ? 'En cours' : 'Now'}
           </Typography>
         </div>
         <div className="w-full pl-0 md:pl-x-default lg:w-3/4">

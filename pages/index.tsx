@@ -6,10 +6,11 @@ import { TypePreviewProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
 import { interpolate } from '@/utils/functions';
+import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import Link from 'next/link';
-import { useContext, useEffect, useRef } from 'react';
+import { useContext, useRef } from 'react';
 
 export default function Home({ projects }: { projects: TypePreviewProject[] }) {
   const { data } = useContext(LanguageContext);
@@ -130,7 +131,7 @@ export default function Home({ projects }: { projects: TypePreviewProject[] }) {
       .play();
   };
 
-  useEffect(() => {
+  useGSAP(() => {
     playAnimation();
     scrollTriggerAnimation();
   }, []);
@@ -242,7 +243,7 @@ export default function Home({ projects }: { projects: TypePreviewProject[] }) {
             <CardProject {...project} key={project.title + index} />
           ))}
         </div>
-        <Button as="button" size={BUTTON_SIZE.L} className="mx-auto my-20">
+        <Button as="a" href="/projects" size={BUTTON_SIZE.L} className="mx-auto my-20">
           {data.home.projects.button}
         </Button>
       </section>
@@ -252,7 +253,7 @@ export default function Home({ projects }: { projects: TypePreviewProject[] }) {
 
 export async function getStaticProps() {
   const query = `
-    *[_type == "projects"] {
+    *[_type == "projects"] | order(_createdAt desc)[0...4] {
       title,
       slug,
       mainImageDesktop,

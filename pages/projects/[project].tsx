@@ -4,18 +4,15 @@ import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import { TypeProject } from '@/data/types';
 import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
+import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType } from 'next';
-import { groq } from 'next-sanity';
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
-import { Image, Slug } from 'sanity';
+import { useRef } from 'react';
+import { Image } from 'sanity';
 
 export default function Page({ project }: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log(project);
-
   if (!project) {
-    // console.log(any)
     return <div>Projet non trouvé.</div>;
   }
 
@@ -73,7 +70,7 @@ export default function Page({ project }: InferGetStaticPropsType<typeof getStat
       .play();
   };
 
-  useEffect(() => {
+  useGSAP(() => {
     playAnimation();
   });
 

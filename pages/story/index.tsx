@@ -5,9 +5,10 @@ import { TypeCareer, TypeQuestion } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
 import { interpolate } from '@/utils/functions';
+import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 
 export default function About({
   career,
@@ -113,10 +114,12 @@ export default function About({
       .play();
   };
 
-  useEffect(() => {
+  useGSAP(() => {
     playAnimation();
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    ScrollTrigger.refresh();
     scrollTriggerAnimation();
-  });
+  }, [data]);
 
   return (
     <>

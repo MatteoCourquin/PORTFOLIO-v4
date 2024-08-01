@@ -1,9 +1,8 @@
-// schemas/projectType.js
-import { defineType, defineField } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'projectType',
-  title: '🏷️ PROJECT TYPE',
+  title: '🏷️ PROJECT TYPES',
   type: 'document',
   fieldsets: [
     {

@@ -4,8 +4,9 @@ import CardProject from '@/components/CardProject';
 import { TypeFilters, TypePreviewProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
+import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 
 export default function Projects({
   projects,
@@ -17,8 +18,6 @@ export default function Projects({
   const { data, language } = useContext(LanguageContext);
 
   const [activeFilter, setActiveFilter] = useState('all');
-
-  console.log(projects);
 
   const heroRefs = {
     lines: {
@@ -79,9 +78,9 @@ export default function Projects({
       .play();
   };
 
-  useEffect(() => {
+  useGSAP(() => {
     playAnimation();
-  });
+  }, []);
 
   return (
     <>
