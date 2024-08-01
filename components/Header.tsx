@@ -1,8 +1,9 @@
+import { useGSAP } from '@gsap/react';
 import clsx from 'clsx';
 import gsap from 'gsap';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 const Header = () => {
   const pathname = usePathname();
@@ -29,7 +30,7 @@ const Header = () => {
       .play();
   };
 
-  useEffect(() => {
+  useGSAP(() => {
     playAnimation();
   }, []);
 
