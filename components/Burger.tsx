@@ -141,7 +141,7 @@ const Burger = () => {
 
   return (
     <>
-      <Button
+      {/* <Button
         className="fixed left-10 top-10 z-[90]"
         as="button"
         onClick={() => {
@@ -150,7 +150,7 @@ const Burger = () => {
         }}
       >
         {language === 'en' ? 'fr' : 'en'}
-      </Button>
+      </Button> */}
       <div
         ref={wrapperRef}
         className="invisible fixed left-0 right-0 top-0 z-[90] h-screen w-screen scale-0"

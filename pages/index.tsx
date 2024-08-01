@@ -138,23 +138,23 @@ export default function Home({ projects }: { projects: TypePreviewProject[] }) {
 
   return (
     <>
-      <section className="bg-gradient relative h-screen w-screen px-x-default py-y-default text-center text-white">
+      <section className="relative h-screen w-screen px-x-default py-y-default text-center text-black">
         <div className="relative h-full w-full">
           <div
             ref={heroRefs.lines.H1}
-            className="absolute -right-x-default top-0 h-px w-0 bg-white"
+            className="absolute -right-x-default top-0 h-px w-0 bg-black"
           ></div>
           <div
             ref={heroRefs.lines.H2}
-            className="absolute -left-x-default bottom-0 h-px w-0 bg-white"
+            className="absolute -left-x-default bottom-0 h-px w-0 bg-black"
           ></div>
           <div
             ref={heroRefs.lines.V1}
-            className="absolute -top-y-default right-0 h-0 w-px bg-white"
+            className="absolute -top-y-default right-0 h-0 w-px bg-black"
           ></div>
           <div
             ref={heroRefs.lines.V2}
-            className="absolute -bottom-y-default left-0 h-0 w-px bg-white"
+            className="absolute -bottom-y-default left-0 h-0 w-px bg-black"
           ></div>
           <div className="flex h-full flex-col items-center justify-center">
             <Typography
@@ -167,7 +167,7 @@ export default function Home({ projects }: { projects: TypePreviewProject[] }) {
             <Typography
               ref={heroRefs.texts.text2}
               type={TYPOGRAPHY_TYPE.HEADING2}
-              className="-translate-y-4 pb-4 text-center opacity-0"
+              className="-translate-y-4 pb-4 text-center text-primary opacity-0"
             >
               Matteo COURQUIN
             </Typography>

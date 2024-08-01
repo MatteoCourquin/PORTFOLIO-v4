@@ -2,16 +2,19 @@ import Button, { BUTTON_SIZE } from '@/components/atoms/Button';
 import { IconArrowTopRight } from '@/components/atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import { TypeProject } from '@/data/types';
+import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { Image } from 'sanity';
 
 export default function Page({ project }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { language } = useContext(LanguageContext);
+
   if (!project) {
     return <div>Projet non trouvé.</div>;
   }
@@ -119,7 +122,9 @@ export default function Page({ project }: InferGetStaticPropsType<typeof getStat
             >
               {project.title}
             </Typography>
-            <Typography type={TYPOGRAPHY_TYPE.TEXT}>{project.description}</Typography>
+            <Typography type={TYPOGRAPHY_TYPE.TEXT}>
+              {language === 'fr' ? project.descriptionFr : project.descriptionEn}
+            </Typography>
           </div>
         </section>
       </div>
