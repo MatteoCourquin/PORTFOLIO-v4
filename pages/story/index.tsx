@@ -1,6 +1,6 @@
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardCareer from '@/components/CardCareer';
-import CardQuestion from '@/components/CardQuestion';
+import Questions from '@/components/Questions';
 import { TypeCareer, TypeQuestion } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
@@ -8,7 +8,7 @@ import { interpolate } from '@/utils/functions';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import { useContext, useRef, useState } from 'react';
+import { useContext, useRef } from 'react';
 
 export default function About({
   career,
@@ -18,8 +18,6 @@ export default function About({
   questions: TypeQuestion[];
 }) {
   const { data } = useContext(LanguageContext);
-
-  const [openQuestionIndex, setOpenQuestionIndex] = useState<number>(0);
 
   const heroRefs = {
     lines: {
@@ -202,19 +200,7 @@ export default function About({
         <div className="absolute bottom-0 right-0 h-px w-full bg-black"></div>
       </section>
       <section className="px-x-default py-y-default">
-        <Typography className="w-full text-center" type={TYPOGRAPHY_TYPE.HEADING3}>
-          {data.story.questions.title}
-        </Typography>
-        <div className="flex flex-col pt-y-default">
-          {questions.map((question, index) => (
-            <CardQuestion
-              onToggle={() => setOpenQuestionIndex(index)}
-              isOpen={openQuestionIndex === index}
-              key={question.questionEn + index}
-              {...question}
-            />
-          ))}
-        </div>
+        <Questions questions={questions} />
       </section>
     </>
   );
@@ -222,7 +208,7 @@ export default function About({
 
 export async function getStaticProps() {
   const queryCarreer = `
-    *[_type == "careers"] {
+    *[_type == "careers"] | order(endDate desc) {
       startDate,
       endDate,
       titleEn,
@@ -232,12 +218,12 @@ export async function getStaticProps() {
     }`;
 
   const queryQuestions = `
-    *[_type == "questions"] {
-      questionEn,
-      questionFr,
-      answerEn,
-      answerFr,
-    }`;
+      *[_type == "questions"] {
+        questionEn,
+        questionFr,
+        answerEn,
+        answerFr,
+      }`;
 
   const career = await client.fetch(queryCarreer);
   const questions = await client.fetch(queryQuestions);

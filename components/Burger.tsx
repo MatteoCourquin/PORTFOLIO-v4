@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import gsap from 'gsap';
 import Link from 'next/link';
 import { useContext, useRef, useState } from 'react';
-import Button from './atoms/Button';
+import Button, { BUTTON_SIZE } from './atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 
 const Burger = () => {
@@ -141,16 +141,16 @@ const Burger = () => {
 
   return (
     <>
-      {/* <Button
-        className="fixed left-10 top-10 z-[90]"
+      <Button
+        className="fixed left-x-default top-y-default z-[90] -translate-x-1/2 -translate-y-1/2"
         as="button"
         onClick={() => {
           localStorage.setItem('language', language === 'en' ? 'fr' : 'en');
           setLanguage(language === 'en' ? 'fr' : 'en');
         }}
       >
-        {language === 'en' ? 'fr' : 'en'}
-      </Button> */}
+        {language === 'en' ? 'fr 🇫🇷' : 'en 🇬🇧'}
+      </Button>
       <div
         ref={wrapperRef}
         className="invisible fixed left-0 right-0 top-0 z-[90] h-screen w-screen scale-0"

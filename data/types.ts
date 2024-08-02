@@ -1,18 +1,23 @@
-import { Image, Slug } from 'sanity';
+import { Image, Slug, TypedObject } from 'sanity';
 
 export type TypeProject = {
-  index: string;
-  title: string;
+  index: number;
   slug: Slug;
-  description: string;
+  title: string;
   mainImageDesktop: Image;
   mainImageMobile: Image;
+  descriptionEn: TypedObject[];
+  descriptionFr: TypedObject[];
+  authors: TypeAuthor[];
   gallery?: Image[];
   websiteUrl?: string;
   types: string[];
 };
 
-export type TypePreviewProject = Omit<TypeProject, 'description' | 'imagesUrl'>;
+export type TypeAuthor = {
+  name: string;
+  websiteUrl: string;
+};
 
 export type TypeFilters = {
   labelFr: string;
@@ -25,15 +30,15 @@ export type TypeCareer = {
   endDate: string;
   titleFr: string;
   titleEn: string;
-  descriptionFr: string;
-  descriptionEn: string;
+  descriptionFr: TypedObject[];
+  descriptionEn: TypedObject[];
 };
 
 export type TypeQuestion = {
   questionFr: string;
   questionEn: string;
-  answerFr: string;
-  answerEn: string;
+  answerFr: TypedObject[];
+  answerEn: TypedObject[];
 };
 
 export type TypeContactFormData = {

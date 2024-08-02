@@ -2,7 +2,8 @@ import Button, { BUTTON_SIZE } from '@/components/atoms/Button';
 import { IconArrowTopRight } from '@/components/atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
-import { TypePreviewProject } from '@/data/types';
+import Questions from '@/components/Questions';
+import { TypeProject, TypeQuestion } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
 import { interpolate } from '@/utils/functions';
@@ -12,7 +13,13 @@ import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import Link from 'next/link';
 import { useContext, useRef } from 'react';
 
-export default function Home({ projects }: { projects: TypePreviewProject[] }) {
+export default function Home({
+  projects,
+  questions,
+}: {
+  projects: TypeProject[];
+  questions: TypeQuestion[];
+}) {
   const { data } = useContext(LanguageContext);
 
   const heroRefs = {
@@ -238,21 +245,27 @@ export default function Home({ projects }: { projects: TypePreviewProject[] }) {
         />
       </section>
       <section className="px-x-default py-y-default">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+        <Typography className="w-full text-center sm:text-left" type={TYPOGRAPHY_TYPE.HEADING3}>
+          {data.home.projects.title}
+        </Typography>
+        <div className="grid grid-cols-1 gap-10 pt-y-default md:grid-cols-2">
           {projects.map((project, index) => (
-            <CardProject {...project} key={project.title + index} />
+            <CardProject {...project} index={index} key={project.title + index} />
           ))}
         </div>
         <Button as="a" href="/projects" size={BUTTON_SIZE.L} className="mx-auto my-20">
           {data.home.projects.button}
         </Button>
       </section>
+      <section className="px-x-default pb-y-default">
+        <Questions questions={questions} />
+      </section>
     </>
   );
 }
 
 export async function getStaticProps() {
-  const query = `
+  const queryProjects = `
     *[_type == "projects"] | order(_createdAt desc)[0...4] {
       title,
       slug,
@@ -261,10 +274,20 @@ export async function getStaticProps() {
       websiteUrl,
     }`;
 
-  const projects = await client.fetch(query);
+  const queryQuestions = `
+    *[_type == "questions"] {
+      questionEn,
+      questionFr,
+      answerEn,
+      answerFr,
+    }`;
+
+  const projects = await client.fetch(queryProjects);
+  const questions = await client.fetch(queryQuestions);
   return {
     props: {
       projects,
+      questions,
     },
   };
 }

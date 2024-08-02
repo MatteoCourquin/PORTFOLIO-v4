@@ -5,6 +5,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import { useContext, useRef } from 'react';
+import RichText from './atoms/RichText';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 
 const CardCareer = ({
@@ -36,6 +37,9 @@ const CardCareer = ({
   useGSAP(() => {
     scrollTriggerAnimation();
   }, [dotRef.current, language]);
+
+  console.log(descriptionEn);
+  console.log(descriptionFr);
 
   return (
     <div className="md:min-h-screen">
@@ -73,9 +77,10 @@ const CardCareer = ({
           >
             {language === 'fr' ? titleFr : titleEn}
           </Typography>
-          <Typography type={TYPOGRAPHY_TYPE.TEXT} className="pl-[6vw] md:pl-[4vw]">
-            {language === 'fr' ? descriptionFr : descriptionEn}
-          </Typography>
+          <RichText
+            className="pl-[6vw] md:pl-[4vw]"
+            value={language === 'fr' ? descriptionFr : descriptionEn}
+          />
         </div>
       </div>
     </div>

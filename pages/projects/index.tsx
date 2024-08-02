@@ -1,7 +1,7 @@
 import Button, { BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
-import { TypeFilters, TypePreviewProject } from '@/data/types';
+import { TypeFilters, TypeProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
 import { useGSAP } from '@gsap/react';
@@ -12,7 +12,7 @@ export default function Projects({
   projects,
   filters,
 }: {
-  projects: TypePreviewProject[];
+  projects: TypeProject[];
   filters: TypeFilters[];
 }) {
   const { data, language } = useContext(LanguageContext);
@@ -126,7 +126,7 @@ export default function Projects({
                 project.types.join().includes(activeFilter.toLowerCase()) || activeFilter === 'all',
             )
             .map((project, index) => (
-              <CardProject {...project} key={project.title + index} />
+              <CardProject {...project} index={index} key={project.title + index} />
             ))}
         </div>
       </section>

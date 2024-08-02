@@ -1,5 +1,6 @@
 import Button, { BUTTON_SIZE } from '@/components/atoms/Button';
 import { IconArrowTopRight } from '@/components/atoms/Icons';
+import RichText from '@/components/atoms/RichText';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import { TypeProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
@@ -7,12 +8,12 @@ import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { GetStaticPropsContext, InferGetStaticPropsType } from 'next';
+import { GetStaticPropsContext } from 'next';
 import Link from 'next/link';
 import { useContext, useRef } from 'react';
 import { Image } from 'sanity';
 
-export default function Page({ project }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Page({ project }: { project: TypeProject }) {
   const { language } = useContext(LanguageContext);
 
   if (!project) {
@@ -77,6 +78,8 @@ export default function Page({ project }: InferGetStaticPropsType<typeof getStat
     playAnimation();
   });
 
+  console.log(project.descriptionEn);
+
   return (
     <div className="pt-y-default">
       <div className="relative">
@@ -118,13 +121,11 @@ export default function Page({ project }: InferGetStaticPropsType<typeof getStat
             <Typography
               type={TYPOGRAPHY_TYPE.HEADING1}
               as={TYPOGRAPHY_TYPE.HEADING4}
-              className="w-full pb-4 text-center"
+              className="w-full pb-4 text-center sm:text-left"
             >
               {project.title}
             </Typography>
-            <Typography type={TYPOGRAPHY_TYPE.TEXT}>
-              {language === 'fr' ? project.descriptionFr : project.descriptionEn}
-            </Typography>
+            <RichText value={language === 'fr' ? project.descriptionFr : project.descriptionEn} />
           </div>
         </section>
       </div>
@@ -171,7 +172,7 @@ export default function Page({ project }: InferGetStaticPropsType<typeof getStat
       <section className="flex flex-col gap-y-default px-x-default pb-y-default">
         {project.gallery?.map((image: Image, index: number) => (
           <div key={index}>
-            <img src={urlForImage(image)} alt="" className="w-full" />
+            <img src={urlForImage(image)} alt="" className="w-full border" />
           </div>
         ))}
       </section>

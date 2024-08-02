@@ -51,19 +51,19 @@ export default defineType({
       fieldset: 'titleInfo',
     }),
     defineField({
-      name: 'descriptionEn',
-      title: 'Description 🇬🇧',
-      type: 'text',
-      description: 'A brief description of the project in English.',
+      name: 'descriptionFr',
+      title: 'Description 🇫🇷',
+      type: 'blockContent',
+      description: 'Une brève description du projet en français.',
       validation: (Rule) =>
         Rule.required().max(500).warning('A shorter description is more engaging.'),
       fieldset: 'descriptionInfo',
     }),
     defineField({
-      name: 'descriptionFr',
-      title: 'Description 🇫🇷',
-      type: 'text',
-      description: 'Une brève description du projet en français.',
+      name: 'descriptionEn',
+      title: 'Description 🇬🇧',
+      type: 'blockContent',
+      description: 'A brief description of the project in English.',
       validation: (Rule) =>
         Rule.required().max(500).warning('A shorter description is more engaging.'),
       fieldset: 'descriptionInfo',
