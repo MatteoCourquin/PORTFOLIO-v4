@@ -38,9 +38,6 @@ const CardCareer = ({
     scrollTriggerAnimation();
   }, [dotRef.current, language]);
 
-  console.log(descriptionEn);
-  console.log(descriptionFr);
-
   return (
     <div className="md:min-h-screen">
       <div className="md:sticky md:top-1/3">

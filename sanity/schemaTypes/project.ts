@@ -51,6 +51,14 @@ export default defineType({
       fieldset: 'titleInfo',
     }),
     defineField({
+      name: 'projectIndex',
+      title: 'Project Index',
+      type: 'number',
+      description: 'The index of the project.',
+      // validation: (Rule) => Rule.required(),
+      fieldset: 'titleInfo',
+    }),
+    defineField({
       name: 'descriptionFr',
       title: 'Description 🇫🇷',
       type: 'blockContent',

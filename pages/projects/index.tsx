@@ -119,14 +119,14 @@ export default function Projects({
             </Button>
           ))}
         </div>
-        <div className="grid grid-cols-1 gap-10 px-x-default py-y-default md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-10 px-x-default py-y-default lg:grid-cols-2">
           {projects
             .filter(
               (project) =>
                 project.types.join().includes(activeFilter.toLowerCase()) || activeFilter === 'all',
             )
             .map((project, index) => (
-              <CardProject {...project} index={index} key={project.title + index} />
+              <CardProject {...project} projectIndex={index} key={project.title + index} />
             ))}
         </div>
       </section>
@@ -137,6 +137,7 @@ export default function Projects({
 export async function getStaticProps() {
   const queryProjects = `
     *[_type == "projects"] {
+      projectIndex,
       title,
       slug,
       mainImageDesktop,
