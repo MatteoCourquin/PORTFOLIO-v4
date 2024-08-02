@@ -1,7 +1,7 @@
 import { Image, Slug, TypedObject } from 'sanity';
 
 export type TypeProject = {
-  index: number;
+  projectIndex: number;
   slug: Slug;
   title: string;
   mainImageDesktop: Image;

@@ -78,8 +78,6 @@ export default function Page({ project }: { project: TypeProject }) {
     playAnimation();
   });
 
-  console.log(project.descriptionEn);
-
   return (
     <div className="pt-y-default">
       <div className="relative">
@@ -185,6 +183,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 
   const query = `
     *[_type == "projects" && slug.current == $project][0] {
+      projectIndex,
       title,
       slug,
       mainImageDesktop,
