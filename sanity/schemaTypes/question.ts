@@ -44,25 +44,25 @@ export default defineType({
     defineField({
       name: 'answerFr',
       title: 'Answer 🇫🇷',
-      type: 'text',
+      type: 'blockContent',
       description: 'The answer to the question.',
       validation: (Rule) =>
         Rule.required()
           .min(10)
-          .max(1000)
-          .warning('Try to keep the answer concise, with a maximum of 1000 characters.'),
+          .max(400)
+          .warning('Try to keep the answer concise, with a maximum of 400 characters.'),
       fieldset: 'answerInfo',
     }),
     defineField({
       name: 'answerEn',
       title: 'Answer 🇬🇧',
-      type: 'text',
+      type: 'blockContent',
       description: 'The answer to the question.',
       validation: (Rule) =>
         Rule.required()
           .min(10)
-          .max(1000)
-          .warning('Try to keep the answer concise, with a maximum of 1000 characters.'),
+          .max(400)
+          .warning('Try to keep the answer concise, with a maximum of 400 characters.'),
       fieldset: 'answerInfo',
     }),
   ],

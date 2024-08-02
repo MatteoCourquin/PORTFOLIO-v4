@@ -3,6 +3,7 @@ import { LanguageContext } from '@/layout/default';
 import clsx from 'clsx';
 import { useContext } from 'react';
 import { IconAdd } from './atoms/Icons';
+import RichText from './atoms/RichText';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 
 interface CardQuestionProps extends TypeQuestion {
@@ -36,9 +37,7 @@ const CardQuestion = ({
           isOpen ? 'h-64 sm:h-52 md:h-36 lg:h-28' : 'h-0',
         )}
       >
-        <Typography className="pt-4" type={TYPOGRAPHY_TYPE.TEXT}>
-          {language === 'fr' ? answerFr : answerEn}
-        </Typography>
+        <RichText value={language === 'fr' ? answerFr : answerEn} />
       </div>
     </div>
   );

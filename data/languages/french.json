@@ -6,12 +6,12 @@
     "contact": "Contact"
   },
   "footer": {
-    "title": "Parlons de votre prochain projet 🔥",
+    "title": "Parlons de votre prochain projet ! 🚀",
     "button": "Je suis prêt"
   },
   "home": {
     "hero": {
-      "title": "Salut ! Moi c’est",
+      "title": "Salut ! 👋 Moi c’est",
       "subtitle": "DÉVELOPPEUR FULLSTACK ( DEPUIS 2019 )",
       "button": "Commencer un projet"
     },
@@ -20,6 +20,7 @@
       "description": "<p>Salut 👋 ! Moi c’est Matteo, développeur FullStack depuis {{yearsExperience}} ans. <br /><br />Initialement parti pour être architecte, ma passion pour le développement web a émergé pendant le confinement, consolidée par un Bachelor à l’<a href=\"https://www.iim.fr/cursus/bachelor-coding-digital-innovation/\" target=\"_blank\" class=\"underline\">IIM</a> et un Master à l’<a href=\"https://www.hetic.net/formations/mastere-cto-tech-lead\" target=\"_blank\" class=\"underline\">HETIC</a>. 💻<br /><br />Tout a commencé depuis <a href=\"https://openclassrooms.com/fr/\" target=\"_blank\" class=\"underline\">OpenClassrooms</a>. Le premier site vers lequel on se dirige lorsque l’on s’intéresse au web !<br /><br />Actuellement en Freelance, j’ai l’habitude de créer de multiples projets. 🚀<br /><br />Ma rigueur, ma persévérance et ma sensibilité esthétique se reflètent dans ma vision du développement.<br /><br />« Un code propre en vaut 10 » 😉</p>"
     },
     "projects": {
+      "title": "Projets",
       "button": "Plus"
     }
   },

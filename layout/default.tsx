@@ -1,6 +1,5 @@
 import Burger from '@/components/Burger';
 import Footer from '@/components/Footer';
-import Header from '@/components/Header';
 import english from '@/data/languages/english.json';
 import french from '@/data/languages/french.json';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -32,7 +31,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
     <QueryClientProvider client={queryClient}>
       <LanguageContext.Provider value={{ language, setLanguage, data }}>
         <Burger />
-        <Header />
         <main>{children}</main>
         <Footer />
       </LanguageContext.Provider>

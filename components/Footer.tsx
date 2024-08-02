@@ -10,10 +10,13 @@ const Footer = () => {
   return (
     <footer className="flex bg-black px-x-default py-y-default text-center text-white md:gap-10 md:text-left">
       <div className="flex flex-col items-center gap-4 md:items-start">
-        <Typography type={TYPOGRAPHY_TYPE.HEADING4} className="w-2/3 uppercase">
+        <Typography
+          type={TYPOGRAPHY_TYPE.HEADING4}
+          className="w-full text-center uppercase md:w-2/3 md:text-left"
+        >
           {data.footer.title}
         </Typography>
-        <Button as="button" className="font-medium uppercase" color="white" size={BUTTON_SIZE.L}>
+        <Button as="a" href='/contact' className="font-medium uppercase" color="white" size={BUTTON_SIZE.L}>
           {data.footer.button}
         </Button>
         <Button

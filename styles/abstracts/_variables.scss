@@ -27,27 +27,3 @@ $transition-default: all 0.3s cubic-bezier(0.84, 0, 0.16, 1);
 // PADDING
 $padding-x-default: clamp(20px, 8vw, 100px);
 $padding-y-default: clamp(20px, 8vh, 100px);
-
-.transition-max-height {
-  transition: max-height 0.3s ease-out;
-}
-
-.bg-gradient {
-  position: relative;
-  overflow: hidden;
-
-  &::after {
-    content: '';
-    z-index: -1;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    right: 0;
-    min-height: 200%;
-    min-width: 100%;
-    min-height: 200%;
-    aspect-ratio: 1/1;
-    transform: translateX(-50%);
-    background-image: radial-gradient(#d9e3f1, #a3c7f9, #e347b5, #e8603c);
-  }
-}
