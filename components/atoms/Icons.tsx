@@ -1,13 +1,15 @@
 import clsx from 'clsx';
+import { forwardRef } from 'react';
 
-export const IconArrowTopRight = ({
-  color = 'white',
-  className,
-}: {
-  color?: 'black' | 'white';
-  className?: string;
-}) => (
+export const IconArrowTopRight = forwardRef<
+  SVGSVGElement,
+  {
+    color?: 'black' | 'white';
+    className?: string;
+  }
+>(({ color = 'white', className }, ref) => (
   <svg
+    ref={ref}
     className={clsx(
       color === 'white' && 'stroke-white',
       color === 'black' && 'stroke-black',
@@ -27,7 +29,9 @@ export const IconArrowTopRight = ({
       strokeWidth="3"
     />
   </svg>
-);
+));
+
+IconArrowTopRight.displayName = 'IconArrowTopRight'; // Ajoutez displayName pour faciliter le débogage
 
 export const IconAdd = ({ className, size = 24 }: { className: string; size?: number }) => (
   <svg

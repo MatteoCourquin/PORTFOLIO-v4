@@ -5,8 +5,8 @@ import clsx from 'clsx';
 import gsap from 'gsap';
 import Link from 'next/link';
 import { useContext, useRef, useState } from 'react';
-import Button, { BUTTON_SIZE } from './atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
+import Language from './Language';
 
 const Burger = () => {
   const { language, setLanguage, data } = useContext(LanguageContext);
@@ -17,6 +17,7 @@ const Burger = () => {
   const text2Ref = useRef(null);
   const text3Ref = useRef(null);
   const text4Ref = useRef(null);
+  const buttonLanguageRef = useRef(null);
   const wrapperRef = useRef(null);
   const backgroundRef = useRef(null);
 
@@ -72,14 +73,45 @@ const Burger = () => {
         ),
         '-=0.6',
       )
+      .add(
+        gsap.fromTo(
+          buttonLanguageRef.current,
+          {
+            x: -16,
+            opacity: 0,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 1,
+            ease: 'power4.inOut',
+          },
+        ),
+        '-=0.6',
+      )
       .play();
 
     return timelineOpen;
   });
 
   const closeBurger = contextSafe(() => {
-    const timelineOpen = gsap.timeline({ paused: true });
-    timelineOpen
+    const timelineClose = gsap.timeline({ paused: true });
+    timelineClose
+      .add(
+        gsap.fromTo(
+          buttonLanguageRef.current,
+          {
+            x: 0,
+            opacity: 1,
+          },
+          {
+            x: -16,
+            opacity: 0,
+            duration: 1,
+            ease: 'power4.inOut',
+          },
+        ),
+      )
       .add(
         gsap.fromTo(
           [text1Ref.current, text2Ref.current, text3Ref.current, text4Ref.current].reverse(),
@@ -95,6 +127,7 @@ const Burger = () => {
             stagger: 0.1,
           },
         ),
+        '-=0.6',
       )
       .add(
         gsap.fromTo(
@@ -126,7 +159,7 @@ const Burger = () => {
       )
       .play();
 
-    return timelineOpen;
+    return timelineClose;
   });
 
   const handdleOpen = () => {
@@ -141,24 +174,19 @@ const Burger = () => {
 
   return (
     <>
-      <Button
-        className="fixed left-x-default top-y-default z-[90] -translate-x-1/2 -translate-y-1/2"
-        as="button"
-        onClick={() => {
-          localStorage.setItem('language', language === 'en' ? 'fr' : 'en');
-          setLanguage(language === 'en' ? 'fr' : 'en');
-        }}
-      >
-        {language === 'en' ? 'fr 🇫🇷' : 'en 🇬🇧'}
-      </Button>
       <div
         ref={wrapperRef}
         className="invisible fixed left-0 right-0 top-0 z-[90] h-screen w-screen scale-0"
       >
         <div
           ref={backgroundRef}
-          className="absolute right-10 top-10 aspect-square h-16 w-16 translate-x-8 scale-100 rounded-full bg-black sm:right-x-default sm:h-20 sm:w-20 sm:translate-x-10"
+          className="absolute right-10 top-10 aspect-square h-16 w-16 scale-100 rounded-full bg-black sm:right-x-default sm:h-20 sm:w-20 sm:translate-x-10"
         ></div>
+        <div className="absolute left-10 top-y-default flex h-20 -translate-y-1/2 items-center sm:left-x-default sm:-translate-x-1/2">
+          <div ref={buttonLanguageRef} className="-translate-x-4 opacity-0">
+            <Language />
+          </div>
+        </div>
         <nav className="z-[90] flex h-screen w-screen flex-col items-center justify-center gap-8 uppercase text-white">
           <Link ref={text1Ref} href="/" onClick={handdleClose}>
             <Typography
@@ -198,13 +226,13 @@ const Burger = () => {
           </Link>
         </nav>
       </div>
-      <div className="fixed right-10 top-10 z-[100] translate-x-8 sm:right-x-default sm:translate-x-10">
+      <div className="fixed right-10 top-10 z-[100] sm:right-x-default sm:translate-x-10">
         <div
           onClick={() => (isOpen ? handdleClose() : handdleOpen())}
           onMouseMove={(e) => useMagnet(e, 1)}
           onMouseOut={(e) => useResetMagnet(e)}
           className={clsx(
-            isOpen ? 'bg-black' : 'bg-white',
+            isOpen ? 'border-white bg-black' : 'border-black bg-white',
             'group flex h-16 w-16 cursor-pointer items-center justify-center rounded-full border transition-colors sm:h-20 sm:w-20',
           )}
         >

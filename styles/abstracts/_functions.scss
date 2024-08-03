@@ -1,26 +1,6 @@
-@keyframes topToBottom {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(100%);
-  }
-}
-.animate-topToBottom {
-  animation: topToBottom linear infinite;
-}
+// @keyframes anim {
+// }
 
-.animate-1s {
-  animation-duration: 0.4s !important;
-  animation-delay: 0.1s;
-}
-
-.animate-2s {
-  animation-duration: 0.5s !important;
-  animation-delay: 0.2s;
-}
-
-.animate-3s {
-  animation-duration: 0.6s !important;
-  animation-delay: 0.3s;
-}
+// .anim {
+//   animation: anim 1s infinite;
+// }

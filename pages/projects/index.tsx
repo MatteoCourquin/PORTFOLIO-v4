@@ -93,8 +93,8 @@ export default function Projects({
           {data.projects.title}
         </Typography>
       </section>
-      <section className="">
-        <div className="relative flex h-24 items-center justify-center gap-4 overflow-hidden">
+      <section>
+        <div className="relative px-x-default">
           <div ref={heroRefs.lines.H1} className="absolute right-0 top-0 h-px w-0 bg-black"></div>
           <div ref={heroRefs.lines.H2} className="absolute bottom-0 left-0 h-px w-0 bg-black"></div>
           <div
@@ -105,19 +105,25 @@ export default function Projects({
             ref={heroRefs.lines.V2}
             className="absolute bottom-0 left-x-default h-0 w-px bg-black"
           ></div>
-          {filters.map((filter, index) => (
-            <Button
-              key={filter.value + index}
-              ref={(el) => (heroRefs.buttons.filters[index].current = el)}
-              isActive={activeFilter === filter.value}
-              as="button"
-              type={BUTTON_TYPE.SECONDARY}
-              onClick={() => setActiveFilter(filter.value)}
-              className="translate-y-24"
-            >
-              {language === 'fr' ? filter.labelFr : filter.labelEn}
-            </Button>
-          ))}
+          <div className="p-px">
+            <div className="shadow-x-white">
+              <div className="flex h-24 items-center justify-start sm:justify-center gap-4 overflow-scroll px-4">
+                {filters.map((filter, index) => (
+                  <Button
+                    key={filter.value + index}
+                    ref={(el) => (heroRefs.buttons.filters[index].current = el)}
+                    isActive={activeFilter === filter.value}
+                    as="button"
+                    type={BUTTON_TYPE.SECONDARY}
+                    onClick={() => setActiveFilter(filter.value)}
+                    className="h-fit grow-0 translate-y-24"
+                  >
+                    {language === 'fr' ? filter.labelFr : filter.labelEn}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
         <div className="grid grid-cols-1 gap-10 px-x-default py-y-default lg:grid-cols-2">
           {projects
@@ -126,7 +132,7 @@ export default function Projects({
                 project.types.join().includes(activeFilter.toLowerCase()) || activeFilter === 'all',
             )
             .map((project, index) => (
-              <CardProject {...project} projectIndex={index} key={project.title + index} />
+              <CardProject {...project} projectIndex={index + 1} key={project.title + index} />
             ))}
         </div>
       </section>
