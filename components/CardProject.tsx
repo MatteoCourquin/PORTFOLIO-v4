@@ -4,12 +4,11 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
+import AnimText from './AnimText';
 import Button, { BUTTON_SIZE } from './atoms/Button';
 import { IconArrowTopRight } from './atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
-import clsx from 'clsx';
-import AnimText from './AnimText';
 
 const CardProject = ({
   projectIndex,
@@ -18,11 +17,43 @@ const CardProject = ({
   mainImageDesktop,
   mainImageMobile,
 }: TypeProject) => {
-  const [animIndex, _] = useState(['0', '0', '1']);
+  const { contextSafe } = useGSAP();
 
-  const triggerRef = useRef(null);
-  const imageRef = useRef(null);
-  const animIndexRefs = animIndex.map(() => useRef<HTMLSpanElement | null>(null));
+  const triggerRef = useRef<HTMLAnchorElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const arrowRef = useRef(null);
+  const animTextRef = useRef<() => void>(() => {});
+
+  const animArrow = contextSafe(() => {
+    const timelineArrow = gsap.timeline({ paused: true });
+
+    timelineArrow
+      .add(
+        gsap.to(arrowRef.current, {
+          x: 20,
+          y: -20,
+          duration: 0.15,
+          opacity: 0,
+        }),
+      )
+      .add(
+        gsap.to(arrowRef.current, {
+          x: -20,
+          y: 20,
+          duration: 0.15,
+          opacity: 0,
+        }),
+      )
+      .add(
+        gsap.to(arrowRef.current, {
+          x: 0,
+          y: 0,
+          opacity: 1,
+          duration: 0.15,
+        }),
+      )
+      .play();
+  });
 
   const scrollTriggerAnimation = () => {
     gsap.registerPlugin(ScrollTrigger);
@@ -46,11 +77,18 @@ const CardProject = ({
 
   useGSAP(() => {
     scrollTriggerAnimation();
-    console.log(animIndexRefs);
-  }, []);
+  }, [scrollTriggerAnimation]);
 
   return (
-    <Link href={'/projects/' + slug.current} className="group/card-project" ref={triggerRef}>
+    <Link
+      href={'/projects/' + slug.current}
+      className="group/card-project"
+      ref={triggerRef}
+      onMouseEnter={() => {
+        animTextRef.current();
+        animArrow();
+      }}
+    >
       <div className="group/card-project relative">
         <div className="absolute left-0 top-0 h-px w-full bg-black"></div>
         <div className="absolute bottom-0 right-0 h-px w-full bg-black"></div>
@@ -59,14 +97,14 @@ const CardProject = ({
         <Typography type={TYPOGRAPHY_TYPE.HEADING5} className="w-full py-4 text-center uppercase">
           {title}
         </Typography>
-        <div className="relative h-[700px] p-px md:h-[700px] lg:h-[500px]">
+        <div className="relative h-[60vh] p-px md:h-[500px]">
           <div className="absolute right-0 top-0 h-px w-full bg-black"></div>
           <div className="h-full overflow-hidden">
-            <div ref={imageRef} className="h-full w-full">
+            <div ref={imageRef} className="flex h-full w-full justify-end">
               <img
                 src={urlForImage(mainImageDesktop)}
                 alt={title}
-                className="hidden h-[calc(100%+100px)] w-full cursor-pointer object-cover object-bottom grayscale transition-[transform,filter] duration-300 group-hover/card-project:scale-[1.02] group-hover/card-project:grayscale-0 md:block"
+                className="hidden w-full translate-y-[50px] cursor-pointer object-cover object-bottom grayscale transition-[transform,filter] duration-300 group-hover/card-project:scale-[1.02] group-hover/card-project:grayscale-0 md:block"
               />
               <img
                 src={urlForImage(mainImageMobile)}
@@ -79,21 +117,22 @@ const CardProject = ({
       </div>
       <div className="relative flex w-full items-center justify-between py-4">
         <div className="absolute bottom-0 right-0 h-px w-full bg-black"></div>
-        <Typography
-          type={TYPOGRAPHY_TYPE.HEADING3}
-          as={TYPOGRAPHY_TYPE.TEXT}
-          className="overflow-hidden text-center font-medium uppercase flex "
-        >
-          DEV.
-          <AnimText value={animIndex} />
-        </Typography>
-        <Button
-          as="button"
-          size={BUTTON_SIZE.S}
-          className="transition-transform duration-300 group-hover/card-project:-translate-x-2"
-        >
+        <div className="flex font-medium">
+          <Typography
+            type={TYPOGRAPHY_TYPE.HEADING3}
+            as={TYPOGRAPHY_TYPE.TEXT}
+            className="overflow-hidden uppercase"
+          >
+            DEV.
+          </Typography>
+          <AnimText
+            value={projectIndex.toString().padStart(3, '0').split('')}
+            playAnimation={animTextRef}
+          />
+        </div>
+        <Button as="button" size={BUTTON_SIZE.S} className="overflow-hidden">
           View
-          <IconArrowTopRight className="ml-2 h-3" />
+          <IconArrowTopRight ref={arrowRef} className="ml-2 h-3" />
         </Button>
       </div>
     </Link>
