@@ -1,4 +1,11 @@
 {
+  "head": {
+    "titleIndex": "Matteo Courquin • Développeur Full Stack !! 🚀",
+    "titleProjects": "Matteo Courquin • Projets",
+    "titleAbout": "Matteo Courquin • À propos",
+    "titleContact": "Matteo Courquin • Contact",
+    "description": "Un développeur web a votre écoute pour un projet a vos attentes ! 💻"
+  },
   "nav": {
     "home": "Accueil",
     "projects": "Projets",
@@ -27,7 +34,7 @@
   "projects": {
     "title": "Projets"
   },
-  "story": {
+  "about": {
     "title": "Mon Histoire",
     "about": {
       "title": "Laissez-moi me présenter 👋",

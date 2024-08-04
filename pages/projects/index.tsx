@@ -6,6 +6,7 @@ import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import Head from 'next/head';
 import { useContext, useRef, useState } from 'react';
 
 export default function Projects({
@@ -84,6 +85,9 @@ export default function Projects({
 
   return (
     <>
+      <Head>
+        <title>{data.head.titleProjects}</title>
+      </Head>
       <section className="flex h-[60vh] items-center justify-center">
         <Typography
           ref={heroRefs.text}
@@ -107,7 +111,7 @@ export default function Projects({
           ></div>
           <div className="p-px">
             <div className="shadow-x-white">
-              <div className="flex h-24 items-center justify-start sm:justify-center gap-4 overflow-scroll px-4">
+              <div className="flex h-24 items-center justify-start gap-4 overflow-scroll px-4 sm:justify-center">
                 {filters.map((filter, index) => (
                   <Button
                     key={filter.value + index}

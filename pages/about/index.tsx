@@ -8,6 +8,7 @@ import { interpolate } from '@/utils/functions';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import Head from 'next/head';
 import { useContext, useRef } from 'react';
 
 export default function About({
@@ -121,13 +122,16 @@ export default function About({
 
   return (
     <>
+      <Head>
+        <title>{data.head.titleAbout}</title>
+      </Head>
       <section className="flex h-[60vh] items-center justify-center">
         <Typography
           ref={heroRefs.texts.text1}
           type={TYPOGRAPHY_TYPE.HEADING1}
           className="-translate-y-4 opacity-0"
         >
-          {data.story.title}
+          {data.about.title}
         </Typography>
       </section>
       <section className="relative flex flex-col">
@@ -162,7 +166,7 @@ export default function About({
               type={TYPOGRAPHY_TYPE.HEADING2}
               as={TYPOGRAPHY_TYPE.HEADING4}
             >
-              {data.story.about.title}
+              {data.about.about.title}
             </Typography>
             <div
               ref={heroRefs.texts.text3}
@@ -189,7 +193,7 @@ export default function About({
       </section>
       <section className="relative px-x-default">
         <Typography className="w-full py-y-default text-center" type={TYPOGRAPHY_TYPE.HEADING3}>
-          {data.story.carreer.title}
+          {data.about.carreer.title}
         </Typography>
         <div className="relative flex flex-col gap-y-default pb-y-default">
           <div className="absolute bottom-0 left-0 h-full w-px bg-black md:left-x-default"></div>

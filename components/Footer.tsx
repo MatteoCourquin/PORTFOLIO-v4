@@ -16,7 +16,13 @@ const Footer = () => {
         >
           {data.footer.title}
         </Typography>
-        <Button as="a" href='/contact' className="font-medium uppercase" color="white" size={BUTTON_SIZE.L}>
+        <Button
+          as="a"
+          href="/contact"
+          className="font-medium uppercase"
+          color="white"
+          size={BUTTON_SIZE.L}
+        >
           {data.footer.button}
         </Button>
         <Button
@@ -49,7 +55,7 @@ const Footer = () => {
         </Link>
         <Link
           className="link link_white heading5 whitespace-nowrap !font-thin uppercase !opacity-80"
-          href="/story"
+          href="/about"
         >
           {data.nav.about}
         </Link>
