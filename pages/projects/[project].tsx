@@ -132,7 +132,7 @@ export default function Page({ project }: { project: TypeProject }) {
             </div>
           </section>
         </div>
-        <section className="flex justify-between px-x-default py-y-default">
+        <section className="flex flex-col-reverse items-center justify-between gap-4 px-x-default py-y-default sm:flex-row">
           <div className="flex justify-between gap-2">
             <Typography>Made by 🤝</Typography>
             <div>
