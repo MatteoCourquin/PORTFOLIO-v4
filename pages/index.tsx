@@ -167,7 +167,7 @@ export default function Home({
             ref={heroRefs.lines.V2}
             className="absolute -bottom-y-default left-0 h-0 w-px bg-black"
           ></div>
-          <div className="flex h-full flex-col items-center justify-center">
+          <div className="flex h-full flex-col items-center justify-center px-4">
             <Typography
               ref={heroRefs.texts.text1}
               type={TYPOGRAPHY_TYPE.HEADING1}
@@ -198,7 +198,7 @@ export default function Home({
               {data.home.hero.button} <IconArrowTopRight className="ml-2 h-full py-[0.6vw]" />
             </Button>
           </div>
-          <div className="absolute bottom-0 flex w-full items-end justify-between overflow-hidden p-4">
+          <div className="absolute bottom-0 flex w-full items-end justify-center overflow-hidden p-4 sm:justify-between">
             <Link
               ref={heroRefs.texts.text4}
               className="-translate-x-full uppercase underline opacity-0"
@@ -209,7 +209,7 @@ export default function Home({
             <Typography
               ref={heroRefs.texts.text5}
               type={TYPOGRAPHY_TYPE.TEXT}
-              className="translate-x-full uppercase opacity-0"
+              className="hidden translate-x-full uppercase opacity-0 sm:block"
             >
               ©{new Date().getFullYear()}
             </Typography>

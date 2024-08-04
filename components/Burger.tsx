@@ -27,66 +27,36 @@ const Burger = () => {
     const timelineOpen = gsap.timeline({ paused: true });
     timelineOpen
       .add(
-        gsap.fromTo(
-          wrapperRef.current,
-          {
-            visibility: 'hidden',
-            scale: 0,
-            duration: 0,
-          },
-          {
-            visibility: 'visible',
-            scale: 1,
-            duration: 0,
-          },
-        ),
+        gsap.to(wrapperRef.current, {
+          visibility: 'visible',
+          scale: 1,
+          duration: 0,
+        }),
       )
       .add(
-        gsap.fromTo(
-          backgroundRef.current,
-          {
-            scale: 0,
-            duration: 0.8,
-            ease: 'power3.inOut',
-          },
-          {
-            scale: 60,
-            duration: 0.8,
-            ease: 'power3.inOut',
-          },
-        ),
+        gsap.to(backgroundRef.current, {
+          scale: 60,
+          duration: 0.8,
+          ease: 'power3.inOut',
+        }),
       )
       .add(
-        gsap.fromTo(
-          [text1Ref.current, text2Ref.current, text3Ref.current, text4Ref.current],
-          {
-            y: -16,
-            opacity: 0,
-          },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: 'power4.inOut',
-            stagger: 0.1,
-          },
-        ),
+        gsap.to([text1Ref.current, text2Ref.current, text3Ref.current, text4Ref.current], {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: 'power4.inOut',
+          stagger: 0.1,
+        }),
         '-=0.6',
       )
       .add(
-        gsap.fromTo(
-          buttonLanguageRef.current,
-          {
-            x: -16,
-            opacity: 0,
-          },
-          {
-            x: 0,
-            opacity: 1,
-            duration: 1,
-            ease: 'power4.inOut',
-          },
-        ),
+        gsap.to(buttonLanguageRef.current, {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          ease: 'power4.inOut',
+        }),
         '-=0.6',
       )
       .play();
@@ -98,27 +68,16 @@ const Burger = () => {
     const timelineClose = gsap.timeline({ paused: true });
     timelineClose
       .add(
-        gsap.fromTo(
-          buttonLanguageRef.current,
-          {
-            x: 0,
-            opacity: 1,
-          },
-          {
-            x: -16,
-            opacity: 0,
-            duration: 1,
-            ease: 'power4.inOut',
-          },
-        ),
+        gsap.to(buttonLanguageRef.current, {
+          x: -16,
+          opacity: 0,
+          duration: 1,
+          ease: 'power4.inOut',
+        }),
       )
       .add(
-        gsap.fromTo(
+        gsap.to(
           [text1Ref.current, text2Ref.current, text3Ref.current, text4Ref.current].reverse(),
-          {
-            y: 0,
-            opacity: 1,
-          },
           {
             y: -16,
             opacity: 0,
@@ -130,32 +89,19 @@ const Burger = () => {
         '-=0.6',
       )
       .add(
-        gsap.fromTo(
-          backgroundRef.current,
-          {
-            scale: 60,
-          },
-          {
-            scale: 0,
-            duration: 0.8,
-            ease: 'power3.inOut',
-          },
-        ),
+        gsap.to(backgroundRef.current, {
+          scale: 0,
+          duration: 0.8,
+          ease: 'power3.inOut',
+        }),
         '-=0.7',
       )
       .add(
-        gsap.fromTo(
-          wrapperRef.current,
-          {
-            visibility: 'visible',
-            scale: 1,
-          },
-          {
-            visibility: 'hidden',
-            scale: 0,
-            duration: 0,
-          },
-        ),
+        gsap.to(wrapperRef.current, {
+          visibility: 'hidden',
+          scale: 0,
+          duration: 0,
+        }),
       )
       .play();
 
@@ -226,7 +172,7 @@ const Burger = () => {
           </Link>
         </nav>
       </div>
-      <div className="fixed right-10 top-10 z-[100] sm:right-x-default sm:translate-x-10">
+      <div className="fixed right-10 top-y-default z-[100] -translate-y-1/2 sm:right-x-default sm:translate-x-10">
         <div
           onClick={() => (isOpen ? handdleClose() : handdleOpen())}
           onMouseMove={(e) => useMagnet(e, 1)}
