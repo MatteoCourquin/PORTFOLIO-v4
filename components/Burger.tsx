@@ -206,7 +206,7 @@ const Burger = () => {
               {data.nav.projects}
             </Typography>
           </Link>
-          <Link ref={text3Ref} href="/story" onClick={handdleClose}>
+          <Link ref={text3Ref} href="/about" onClick={handdleClose}>
             <Typography
               type={TYPOGRAPHY_TYPE.TEXT}
               as={TYPOGRAPHY_TYPE.HEADING3}

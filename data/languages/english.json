@@ -1,4 +1,11 @@
 {
+  "head": {
+    "titleIndex": "Matteo Courquin • Full Stack Developer !! 🚀",
+    "titleProjects": "Matteo Courquin • Projects",
+    "titleAbout": "Matteo Courquin • About",
+    "titleContact": "Matteo Courquin • Contact",
+    "description": "A web developer at your service for a project to your expectations ! 💻"
+  },
   "nav": {
     "home": "Home",
     "projects": "Projects",
@@ -27,7 +34,7 @@
   "projects": {
     "title": "Projects"
   },
-  "story": {
+  "about": {
     "title": "My Story",
     "about": {
       "title": "Let me introduce myself 👋",

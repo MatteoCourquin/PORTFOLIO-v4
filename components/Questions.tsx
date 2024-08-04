@@ -12,7 +12,7 @@ export default function Questions({ questions }: { questions: TypeQuestion[] }) 
   return (
     <>
       <Typography className="w-full text-center sm:text-left" type={TYPOGRAPHY_TYPE.HEADING3}>
-        {data.story.questions.title}
+        {data.about.questions.title}
       </Typography>
       <div className="flex flex-col pt-y-default">
         {questions.map((question, index) => (
