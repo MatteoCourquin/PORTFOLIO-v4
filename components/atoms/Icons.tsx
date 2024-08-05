@@ -34,38 +34,33 @@ export const IconArrowTopRight = forwardRef<
 export const IconBack = ({ className }: { className?: string }) => (
   <svg
     className={className}
-    width="80"
-    height="80"
-    viewBox="0 0 25 24"
+    width="60"
+    height="58"
+    viewBox="0 0 18 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
+    <path d="M2.3501 7.99976H16.7504" stroke="black" strokeWidth=".8" strokeLinecap="square" />
     <path
-      d="M5.34994 11.9998L19.7502 11.9998"
+      d="M7.80001 14.0243L1.75 8.0003L7.80001 1.97534"
       stroke="black"
       strokeWidth=".8"
       strokeLinecap="square"
-    ></path>
-    <path
-      d="M10.8 18.0243L4.74999 12.0003L10.8 5.97534"
-      stroke="black"
-      strokeWidth=".8"
-      strokeLinecap="square"
-    ></path>
+    />
   </svg>
 );
 
-export const IconAdd = ({ className }: { className: string }) => (
+export const IconAdd = ({ size = 24, className }: { size: number; className: string }) => (
   <svg
     className={className}
-    width="24"
-    height="24"
+    width={size}
+    height={size}
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M6 12H18" stroke="black" strokeWidth="1.5"></path>
-    <path d="M12 6V18" stroke="black" strokeWidth="1.5"></path>
+    <path d="M6 12H18" stroke="black" strokeWidth="1"></path>
+    <path d="M12 6V18" stroke="black" strokeWidth="1"></path>
   </svg>
 );
 

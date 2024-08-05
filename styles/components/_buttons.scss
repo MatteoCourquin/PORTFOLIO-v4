@@ -4,6 +4,8 @@
   align-items: center;
   cursor: pointer;
   border-radius: 9999px;
+  position: relative;
+  overflow: hidden;
 }
 
 .button {
@@ -17,30 +19,29 @@
   width: 100%;
   height: 100%;
   display: flex;
-}
-
-.wrapper-button.button-active {
-  border: 1px solid $color-primary !important;
-  background-color: $color-primary !important;
-  color: $color-white !important;
+  mix-blend-mode: difference;
 }
 
 .button-primary.button-white {
+  border: 1px solid $color-white;
   background-color: $color-white;
-  color: $color-black;
+  color: $color-white;
 }
 .button-primary.button-black {
+  border: 1px solid $color-black;
   background-color: $color-black;
   color: $color-white;
 }
 
 .button-secondary.button-white {
   border: 1px solid $color-white;
+  background-color: $color-black;
   color: $color-white;
 }
 .button-secondary.button-black {
   border: 1px solid $color-black;
-  color: $color-black;
+  background-color: $color-white;
+  color: $color-white;
 }
 
 .button-s {
@@ -54,4 +55,15 @@
 .button-l {
   padding: 12px 64px;
   font-size: clamp(1rem, 2vw, 2rem);
+}
+
+.circle-button {
+  width: 900px;
+  height: 900px;
+  transition: transform 0.4s cubic-bezier(0.66, 0, 0.35, 1);
+  transform: translate(-50%, -50%) scale(0);
+}
+
+.circle-button.active {
+  transform: translate(-50%, -50%) scale(1);
 }

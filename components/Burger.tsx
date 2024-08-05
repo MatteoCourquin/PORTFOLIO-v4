@@ -153,7 +153,7 @@ const Burger = () => {
           ref={backgroundRef}
           className="absolute right-10 top-10 aspect-square h-16 w-16 scale-100 rounded-full bg-black sm:right-x-default sm:h-20 sm:w-20 sm:translate-x-10"
         ></div>
-        <div className="absolute left-10 top-y-default flex h-20 -translate-y-1/2 items-center sm:left-x-default sm:-translate-x-1/2">
+        <div className="absolute top-y-default flex h-20 -translate-y-1/2 items-center left-x-default sm:-translate-x-1/2">
           <div ref={buttonLanguageRef} className="-translate-x-4 opacity-0">
             <Language />
           </div>
@@ -238,7 +238,7 @@ const Burger = () => {
           </div>
         </nav>
       </div>
-      <div className="fixed right-10 top-y-default z-[100] -translate-y-1/2 sm:right-x-default sm:translate-x-10">
+      <div className="fixed top-y-default z-[100] -translate-y-1/2 right-x-default sm:translate-x-10">
         <div
           onClick={() => (isOpen ? handdleClose() : handdleOpen())}
           onMouseMove={(e) => useMagnet(e, 1)}
