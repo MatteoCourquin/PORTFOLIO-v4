@@ -66,6 +66,7 @@ export default function Home({
         scrub: true,
       },
     });
+
     gsap.to(heroRefs.texts.text2.current, {
       xPercent: -70,
       ease: 'power4.out',
@@ -74,9 +75,9 @@ export default function Home({
         end: 'bottom bottom',
         toggleActions: 'play reverse play reverse',
         scrub: true,
-        markers: true,
       },
     });
+
     gsap.to(heroRefs.button.current, {
       y: -100,
       ease: 'power4.out',
@@ -85,7 +86,6 @@ export default function Home({
         end: 'bottom bottom',
         toggleActions: 'play reverse play reverse',
         scrub: true,
-        markers: true,
       },
     });
 

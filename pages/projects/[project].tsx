@@ -86,7 +86,7 @@ export default function Page({ project }: { project: TypeProject }) {
       </Head>
       <Link
         href="/projects"
-        className="absolute left-10 top-y-default flex h-20 -translate-y-1/2 items-center shadow-white sm:left-x-default sm:-translate-x-1/2"
+        className="absolute left-x-default top-y-default flex h-20 -translate-y-1/2 items-center shadow-white sm:-translate-x-1/2"
       >
         <IconBack />
       </Link>

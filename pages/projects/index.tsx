@@ -1,3 +1,4 @@
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import Button, { BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
@@ -6,6 +7,7 @@ import { TypeFilters, TypeProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
 import { useGSAP } from '@gsap/react';
+import { AnimatePresence, motion } from 'framer-motion';
 import gsap from 'gsap';
 import { useContext, useRef, useState } from 'react';
 
@@ -128,14 +130,30 @@ export default function Projects({
           </div>
         </div>
         <div className="grid grid-cols-1 gap-10 px-x-default py-y-default lg:grid-cols-2">
-          {projects
-            .filter(
-              (project) =>
-                project.types.join().includes(activeFilter.toLowerCase()) || activeFilter === 'all',
-            )
-            .map((project, index) => (
-              <CardProject {...project} projectIndex={index + 1} key={project.title + index} />
-            ))}
+          <AnimatePresence>
+            {projects
+              .filter(
+                (project) =>
+                  project.types.join().includes(activeFilter.toLowerCase()) ||
+                  activeFilter === 'all',
+              )
+              .map((project, index) => (
+                <motion.div
+                  key={project.title}
+                  layout
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeInOut',
+                    delay: index * 0.02,
+                  }}
+                >
+                  <CardProject {...project} projectIndex={index + 1} />
+                </motion.div>
+              ))}
+          </AnimatePresence>
         </div>
       </section>
     </>

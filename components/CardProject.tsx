@@ -59,26 +59,22 @@ const CardProject = ({
   const scrollTriggerAnimation = () => {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.fromTo(
-      imageRef.current,
-      {
-        y: -100,
+    gsap.to(imageRef.current, {
+      y: 0,
+      scrollTrigger: {
+        trigger: triggerRef.current,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
       },
-      {
-        y: 0,
-        scrollTrigger: {
-          trigger: triggerRef.current,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true,
-        },
-      },
-    );
+    });
   };
 
   useGSAP(() => {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.refresh());
+    ScrollTrigger.refresh();
     scrollTriggerAnimation();
-  }, [scrollTriggerAnimation]);
+  }, [projectIndex]);
 
   return (
     <Link
@@ -106,10 +102,7 @@ const CardProject = ({
         <div className="relative h-[60vh] p-px md:h-[500px]">
           <div className="absolute right-0 top-0 h-px w-full bg-black"></div>
           <div className="h-full overflow-hidden">
-            <div
-              ref={imageRef}
-              className="flex h-full w-full justify-end blur-[2px] transition-[filter] group-hover/card-project:blur-none"
-            >
+            <div ref={imageRef} className="flex h-full w-full translate-y-24 justify-end">
               <img
                 src={urlForImage(mainImageDesktop)}
                 alt={title}
