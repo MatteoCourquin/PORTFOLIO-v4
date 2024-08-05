@@ -1,6 +1,7 @@
 import Button, { BUTTON_SIZE, BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import FormContact from '@/components/FormContact';
+import SEO from '@/components/SEO';
 import { LanguageContext } from '@/layout/default';
 import Head from 'next/head';
 import { useContext } from 'react';
@@ -10,9 +11,7 @@ export default function Contact() {
 
   return (
     <>
-      <Head>
-        <title>{data.head.titleAbout}</title>
-      </Head>
+      <SEO title={data.head.titleAbout} />
       <section className="flex min-h-screen flex-col items-center justify-between gap-16 px-x-default py-y-default">
         <Typography type={TYPOGRAPHY_TYPE.HEADING1} className="pt-y-default text-center">
           {data.contact.title}

@@ -7,9 +7,10 @@ import Link from 'next/link';
 import { useContext, useRef, useState } from 'react';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 import Language from './Language';
+import { IconGithub, IconInsta, IconLinkedin } from './atoms/Icons';
 
 const Burger = () => {
-  const { language, setLanguage, data } = useContext(LanguageContext);
+  const { data } = useContext(LanguageContext);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -18,6 +19,9 @@ const Burger = () => {
   const text3Ref = useRef(null);
   const text4Ref = useRef(null);
   const buttonLanguageRef = useRef(null);
+  const button1Ref = useRef(null);
+  const button2Ref = useRef(null);
+  const button3Ref = useRef(null);
   const wrapperRef = useRef(null);
   const backgroundRef = useRef(null);
 
@@ -51,6 +55,16 @@ const Burger = () => {
         '-=0.6',
       )
       .add(
+        gsap.to([button1Ref.current, button2Ref.current, button3Ref.current], {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: 'power4.inOut',
+          stagger: 0.1,
+        }),
+        '-=0.6',
+      )
+      .add(
         gsap.to(buttonLanguageRef.current, {
           x: 0,
           opacity: 1,
@@ -74,6 +88,16 @@ const Burger = () => {
           duration: 1,
           ease: 'power4.inOut',
         }),
+      )
+      .add(
+        gsap.to([button1Ref.current, button2Ref.current, button3Ref.current].reverse(), {
+          y: -16,
+          opacity: 0,
+          duration: 1,
+          ease: 'power4.inOut',
+          stagger: 0.1,
+        }),
+        '-=0.6',
       )
       .add(
         gsap.to(
@@ -134,7 +158,7 @@ const Burger = () => {
           </div>
         </div>
         <nav className="z-[90] flex h-screen w-screen flex-col items-center justify-center gap-8 uppercase text-white">
-          <Link ref={text1Ref} href="/" onClick={handdleClose}>
+          <Link ref={text1Ref} href="/" onClick={handdleClose} className="-translate-y-4 opacity-0">
             <Typography
               type={TYPOGRAPHY_TYPE.TEXT}
               as={TYPOGRAPHY_TYPE.HEADING3}
@@ -143,7 +167,12 @@ const Burger = () => {
               {data.nav.home}
             </Typography>
           </Link>
-          <Link ref={text2Ref} href="/projects" onClick={handdleClose}>
+          <Link
+            ref={text2Ref}
+            href="/projects"
+            onClick={handdleClose}
+            className="-translate-y-4 opacity-0"
+          >
             <Typography
               type={TYPOGRAPHY_TYPE.TEXT}
               as={TYPOGRAPHY_TYPE.HEADING3}
@@ -152,7 +181,12 @@ const Burger = () => {
               {data.nav.projects}
             </Typography>
           </Link>
-          <Link ref={text3Ref} href="/about" onClick={handdleClose}>
+          <Link
+            ref={text3Ref}
+            href="/about"
+            onClick={handdleClose}
+            className="-translate-y-4 opacity-0"
+          >
             <Typography
               type={TYPOGRAPHY_TYPE.TEXT}
               as={TYPOGRAPHY_TYPE.HEADING3}
@@ -161,7 +195,12 @@ const Burger = () => {
               {data.nav.about}
             </Typography>
           </Link>
-          <Link ref={text4Ref} href="/contact" onClick={handdleClose}>
+          <Link
+            ref={text4Ref}
+            href="/contact"
+            onClick={handdleClose}
+            className="-translate-y-4 opacity-0"
+          >
             <Typography
               type={TYPOGRAPHY_TYPE.TEXT}
               as={TYPOGRAPHY_TYPE.HEADING3}
@@ -170,6 +209,32 @@ const Burger = () => {
               {data.nav.contact}
             </Typography>
           </Link>
+          <div className="absolute bottom-y-default left-0 flex w-screen items-center justify-center gap-4">
+            <Link
+              ref={button1Ref}
+              href="https://github.com/matteocourquin"
+              target="_blank"
+              className="-translate-y-4 opacity-0"
+            >
+              <IconGithub />
+            </Link>
+            <Link
+              ref={button2Ref}
+              href="https://www.linkedin.com/in/matteo-courquin/"
+              target="_blank"
+              className="-translate-y-4 opacity-0"
+            >
+              <IconLinkedin />
+            </Link>
+            <Link
+              ref={button3Ref}
+              href="https://www.instagram.com/matteocourquin.dev/"
+              target="_blank"
+              className="-translate-y-4 opacity-0"
+            >
+              <IconInsta />
+            </Link>
+          </div>
         </nav>
       </div>
       <div className="fixed right-10 top-y-default z-[100] -translate-y-1/2 sm:right-x-default sm:translate-x-10">
@@ -190,13 +255,13 @@ const Burger = () => {
             <div className="flex h-3 w-8 flex-col items-end justify-between">
               <div
                 className={clsx(
-                  'h-[2px] rounded-full transition-all duration-300',
+                  'h-[2px] transition-all duration-300',
                   isOpen ? 'w-full translate-y-[5px] rotate-45 bg-white' : 'w-full bg-black',
                 )}
               ></div>
               <div
                 className={clsx(
-                  'h-[2px] rounded-full transition-all duration-300',
+                  'h-[2px] transition-all duration-300',
                   isOpen
                     ? 'w-full -translate-y-[5px] -rotate-45 bg-white'
                     : 'w-2/3 bg-black group-hover:w-full',

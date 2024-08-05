@@ -1,6 +1,7 @@
 import Button, { BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
+import SEO from '@/components/SEO';
 import { TypeFilters, TypeProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
@@ -85,9 +86,7 @@ export default function Projects({
 
   return (
     <>
-      <Head>
-        <title>{data.head.titleProjects}</title>
-      </Head>
+      <SEO title={data.head.titleProjects} />
       <section className="flex h-[60vh] items-center justify-center">
         <Typography
           ref={heroRefs.text}
