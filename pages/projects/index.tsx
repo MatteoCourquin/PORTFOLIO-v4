@@ -7,7 +7,6 @@ import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import Head from 'next/head';
 import { useContext, useRef, useState } from 'react';
 
 export default function Projects({

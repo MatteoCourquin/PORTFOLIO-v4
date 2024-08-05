@@ -11,7 +11,6 @@ import { interpolate } from '@/utils/functions';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import Head from 'next/head';
 import Link from 'next/link';
 import { useContext, useRef } from 'react';
 

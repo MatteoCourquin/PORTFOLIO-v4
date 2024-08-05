@@ -9,7 +9,6 @@ import { interpolate } from '@/utils/functions';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
-import Head from 'next/head';
 import { useContext, useRef } from 'react';
 
 export default function About({

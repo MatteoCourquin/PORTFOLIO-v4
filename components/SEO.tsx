@@ -1,6 +1,4 @@
-import { LanguageContext } from '@/layout/default';
 import Head from 'next/head';
-import { useContext } from 'react';
 
 const SEO = ({
   title = 'Matteo Courquin | Développeur Full Stack !! 🚀',
@@ -8,11 +6,8 @@ const SEO = ({
   image = '/ogImage.png',
   url = 'https://matteo.courqu.in',
 }) => {
-  const { language } = useContext(LanguageContext);
   return (
     <Head>
-      <html lang={language === 'fr' ? 'fr' : 'en'} />
-
       <title>{title}</title>
 
       <meta charSet="utf-8" />
@@ -26,16 +21,16 @@ const SEO = ({
       <meta property="og:url" content={url} />
       <meta property="og:image" content={image} />
 
-      <meta name="google-site-verification" content="6n81QjyK4C02a8g9mMeuhdHqnAcjhHRxsGVdgXVGQ2Y" />
+      {/* <meta name="google-site-verification" content="6n81QjyK4C02a8g9mMeuhdHqnAcjhHRxsGVdgXVGQ2Y" /> */}
 
       <meta
         name="keywords"
         content="Matteo Courquin, FullStack Developer, Développeur FullStack, Web Developer, Développeur Web, Freelance, React, Node.js, Express, MongoDB, JavaScript, TypeScript, HTML, CSS, Sass, TailwindCSS, IIM, HETIC, AWS"
       />
 
-      <link rel="icon" href="/favicon.png" type="image/x-icon" />
+      <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
-      <link rel="canonical" href={url} />
+      {/* <link rel="canonical" href={url} /> */}
     </Head>
   );
 };

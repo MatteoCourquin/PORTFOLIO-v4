@@ -3,7 +3,6 @@ import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import FormContact from '@/components/FormContact';
 import SEO from '@/components/SEO';
 import { LanguageContext } from '@/layout/default';
-import Head from 'next/head';
 import { useContext } from 'react';
 
 export default function Contact() {
