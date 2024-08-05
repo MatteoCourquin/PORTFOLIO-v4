@@ -59,15 +59,21 @@ const CardProject = ({
   const scrollTriggerAnimation = () => {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.to(imageRef.current, {
-      y: 0,
-      scrollTrigger: {
-        trigger: triggerRef.current,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: true,
+    gsap.fromTo(
+      imageRef.current,
+      {
+        y: -100,
       },
-    });
+      {
+        y: 0,
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      },
+    );
   };
 
   useGSAP(() => {
@@ -102,11 +108,11 @@ const CardProject = ({
         <div className="relative h-[60vh] p-px md:h-[500px]">
           <div className="absolute right-0 top-0 h-px w-full bg-black"></div>
           <div className="h-full overflow-hidden">
-            <div ref={imageRef} className="flex h-full w-full translate-y-24 justify-end">
+            <div ref={imageRef} className="flex h-full w-full justify-end">
               <img
                 src={urlForImage(mainImageDesktop)}
                 alt={title}
-                className="hidden w-full translate-y-[50px] cursor-pointer object-cover object-bottom grayscale transition-[transform,filter] duration-300 group-hover/card-project:scale-[1.02] group-hover/card-project:grayscale-0 md:block"
+                className="hidden w-full translate-y-[100px] cursor-pointer object-cover object-bottom grayscale transition-[transform,filter] duration-300 group-hover/card-project:scale-[1.02] group-hover/card-project:grayscale-0 md:block"
               />
               <img
                 src={urlForImage(mainImageMobile)}
