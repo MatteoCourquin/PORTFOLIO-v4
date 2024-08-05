@@ -3,6 +3,7 @@ import { IconArrowTopRight } from '@/components/atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
 import Questions from '@/components/Questions';
+import SEO from '@/components/SEO';
 import { TypeProject, TypeQuestion } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
@@ -146,9 +147,7 @@ export default function Home({
 
   return (
     <>
-      <Head>
-        <title>{data.head.titleIndex}</title>
-      </Head>
+      <SEO title={data.head.titleIndex} />
       <section className="relative h-screen w-screen px-x-default py-y-default text-center text-black">
         <div className="relative h-full w-full">
           <div

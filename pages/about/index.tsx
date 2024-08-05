@@ -1,6 +1,7 @@
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardCareer from '@/components/CardCareer';
 import Questions from '@/components/Questions';
+import SEO from '@/components/SEO';
 import { TypeCareer, TypeQuestion } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
@@ -122,9 +123,7 @@ export default function About({
 
   return (
     <>
-      <Head>
-        <title>{data.head.titleAbout}</title>
-      </Head>
+      <SEO title={data.head.titleAbout} />
       <section className="flex h-[60vh] items-center justify-center">
         <Typography
           ref={heroRefs.texts.text1}

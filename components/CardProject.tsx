@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import Link from 'next/link';
 import { useRef } from 'react';
-import AnimText from './AnimText';
+import AnimText, { ANIM_TEXT_TYPE } from './AnimText';
 import Button, { BUTTON_SIZE } from './atoms/Button';
 import { IconArrowTopRight } from './atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
@@ -22,7 +22,8 @@ const CardProject = ({
   const triggerRef = useRef<HTMLAnchorElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const arrowRef = useRef(null);
-  const animTextRef = useRef<() => void>(() => {});
+  const animTitleRef = useRef<() => void>(() => {});
+  const animIndexRef = useRef<() => void>(() => {});
 
   const animArrow = contextSafe(() => {
     const timelineArrow = gsap.timeline({ paused: true });
@@ -85,7 +86,8 @@ const CardProject = ({
       className="group/card-project"
       ref={triggerRef}
       onMouseEnter={() => {
-        animTextRef.current();
+        animTitleRef.current();
+        animIndexRef.current();
         animArrow();
       }}
     >
@@ -95,7 +97,11 @@ const CardProject = ({
         <div className="absolute bottom-0 left-0 h-full w-px bg-black"></div>
         <div className="absolute bottom-0 right-0 h-full w-px bg-black"></div>
         <Typography type={TYPOGRAPHY_TYPE.HEADING5} className="w-full py-4 text-center uppercase">
-          {title}
+          <AnimText
+            type={ANIM_TEXT_TYPE.VARIABLE}
+            value={title.toString().padStart(3, '0').split('')}
+            playAnimation={animTitleRef}
+          />
         </Typography>
         <div className="relative h-[60vh] p-px md:h-[500px]">
           <div className="absolute right-0 top-0 h-px w-full bg-black"></div>
@@ -126,8 +132,9 @@ const CardProject = ({
             DEV.
           </Typography>
           <AnimText
+            type={ANIM_TEXT_TYPE.SPIN}
             value={projectIndex.toString().padStart(3, '0').split('')}
-            playAnimation={animTextRef}
+            playAnimation={animIndexRef}
           />
         </div>
         <Button as="button" size={BUTTON_SIZE.S} className="overflow-hidden">
