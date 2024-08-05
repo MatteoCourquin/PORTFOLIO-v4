@@ -1,5 +1,5 @@
 import Button, { BUTTON_SIZE } from '@/components/atoms/Button';
-import { IconArrowTopRight } from '@/components/atoms/Icons';
+import { IconArrowTopRight, IconBack } from '@/components/atoms/Icons';
 import RichText from '@/components/atoms/RichText';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import { TypeProject } from '@/data/types';
@@ -80,10 +80,16 @@ export default function Page({ project }: { project: TypeProject }) {
   });
 
   return (
-    <>
+    <div className="pt-y-default">
       <Head>
         <title>Matteo Courquin • {project.title}</title>
       </Head>
+      <Link
+        href="/projects"
+        className="absolute left-10 top-y-default flex h-20 -translate-y-1/2 items-center shadow-white sm:left-x-default sm:-translate-x-1/2"
+      >
+        <IconBack />
+      </Link>
       <div className="pt-y-default">
         <div className="relative">
           <div ref={heroRefs.lines.H1} className="absolute left-0 top-0 h-px w-0 bg-black"></div>
@@ -175,12 +181,12 @@ export default function Page({ project }: { project: TypeProject }) {
         <section className="flex flex-col gap-y-default px-x-default pb-y-default">
           {project.gallery?.map((image: Image, index: number) => (
             <div key={index}>
-              <img src={urlForImage(image)} alt="" className="w-full border" />
+              <img src={urlForImage(image)} alt="" className="w-full shadow" />
             </div>
           ))}
         </section>
       </div>
-    </>
+    </div>
   );
 }
 

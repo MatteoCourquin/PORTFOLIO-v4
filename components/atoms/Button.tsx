@@ -55,7 +55,7 @@ const Button = forwardRef<any, ButtonProps>(
             onMouseMove={(e) => useMagnet(e, 1)}
             onMouseOut={(e) => useResetMagnet(e)}
             className={clsx(
-              'wrapper-button button-text w-fit',
+              'wrapper-button button-text w-fit transition-colors',
               `button-${type} button-${color}`,
               isActive && 'button-active',
               className,
@@ -76,7 +76,7 @@ const Button = forwardRef<any, ButtonProps>(
             onClick={onClick}
             type={inForm ? 'submit' : 'button'}
             className={clsx(
-              'wrapper-button button-text w-fit',
+              'wrapper-button button-text w-fit transition-colors',
               `button-${type} button-${color}`,
               isActive && 'button-active',
               className,

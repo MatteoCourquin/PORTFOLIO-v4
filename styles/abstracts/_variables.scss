@@ -5,28 +5,15 @@
 }
 
 // COLORS
-$color-white: #ffffff;
-$color-black: #181818;
-$color-primary: #ff4615;
-
-// RESPONSIVE
-$breakpoint-sm: 639px;
+$color-white: theme('colors.white');
+$color-black: theme('colors.black');
+$color-primary: theme('colors.primary');
 
 // FONTS
 $font-clash-display: 'Clash Display', sans-serif;
-$font-size-s: 16px;
-$font-size-m: 20px;
-$font-size-l: 24px;
-
-// RADIUS
-$radius-default: 20px;
 
 // TRANSITIONS
 $transition-default: all 0.3s cubic-bezier(0.84, 0, 0.16, 1);
-
-// PADDING
-$padding-x-default: clamp(20px, 8vw, 100px);
-$padding-y-default: clamp(20px, 8vh, 100px);
 
 .shadow-y-white {
   position: relative;
@@ -75,5 +62,28 @@ $padding-y-default: clamp(20px, 8vh, 100px);
     height: 100%;
     background: linear-gradient(-90deg, #ffffff00, #ffffff);
     z-index: 1;
+  }
+}
+
+.shadow-bakground {
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 999px;
+    width: 80px;
+    height: 80px;
+    transform: translate(-50%, -50%) scale(0);
+    background: radial-gradient(circle, #0048ff52 0%, #0048ff28 20%, #0047ff00 45%);
+    transition: all 0.3s ease-in-out;
+    z-index: -1;
+    opacity: 0;
+  }
+  &:hover {
+    &::after {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
   }
 }

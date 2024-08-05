@@ -62,7 +62,7 @@ const Burger = () => {
           ease: 'power4.inOut',
           stagger: 0.1,
         }),
-        '-=0.6',
+        0,
       )
       .add(
         gsap.to(buttonLanguageRef.current, {
@@ -71,7 +71,7 @@ const Burger = () => {
           duration: 1,
           ease: 'power4.inOut',
         }),
-        '-=0.6',
+        0,
       )
       .play();
 
@@ -88,6 +88,7 @@ const Burger = () => {
           duration: 1,
           ease: 'power4.inOut',
         }),
+        0,
       )
       .add(
         gsap.to([button1Ref.current, button2Ref.current, button3Ref.current].reverse(), {
@@ -97,7 +98,7 @@ const Burger = () => {
           ease: 'power4.inOut',
           stagger: 0.1,
         }),
-        '-=0.6',
+        0,
       )
       .add(
         gsap.to(
@@ -110,7 +111,7 @@ const Burger = () => {
             stagger: 0.1,
           },
         ),
-        '-=0.6',
+        0,
       )
       .add(
         gsap.to(backgroundRef.current, {
@@ -214,25 +215,25 @@ const Burger = () => {
               ref={button1Ref}
               href="https://github.com/matteocourquin"
               target="_blank"
-              className="-translate-y-4 opacity-0"
+              className="group/icon shadow-bakground -translate-y-4 opacity-0"
             >
-              <IconGithub />
+              <IconGithub className="transition-colors duration-300 group-hover/icon:stroke-primary" />
             </Link>
             <Link
               ref={button2Ref}
               href="https://www.linkedin.com/in/matteo-courquin/"
               target="_blank"
-              className="-translate-y-4 opacity-0"
+              className="group/icon shadow-bakground -translate-y-4 opacity-0"
             >
-              <IconLinkedin />
+              <IconLinkedin className="transition-colors duration-300 group-hover/icon:stroke-primary" />
             </Link>
             <Link
               ref={button3Ref}
               href="https://www.instagram.com/matteocourquin.dev/"
               target="_blank"
-              className="-translate-y-4 opacity-0"
+              className="group/icon shadow-bakground -translate-y-4 opacity-0"
             >
-              <IconInsta />
+              <IconInsta className="transition-colors duration-300 group-hover/icon:stroke-primary" />
             </Link>
           </div>
         </nav>
@@ -244,7 +245,7 @@ const Burger = () => {
           onMouseOut={(e) => useResetMagnet(e)}
           className={clsx(
             isOpen ? 'border-white bg-black' : 'border-black bg-white',
-            'group flex h-16 w-16 cursor-pointer items-center justify-center rounded-full border transition-colors sm:h-20 sm:w-20',
+            'group/burger flex h-16 w-16 cursor-pointer items-center justify-center rounded-full border transition-colors sm:h-20 sm:w-20',
           )}
         >
           <div
@@ -256,7 +257,9 @@ const Burger = () => {
               <div
                 className={clsx(
                   'h-[2px] transition-all duration-300',
-                  isOpen ? 'w-full translate-y-[5px] rotate-45 bg-white' : 'w-full bg-black',
+                  isOpen
+                    ? 'w-full translate-y-[5px] rotate-45 bg-white'
+                    : 'w-full bg-black group-hover/burger:bg-primary',
                 )}
               ></div>
               <div
@@ -264,7 +267,7 @@ const Burger = () => {
                   'h-[2px] transition-all duration-300',
                   isOpen
                     ? 'w-full -translate-y-[5px] -rotate-45 bg-white'
-                    : 'w-2/3 bg-black group-hover:w-full',
+                    : 'w-2/3 bg-black group-hover/burger:w-full group-hover/burger:bg-primary',
                 )}
               ></div>
             </div>

@@ -17,11 +17,11 @@ const AnimText = ({
   playAnimation?: MutableRefObject<() => void>;
   type: ANIM_TEXT_TYPE;
 }) => {
-  if (type === ANIM_TEXT_TYPE.SPIN) {
-    return <SpinText value={value} playAnimation={playAnimation} />;
-  }
-  if (type === ANIM_TEXT_TYPE.VARIABLE) {
-    return <VariableText value={value} playAnimation={playAnimation} />;
+  switch (type) {
+    case ANIM_TEXT_TYPE.SPIN:
+      return <SpinText value={value} playAnimation={playAnimation} />;
+    case ANIM_TEXT_TYPE.VARIABLE:
+      return <VariableText value={value} playAnimation={playAnimation} />;
   }
 };
 
@@ -101,7 +101,7 @@ const VariableText = ({
   }, [playAnimation]);
 
   const animText = contextSafe(() => {
-    const timeline = gsap.timeline({ repeat: 1, repeatDelay: 0 });
+    const timeline = gsap.timeline({ paused: true });
 
     timeline
       .add(
@@ -144,7 +144,7 @@ const VariableText = ({
           }}
           className={clsx('inline-block')}
         >
-          {text}
+          {text === ' ' ? '\u00A0' : text}
         </span>
       ))}
     </>
