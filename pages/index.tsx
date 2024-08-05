@@ -232,7 +232,7 @@ export default function Home({
               ref={heroRefs.button}
               size={BUTTON_SIZE.L}
               as="button"
-              className="translate-y-4 self-end opacity-0"
+              className="translate-y-4 self-center opacity-0 sm:self-end"
             >
               {data.home.hero.button} <IconArrowTopRight className="ml-2 h-full py-[0.6vw]" />
             </Button>

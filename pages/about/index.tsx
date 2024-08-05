@@ -127,7 +127,7 @@ export default function About({
         <Typography
           ref={heroRefs.texts.text1}
           type={TYPOGRAPHY_TYPE.HEADING1}
-          className="-translate-y-4 opacity-0"
+          className="-translate-y-4 opacity-0 text-center"
         >
           {data.about.title}
         </Typography>

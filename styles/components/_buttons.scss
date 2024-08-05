@@ -53,7 +53,7 @@
   font-size: clamp(1rem, 1.5vw, 3rem);
 }
 .button-l {
-  padding: 12px 64px;
+  padding: 12px clamp(3rem, 8vw, 6rem);
   font-size: clamp(1rem, 2vw, 2rem);
 }
 

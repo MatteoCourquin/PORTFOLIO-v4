@@ -92,7 +92,7 @@ export default function Projects({
         <Typography
           ref={heroRefs.text}
           type={TYPOGRAPHY_TYPE.HEADING1}
-          className="-translate-y-4 opacity-0"
+          className="-translate-y-4 text-center opacity-0"
         >
           {data.projects.title}
         </Typography>
@@ -110,21 +110,23 @@ export default function Projects({
             className="absolute bottom-0 left-x-default h-0 w-px bg-black"
           ></div>
           <div className="p-px">
-            <div className="shadow-x-white">
-              <div className="flex h-24 items-center justify-start gap-4 overflow-scroll px-4 sm:justify-center">
-                {filters.map((filter, index) => (
-                  <Button
-                    key={filter.value + index}
-                    ref={(el) => (heroRefs.buttons.filters[index].current = el)}
-                    isActive={activeFilter === filter.value}
-                    as="button"
-                    type={BUTTON_TYPE.SECONDARY}
-                    onClick={() => setActiveFilter(filter.value)}
-                    className="h-fit grow-0 translate-y-24"
-                  >
-                    {language === 'fr' ? filter.labelFr : filter.labelEn}
-                  </Button>
-                ))}
+            <div className="shadow-x-white h-24 overflow-hidden">
+              <div className="no-scrollbar h-24 w-full overflow-scroll">
+                <div className="flex h-full w-fit items-center justify-start gap-4 overflow-hidden px-4 sm:justify-center">
+                  {filters.map((filter, index) => (
+                    <Button
+                      key={filter.value + index}
+                      ref={(el) => (heroRefs.buttons.filters[index].current = el)}
+                      isActive={activeFilter === filter.value}
+                      as="button"
+                      type={BUTTON_TYPE.SECONDARY}
+                      onClick={() => setActiveFilter(filter.value)}
+                      className="h-fit shrink-0 translate-y-24"
+                    >
+                      {language === 'fr' ? filter.labelFr : filter.labelEn}
+                    </Button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

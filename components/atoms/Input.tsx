@@ -55,7 +55,7 @@ const Input = ({
             onChange(e);
           }}
           className={clsx(
-            'h-16 w-full resize-none rounded-t-md border-b py-2 !transition-[padding,height] focus:bg-slate-50 focus:pl-2 focus:outline-none',
+            'h-16 w-full resize-none rounded-b-none rounded-t-md border-b py-2 !transition-[padding,height] focus:bg-slate-50 focus:pl-2 focus:outline-none',
             error ? 'border-b-red-500' : 'border-b-black',
           )}
         />
@@ -68,7 +68,7 @@ const Input = ({
           onBlur={onBlur}
           onChange={onChange}
           className={clsx(
-            'w-full rounded-t-md border-b py-2 !transition-[padding] focus:bg-slate-50 focus:pl-2 focus:outline-none',
+            'w-full rounded-b-none rounded-t-md border-b py-2 !transition-[padding] focus:bg-slate-50 focus:pl-2 focus:outline-none',
             error ? 'border-b-red-500' : 'border-b-black',
           )}
         />
