@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         white: '#ffffff',
         black: '#181818',
-        primary: '#FF4615',
+        primary: '#0047FF',
       },
       padding: {
         'x-default': 'clamp(20px, 8vw, 100px)',

@@ -99,14 +99,17 @@ const CardProject = ({
         <Typography type={TYPOGRAPHY_TYPE.HEADING5} className="w-full py-4 text-center uppercase">
           <AnimText
             type={ANIM_TEXT_TYPE.VARIABLE}
-            value={title.toString().padStart(3, '0').split('')}
+            value={title.split('')}
             playAnimation={animTitleRef}
           />
         </Typography>
         <div className="relative h-[60vh] p-px md:h-[500px]">
           <div className="absolute right-0 top-0 h-px w-full bg-black"></div>
           <div className="h-full overflow-hidden">
-            <div ref={imageRef} className="flex h-full w-full justify-end">
+            <div
+              ref={imageRef}
+              className="flex h-full w-full justify-end blur-[2px] transition-[filter] group-hover/card-project:blur-none"
+            >
               <img
                 src={urlForImage(mainImageDesktop)}
                 alt={title}

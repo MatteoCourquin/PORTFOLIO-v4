@@ -33,8 +33,8 @@ const CardQuestion = ({
       </div>
       <div
         className={clsx(
-          'overflow-hidden transition-all',
-          isOpen ? 'h-64 sm:h-52 md:h-36 lg:h-28' : 'h-0',
+          'overflow-hidden transition-[height,padding]',
+          isOpen ? 'h-60 pt-4 sm:h-52 md:h-40 lg:h-40' : 'h-0 pt-0',
         )}
       >
         <RichText value={language === 'fr' ? answerFr : answerEn} />

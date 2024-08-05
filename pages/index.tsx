@@ -24,6 +24,7 @@ export default function Home({
   const { data } = useContext(LanguageContext);
 
   const heroRefs = {
+    triggerRef: useRef(null),
     lines: {
       H1: useRef(null),
       H2: useRef(null),
@@ -41,6 +42,7 @@ export default function Home({
   };
 
   const aboutRefs = {
+    triggerRef: useRef(null),
     line: useRef(null),
     img: useRef(null),
     texts: {
@@ -54,11 +56,44 @@ export default function Home({
   const scrollTriggerAnimation = () => {
     gsap.registerPlugin(ScrollTrigger);
 
+    gsap.to(heroRefs.texts.text1.current, {
+      xPercent: 70,
+      ease: 'power4.out',
+      scrollTrigger: {
+        start: 'top top',
+        end: 'bottom bottom',
+        toggleActions: 'play reverse play reverse',
+        scrub: true,
+      },
+    });
+    gsap.to(heroRefs.texts.text2.current, {
+      xPercent: -70,
+      ease: 'power4.out',
+      scrollTrigger: {
+        start: 'top top',
+        end: 'bottom bottom',
+        toggleActions: 'play reverse play reverse',
+        scrub: true,
+        markers: true,
+      },
+    });
+    gsap.to(heroRefs.button.current, {
+      y: -100,
+      ease: 'power4.out',
+      scrollTrigger: {
+        start: 'top top',
+        end: 'bottom bottom',
+        toggleActions: 'play reverse play reverse',
+        scrub: true,
+        markers: true,
+      },
+    });
+
     gsap.to(aboutRefs.line.current, {
       width: '100%',
       scrollTrigger: {
         start: 'top top',
-        end: 'bottom bottom',
+        end: '50% 50%',
         scrub: true,
       },
     });
@@ -66,11 +101,11 @@ export default function Home({
     gsap.to([aboutRefs.texts.text1.current, aboutRefs.texts.text2.current], {
       y: 0,
       opacity: 1,
-      stagger: 0.1,
-      duration: 0.4,
+      duration: 0.6,
       ease: 'power2.out',
+      stagger: 0.2,
       scrollTrigger: {
-        start: 'top top',
+        start: '10% top',
         end: 'bottom bottom',
         toggleActions: 'play reverse play reverse',
       },
@@ -81,7 +116,7 @@ export default function Home({
       duration: 0.6,
       ease: 'power4.out',
       scrollTrigger: {
-        start: '20% top',
+        start: '15% top',
         end: 'bottom bottom',
         toggleActions: 'play reverse play reverse',
       },
@@ -109,21 +144,23 @@ export default function Home({
         0,
       )
       .add(
-        gsap.to(
-          [
-            heroRefs.texts.text1.current,
-            heroRefs.texts.text2.current,
-            heroRefs.texts.text3.current,
-            heroRefs.button.current,
-          ],
-          {
-            y: 0,
-            duration: 1,
-            opacity: 1,
-            ease: 'power4.out',
-            stagger: 0.2,
-          },
-        ),
+        gsap.to([heroRefs.texts.text1.current, heroRefs.texts.text2.current], {
+          x: 0,
+          duration: 1,
+          opacity: 1,
+          ease: 'power4.out',
+          stagger: 0,
+        }),
+        '-=1',
+      )
+      .add(
+        gsap.to([heroRefs.texts.text3.current, heroRefs.button.current], {
+          y: 0,
+          duration: 1,
+          opacity: 1,
+          ease: 'power4.out',
+          stagger: 0.2,
+        }),
         '-=1',
       )
       .add(
@@ -147,7 +184,10 @@ export default function Home({
   return (
     <>
       <SEO title={data.head.titleIndex} />
-      <section className="relative h-screen w-screen px-x-default py-y-default text-center text-black">
+      <section
+        ref={heroRefs.triggerRef}
+        className="relative h-screen w-screen px-x-default py-y-default text-center text-black"
+      >
         <div className="relative h-full w-full">
           <div
             ref={heroRefs.lines.H1}
@@ -165,20 +205,21 @@ export default function Home({
             ref={heroRefs.lines.V2}
             className="absolute -bottom-y-default left-0 h-0 w-px bg-black"
           ></div>
-          <div className="flex h-full flex-col items-center justify-center px-4">
+          <div className="flex h-full w-full flex-col justify-center overflow-hidden px-4">
             <Typography
               ref={heroRefs.texts.text1}
               type={TYPOGRAPHY_TYPE.HEADING1}
-              className="texts.text-center -translate-y-4 opacity-0"
+              className="text-home w-full -translate-x-full whitespace-nowrap text-left text-primary opacity-0"
             >
-              {data.home.hero.title}
+              MATTEO
             </Typography>
             <Typography
               ref={heroRefs.texts.text2}
               type={TYPOGRAPHY_TYPE.HEADING2}
-              className="-translate-y-4 pb-4 text-center text-primary opacity-0"
+              as={TYPOGRAPHY_TYPE.HEADING1}
+              className="text-home shrink translate-x-full self-end whitespace-nowrap pb-4 text-right opacity-0"
             >
-              Matteo COURQUIN
+              COURQUIN
             </Typography>
             <Typography
               ref={heroRefs.texts.text3}
@@ -191,7 +232,7 @@ export default function Home({
               ref={heroRefs.button}
               size={BUTTON_SIZE.L}
               as="button"
-              className="-translate-y-4 opacity-0"
+              className="translate-y-4 self-end opacity-0"
             >
               {data.home.hero.button} <IconArrowTopRight className="ml-2 h-full py-[0.6vw]" />
             </Button>
@@ -214,7 +255,10 @@ export default function Home({
           </div>
         </div>
       </section>
-      <section className="relative min-h-screen w-screen overflow-hidden bg-black px-x-default pt-y-default text-white md:py-y-default">
+      <section
+        ref={aboutRefs.triggerRef}
+        className="relative min-h-screen w-screen overflow-hidden bg-black px-x-default pt-y-default text-white md:py-y-default"
+      >
         <div className="absolute left-0 h-px w-full px-x-default">
           <div ref={aboutRefs.line} className="h-px w-0 bg-white"></div>
         </div>

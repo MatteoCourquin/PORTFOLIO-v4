@@ -49,8 +49,8 @@ export default defineType({
       validation: (Rule) =>
         Rule.required()
           .min(10)
-          .max(400)
-          .warning('Try to keep the answer concise, with a maximum of 400 characters.'),
+          .max(320)
+          .warning('Try to keep the answer concise, with a maximum of 320 characters.'),
       fieldset: 'answerInfo',
     }),
     defineField({
@@ -61,8 +61,8 @@ export default defineType({
       validation: (Rule) =>
         Rule.required()
           .min(10)
-          .max(400)
-          .warning('Try to keep the answer concise, with a maximum of 400 characters.'),
+          .max(320)
+          .warning('Try to keep the answer concise, with a maximum of 320 characters.'),
       fieldset: 'answerInfo',
     }),
   ],
