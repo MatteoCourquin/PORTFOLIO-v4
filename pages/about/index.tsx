@@ -9,6 +9,7 @@ import { interpolate } from '@/utils/functions';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import Image from 'next/image';
 import { useContext, useRef } from 'react';
 
 export default function About({
@@ -147,10 +148,12 @@ export default function About({
         </div>
         <div className="aspect-[3/2] max-h-[70vh] px-x-default">
           <div ref={heroRefs.wrappers.wrapperImg} className="h-full w-0 overflow-hidden px-px">
-            <img
+            <Image
+              width={1920}
+              height={1080}
               ref={heroRefs.img}
-              className="h-[calc(100%+200px)] w-full object-cover object-top -translate-y-[100px]"
-              src="/images/image.webp"
+              className="h-[calc(100%+200px)] w-full -translate-y-[100px] object-cover object-top"
+              src="/images/matteo.webp"
               alt=""
             />
           </div>

@@ -34,6 +34,13 @@ const CardCareer = ({
     });
   };
 
+  const getDisplayText = (endDate: string, language: string) => {
+    if (endDate) {
+      return formatDate(endDate, language);
+    }
+    return language === 'fr' ? 'En cours' : 'Now';
+  };
+
   useGSAP(() => {
     scrollTriggerAnimation();
   }, [dotRef.current, language]);
@@ -62,8 +69,7 @@ const CardCareer = ({
             as={TYPOGRAPHY_TYPE.HEADING4}
             className="pl-[6vw] !font-semibold text-primary md:pl-[4vw]"
           >
-            {formatDate(startDate, language)} -{' '}
-            {endDate ? formatDate(endDate, language) : language === 'fr' ? 'En cours' : 'Now'}
+            {formatDate(startDate, language)} - {getDisplayText(endDate, language)}
           </Typography>
         </div>
         <div className="w-full pl-0 md:pl-x-default lg:w-3/4">

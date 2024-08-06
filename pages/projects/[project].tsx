@@ -11,9 +11,9 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import { GetStaticPropsContext } from 'next';
 import Head from 'next/head';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useContext, useRef } from 'react';
-import { Image } from 'sanity';
 
 export default function Page({ project }: { project: TypeProject }) {
   const { language } = useContext(LanguageContext);
@@ -124,14 +124,18 @@ export default function Page({ project }: { project: TypeProject }) {
             ></div>
             <div ref={heroRefs.wrappers.wrapperImg} className="h-screen w-0 overflow-hidden p-px">
               <div ref={heroRefs.img} className="h-full py-px">
-                <img
+                <Image
+                  width={1920}
+                  height={1080}
                   className="hidden h-[calc(100%+100px)] w-full object-cover object-top md:block"
-                  src={urlForImage(project.mainImageDesktop)}
+                  src={urlForImage(project.mainImageDesktop).toString()}
                   alt=""
                 />
-                <img
+                <Image
+                  width={1080}
+                  height={1920}
                   className="block h-[calc(100%+100px)] w-full object-cover object-top md:hidden"
-                  src={urlForImage(project.mainImageMobile)}
+                  src={urlForImage(project.mainImageMobile).toString()}
                   alt=""
                 />
               </div>
@@ -195,9 +199,15 @@ export default function Page({ project }: { project: TypeProject }) {
           )}
         </section>
         <section className="flex flex-col gap-y-default px-x-default pb-y-default">
-          {project.gallery?.map((image: Image, index: number) => (
+          {project.gallery?.map((image, index) => (
             <div key={index}>
-              <img src={urlForImage(image)} alt="" className="w-full shadow" />
+              <Image
+                width={1920}
+                height={1080}
+                src={urlForImage(image).toString()}
+                alt=""
+                className="w-full shadow"
+              />
             </div>
           ))}
         </section>

@@ -2,7 +2,7 @@ import { useMagnet, useResetMagnet } from '@/utils/animations';
 import { useTouchDevice } from '@/utils/states';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { forwardRef, MouseEvent, ReactNode, useRef, useState } from 'react';
+import { ForwardedRef, forwardRef, MouseEvent, ReactNode, useRef, useState } from 'react';
 
 export enum BUTTON_SIZE {
   S = 's',
@@ -13,6 +13,7 @@ export enum BUTTON_SIZE {
 export enum BUTTON_TYPE {
   PRIMARY = 'primary',
   SECONDARY = 'secondary',
+  ICON = 'icon',
 }
 
 type ButtonProps = {
@@ -29,7 +30,7 @@ type ButtonProps = {
   isActive?: boolean;
 };
 
-const Button = forwardRef<any, ButtonProps>(
+const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement | null, ButtonProps>(
   (
     {
       as,
@@ -63,9 +64,9 @@ const Button = forwardRef<any, ButtonProps>(
 
     return (
       <>
-        {as === 'a' && href && (
+        {as === 'a' && href && ref && (
           <Link
-            ref={ref}
+            ref={ref as ForwardedRef<HTMLAnchorElement>}
             href={href}
             target={target}
             onMouseMove={(e) => {
@@ -107,7 +108,7 @@ const Button = forwardRef<any, ButtonProps>(
         )}
         {as === 'button' && (
           <button
-            ref={ref}
+            ref={ref as ForwardedRef<HTMLButtonElement>}
             onClick={onClick}
             type={inForm ? 'submit' : 'button'}
             onMouseMove={(e) => {
@@ -135,16 +136,21 @@ const Button = forwardRef<any, ButtonProps>(
                 color === 'black' && type === BUTTON_TYPE.SECONDARY && 'bg-black',
                 color === 'white' && type === BUTTON_TYPE.PRIMARY && 'bg-black',
                 color === 'white' && type === BUTTON_TYPE.SECONDARY && 'bg-white',
+                color === 'white' && type === BUTTON_TYPE.ICON && 'bg-black',
                 color === 'red' && 'bg-black',
               )}
             ></div>
-            <p
-              className={clsx('button', `button-${size}`, isActive && '!mix-blend-normal')}
+            <div
+              className={clsx(
+                'button',
+                type !== BUTTON_TYPE.ICON && `button-${size}`,
+                isActive && '!mix-blend-normal',
+              )}
               onMouseMove={(e) => useMagnet(e, 0.4)}
               onMouseOut={(e) => useResetMagnet(e)}
             >
               {children}
-            </p>
+            </div>
           </button>
         )}
       </>
@@ -153,104 +159,3 @@ const Button = forwardRef<any, ButtonProps>(
 );
 
 export default Button;
-// import { useMagnet, useResetMagnet } from '@/utils/animations';
-// import clsx from 'clsx';
-// import Link from 'next/link';
-// import { forwardRef, ReactNode } from 'react';
-
-// export enum BUTTON_SIZE {
-//   S = 's',
-//   M = 'm',
-//   L = 'l',
-// }
-
-// export enum BUTTON_TYPE {
-//   PRIMARY = 'primary',
-//   SECONDARY = 'secondary',
-// }
-
-// type ButtonProps = {
-//   as: 'a' | 'button';
-//   target?: '_blank';
-//   type?: BUTTON_TYPE;
-//   color?: 'black' | 'white';
-//   href?: string;
-//   children: ReactNode;
-//   className?: string;
-//   onClick?: () => void;
-//   inForm?: boolean;
-//   size?: BUTTON_SIZE;
-//   isActive?: boolean;
-// };
-
-// const Button = forwardRef<any, ButtonProps>(
-//   (
-//     {
-//       as,
-//       target,
-//       type = BUTTON_TYPE.PRIMARY,
-//       color = 'black',
-//       href,
-//       children,
-//       className,
-//       onClick,
-//       inForm = false,
-//       size = BUTTON_SIZE.M,
-//       isActive = false,
-//     },
-//     ref,
-//   ) => {
-//     return (
-//       <>
-//         {as === 'a' && href && (
-//           <Link
-//             ref={ref}
-//             href={href}
-//             target={target}
-//             onMouseMove={(e) => useMagnet(e, 1)}
-//             onMouseOut={(e) => useResetMagnet(e)}
-//             className={clsx(
-//               'wrapper-button button-text w-fit transition-colors',
-//               `button-${type} button-${color}`,
-//               isActive && 'button-active',
-//               className,
-//             )}
-//           >
-//             <span
-//               className={clsx('button', `button-${size}`)}
-//               onMouseMove={(e) => useMagnet(e, 0.4)}
-//               onMouseOut={(e) => useResetMagnet(e)}
-//             >
-//               {children}
-//             </span>
-//           </Link>
-//         )}
-//         {as === 'button' && (
-//           <button
-//             ref={ref}
-//             onClick={onClick}
-//             type={inForm ? 'submit' : 'button'}
-//             className={clsx(
-//               'wrapper-button button-text w-fit transition-colors',
-//               `button-${type} button-${color}`,
-//               isActive && 'button-active',
-//               className,
-//             )}
-//             onMouseMove={(e) => useMagnet(e, 1)}
-//             onMouseOut={(e) => useResetMagnet(e)}
-//           >
-//             <p
-//               className={clsx('button', `button-${size}`)}
-//               onMouseMove={(e) => useMagnet(e, 0.4)}
-//               onMouseOut={(e) => useResetMagnet(e)}
-//             >
-//               {children}
-//             </p>
-//           </button>
-//         )}
-//       </>
-//     );
-//   },
-// );
-
-// export default Button;
