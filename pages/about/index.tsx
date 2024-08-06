@@ -150,7 +150,7 @@ export default function About({
             <img
               ref={heroRefs.img}
               className="h-[calc(100%+200px)] w-full object-cover object-top -translate-y-[100px]"
-              src="/images/image.png"
+              src="/images/image.webp"
               alt=""
             />
           </div>

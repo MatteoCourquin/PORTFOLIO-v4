@@ -148,8 +148,8 @@ export default function Home({
           x: 0,
           duration: 1,
           opacity: 1,
-          ease: 'power4.out',
-          stagger: 0,
+          ease: 'power2.out',
+          stagger: 0.1,
         }),
         '-=1',
       )
@@ -211,7 +211,7 @@ export default function Home({
               type={TYPOGRAPHY_TYPE.HEADING1}
               className="text-home w-full -translate-x-full whitespace-nowrap text-left text-primary opacity-0"
             >
-              MATTEO
+              MA<span className="inline-block -translate-x-2">TTEO</span>
             </Typography>
             <Typography
               ref={heroRefs.texts.text2}
@@ -228,18 +228,18 @@ export default function Home({
             >
               {data.home.hero.subtitle}
             </Typography>
-            <div className="translate-x-8 self-end">
-              <Button
-                ref={heroRefs.button}
-                size={BUTTON_SIZE.L}
-                as="a"
-                href="/contact"
-                className="translate-y-4 !rounded-r-none !border-r-0 opacity-0"
-              >
-                {data.home.hero.button}{' '}
-                <IconArrowTopRight className="ml-2 h-full w-3 py-[0.6vw] md:w-5" />
-              </Button>
-            </div>
+            {/* <div className="translate-x-8 "> */}
+            <Button
+              ref={heroRefs.button}
+              size={BUTTON_SIZE.L}
+              as="a"
+              href="/contact"
+              className="translate-y-4 self-center opacity-0 sm:self-end"
+            >
+              {data.home.hero.button}{' '}
+              <IconArrowTopRight className="ml-2 h-full w-3 py-[0.6vw] md:w-5" />
+            </Button>
+            {/* </div> */}
           </div>
           <div className="absolute bottom-0 flex w-full items-end justify-center overflow-hidden p-4 sm:justify-between">
             <Link
@@ -289,7 +289,7 @@ export default function Home({
         </div>
         <img
           ref={aboutRefs.img}
-          src="/images/matteo.png"
+          src="/images/matteo.webp"
           alt=""
           className="translate-y-full md:absolute md:bottom-0 md:left-x-default md:w-1/3"
         />
