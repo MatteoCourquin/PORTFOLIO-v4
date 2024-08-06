@@ -23,7 +23,7 @@ const CardQuestion = ({
   return (
     <div className="cursor-pointer border-t border-t-black py-6 md:py-10" onClick={onToggle}>
       <div className="flex items-center justify-between">
-        <Typography className="!font-normal" type={TYPOGRAPHY_TYPE.HEADING5}>
+        <Typography className="!font-normal" type={TYPOGRAPHY_TYPE.HEADING4} as={TYPOGRAPHY_TYPE.HEADING5}>
           {language === 'fr' ? questionFr : questionEn}
         </Typography>
         <IconAdd
