@@ -8,6 +8,7 @@ import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import { GetStaticPropsContext } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -43,6 +44,18 @@ export default function Page({ project }: { project: TypeProject }) {
 
   const timelineRef = useRef(gsap.timeline({ paused: true }));
 
+  const scrollTriggerAnimation = () => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.to(heroRefs.img.current, {
+      y: 200,
+      scrollTrigger: {
+        start: 'top top',
+        scrub: true,
+      },
+    });
+  };
+
   const playAnimation = () => {
     timelineRef.current
       .add(
@@ -77,7 +90,10 @@ export default function Page({ project }: { project: TypeProject }) {
 
   useGSAP(() => {
     playAnimation();
-  });
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    ScrollTrigger.refresh();
+    scrollTriggerAnimation();
+  }, []);
 
   return (
     <div className="pt-y-default">
@@ -91,7 +107,7 @@ export default function Page({ project }: { project: TypeProject }) {
         <IconBack />
       </Link>
       <div className="pt-y-default">
-        <div className="relative">
+        <div className="relative overflow-hidden py-px">
           <div ref={heroRefs.lines.H1} className="absolute left-0 top-0 h-px w-0 bg-black"></div>
           <div
             ref={heroRefs.lines.V1}
@@ -107,18 +123,18 @@ export default function Page({ project }: { project: TypeProject }) {
               className="absolute bottom-0 right-0 h-px w-0 bg-black"
             ></div>
             <div ref={heroRefs.wrappers.wrapperImg} className="h-screen w-0 overflow-hidden p-px">
-              <img
-                ref={heroRefs.img}
-                className="hidden h-[calc(100%+100px)] w-full object-cover object-top md:block"
-                src={urlForImage(project.mainImageDesktop)}
-                alt=""
-              />
-              <img
-                ref={heroRefs.img}
-                className="block h-[calc(100%+100px)] w-full object-cover object-top md:hidden"
-                src={urlForImage(project.mainImageMobile)}
-                alt=""
-              />
+              <div ref={heroRefs.img} className="h-full py-px">
+                <img
+                  className="hidden h-[calc(100%+100px)] w-full object-cover object-top md:block"
+                  src={urlForImage(project.mainImageDesktop)}
+                  alt=""
+                />
+                <img
+                  className="block h-[calc(100%+100px)] w-full object-cover object-top md:hidden"
+                  src={urlForImage(project.mainImageMobile)}
+                  alt=""
+                />
+              </div>
             </div>
           </section>
           <section className="px-x-default py-y-default">

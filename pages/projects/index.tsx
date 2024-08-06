@@ -112,7 +112,7 @@ export default function Projects({
           <div className="p-px">
             <div className="shadow-x-white h-24 overflow-hidden">
               <div className="no-scrollbar h-24 w-full overflow-scroll">
-                <div className="flex h-full w-fit items-center justify-start gap-4 overflow-hidden px-4 sm:justify-center">
+                <div className="flex h-full w-fit mx-auto items-center justify-start gap-4 overflow-hidden px-4 sm:justify-center">
                   {filters.map((filter, index) => (
                     <Button
                       key={filter.value + index}

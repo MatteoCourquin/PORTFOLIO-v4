@@ -99,11 +99,7 @@ const CardProject = ({
         <div className="absolute bottom-0 left-0 h-full w-px bg-black"></div>
         <div className="absolute bottom-0 right-0 h-full w-px bg-black"></div>
         <Typography type={TYPOGRAPHY_TYPE.HEADING5} className="w-full py-4 text-center uppercase">
-          <AnimText
-            type={ANIM_TEXT_TYPE.VARIABLE}
-            value={title.split('')}
-            playAnimation={animTitleRef}
-          />
+          {title}
         </Typography>
         <div className="relative h-[60vh] p-px md:h-[500px]">
           <div className="absolute right-0 top-0 h-px w-full bg-black"></div>

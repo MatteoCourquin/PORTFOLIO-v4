@@ -228,14 +228,18 @@ export default function Home({
             >
               {data.home.hero.subtitle}
             </Typography>
-            <Button
-              ref={heroRefs.button}
-              size={BUTTON_SIZE.L}
-              as="button"
-              className="translate-y-4 self-center opacity-0 sm:self-end"
-            >
-              {data.home.hero.button} <IconArrowTopRight className="ml-2 h-full py-[0.6vw]" />
-            </Button>
+            <div className="translate-x-8 self-end">
+              <Button
+                ref={heroRefs.button}
+                size={BUTTON_SIZE.L}
+                as="a"
+                href="/contact"
+                className="translate-y-4 !rounded-r-none !border-r-0 opacity-0"
+              >
+                {data.home.hero.button}{' '}
+                <IconArrowTopRight className="ml-2 h-full w-3 py-[0.6vw] md:w-5" />
+              </Button>
+            </div>
           </div>
           <div className="absolute bottom-0 flex w-full items-end justify-center overflow-hidden p-4 sm:justify-between">
             <Link

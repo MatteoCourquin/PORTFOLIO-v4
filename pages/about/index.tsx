@@ -56,7 +56,7 @@ export default function About({
       },
     });
     gsap.to(heroRefs.img.current, {
-      y: -100,
+      y: 200,
       scrollTrigger: {
         start: 'top top',
         scrub: true,
@@ -127,7 +127,7 @@ export default function About({
         <Typography
           ref={heroRefs.texts.text1}
           type={TYPOGRAPHY_TYPE.HEADING1}
-          className="-translate-y-4 opacity-0 text-center"
+          className="-translate-y-4 text-center opacity-0"
         >
           {data.about.title}
         </Typography>
@@ -149,7 +149,7 @@ export default function About({
           <div ref={heroRefs.wrappers.wrapperImg} className="h-full w-0 overflow-hidden px-px">
             <img
               ref={heroRefs.img}
-              className="h-[calc(100%+100px)] w-full object-cover object-top"
+              className="h-[calc(100%+200px)] w-full object-cover object-top -translate-y-[100px]"
               src="/images/image.png"
               alt=""
             />
