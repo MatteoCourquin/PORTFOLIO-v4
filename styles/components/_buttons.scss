@@ -58,8 +58,9 @@
 }
 
 .circle-button {
-  width: 900px;
-  height: 900px;
+  width: 200%;
+  height: auto;
+  aspect-ratio: 1/1;
   transition: transform 0.4s cubic-bezier(0.66, 0, 0.35, 1);
   transform: translate(-50%, -50%) scale(0);
 }
