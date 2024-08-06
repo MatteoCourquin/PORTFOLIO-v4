@@ -1,13 +1,13 @@
 import { LanguageContext } from '@/layout/default';
-import { useMagnet, useResetMagnet } from '@/utils/animations';
 import { useGSAP } from '@gsap/react';
 import clsx from 'clsx';
 import gsap from 'gsap';
 import Link from 'next/link';
 import { useContext, useRef, useState } from 'react';
+import Button, { BUTTON_TYPE } from './atoms/Button';
+import { IconGithub, IconInsta, IconLinkedin } from './atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 import Language from './Language';
-import { IconGithub, IconInsta, IconLinkedin } from './atoms/Icons';
 
 const Burger = () => {
   const { data } = useContext(LanguageContext);
@@ -153,7 +153,7 @@ const Burger = () => {
           ref={backgroundRef}
           className="absolute right-10 top-10 aspect-square h-16 w-16 scale-100 rounded-full bg-black sm:right-x-default sm:h-20 sm:w-20 sm:translate-x-10"
         ></div>
-        <div className="absolute top-y-default flex h-20 -translate-y-1/2 items-center left-x-default sm:-translate-x-1/2">
+        <div className="absolute left-x-default top-y-default flex h-20 -translate-y-1/2 items-center sm:-translate-x-1/2">
           <div ref={buttonLanguageRef} className="-translate-x-4 opacity-0">
             <Language />
           </div>
@@ -238,8 +238,33 @@ const Burger = () => {
           </div>
         </nav>
       </div>
-      <div className="fixed top-y-default z-[100] -translate-y-1/2 right-x-default sm:translate-x-10">
-        <div
+      <div className="fixed right-x-default top-y-default z-[100] -translate-y-1/2 sm:translate-x-10">
+        <Button
+          onClick={() => (isOpen ? handdleClose() : handdleOpen())}
+          type={BUTTON_TYPE.ICON}
+          color='white'
+          as="button"
+          className={clsx('group/burger !h-20 !w-20 !border-black !p-0')}
+        >
+          <div className="flex h-3 w-8 flex-col items-end justify-between">
+            <div
+              className={clsx(
+                'h-[2px] transition-all duration-300',
+                isOpen ? 'w-full translate-y-[5px] rotate-45 bg-white' : 'w-full bg-white',
+              )}
+            ></div>
+            <div
+              className={clsx(
+                'h-[2px] transition-all duration-300',
+                isOpen
+                  ? 'w-full -translate-y-[5px] -rotate-45 bg-white'
+                  : 'w-2/3 bg-white group-hover/burger:w-full',
+              )}
+            ></div>
+          </div>
+        </Button>
+
+        {/* <div
           onClick={() => (isOpen ? handdleClose() : handdleOpen())}
           onMouseMove={(e) => useMagnet(e, 1)}
           onMouseOut={(e) => useResetMagnet(e)}
@@ -272,7 +297,7 @@ const Burger = () => {
               ></div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

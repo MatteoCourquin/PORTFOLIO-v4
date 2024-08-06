@@ -22,6 +22,11 @@
   mix-blend-mode: difference;
 }
 
+.button-icon.button-white {
+  border: 1px solid $color-black;
+  background-color: $color-white;
+  color: $color-white;
+}
 .button-primary.button-white {
   border: 1px solid $color-white;
   background-color: $color-white;
@@ -44,6 +49,10 @@
   color: $color-white;
 }
 
+.button-icon {
+  padding: 0 !important;
+}
+
 .button-s {
   padding: 4px 24px;
   font-size: 16px;
@@ -58,7 +67,7 @@
 }
 
 .circle-button {
-  width: 200%;
+  width: 210%;
   height: auto;
   aspect-ratio: 1/1;
   transition: transform 0.4s cubic-bezier(0.66, 0, 0.35, 1);

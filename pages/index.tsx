@@ -11,6 +11,7 @@ import { interpolate } from '@/utils/functions';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useContext, useRef } from 'react';
 
@@ -245,7 +246,7 @@ export default function Home({
             <Link
               ref={heroRefs.texts.text4}
               className="-translate-x-full uppercase underline opacity-0"
-              href="heroRefs.mai:matteo.courquin@gmail.com"
+              href="mailto:matteo.courquin@gmail.com"
             >
               matteo.courquin@gmail.com
             </Link>
@@ -287,9 +288,11 @@ export default function Home({
             }}
           />
         </div>
-        <img
+        <Image
+          width={300}
+          height={300}
           ref={aboutRefs.img}
-          src="/images/matteo.webp"
+          src="/images/avatar.webp"
           alt=""
           className="translate-y-full md:absolute md:bottom-0 md:left-x-default md:w-1/3"
         />

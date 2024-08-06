@@ -12,15 +12,15 @@ const FormContact = () => {
 
   const submitFormMutation = useMutation({
     mutationFn: submitContactForm,
-    onMutate: () => {
-      console.log('onMutate');
-    },
-    onError: (error) => {
-      console.log('onError', error);
-    },
-    onSuccess: (data) => {
+    // onMutate: () => {
+    //   console.log('onMutate');
+    // },
+    // onError: (error) => {
+    //   console.log('onError', error);
+    // },
+    onSuccess: () => {
       resetForm();
-      console.log('onSuccess', data);
+      // console.log('onSuccess', data);
     },
   });
 

@@ -1,4 +1,3 @@
-import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import Button, { BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
@@ -31,13 +30,15 @@ export default function Projects({
     },
     text: useRef(null),
     buttons: {
-      filters: filters.map(() => useRef(null)),
+      wrapperFilters: useRef<HTMLDivElement | null>(null),
     },
   };
 
   const timelineRef = useRef(gsap.timeline({ paused: true }));
 
   const playAnimation = () => {
+    if (!heroRefs.buttons.wrapperFilters.current) return;
+
     timelineRef.current
       .add(
         gsap.to(heroRefs.text.current, {
@@ -67,15 +68,12 @@ export default function Projects({
         0.3,
       )
       .add(
-        gsap.to(
-          heroRefs.buttons.filters.map((ref) => ref.current),
-          {
-            y: 0,
-            duration: 1,
-            ease: 'power3.inOut',
-            stagger: 0.2,
-          },
-        ),
+        gsap.to(heroRefs.buttons.wrapperFilters.current?.querySelectorAll('button'), {
+          y: 0,
+          duration: 1,
+          ease: 'power3.inOut',
+          stagger: 0.2,
+        }),
         1,
       )
       .play();
@@ -112,11 +110,13 @@ export default function Projects({
           <div className="p-px">
             <div className="shadow-x-white h-24 overflow-hidden">
               <div className="no-scrollbar h-24 w-full overflow-scroll">
-                <div className="flex h-full w-fit mx-auto items-center justify-start gap-4 overflow-hidden px-4 sm:justify-center">
+                <div
+                  ref={heroRefs.buttons.wrapperFilters}
+                  className="mx-auto flex h-full w-fit items-center justify-start gap-4 overflow-hidden px-4 sm:justify-center"
+                >
                   {filters.map((filter, index) => (
                     <Button
                       key={filter.value + index}
-                      ref={(el) => (heroRefs.buttons.filters[index].current = el)}
                       isActive={activeFilter === filter.value}
                       as="button"
                       type={BUTTON_TYPE.SECONDARY}

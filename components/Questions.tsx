@@ -1,6 +1,5 @@
 import { TypeQuestion } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
-import { client } from '@/sanity/lib/client';
 import { useContext, useState } from 'react';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 import CardQuestion from './CardQuestion';
@@ -26,22 +25,4 @@ export default function Questions({ questions }: { questions: TypeQuestion[] }) 
       </div>
     </>
   );
-}
-
-export async function getStaticProps() {
-  const queryQuestions = `
-      *[_type == "questions"] {
-        questionEn,
-        questionFr,
-        answerEn,
-        answerFr,
-      }`;
-
-  const questions = await client.fetch(queryQuestions);
-
-  return {
-    props: {
-      questions,
-    },
-  };
 }

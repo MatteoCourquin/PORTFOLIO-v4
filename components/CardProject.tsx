@@ -3,6 +3,7 @@ import { urlForImage } from '@/sanity/lib/image';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRef } from 'react';
 import AnimText, { ANIM_TEXT_TYPE } from './AnimText';
@@ -105,13 +106,17 @@ const CardProject = ({
           <div className="absolute right-0 top-0 h-px w-full bg-black"></div>
           <div className="h-full overflow-hidden">
             <div ref={imageRef} className="flex h-full w-full justify-end">
-              <img
-                src={urlForImage(mainImageDesktop)}
+              <Image
+                width={1080}
+                height={720}
+                src={urlForImage(mainImageDesktop).toString()}
                 alt={title}
                 className="hidden w-full translate-y-[100px] cursor-pointer object-cover object-bottom grayscale transition-[transform,filter] duration-300 group-hover/card-project:scale-[1.02] group-hover/card-project:grayscale-0 md:block"
               />
-              <img
-                src={urlForImage(mainImageMobile)}
+              <Image
+                width={1080}
+                height={720}
+                src={urlForImage(mainImageMobile).toString()}
                 alt={title}
                 className="block h-[calc(100%+100px)] w-full cursor-pointer object-cover object-bottom grayscale transition-[transform,filter] duration-300 group-hover/card-project:scale-[1.02] group-hover/card-project:grayscale-0 md:hidden"
               />
