@@ -187,8 +187,10 @@ export default function Home({
       <SEO title={data.head.titleIndex} />
       <section
         ref={heroRefs.triggerRef}
-        className="relative h-screen w-screen px-x-default py-y-default text-center text-black"
+        className="relative h-screen w-screen overflow-hidden px-x-default py-y-default text-center text-black"
       >
+        {/* <div className="gradient-background absolute left-x-default top-0 -z-10 aspect-square h-[150vw] w-[150vw] -translate-x-1/2 -translate-y-1/2 rounded-full"></div> */}
+        {/* <div className="gradient-background absolute top-0 right-0 -z-10 aspect-square h-[150vw] w-[150vw] translate-x-1/2 rounded-full"></div> */}
         <div className="relative h-full w-full">
           <div
             ref={heroRefs.lines.H1}
@@ -210,7 +212,7 @@ export default function Home({
             <Typography
               ref={heroRefs.texts.text1}
               type={TYPOGRAPHY_TYPE.HEADING1}
-              className="text-home w-full -translate-x-full whitespace-nowrap text-left text-primary opacity-0"
+              className="text-home w-full -translate-x-full whitespace-nowrap text-left opacity-0"
             >
               MA<span className="inline-block -translate-x-2">TTEO</span>
             </Typography>

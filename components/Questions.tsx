@@ -16,7 +16,7 @@ export default function Questions({ questions }: { questions: TypeQuestion[] }) 
       <div className="flex flex-col pt-y-default">
         {questions.map((question, index) => (
           <CardQuestion
-            onToggle={() => setOpenQuestionIndex(index === openQuestionIndex ? null : index)}
+            onClick={() => setOpenQuestionIndex(index === openQuestionIndex ? null : index)}
             isOpen={openQuestionIndex === index}
             key={question.questionEn + index}
             {...question}

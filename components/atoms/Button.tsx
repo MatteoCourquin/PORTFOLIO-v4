@@ -64,7 +64,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement | null, ButtonPr
 
     return (
       <>
-        {as === 'a' && href && ref && (
+        {as === 'a' && href && (
           <Link
             ref={ref as ForwardedRef<HTMLAnchorElement>}
             href={href}

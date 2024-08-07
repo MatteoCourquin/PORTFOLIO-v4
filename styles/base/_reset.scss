@@ -5,3 +5,13 @@ body {
   font-size: 16px;
   scrollbar-width: thin;
 }
+
+*::-moz-selection {
+  color: $color-white;
+  background: $color-primary;
+}
+
+*::selection {
+  color: $color-white;
+  background: $color-primary;
+}
