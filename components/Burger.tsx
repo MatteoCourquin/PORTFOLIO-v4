@@ -242,9 +242,9 @@ const Burger = () => {
         <Button
           onClick={() => (isOpen ? handdleClose() : handdleOpen())}
           type={BUTTON_TYPE.ICON}
-          color='white'
+          color="white"
           as="button"
-          className={clsx('group/burger !h-20 !w-20 !border-black !p-0')}
+          className={clsx('group/burger !h-16 !w-16 sm:!h-20 sm:!w-20 !border-black !p-0')}
         >
           <div className="flex h-3 w-8 flex-col items-end justify-between">
             <div
@@ -263,41 +263,6 @@ const Burger = () => {
             ></div>
           </div>
         </Button>
-
-        {/* <div
-          onClick={() => (isOpen ? handdleClose() : handdleOpen())}
-          onMouseMove={(e) => useMagnet(e, 1)}
-          onMouseOut={(e) => useResetMagnet(e)}
-          className={clsx(
-            isOpen ? 'border-white bg-black' : 'border-black bg-white',
-            'group/burger flex h-16 w-16 cursor-pointer items-center justify-center rounded-full border transition-colors sm:h-20 sm:w-20',
-          )}
-        >
-          <div
-            className="flex h-full w-full items-center justify-center"
-            onMouseMove={(e) => useMagnet(e, 0.4)}
-            onMouseOut={(e) => useResetMagnet(e)}
-          >
-            <div className="flex h-3 w-8 flex-col items-end justify-between">
-              <div
-                className={clsx(
-                  'h-[2px] transition-all duration-300',
-                  isOpen
-                    ? 'w-full translate-y-[5px] rotate-45 bg-white'
-                    : 'w-full bg-black group-hover/burger:bg-primary',
-                )}
-              ></div>
-              <div
-                className={clsx(
-                  'h-[2px] transition-all duration-300',
-                  isOpen
-                    ? 'w-full -translate-y-[5px] -rotate-45 bg-white'
-                    : 'w-2/3 bg-black group-hover/burger:w-full group-hover/burger:bg-primary',
-                )}
-              ></div>
-            </div>
-          </div>
-        </div> */}
       </div>
     </>
   );

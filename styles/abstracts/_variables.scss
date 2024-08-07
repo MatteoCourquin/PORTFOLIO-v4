@@ -15,6 +15,10 @@ $font-clash-display: 'Clash Display', sans-serif;
 // TRANSITIONS
 $transition-default: all 0.3s cubic-bezier(0.84, 0, 0.16, 1);
 
+.transition-default {
+  transition: $transition-default;
+}
+
 .no-scrollbar {
   scrollbar-width: none;
   &::-webkit-scrollbar {
@@ -93,4 +97,8 @@ $transition-default: all 0.3s cubic-bezier(0.84, 0, 0.16, 1);
       transform: translate(-50%, -50%) scale(1);
     }
   }
+}
+
+.gradient-background {
+  background: radial-gradient(circle, $color-primary 0%, transparent 48%);
 }
