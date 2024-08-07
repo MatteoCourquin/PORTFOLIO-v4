@@ -23,6 +23,7 @@ export default function Home({
   questions: TypeQuestion[];
 }) {
   const { data } = useContext(LanguageContext);
+  const animIndexRef = useRef<() => void>(() => {});
 
   const heroRefs = {
     triggerRef: useRef(null),
@@ -80,7 +81,18 @@ export default function Home({
     });
 
     gsap.to(heroRefs.button.current, {
-      y: -100,
+      y: 50,
+      ease: 'power4.out',
+      scrollTrigger: {
+        start: 'top top',
+        end: 'bottom bottom',
+        toggleActions: 'play reverse play reverse',
+        scrub: true,
+      },
+    });
+
+    gsap.to(heroRefs.texts.text3.current, {
+      y: 150,
       ease: 'power4.out',
       scrollTrigger: {
         start: 'top top',
@@ -156,7 +168,7 @@ export default function Home({
       )
       .add(
         gsap.to([heroRefs.texts.text3.current, heroRefs.button.current], {
-          y: 0,
+          x: 0,
           duration: 1,
           opacity: 1,
           ease: 'power4.out',
@@ -180,6 +192,9 @@ export default function Home({
   useGSAP(() => {
     playAnimation();
     scrollTriggerAnimation();
+    setInterval(() => {
+      animIndexRef.current();
+    }, 10000);
   }, []);
 
   return (
@@ -224,25 +239,26 @@ export default function Home({
             >
               COURQUIN
             </Typography>
+            <p
+              ref={heroRefs.texts.text3}
+              className="subtitle -translate-x-full self-start pb-20 opacity-0"
+            ></p>
             <Typography
               ref={heroRefs.texts.text3}
               type={TYPOGRAPHY_TYPE.SUBTITLE}
-              className="-translate-y-4 pb-20 opacity-0"
-            >
-              {data.home.hero.subtitle}
-            </Typography>
-            {/* <div className="translate-x-8 "> */}
+              className="-translate-x-full pb-20 opacity-0"
+              dangerouslySetInnerHTML={data.home.hero.subtitle}
+            />
             <Button
               ref={heroRefs.button}
               size={BUTTON_SIZE.L}
               as="a"
               href="/contact"
-              className="translate-y-4 self-center opacity-0 sm:self-end"
+              className="translate-x-full self-center opacity-0 sm:self-end"
             >
-              {data.home.hero.button}{' '}
+              {data.home.hero.button}
               <IconArrowTopRight className="ml-2 h-full w-3 py-[0.6vw] md:w-5" />
             </Button>
-            {/* </div> */}
           </div>
           <div className="absolute bottom-0 flex w-full items-end justify-center overflow-hidden p-4 sm:justify-between">
             <Link

@@ -12,14 +12,25 @@ const AnimText = ({
   value,
   playAnimation,
   type,
+  repeat = 1,
+  className,
 }: {
   value: string[];
   playAnimation?: MutableRefObject<() => void>;
   type: ANIM_TEXT_TYPE;
+  repeat?: number;
+  className?: string;
 }) => {
   switch (type) {
     case ANIM_TEXT_TYPE.SPIN:
-      return <SpinText value={value} playAnimation={playAnimation} />;
+      return (
+        <SpinText
+          className={className}
+          repeat={repeat}
+          value={value}
+          playAnimation={playAnimation}
+        />
+      );
     case ANIM_TEXT_TYPE.VARIABLE:
       return <VariableText value={value} playAnimation={playAnimation} />;
   }
@@ -30,9 +41,13 @@ export default AnimText;
 const SpinText = ({
   value,
   playAnimation,
+  repeat,
+  className,
 }: {
   value: string[];
   playAnimation?: MutableRefObject<() => void>;
+  repeat: number;
+  className?: string;
 }) => {
   const { contextSafe } = useGSAP();
   const textRefs = useRef<HTMLSpanElement[][]>(Array.from({ length: 2 }, () => []));
@@ -43,7 +58,7 @@ const SpinText = ({
   }, [playAnimation]);
 
   const animText = contextSafe(() => {
-    const timeline = gsap.timeline({ repeat: 1, repeatDelay: 0 });
+    const timeline = gsap.timeline({ repeat: repeat, repeatDelay: 0 });
 
     textRefs.current.forEach((line, lineIndex) => {
       timeline.add(
@@ -65,7 +80,7 @@ const SpinText = ({
   });
 
   return (
-    <div className="shadow-y-white text flex h-6 flex-col justify-end">
+    <div className={clsx('shadow-y-white text flex h-6 flex-col justify-end', className)}>
       {Array.from({ length: 2 }).map((_, lineIndex) => (
         <div key={lineIndex}>
           {value.map((text, index) => (

@@ -17,10 +17,11 @@ type TypographyProps = {
   as?: string;
   children?: ReactNode;
   className?: string;
+  dangerouslySetInnerHTML?: string;
 };
 
 const Typography = forwardRef<HTMLParagraphElement, TypographyProps>(
-  ({ type = TYPOGRAPHY_TYPE.TEXT, as, children, className }, ref) => {
+  ({ type = TYPOGRAPHY_TYPE.TEXT, as, children, className, dangerouslySetInnerHTML }, ref) => {
     const Tag = (() => {
       switch (type) {
         case TYPOGRAPHY_TYPE.TEXT:
@@ -44,9 +45,20 @@ const Typography = forwardRef<HTMLParagraphElement, TypographyProps>(
     })();
 
     return (
-      <Tag ref={ref} className={clsx(as || type, 'w-fit', className)}>
-        {children}
-      </Tag>
+      <>
+        {dangerouslySetInnerHTML && (
+          <Tag
+            dangerouslySetInnerHTML={{ __html: dangerouslySetInnerHTML }}
+            ref={ref}
+            className={clsx(as || type, 'w-fit', className)}
+          />
+        )}
+        {children && (
+          <Tag ref={ref} className={clsx(as || type, 'w-fit', className)}>
+            {children}
+          </Tag>
+        )}
+      </>
     );
   },
 );
