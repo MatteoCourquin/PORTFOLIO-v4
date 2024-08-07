@@ -21,7 +21,6 @@ type TypographyProps = {
 
 const Typography = forwardRef<HTMLParagraphElement, TypographyProps>(
   ({ type = TYPOGRAPHY_TYPE.TEXT, as, children, className }, ref) => {
-
     const Tag = (() => {
       switch (type) {
         case TYPOGRAPHY_TYPE.TEXT:

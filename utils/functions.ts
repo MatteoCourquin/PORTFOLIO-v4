@@ -24,4 +24,4 @@ export const formatDate = (date: string, language: string) => {
 
 export const formatDateToYear = (date: string) => {
   return new Date(date).getFullYear();
-}
+};
