@@ -244,7 +244,7 @@ const Burger = () => {
           type={BUTTON_TYPE.ICON}
           color="white"
           as="button"
-          className={clsx('group/burger !h-16 !w-16 !border-black !p-0 sm:!h-20 sm:!w-20')}
+          className={clsx(' !h-16 !w-16 !border-black !p-0 sm:!h-20 sm:!w-20 group/burger ')}
         >
           <div className="flex h-3 w-8 flex-col items-end justify-between">
             <div
