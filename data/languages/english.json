@@ -19,7 +19,7 @@
   "home": {
     "hero": {
       "title": "Hi! 👋 I’m",
-      "subtitle": "FULLSTACK DEVELOPER (SINCE 2019)",
+      "subtitle": "FULLSTACK DEVELOPER (SINCE <span class='text-primary'>2019</span>)",
       "button": "Start a project"
     },
     "about": {
