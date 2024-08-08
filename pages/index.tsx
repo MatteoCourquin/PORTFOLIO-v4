@@ -23,7 +23,6 @@ export default function Home({
   questions: TypeQuestion[];
 }) {
   const { data } = useContext(LanguageContext);
-  const animIndexRef = useRef<() => void>(() => {});
 
   const heroRefs = {
     triggerRef: useRef(null),
@@ -40,6 +39,7 @@ export default function Home({
       text4: useRef(null),
       text5: useRef(null),
     },
+    image: useRef(null),
     button: useRef(null),
   };
 
@@ -159,8 +159,8 @@ export default function Home({
       .add(
         gsap.to([heroRefs.texts.text1.current, heroRefs.texts.text2.current], {
           x: 0,
-          duration: 1,
           opacity: 1,
+          duration: 1,
           ease: 'power2.out',
           stagger: 0.1,
         }),
@@ -169,8 +169,8 @@ export default function Home({
       .add(
         gsap.to([heroRefs.texts.text3.current, heroRefs.button.current], {
           x: 0,
-          duration: 1,
           opacity: 1,
+          duration: 1,
           ease: 'power4.out',
           stagger: 0.2,
         }),
@@ -179,10 +179,19 @@ export default function Home({
       .add(
         gsap.to([heroRefs.texts.text4.current, heroRefs.texts.text5.current], {
           x: 0,
-          duration: 1,
           opacity: 1,
+          duration: 1,
           ease: 'power4.out',
           stagger: 0.2,
+        }),
+        '-=1',
+      )
+      .add(
+        gsap.to(heroRefs.image.current, {
+          opacity: 1,
+          filter: 'blur(8px)',
+          duration: 2,
+          ease: 'power1.out',
         }),
         '-=1',
       )
@@ -192,9 +201,6 @@ export default function Home({
   useGSAP(() => {
     playAnimation();
     scrollTriggerAnimation();
-    setInterval(() => {
-      animIndexRef.current();
-    }, 10000);
   }, []);
 
   return (
@@ -204,8 +210,14 @@ export default function Home({
         ref={heroRefs.triggerRef}
         className="relative h-screen w-screen overflow-hidden px-x-default py-y-default text-center text-black"
       >
-        {/* <div className="gradient-background absolute left-x-default top-0 -z-10 aspect-square h-[150vw] w-[150vw] -translate-x-1/2 -translate-y-1/2 rounded-full"></div> */}
-        {/* <div className="gradient-background absolute top-0 right-0 -z-10 aspect-square h-[150vw] w-[150vw] translate-x-1/2 rounded-full"></div> */}
+        <Image
+          ref={heroRefs.image}
+          width={1920}
+          height={1080}
+          src="/images/background.png"
+          alt=""
+          className="absolute inset-0 opacity-0 blur-[200px]"
+        />
         <div className="relative h-full w-full">
           <div
             ref={heroRefs.lines.H1}

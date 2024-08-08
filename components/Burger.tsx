@@ -249,16 +249,14 @@ const Burger = () => {
           <div className="flex h-3 w-8 flex-col items-end justify-between">
             <div
               className={clsx(
-                'h-[2px] transition-all duration-300',
-                isOpen ? 'w-full translate-y-[5px] rotate-45 bg-white' : 'w-full bg-white',
+                'h-[2px] bg-white transition-all duration-300',
+                isOpen ? 'w-full translate-y-[5px] rotate-45' : 'w-full',
               )}
             ></div>
             <div
               className={clsx(
-                'h-[2px] transition-all duration-300',
-                isOpen
-                  ? 'w-full -translate-y-[5px] -rotate-45 bg-white'
-                  : 'w-2/3 bg-white group-hover/burger:w-full',
+                'h-[2px] bg-white transition-all duration-300',
+                isOpen ? 'w-full -translate-y-[5px] -rotate-45' : 'w-2/3 group-hover/burger:w-full',
               )}
             ></div>
           </div>
