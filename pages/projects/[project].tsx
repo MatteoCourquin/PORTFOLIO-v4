@@ -13,9 +13,11 @@ import { GetStaticPropsContext } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useContext, useRef } from 'react';
 
 export default function Page({ project }: { project: TypeProject }) {
+  const router = useRouter();
   const { language } = useContext(LanguageContext);
 
   if (!project) {
@@ -100,12 +102,12 @@ export default function Page({ project }: { project: TypeProject }) {
       <Head>
         <title>Matteo Courquin • {project.title}</title>
       </Head>
-      <Link
-        href="/projects"
-        className="absolute left-x-default top-y-default flex h-20 -translate-y-1/2 items-center shadow-white sm:-translate-x-1/2"
+      <div
+        onClick={() => router.back()}
+        className="absolute left-x-default top-y-default flex h-20 -translate-y-1/2 cursor-pointer items-center shadow-white sm:-translate-x-1/2"
       >
         <IconBack />
-      </Link>
+      </div>
       <div className="pt-y-default">
         <div className="relative overflow-hidden py-px">
           <div ref={heroRefs.lines.H1} className="absolute left-0 top-0 h-px w-0 bg-black"></div>
