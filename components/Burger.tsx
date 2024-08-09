@@ -1,4 +1,4 @@
-import { LanguageContext } from '@/layout/default';
+import { AnimationContext, LanguageContext } from '@/layout/default';
 import { useGSAP } from '@gsap/react';
 import clsx from 'clsx';
 import gsap from 'gsap';
@@ -10,8 +10,9 @@ import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 import Language from './Language';
 
 const Burger = () => {
+  const { contextSafe } = useGSAP();
   const { data } = useContext(LanguageContext);
-
+  const { setIsAnimationEnabled } = useContext(AnimationContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const text1Ref = useRef(null);
@@ -24,8 +25,6 @@ const Burger = () => {
   const button3Ref = useRef(null);
   const wrapperRef = useRef(null);
   const backgroundRef = useRef(null);
-
-  const { contextSafe } = useGSAP();
 
   const openBurger = contextSafe(() => {
     const timelineOpen = gsap.timeline({ paused: true });
@@ -136,11 +135,13 @@ const Burger = () => {
   const handdleOpen = () => {
     setIsOpen(true);
     openBurger();
+    setIsAnimationEnabled(false);
   };
 
   const handdleClose = () => {
     setIsOpen(false);
     closeBurger();
+    setIsAnimationEnabled(false);
   };
 
   return (

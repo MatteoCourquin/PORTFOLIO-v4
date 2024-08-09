@@ -1,28 +1,52 @@
-import Layout from '@/layout/default';
+import PageTransition from '@/components/PageTransition';
+import Layout, { AnimationContext } from '@/layout/default';
 import SmoothScrolling from '@/layout/lenis';
 import '@/styles/main.scss';
+import { useLenis } from '@studio-freight/react-lenis';
+import { AnimatePresence } from 'framer-motion';
 import type { AppProps } from 'next/app';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { useContext, useEffect } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
   const pathname = usePathname();
-  const [layoutEnabled, setLayoutEnabled] = useState(true);
+  const router = useRouter();
+  const lenis = useLenis();
+  const { setIsAnimationEnabled } = useContext(AnimationContext);
 
   useEffect(() => {
-    setLayoutEnabled(!pathname?.includes('studio'));
-  }, [pathname]);
+    setIsAnimationEnabled(true);
+
+    const handleRouteChange = () => {
+      if (!lenis) return;
+
+      lenis.scrollTo(lenis.actualScroll);
+
+      setTimeout(() => {
+        lenis.scrollTo(0, {
+          immediate: true,
+        });
+      }, 1000);
+    };
+
+    router.events.on('routeChangeStart', handleRouteChange);
+  }, [router.events, lenis]);
 
   return (
     <>
-      {layoutEnabled ? (
-        <SmoothScrolling>
-          <Layout>
-            <Component key={pathname} {...pageProps} />
-          </Layout>
-        </SmoothScrolling>
-      ) : (
+      {pathname?.includes('studio') ? (
         <Component {...pageProps} />
+      ) : (
+        <Layout>
+          <SmoothScrolling>
+            <AnimatePresence mode="wait">
+              <PageTransition key={pathname}>
+                <Component {...pageProps} />
+              </PageTransition>
+            </AnimatePresence>
+          </SmoothScrolling>
+        </Layout>
       )}
     </>
   );

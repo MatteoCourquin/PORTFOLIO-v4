@@ -157,6 +157,15 @@ export default function Home({
         0,
       )
       .add(
+        gsap.to(heroRefs.image.current, {
+          opacity: 1,
+          filter: 'blur(8px)',
+          duration: 2,
+          ease: 'power1.out',
+        }),
+        '-=1',
+      )
+      .add(
         gsap.to([heroRefs.texts.text1.current, heroRefs.texts.text2.current], {
           x: 0,
           opacity: 1,
@@ -186,15 +195,6 @@ export default function Home({
         }),
         '-=1',
       )
-      .add(
-        gsap.to(heroRefs.image.current, {
-          opacity: 1,
-          filter: 'blur(8px)',
-          duration: 2,
-          ease: 'power1.out',
-        }),
-        '-=1',
-      )
       .play();
   };
 
@@ -216,7 +216,7 @@ export default function Home({
           height={1080}
           src="/images/background.png"
           alt=""
-          className="absolute inset-0 opacity-0 blur-[200px]"
+          className="absolute -left-4 -top-4 h-[calc(100vh+32px)] w-[calc(100vw+32px)] !max-w-none object-cover opacity-0 blur-[100px]"
         />
         <div className="relative h-full w-full">
           <div
