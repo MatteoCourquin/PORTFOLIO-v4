@@ -46,3 +46,78 @@ export type TypeContactFormData = {
   email: string;
   message: string;
 };
+
+export type Language = {
+  head: {
+    titleIndex: string;
+    titleProjects: string;
+    titleAbout: string;
+    titleContact: string;
+    description: string;
+  };
+  nav: {
+    home: string;
+    projects: string;
+    about: string;
+    contact: string;
+  };
+  footer: {
+    title: string;
+    button: string;
+  };
+  home: {
+    hero: {
+      title: string;
+      subtitle: string;
+      button: string;
+    };
+    about: {
+      title: string;
+      description: string;
+    };
+    projects: {
+      title: string;
+      button: string;
+    };
+  };
+  projects: {
+    title: string;
+  };
+  about: {
+    title: string;
+    about: {
+      title: string;
+      description: string;
+    };
+    carreer: {
+      title: string;
+    };
+    questions: {
+      title: string;
+    };
+  };
+  contact: {
+    title: string;
+    form: {
+      name: {
+        label: string;
+        placeholder: string;
+      };
+      email: {
+        label: string;
+        placeholder: string;
+      };
+      message: {
+        label: string;
+        placeholder: string;
+      };
+      errors: {
+        name: string;
+        email: string;
+        emailValid: string;
+      };
+      button: string;
+    };
+    consultation: string;
+  };
+};
