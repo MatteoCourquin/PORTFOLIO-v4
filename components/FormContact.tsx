@@ -89,7 +89,7 @@ const FormContact = () => {
             name="name"
             type="text"
             placeholder={data.contact.form.name.placeholder}
-            label={data.contact.form.name.label}
+            dangerouslySetInnerHTML={data.contact.form.name.label}
             value={formValues.name}
             required={true}
             onChange={(e) => {
@@ -104,7 +104,7 @@ const FormContact = () => {
             name="email"
             type="mail"
             placeholder={data.contact.form.email.placeholder}
-            label={data.contact.form.email.label}
+            dangerouslySetInnerHTML={data.contact.form.email.label}
             value={formValues.email}
             required={true}
             onChange={(e) => setFormValues({ ...formValues, email: e.target.value })}
@@ -117,7 +117,7 @@ const FormContact = () => {
           name="message"
           type="textarea"
           placeholder={data.contact.form.message.placeholder}
-          label={data.contact.form.message.label}
+          dangerouslySetInnerHTML={data.contact.form.message.label}
           value={formValues.message}
           onChange={(e) => setFormValues({ ...formValues, message: e.target.value })}
         />

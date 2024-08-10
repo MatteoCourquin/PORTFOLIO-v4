@@ -108,7 +108,7 @@ export default function Page({ project }: { project: TypeProject }) {
           onClick={() => router.back()}
           className="absolute left-x-default top-y-default flex h-20 -translate-y-1/2 cursor-pointer items-center shadow-white sm:-translate-x-1/2"
         >
-          <IconBack />
+          <IconBack className="stroke-primary" />
         </div>
         <div className="pt-y-default">
           <div className="relative overflow-hidden py-px">
@@ -166,7 +166,7 @@ export default function Page({ project }: { project: TypeProject }) {
           </div>
           <section className="flex flex-col-reverse items-center justify-between gap-4 px-x-default py-y-default sm:flex-row">
             <div className="flex justify-between gap-2">
-              <Typography>Made by 🤝</Typography>
+              <Typography className="text-primary">Made by 🤝</Typography>
               <div>
                 <Link href="/" target="_blank" className="text block font-medium hover:underline">
                   Matteo Couruqin

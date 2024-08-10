@@ -205,7 +205,7 @@ export default function Home({
 
   return (
     <>
-      <SEO title={data.head.titleIndex} />
+      <SEO title={data.head.titleIndex} image="/ogIndex.png" />
       <section
         ref={heroRefs.triggerRef}
         className="relative h-screen w-screen overflow-hidden px-x-default py-y-default text-center text-black"
@@ -333,7 +333,7 @@ export default function Home({
         </Typography>
         <div className="grid grid-cols-1 gap-10 pt-y-default md:grid-cols-2">
           {projects.map((project, index) => (
-            <CardProject {...project} projectIndex={index + 1} key={project.title + index} />
+            <CardProject {...project} key={project.title + index} />
           ))}
         </div>
         <Button as="a" href="/projects" size={BUTTON_SIZE.L} className="mx-auto my-20">
@@ -349,7 +349,7 @@ export default function Home({
 
 export async function getStaticProps() {
   const queryProjects = `
-    *[_type == "projects"] | order(_createdAt desc)[0...4] {
+    *[_type == "projects"] | order(projectIndex asc)[0...4] {
       projectIndex,
       title,
       slug,

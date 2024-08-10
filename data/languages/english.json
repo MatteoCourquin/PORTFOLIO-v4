@@ -51,15 +51,15 @@
     "title": "Let’s start a new project 🙌",
     "form": {
       "name": {
-        "label": "What’s your name ?",
+        "label": "What’s your <span class='text-primary'>name</span> ?",
         "placeholder": "John Doe"
       },
       "email": {
-        "label": "What’s your email ?",
+        "label": "What’s your <span class='text-primary'>email</span> ?",
         "placeholder": "johndoe@gmail.com"
       },
       "message": {
-        "label": "What’s your message ?",
+        "label": "What’s your <span class='text-primary'>message</span> ?",
         "placeholder": "I would like to discuss a project with you..."
       },
       "errors": {
@@ -69,6 +69,6 @@
       },
       "button": "Send"
     },
-    "consultation": "or take a meeting"
+    "consultation": "or take a <a class='underline' href='https://calendly.com/matteo-courquin/consultation-projet-client' target='_blank'>meeting</a>"
   }
 }

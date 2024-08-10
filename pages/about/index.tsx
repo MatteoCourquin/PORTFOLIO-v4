@@ -123,7 +123,7 @@ export default function About({
 
   return (
     <>
-      <SEO title={data.head.titleAbout} />
+      <SEO title={data.head.titleAbout} image="/ogAbout.png" />
       <section className="flex h-[60vh] items-center justify-center">
         <Typography
           ref={heroRefs.texts.text1}

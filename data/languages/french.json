@@ -51,15 +51,15 @@
     "title": "Commençons un nouveau projet 🙌",
     "form": {
       "name": {
-        "label": "Quel est votre nom ?",
+        "label": "Quel est votre <span class='text-primary'>nom</span> ?",
         "placeholder": "Clara Dupont"
       },
       "email": {
-        "label": "Quel est votre email ?",
+        "label": "Quel est votre <span class='text-primary'>email</span> ?",
         "placeholder": "claradupont@gmail.com"
       },
       "message": {
-        "label": "Quel est votre message ?",
+        "label": "Quel est votre <span class='text-primary'>message</span> ?",
         "placeholder": "J’aimerais discuter d’un projet avec vous..."
       },
       "errors": {
@@ -69,6 +69,6 @@
       },
       "button": "Envoyer"
     },
-    "consultation": "ou prenons un rendez-vous"
+    "consultation": "ou prenons un <a class='underline' href='https://calendly.com/matteo-courquin/consultation-projet-client' target='_blank'>rendez-vous</a>"
   }
 }
