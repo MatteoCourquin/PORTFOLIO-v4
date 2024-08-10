@@ -33,17 +33,16 @@ export const IconArrowTopRight = forwardRef<
 
 export const IconBack = ({ className }: { className?: string }) => (
   <svg
-    className={className}
+    className={clsx(className, 'stroke-black')}
     width="60"
     height="58"
     viewBox="0 0 18 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M2.3501 7.99976H16.7504" stroke="black" strokeWidth=".8" strokeLinecap="square" />
+    <path d="M2.3501 7.99976H16.7504" strokeWidth=".8" strokeLinecap="square" />
     <path
       d="M7.80001 14.0243L1.75 8.0003L7.80001 1.97534"
-      stroke="black"
       strokeWidth=".8"
       strokeLinecap="square"
     />
@@ -52,15 +51,15 @@ export const IconBack = ({ className }: { className?: string }) => (
 
 export const IconAdd = ({ size = 24, className }: { size: number; className: string }) => (
   <svg
-    className={className}
+    className={clsx(className, 'stroke-black')}
     width={size}
     height={size}
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M6 12H18" stroke="black" strokeWidth="1"></path>
-    <path d="M12 6V18" stroke="black" strokeWidth="1"></path>
+    <path d="M6 12H18" strokeWidth="1"></path>
+    <path d="M12 6V18" strokeWidth="1"></path>
   </svg>
 );
 

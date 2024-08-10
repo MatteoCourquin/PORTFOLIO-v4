@@ -32,7 +32,7 @@ export const AnimationContext = createContext<TypeAnimationContext>({
 const queryClient = new QueryClient();
 
 const Layout = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguage] = useState<string>('en');
+  const [language, setLanguage] = useState('en');
   const [isAnimationEnabled, setIsAnimationEnabled] = useState(true);
   const data = language === 'en' ? english : french;
 

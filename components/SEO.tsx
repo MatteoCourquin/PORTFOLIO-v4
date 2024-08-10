@@ -3,7 +3,7 @@ import Head from 'next/head';
 const SEO = ({
   title = 'Matteo Courquin | Développeur Full Stack !! 🚀',
   description = 'Un développeur web à votre écoute pour un projet à vos attentes !',
-  image = '/ogImage.png',
+  image = '/ogIndex.png',
   url = 'https://matteo.courqu.in',
 }) => {
   return (

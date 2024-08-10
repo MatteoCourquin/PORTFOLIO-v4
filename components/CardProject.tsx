@@ -138,6 +138,7 @@ const CardProject = ({
             type={ANIM_TEXT_TYPE.SPIN}
             value={projectIndex.toString().padStart(3, '0').split('')}
             playAnimation={animIndexRef}
+            className="text-primary"
           />
         </div>
         <Button as="button" size={BUTTON_SIZE.S} className="overflow-hidden">

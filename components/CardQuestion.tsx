@@ -35,8 +35,8 @@ const CardQuestion = ({
         </Typography>
         <IconAdd
           className={clsx(
-            isOpen ? 'rotate-[135deg]' : 'rotate-0',
-            'transition-transform duration-300 ease-in-out group-hover/card-question:-translate-x-4',
+            isOpen ? 'rotate-[135deg] stroke-primary' : 'rotate-0 stroke-black',
+            'transition-[transform,stroke] duration-300 ease-in-out group-hover/card-question:-translate-x-4',
           )}
           size={42}
         />

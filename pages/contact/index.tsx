@@ -10,7 +10,7 @@ export default function Contact() {
 
   return (
     <>
-      <SEO title={data.head.titleAbout} />
+      <SEO title={data.head.titleAbout} image='/ogContact.png' />
       <section className="flex min-h-screen flex-col items-center justify-between gap-16 px-x-default py-y-default">
         <Typography type={TYPOGRAPHY_TYPE.HEADING1} className="pt-y-default text-center">
           {data.contact.title}
@@ -18,7 +18,10 @@ export default function Contact() {
         <div className="flex w-full flex-col items-center justify-center gap-8">
           <FormContact />
           <div className="flex flex-col items-center justify-center gap-8">
-            <Typography as={TYPOGRAPHY_TYPE.TEXT}>{data.contact.consultation}</Typography>
+            <Typography
+              as={TYPOGRAPHY_TYPE.TEXT}
+              dangerouslySetInnerHTML={data.contact.consultation}
+            />
             <Button
               as="a"
               href="https://calendly.com/matteo-courquin/consultation-projet-client"

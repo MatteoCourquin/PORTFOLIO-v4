@@ -12,17 +12,19 @@ const Input = ({
   onBlur,
   error = false,
   errorMessage,
+  dangerouslySetInnerHTML,
 }: {
   name: string;
-  label: string;
+  label?: string;
   type?: string;
   placeholder?: string;
   required?: boolean;
-  value: string;
+  value?: string;
   onChange: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   onBlur?: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   error?: boolean;
   errorMessage?: string;
+  dangerouslySetInnerHTML?: string;
 }) => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -39,9 +41,15 @@ const Input = ({
   return (
     <div className="relative flex flex-col gap-4">
       {label && (
-        <label htmlFor={name} className="heading6">
+        <label htmlFor={name} className="heading6 cursor-pointer">
           {label} {required && <span className="text-red-500">*</span>}
         </label>
+      )}
+      {dangerouslySetInnerHTML && (
+        <div className="heading6 cursor-pointer">
+          <label dangerouslySetInnerHTML={{ __html: dangerouslySetInnerHTML }} htmlFor={name} />
+          {required && <span className="ml-1 text-red-500">*</span>}
+        </div>
       )}
       {type === 'textarea' ? (
         <textarea

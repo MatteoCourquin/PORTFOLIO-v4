@@ -85,7 +85,7 @@ export default function Projects({
 
   return (
     <>
-      <SEO title={data.head.titleProjects} />
+      <SEO title={data.head.titleProjects} image='/ogProjects.png' />
       <section className="flex h-[60vh] items-center justify-center">
         <Typography
           ref={heroRefs.text}
@@ -152,7 +152,7 @@ export default function Projects({
                     delay: index * 0.02,
                   }}
                 >
-                  <CardProject {...project} projectIndex={index + 1} />
+                  <CardProject {...project} />
                 </motion.div>
               ))}
           </AnimatePresence>
@@ -164,7 +164,7 @@ export default function Projects({
 
 export async function getStaticProps() {
   const queryProjects = `
-    *[_type == "projects"] {
+    *[_type == "projects"] | order(projectIndex asc) {
       projectIndex,
       title,
       slug,
