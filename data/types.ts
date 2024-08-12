@@ -4,6 +4,7 @@ export type TypeProject = {
   projectIndex: number;
   slug: Slug;
   title: string;
+  ogImage?: Image | undefined;
   mainImageDesktop: Image;
   mainImageMobile: Image;
   descriptionEn: TypedObject[];
