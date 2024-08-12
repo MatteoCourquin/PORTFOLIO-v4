@@ -8,7 +8,13 @@ const Footer = () => {
   const { data } = useContext(LanguageContext);
 
   return (
-    <footer className="flex bg-black px-x-default py-y-default text-center text-white md:gap-10 md:text-left">
+    <footer className="relative flex bg-black px-x-default py-y-default text-center text-white md:gap-10 md:text-left">
+      <Typography
+        type={TYPOGRAPHY_TYPE.TEXT}
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm opacity-50"
+      >
+        MATTEO COURQUIN ©{new Date().getFullYear()}
+      </Typography>
       <div className="flex flex-col items-center gap-4 md:items-start">
         <Typography
           type={TYPOGRAPHY_TYPE.HEADING4}

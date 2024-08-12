@@ -1,7 +1,20 @@
 import Button, { BUTTON_SIZE } from '@/components/atoms/Button';
-import { IconArrowTopRight } from '@/components/atoms/Icons';
+import {
+  IconArrowTopRight,
+  IconAWS,
+  IconFigma,
+  IconGSAP,
+  IconIllustrator,
+  IconNext,
+  IconNuxt,
+  IconPhotoshop,
+  IconReact,
+  IconThreeJS,
+  IconVue,
+} from '@/components/atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
+import DropUp from '@/components/DropUp';
 import Questions from '@/components/Questions';
 import SEO from '@/components/SEO';
 import { TypeProject, TypeQuestion } from '@/data/types';
@@ -39,6 +52,7 @@ export default function Home({
       text4: useRef(null),
       text5: useRef(null),
     },
+    icons: useRef<HTMLDivElement | null>(null),
     image: useRef(null),
     button: useRef(null),
   };
@@ -137,6 +151,8 @@ export default function Home({
   };
 
   const playAnimation = () => {
+    if (!heroRefs.icons.current) return;
+
     timelineRef.current
       .add(
         gsap.to([heroRefs.lines.H1.current, heroRefs.lines.H2.current], {
@@ -192,6 +208,24 @@ export default function Home({
           duration: 1,
           ease: 'power4.out',
           stagger: 0.2,
+        }),
+        '-=1',
+      )
+      .add(
+        gsap.to(heroRefs.icons.current?.querySelectorAll('a'), {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power4.out',
+          stagger: 0.12,
+        }),
+        '-=0.8',
+      )
+      .add(
+        gsap.to(heroRefs.icons.current?.querySelectorAll('div'), {
+          height: '66%',
+          duration: 2,
+          ease: 'power4.out',
         }),
         '-=1',
       )
@@ -255,12 +289,76 @@ export default function Home({
               ref={heroRefs.texts.text3}
               className="subtitle -translate-x-full self-start pb-20 opacity-0"
             ></p>
-            <Typography
-              ref={heroRefs.texts.text3}
-              type={TYPOGRAPHY_TYPE.SUBTITLE}
-              className="-translate-x-full pb-20 opacity-0"
-              dangerouslySetInnerHTML={data.home.hero.subtitle}
-            />
+            <div ref={heroRefs.texts.text3} className="-translate-x-full pb-20 opacity-0">
+              <Typography
+                type={TYPOGRAPHY_TYPE.SUBTITLE}
+                dangerouslySetInnerHTML={data.home.hero.subtitle}
+              />
+              <div ref={heroRefs.icons} className="flex h-6 items-center gap-2">
+                <DropUp
+                  className="-translate-y-full opacity-0"
+                  href="https://react.dev/"
+                  text="React"
+                  icon={<IconReact className="h-full w-auto" />}
+                />
+                <DropUp
+                  className="-translate-y-full opacity-0"
+                  href="https://nextjs.org/"
+                  text="Next.js"
+                  icon={<IconNext className="h-full w-auto" />}
+                ></DropUp>
+                <DropUp
+                  className="-translate-y-full opacity-0"
+                  href="https://vuejs.org/"
+                  text="Vue.js"
+                  icon={<IconVue className="h-full w-auto" />}
+                ></DropUp>
+                <DropUp
+                  className="-translate-y-full opacity-0"
+                  href="https://nuxt.com/"
+                  text="Nuxt.js"
+                  icon={<IconNuxt className="h-full w-auto" />}
+                ></DropUp>
+                <DropUp
+                  className="-translate-y-full opacity-0"
+                  href="https://aws.amazon.com/"
+                  text="AWS"
+                  icon={<IconAWS className="h-full w-auto" />}
+                ></DropUp>
+                <div className="mx-2 h-0 w-px bg-black"></div>
+                <DropUp
+                  className="-translate-y-full opacity-0"
+                  href="https://gsap.com/"
+                  text="GSAP"
+                  icon={<IconGSAP className="h-4 w-auto" />}
+                ></DropUp>
+                <DropUp
+                  className="-translate-y-full opacity-0"
+                  href="https://threejs.org/"
+                  text="THREE.js"
+                  icon={<IconThreeJS className="h-full w-auto" />}
+                ></DropUp>
+                <div className="mx-2 h-0 w-px bg-black"></div>
+                <DropUp
+                  className="-translate-y-full opacity-0"
+                  href="https://www.adobe.com/products/illustrator.html"
+                  text="Illustrator"
+                  icon={<IconIllustrator className="h-full w-auto" />}
+                ></DropUp>
+                <DropUp
+                  className="-translate-y-full opacity-0"
+                  href="https://www.adobe.com/products/photoshop.html"
+                  text="Photoshop"
+                  icon={<IconPhotoshop className="h-full w-auto" />}
+                ></DropUp>
+                <DropUp
+                  className="-translate-y-full opacity-0"
+                  href="https://www.figma.com/"
+                  text="Figma"
+                  icon={<IconFigma className="h-full w-auto" />}
+                ></DropUp>
+              </div>
+            </div>
             <Button
               ref={heroRefs.button}
               size={BUTTON_SIZE.L}
@@ -272,7 +370,7 @@ export default function Home({
               <IconArrowTopRight className="ml-2 h-full w-3 py-[0.6vw] md:w-5" />
             </Button>
           </div>
-          <div className="absolute bottom-0 flex w-full items-end justify-center overflow-hidden p-4 sm:justify-between">
+          <div className="absolute bottom-0 flex w-full flex-col items-end justify-center overflow-hidden p-4 pt-10 md:flex-row md:items-center md:justify-between">
             <Link
               ref={heroRefs.texts.text4}
               className="-translate-x-full uppercase underline opacity-0"
