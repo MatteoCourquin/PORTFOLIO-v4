@@ -85,7 +85,7 @@ export default function Projects({
 
   return (
     <>
-      <SEO title={data.head.titleProjects} image='/ogProjects.png' />
+      <SEO title={data.head.titleProjects} image="/ogProjects.png" />
       <section className="flex h-[60vh] items-center justify-center">
         <Typography
           ref={heroRefs.text}

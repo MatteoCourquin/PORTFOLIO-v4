@@ -21,7 +21,7 @@ const SEO = ({
       <meta property="og:url" content={url} />
       <meta property="og:image" content={image} />
 
-      {/* <meta name="google-site-verification" content="6n81QjyK4C02a8g9mMeuhdHqnAcjhHRxsGVdgXVGQ2Y" /> */}
+      <meta name="google-site-verification" content="6n81QjyK4C02a8g9mMeuhdHqnAcjhHRxsGVdgXVGQ2Y" />
 
       <meta
         name="keywords"
@@ -30,7 +30,7 @@ const SEO = ({
 
       <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
-      {/* <link rel="canonical" href={url} /> */}
+      <link rel="canonical" href={url} />
     </Head>
   );
 };

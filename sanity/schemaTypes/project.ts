@@ -77,6 +77,16 @@ export default defineType({
       fieldset: 'descriptionInfo',
     }),
     defineField({
+      name: 'ogImage',
+      title: 'Open Graph Image 🌐',
+      type: 'image',
+      description: 'SETUP in Photoshop : 1200x630px, 24% quality',
+      options: {
+        hotspot: true,
+      },
+      fieldset: 'mediaInfo',
+    }),
+    defineField({
       name: 'mainImageDesktop',
       title: 'Main Image 💻',
       type: 'image',

@@ -10,7 +10,7 @@ export default function Contact() {
 
   return (
     <>
-      <SEO title={data.head.titleAbout} image='/ogContact.png' />
+      <SEO title={data.head.titleAbout} image="/ogContact.png" />
       <section className="flex min-h-screen flex-col items-center justify-between gap-16 px-x-default py-y-default">
         <Typography type={TYPOGRAPHY_TYPE.HEADING1} className="pt-y-default text-center">
           {data.contact.title}

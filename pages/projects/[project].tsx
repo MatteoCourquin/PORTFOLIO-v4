@@ -100,7 +100,10 @@ export default function Page({ project }: { project: TypeProject }) {
 
   return (
     <>
-      <SEO title={'Matteo Courquin • ' + project.title} />
+      <SEO
+        title={'Matteo Courquin • ' + project.title}
+        image={project.ogImage ? urlForImage(project.ogImage).toString() : '/ogProjects.png'}
+      />
       <div className="pt-y-default">
         <div
           onMouseMove={(e) => useMagnet(e, 1)}
@@ -231,6 +234,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
       projectIndex,
       title,
       slug,
+      ogImage,
       mainImageDesktop,
       mainImageMobile,
       descriptionEn,
