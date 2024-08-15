@@ -68,7 +68,7 @@ export default function Projects({
         0.3,
       )
       .add(
-        gsap.to(heroRefs.buttons.wrapperFilters.current?.querySelectorAll('button'), {
+        gsap.to(heroRefs.buttons.wrapperFilters.current.querySelectorAll('button'), {
           y: 0,
           duration: 1,
           ease: 'power3.inOut',

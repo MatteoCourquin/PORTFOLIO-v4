@@ -125,6 +125,17 @@ export default function Home({
       },
     });
 
+    if (heroRefs.icons.current) {
+      gsap.to(heroRefs.icons.current.children, {
+        x: (index) => 10 + index * 20,
+        scrollTrigger: {
+          start: 'top top',
+          end: '50% 50%',
+          scrub: true,
+        },
+      });
+    }
+
     gsap.to([aboutRefs.texts.text1.current, aboutRefs.texts.text2.current], {
       y: 0,
       opacity: 1,
@@ -212,7 +223,7 @@ export default function Home({
         '-=1',
       )
       .add(
-        gsap.to(heroRefs.icons.current?.querySelectorAll('a'), {
+        gsap.to(heroRefs.icons.current.querySelectorAll('a'), {
           y: 0,
           opacity: 1,
           duration: 1.2,
@@ -222,7 +233,7 @@ export default function Home({
         '-=0.8',
       )
       .add(
-        gsap.to(heroRefs.icons.current?.querySelectorAll('div'), {
+        gsap.to(heroRefs.icons.current.querySelectorAll('div'), {
           height: '66%',
           duration: 2,
           ease: 'power4.out',
@@ -285,16 +296,13 @@ export default function Home({
             >
               COURQUIN
             </Typography>
-            <p
-              ref={heroRefs.texts.text3}
-              className="subtitle -translate-x-full self-start pb-20 opacity-0"
-            ></p>
             <div ref={heroRefs.texts.text3} className="-translate-x-full pb-20 opacity-0">
               <Typography
                 type={TYPOGRAPHY_TYPE.SUBTITLE}
                 dangerouslySetInnerHTML={data.home.hero.subtitle}
+                className="text-center md:text-left"
               />
-              <div ref={heroRefs.icons} className="flex h-6 items-center gap-2">
+              <div ref={heroRefs.icons} className="hidden h-6 items-center gap-2 md:flex">
                 <DropUp
                   className="-translate-y-full opacity-0"
                   href="https://react.dev/"
@@ -370,7 +378,7 @@ export default function Home({
               <IconArrowTopRight className="ml-2 h-full w-3 py-[0.6vw] md:w-5" />
             </Button>
           </div>
-          <div className="absolute bottom-0 flex w-full flex-col items-end justify-center overflow-hidden p-4 pt-10 md:flex-row md:items-center md:justify-between">
+          <div className="absolute bottom-0 flex w-full flex-col items-center justify-center overflow-hidden p-4 pt-10 md:flex-row md:items-end md:justify-between">
             <Link
               ref={heroRefs.texts.text4}
               className="-translate-x-full uppercase underline opacity-0"
@@ -381,7 +389,7 @@ export default function Home({
             <Typography
               ref={heroRefs.texts.text5}
               type={TYPOGRAPHY_TYPE.TEXT}
-              className="hidden translate-x-full uppercase opacity-0 sm:block"
+              className="translate-x-full uppercase opacity-0"
             >
               ©{new Date().getFullYear()}
             </Typography>
