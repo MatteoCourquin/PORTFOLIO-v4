@@ -1,5 +1,5 @@
 import PageTransition from '@/components/PageTransition';
-import Layout, { AnimationContext } from '@/layout/default';
+import Layout from '@/layout/default';
 import SmoothScrolling from '@/layout/lenis';
 import '@/styles/main.scss';
 import { useLenis } from '@studio-freight/react-lenis';
@@ -7,17 +7,14 @@ import { AnimatePresence } from 'framer-motion';
 import type { AppProps } from 'next/app';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/router';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
   const pathname = usePathname();
   const router = useRouter();
   const lenis = useLenis();
-  const { setIsAnimationEnabled } = useContext(AnimationContext);
 
   useEffect(() => {
-    setIsAnimationEnabled(true);
-
     const handleRouteChange = () => {
       if (!lenis) return;
 

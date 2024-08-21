@@ -1,6 +1,5 @@
 .curve {
-  .svg-anim,
-  .background {
+  .svg-anim {
     position: fixed;
     height: calc(100vh + 600px);
     width: 100vw;
@@ -9,9 +8,8 @@
     top: 0;
     fill: $color-black;
   }
-  .background {
-    background-color: $color-black;
-    transition: opacity 0s linear 0.1s;
+  .svg-anim.hide {
+    fill: transparent;
   }
   .route {
     position: absolute;
