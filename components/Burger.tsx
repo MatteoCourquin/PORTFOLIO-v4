@@ -1,4 +1,4 @@
-import { AnimationContext, LanguageContext } from '@/layout/default';
+import { LanguageContext } from '@/layout/default';
 import { useGSAP } from '@gsap/react';
 import clsx from 'clsx';
 import gsap from 'gsap';
@@ -12,7 +12,6 @@ import Language from './Language';
 const Burger = () => {
   const { contextSafe } = useGSAP();
   const { data } = useContext(LanguageContext);
-  const { setIsAnimationEnabled } = useContext(AnimationContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const text1Ref = useRef(null);
@@ -135,13 +134,11 @@ const Burger = () => {
   const handdleOpen = () => {
     setIsOpen(true);
     openBurger();
-    setIsAnimationEnabled(false);
   };
 
   const handdleClose = () => {
     setIsOpen(false);
     closeBurger();
-    setIsAnimationEnabled(false);
   };
 
   return (
@@ -160,7 +157,12 @@ const Burger = () => {
           </div>
         </div>
         <nav className="z-[90] flex h-screen w-screen flex-col items-center justify-center gap-8 uppercase text-white">
-          <Link ref={text1Ref} href="/" onClick={handdleClose} className="-translate-y-4 opacity-0">
+          <Link
+            ref={text1Ref}
+            href="/?animate=false"
+            onClick={handdleClose}
+            className="-translate-y-4 opacity-0"
+          >
             <Typography
               type={TYPOGRAPHY_TYPE.TEXT}
               as={TYPOGRAPHY_TYPE.HEADING3}
@@ -171,7 +173,7 @@ const Burger = () => {
           </Link>
           <Link
             ref={text2Ref}
-            href="/projects"
+            href="/projects?animate=false"
             onClick={handdleClose}
             className="-translate-y-4 opacity-0"
           >
@@ -185,7 +187,7 @@ const Burger = () => {
           </Link>
           <Link
             ref={text3Ref}
-            href="/about"
+            href="/about?animate=false"
             onClick={handdleClose}
             className="-translate-y-4 opacity-0"
           >
@@ -199,7 +201,7 @@ const Burger = () => {
           </Link>
           <Link
             ref={text4Ref}
-            href="/contact"
+            href="/contact?animate=false"
             onClick={handdleClose}
             className="-translate-y-4 opacity-0"
           >
