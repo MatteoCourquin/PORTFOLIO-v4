@@ -361,7 +361,7 @@ export const IconThreeJS = ({ className }: { className?: string }) => (
   <svg
     fill="none"
     strokeLinecap="square"
-    stroke-miterlimit="10"
+    strokeMiterlimit="10"
     version="1.1"
     viewBox="0 0 226.77 226.77"
     width={24}

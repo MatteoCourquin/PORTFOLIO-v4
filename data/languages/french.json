@@ -67,8 +67,21 @@
         "email": "Veuillez entrer un email",
         "emailValid": "Veuillez entrer un email valide"
       },
-      "button": "Envoyer"
+      "button": {
+        "default": "ENVOYER",
+        "load": "ENVOIE EN COURS",
+        "error": "ERREUR"
+      }
     },
     "consultation": "ou prenons un <a class='underline' href='https://calendly.com/matteo-courquin/consultation-projet-client' target='_blank'>rendez-vous</a>"
+  },
+  "success": {
+    "title": "Merci de m’avoir contacté ! 🚀",
+    "text": "<p>Merci pour votre prise de contact. Je vous répondrais dans un délai de <strong>2 jours</strong>. En attendant, vous pouvez voir mes <a class='underline' href='/projects'>autres projets</a> ou naviguer sur mon site.</p>",
+    "redirect": "Vous allez être redirigé vers la page d'accueil dans ",
+    "buttons": {
+      "project": "PROJETS",
+      "home": "ACCUEIL"
+    }
   }
 }
