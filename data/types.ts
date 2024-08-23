@@ -117,8 +117,21 @@ export type Language = {
         email: string;
         emailValid: string;
       };
-      button: string;
+      button: {
+        default: string;
+        load: string;
+        error: string;
+      };
     };
     consultation: string;
+  };
+  success: {
+    title: string;
+    text: string;
+    redirect: string;
+    buttons: {
+      project: string;
+      home: string;
+    };
   };
 };

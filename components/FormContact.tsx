@@ -1,30 +1,42 @@
-import { TypeContactFormData } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { submitContactForm } from '@/services/api';
 import { isEmail } from '@/utils/functions';
 import { useMutation } from '@tanstack/react-query';
-import { ChangeEvent, useContext, useState } from 'react';
+import { useRouter } from 'next/router';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import Button, { BUTTON_SIZE, BUTTON_TYPE } from './atoms/Button';
 import Input from './atoms/Input';
 
+enum FORM_STATE {
+  DEFAULT = 'DEFAULT',
+  LOAD = 'LOAD',
+  SEND = 'SEND',
+  ERROR = 'ERROR',
+}
+
 const FormContact = () => {
   const { data } = useContext(LanguageContext);
+  const router = useRouter();
+
+  const [formState, setFormState] = useState(FORM_STATE.DEFAULT);
+  const [loadDots, setLoadDots] = useState('. . .');
 
   const submitFormMutation = useMutation({
     mutationFn: submitContactForm,
-    // onMutate: () => {
-    //   console.log('onMutate');
-    // },
-    // onError: (error) => {
-    //   console.log('onError', error);
-    // },
+    onMutate: () => {
+      setFormState(FORM_STATE.LOAD);
+    },
+    onError: (error) => {
+      setFormState(FORM_STATE.ERROR);
+      console.error('onError', error);
+    },
     onSuccess: () => {
       resetForm();
-      // console.log('onSuccess', data);
+      router.push('/contact/success');
     },
   });
 
-  const [formValues, setFormValues] = useState<TypeContactFormData>({
+  const [formValues, setFormValues] = useState({
     name: '',
     email: '',
     message: '',
@@ -81,6 +93,19 @@ const FormContact = () => {
     submitFormMutation.mutate(formValues);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLoadDots((prev) => {
+        if (prev === '.') return '..';
+        if (prev === '..') return '...';
+        if (prev === '...') return '';
+        return '.';
+      });
+    }, 300);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       <form onSubmit={(e) => handdleFormSubmit(e)} className="flex w-full flex-col gap-16">
@@ -128,7 +153,14 @@ const FormContact = () => {
           type={BUTTON_TYPE.PRIMARY}
           className="mx-auto"
         >
-          {data.contact.form.button}
+          {formState === FORM_STATE.DEFAULT ? (
+            data.contact.form.button.default
+          ) : (
+            <>
+              {data.contact.form.button.load}
+              <span className="w-0">{loadDots}</span>
+            </>
+          )}
         </Button>
       </form>
     </>

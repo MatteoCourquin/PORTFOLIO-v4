@@ -67,8 +67,21 @@
         "email": "Please enter an email",
         "emailValid": "Please enter a valid email"
       },
-      "button": "Send"
+      "button": {
+        "default": "SEND",
+        "load": "SENDING IN PROGRESS",
+        "error": "ERROR"
+      }
     },
     "consultation": "or take a <a class='underline' href='https://calendly.com/matteo-courquin/consultation-projet-client' target='_blank'>meeting</a>"
+  },
+  "success": {
+    "title": "Message sent ! 🚀",
+    "text": "<p>Thank you for reaching out. I will get back to you within <strong>2 days</strong>. In the meantime, you can check out my <a class='underline' href='/projects'>other projects</a> or explore my site.</p>",
+    "redirect": "You will be redirected to the homepage in ",
+    "buttons": {
+      "project": "PROJECTS",
+      "home": "HOME"
+    }
   }
 }
