@@ -42,6 +42,13 @@ export type TypeQuestion = {
   answerEn: TypedObject[];
 };
 
+export type TypeTestimonial = {
+  author: string;
+  entity: string;
+  testimonialFr: TypedObject[];
+  testimonialEn: TypedObject[];
+};
+
 export type TypeContactFormData = {
   name: string;
   email: string;
@@ -70,6 +77,7 @@ export type Language = {
     hero: {
       title: string;
       subtitle: string;
+      avaible: string;
       button: string;
     };
     about: {
@@ -80,6 +88,9 @@ export type Language = {
       title: string;
       button: string;
     };
+    testimonials: {
+      title: string;
+    };
   };
   projects: {
     title: string;
@@ -88,7 +99,6 @@ export type Language = {
     title: string;
     about: {
       title: string;
-      description: string;
     };
     carreer: {
       title: string;

@@ -5,11 +5,12 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import AnimText, { ANIM_TEXT_TYPE } from './AnimText';
 import Button, { BUTTON_SIZE } from './atoms/Button';
 import { IconArrowTopRight } from './atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
+import { LanguageContext } from '@/layout/default';
 
 const CardProject = ({
   projectIndex,
@@ -19,6 +20,7 @@ const CardProject = ({
   mainImageMobile,
 }: TypeProject) => {
   const { contextSafe } = useGSAP();
+  const { language } = useContext(LanguageContext);
 
   const triggerRef = useRef<HTMLAnchorElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
@@ -142,7 +144,7 @@ const CardProject = ({
           />
         </div>
         <Button as="button" size={BUTTON_SIZE.S} className="overflow-hidden">
-          View
+          {language === 'fr' ? 'Voir' : 'View'}
           <IconArrowTopRight ref={arrowRef} className="ml-2 h-3" />
         </Button>
       </div>
