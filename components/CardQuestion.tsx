@@ -11,15 +11,10 @@ interface CardQuestionProps extends TypeQuestion {
   onClick: () => void;
 }
 
-const CardQuestion = ({
-  isOpen,
-  onClick,
-  questionFr,
-  questionEn,
-  answerFr,
-  answerEn,
-}: CardQuestionProps) => {
+const CardQuestion = ({ isOpen, onClick, ...question }: CardQuestionProps) => {
   const { language } = useContext(LanguageContext);
+  const { questionFr, questionEn, answerFr, answerEn } = question;
+
   return (
     <div
       className="group/card-question group cursor-pointer border-t border-t-black py-6 md:py-10"

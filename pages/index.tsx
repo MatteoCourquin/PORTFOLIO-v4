@@ -1,23 +1,11 @@
 import Button, { BUTTON_SIZE } from '@/components/atoms/Button';
-import {
-  IconArrowTopRight,
-  IconAWS,
-  IconFigma,
-  IconGSAP,
-  IconIllustrator,
-  IconNext,
-  IconNuxt,
-  IconPhotoshop,
-  IconReact,
-  IconThreeJS,
-  IconVue,
-} from '@/components/atoms/Icons';
+import { IconArrowTopRight } from '@/components/atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
-import DropUp from '@/components/DropUp';
 import Questions from '@/components/Questions';
 import SEO from '@/components/SEO';
-import { TypeProject, TypeQuestion } from '@/data/types';
+import Testimonials from '@/components/Testimonials';
+import { TypeProject, TypeQuestion, TypeTestimonial } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
 import { interpolate } from '@/utils/functions';
@@ -31,9 +19,11 @@ import { useContext, useRef } from 'react';
 export default function Home({
   projects,
   questions,
+  testimonials,
 }: {
   projects: TypeProject[];
   questions: TypeQuestion[];
+  testimonials: TypeTestimonial[];
 }) {
   const { data } = useContext(LanguageContext);
 
@@ -162,8 +152,6 @@ export default function Home({
   };
 
   const playAnimation = () => {
-    if (!heroRefs.icons.current) return;
-
     timelineRef.current
       .add(
         gsap.to([heroRefs.lines.H1.current, heroRefs.lines.H2.current], {
@@ -221,26 +209,31 @@ export default function Home({
           stagger: 0.2,
         }),
         '-=1',
-      )
-      .add(
-        gsap.to(heroRefs.icons.current.querySelectorAll('a'), {
-          y: 0,
-          opacity: 1,
-          duration: 1.2,
-          ease: 'power4.out',
-          stagger: 0.12,
-        }),
-        '-=0.8',
-      )
-      .add(
-        gsap.to(heroRefs.icons.current.querySelectorAll('div'), {
-          height: '66%',
-          duration: 2,
-          ease: 'power4.out',
-        }),
-        '-=1',
-      )
-      .play();
+      );
+
+    if (heroRefs.icons.current) {
+      timelineRef.current
+        .add(
+          gsap.to(heroRefs.icons.current.querySelectorAll('a'), {
+            y: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: 'power4.out',
+            stagger: 0.12,
+          }),
+          '-=0.8',
+        )
+        .add(
+          gsap.to(heroRefs.icons.current.querySelectorAll('div'), {
+            height: '66%',
+            duration: 2,
+            ease: 'power4.out',
+          }),
+          '-=1',
+        );
+    }
+
+    timelineRef.current.play();
   };
 
   useGSAP(() => {
@@ -302,7 +295,17 @@ export default function Home({
                 dangerouslySetInnerHTML={data.home.hero.subtitle}
                 className="text-center md:text-left"
               />
-              <div ref={heroRefs.icons} className="hidden h-6 items-center gap-2 md:flex">
+              <div className="flex flex-col items-center"></div>
+              <div className="flex w-fit items-center gap-3 text-green-500">
+                <div className="relative flex h-2 w-2 items-center justify-center">
+                  <div className="absolute h-1 w-1 animate-pulse rounded-full bg-green-500"></div>
+                  <div className="absolute h-2 w-2 animate-ping rounded-full bg-green-500"></div>
+                </div>
+                <Typography type={TYPOGRAPHY_TYPE.TEXT} className="font-medium">
+                  {data.home.hero.avaible}
+                </Typography>
+              </div>
+              {/* <div ref={heroRefs.icons} className="hidden h-6 items-center gap-2 md:flex">
                 <DropUp
                   className="-translate-y-full opacity-0"
                   href="https://react.dev/"
@@ -365,7 +368,7 @@ export default function Home({
                   text="Figma"
                   icon={<IconFigma className="h-full w-auto" />}
                 ></DropUp>
-              </div>
+              </div> */}
             </div>
             <Button
               ref={heroRefs.button}
@@ -446,7 +449,12 @@ export default function Home({
           {data.home.projects.button}
         </Button>
       </section>
-      <section className="px-x-default pb-y-default">
+      <section className="border-y border-black">
+        <div className="py-y-default">
+          <Testimonials testimonials={testimonials} />
+        </div>
+      </section>
+      <section className="px-x-default py-y-default">
         <Questions questions={questions} />
       </section>
     </>
@@ -472,12 +480,23 @@ export async function getStaticProps() {
       answerFr,
     }`;
 
+  const queryTestimonials = `
+    *[_type == "testimonials"] {
+      author,
+      entity,
+      testimonialFr,
+      testimonialEn,
+    }`;
+
   const projects = await client.fetch(queryProjects);
   const questions = await client.fetch(queryQuestions);
+  const testimonials = await client.fetch(queryTestimonials);
+
   return {
     props: {
       projects,
       questions,
+      testimonials,
     },
   };
 }

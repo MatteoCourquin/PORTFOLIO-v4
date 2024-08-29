@@ -102,3 +102,31 @@ $transition-default: all 0.3s cubic-bezier(0.84, 0, 0.16, 1);
 .gradient-background {
   background: radial-gradient(circle, $color-primary 0%, transparent 48%);
 }
+
+.text-ellipsis-4 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
+
+.slider-item {
+  flex: 0 0 50%;
+
+  &:not(:last-child) {
+    padding-right: 20px;
+  }
+
+  &:not(:first-child) {
+    padding-left: 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    flex: 0 0 75%;
+  }
+
+  @media screen and (min-width: 1024px) {
+    flex: 0 0 33.33%;
+  }
+}
