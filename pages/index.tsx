@@ -449,7 +449,7 @@ export default function Home({
           {data.home.projects.button}
         </Button>
       </section>
-      <section className="border-y border-black">
+      <section className="bg-black">
         <div className="py-y-default">
           <Testimonials testimonials={testimonials} />
         </div>
