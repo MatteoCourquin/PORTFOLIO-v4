@@ -10,7 +10,7 @@ export default function Testimonials({ testimonials }: { testimonials: TypeTesti
   return (
     <>
       <Typography
-        className="w-full px-x-default text-center sm:text-left"
+        className="w-full px-x-default text-center text-white sm:text-left"
         type={TYPOGRAPHY_TYPE.HEADING3}
       >
         {data.home.testimonials.title}
