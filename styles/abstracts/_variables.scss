@@ -99,8 +99,29 @@ $transition-default: all 0.3s cubic-bezier(0.84, 0, 0.16, 1);
   }
 }
 
-.gradient-background {
-  background: radial-gradient(circle, $color-primary 0%, transparent 48%);
+.shadow-x-black {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: clamp(20px, 8vw, 100px);
+    height: 100%;
+    background: linear-gradient(90deg, #18181800, #181818);
+    z-index: 1;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: clamp(20px, 8vw, 100px);
+    height: 100%;
+    background: linear-gradient(-90deg, #18181800, #181818);
+    z-index: 1;
+  }
 }
 
 .text-ellipsis-4 {
@@ -128,5 +149,18 @@ $transition-default: all 0.3s cubic-bezier(0.84, 0, 0.16, 1);
 
   @media screen and (min-width: 1024px) {
     flex: 0 0 33.33%;
+  }
+}
+
+.-left-x-calc {
+  left: calc((((100vw - 1280px) / 2) + clamp(20px, 8vw, 100px)) * -1);
+  @media screen and (max-width: 1280px) {
+    left: calc(clamp(20px, 8vw, 100px) * -1);
+  }
+}
+.-right-x-calc {
+  right: calc((((100vw - 1280px) / 2) + clamp(20px, 8vw, 100px)) * -1);
+  @media screen and (max-width: 1280px) {
+    right: calc(clamp(20px, 8vw, 100px) * -1);
   }
 }
