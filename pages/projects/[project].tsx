@@ -72,7 +72,7 @@ export default function Page({ project }: { project: TypeProject }) {
       )
       .add(
         gsap.to([heroRefs.lines.H2.current, heroRefs.lines.H1.current, heroRefs.lines.H3.current], {
-          width: '100%',
+          width: '100vw',
           duration: 2,
           ease: 'power3.inOut',
           stagger: 0.1,
@@ -104,122 +104,130 @@ export default function Page({ project }: { project: TypeProject }) {
         title={'Matteo Courquin • ' + project.title}
         image={project.ogImage ? urlForImage(project.ogImage).toString() : '/ogProjects.png'}
       />
-      <div className="pt-y-default">
-        <div
-          onMouseMove={(e) => useMagnet(e, 1)}
-          onMouseOut={(e) => useResetMagnet(e)}
-          onClick={() => router.back()}
-          className="absolute left-x-default top-y-default flex h-20 -translate-y-1/2 cursor-pointer items-center shadow-white sm:-translate-x-1/2"
-        >
-          <IconBack className="stroke-primary" />
-        </div>
-        <div className="pt-y-default">
-          <div className="relative overflow-hidden py-px">
-            <div ref={heroRefs.lines.H1} className="absolute left-0 top-0 h-px w-0 bg-black"></div>
-            <div
-              ref={heroRefs.lines.V1}
-              className="absolute left-x-default top-0 h-0 w-px bg-black"
-            ></div>
-            <div
-              ref={heroRefs.lines.V2}
-              className="absolute right-x-default top-0 h-0 w-px bg-black"
-            ></div>
-            <section className="relative px-x-default pb-px">
+      <div className="px-x-default pt-y-default">
+        <div className="relative mx-auto max-w-default">
+          <div
+            onMouseMove={(e) => useMagnet(e, 1)}
+            onMouseOut={(e) => useResetMagnet(e)}
+            onClick={() => router.back()}
+            className="absolute left-0 top-0 flex h-20 -translate-y-1/2 cursor-pointer items-center shadow-white sm:-translate-x-1/2"
+          >
+            <IconBack className="stroke-primary" />
+          </div>
+          <div className="pt-y-default">
+            <div className="relative overflow-hidden py-px">
               <div
-                ref={heroRefs.lines.H2}
-                className="absolute bottom-0 right-0 h-px w-0 bg-black"
+                ref={heroRefs.lines.H1}
+                className="absolute left-0 top-0 h-px w-0 bg-black"
               ></div>
-              <div ref={heroRefs.wrappers.wrapperImg} className="h-screen w-0 overflow-hidden p-px">
-                <div ref={heroRefs.img} className="h-full py-px">
+              <div
+                ref={heroRefs.lines.V1}
+                className="absolute left-0 top-0 h-0 w-px bg-black"
+              ></div>
+              <div
+                ref={heroRefs.lines.V2}
+                className="absolute right-0 top-0 h-0 w-px bg-black"
+              ></div>
+              <section className="relative pb-px">
+                <div
+                  ref={heroRefs.lines.H2}
+                  className="absolute bottom-0 right-0 h-px w-0 bg-black"
+                ></div>
+                <div
+                  ref={heroRefs.wrappers.wrapperImg}
+                  className="h-screen w-0 overflow-hidden p-px"
+                >
+                  <div ref={heroRefs.img} className="h-full py-px">
+                    <Image
+                      width={1920}
+                      height={1080}
+                      className="hidden h-[calc(100%+100px)] w-full object-cover object-top md:block"
+                      src={urlForImage(project.mainImageDesktop).toString()}
+                      alt=""
+                    />
+                    <Image
+                      width={1080}
+                      height={1920}
+                      className="block h-[calc(100%+100px)] w-full object-cover object-top md:hidden"
+                      src={urlForImage(project.mainImageMobile).toString()}
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </section>
+              <section className="py-y-default">
+                <div
+                  ref={heroRefs.lines.H3}
+                  className="absolute bottom-0 right-0 h-px w-0 bg-black"
+                ></div>
+                <div className="px-x-default">
+                  <Typography
+                    type={TYPOGRAPHY_TYPE.HEADING1}
+                    as={TYPOGRAPHY_TYPE.HEADING4}
+                    className="w-full pb-4 text-center sm:text-left"
+                  >
+                    {project.title}
+                  </Typography>
+                  <RichText
+                    value={language === 'fr' ? project.descriptionFr : project.descriptionEn}
+                  />
+                </div>
+              </section>
+            </div>
+            <section className="flex flex-col-reverse items-center justify-between gap-4 py-y-default sm:flex-row">
+              <div className="flex justify-between gap-2">
+                <Typography className="text-primary">Made by 🤝</Typography>
+                <div>
+                  <Link href="/" target="_blank" className="text block font-medium hover:underline">
+                    Matteo Couruqin
+                  </Link>
+                  {project.authors?.map((author: { name: string; websiteUrl: string }) => {
+                    if (!author.websiteUrl) {
+                      return (
+                        <Typography key={author.name} className="text block font-medium">
+                          {author.name}
+                        </Typography>
+                      );
+                    }
+                    return (
+                      <Link
+                        key={author.name}
+                        href={author.websiteUrl}
+                        target="_blank"
+                        className="text block font-medium hover:underline"
+                      >
+                        {author.name}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+              {project.websiteUrl && (
+                <Button
+                  size={BUTTON_SIZE.M}
+                  as="a"
+                  href={project.websiteUrl}
+                  target="_blank"
+                  className="h-fit"
+                >
+                  Check the website <IconArrowTopRight className="ml-2 h-full w-4" />
+                </Button>
+              )}
+            </section>
+            <section className="flex flex-col gap-y-default pb-y-default">
+              {project.gallery?.map((image, index) => (
+                <div key={index}>
                   <Image
                     width={1920}
                     height={1080}
-                    className="hidden h-[calc(100%+100px)] w-full object-cover object-top md:block"
-                    src={urlForImage(project.mainImageDesktop).toString()}
+                    src={urlForImage(image).toString()}
                     alt=""
-                  />
-                  <Image
-                    width={1080}
-                    height={1920}
-                    className="block h-[calc(100%+100px)] w-full object-cover object-top md:hidden"
-                    src={urlForImage(project.mainImageMobile).toString()}
-                    alt=""
+                    className="w-full shadow"
                   />
                 </div>
-              </div>
-            </section>
-            <section className="px-x-default py-y-default">
-              <div
-                ref={heroRefs.lines.H3}
-                className="absolute bottom-0 right-0 h-px w-0 bg-black"
-              ></div>
-              <div className="px-x-default">
-                <Typography
-                  type={TYPOGRAPHY_TYPE.HEADING1}
-                  as={TYPOGRAPHY_TYPE.HEADING4}
-                  className="w-full pb-4 text-center sm:text-left"
-                >
-                  {project.title}
-                </Typography>
-                <RichText
-                  value={language === 'fr' ? project.descriptionFr : project.descriptionEn}
-                />
-              </div>
+              ))}
             </section>
           </div>
-          <section className="flex flex-col-reverse items-center justify-between gap-4 px-x-default py-y-default sm:flex-row">
-            <div className="flex justify-between gap-2">
-              <Typography className="text-primary">Made by 🤝</Typography>
-              <div>
-                <Link href="/" target="_blank" className="text block font-medium hover:underline">
-                  Matteo Couruqin
-                </Link>
-                {project.authors?.map((author: { name: string; websiteUrl: string }) => {
-                  if (!author.websiteUrl) {
-                    return (
-                      <Typography key={author.name} className="text block font-medium">
-                        {author.name}
-                      </Typography>
-                    );
-                  }
-                  return (
-                    <Link
-                      key={author.name}
-                      href={author.websiteUrl}
-                      target="_blank"
-                      className="text block font-medium hover:underline"
-                    >
-                      {author.name}
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-            {project.websiteUrl && (
-              <Button
-                size={BUTTON_SIZE.M}
-                as="a"
-                href={project.websiteUrl}
-                target="_blank"
-                className="h-fit"
-              >
-                Check the website <IconArrowTopRight className="ml-2 h-full w-4" />
-              </Button>
-            )}
-          </section>
-          <section className="flex flex-col gap-y-default px-x-default pb-y-default">
-            {project.gallery?.map((image, index) => (
-              <div key={index}>
-                <Image
-                  width={1920}
-                  height={1080}
-                  src={urlForImage(image).toString()}
-                  alt=""
-                  className="w-full shadow"
-                />
-              </div>
-            ))}
-          </section>
         </div>
       </div>
     </>
