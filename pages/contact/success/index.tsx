@@ -26,7 +26,7 @@ export default function Contact() {
 
   return (
     <>
-      <section className="flex min-h-screen flex-col items-center justify-center gap-8 px-x-default py-y-default text-center">
+      <section className="mx-auto flex min-h-screen max-w-default flex-col items-center justify-center gap-8 px-x-default py-y-default text-center">
         <Typography type={TYPOGRAPHY_TYPE.HEADING1} className="text-center">
           {data.success.title}
         </Typography>
@@ -36,7 +36,7 @@ export default function Contact() {
           <strong>{countdown}</strong>.
         </Typography>
         <div className="flex gap-4">
-          <Button as="a" href="/" size={BUTTON_SIZE.L} type={BUTTON_TYPE.PRIMARY}>
+          <Button as="a" href="/projects" size={BUTTON_SIZE.L} type={BUTTON_TYPE.PRIMARY}>
             {data.success.buttons.project}
           </Button>
           <Button as="a" href="/" size={BUTTON_SIZE.L} type={BUTTON_TYPE.SECONDARY}>

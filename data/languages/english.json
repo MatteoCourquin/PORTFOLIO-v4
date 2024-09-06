@@ -1,6 +1,6 @@
 {
   "head": {
-    "titleIndex": "Matteo Courquin • Full Stack Developer !! 🚀",
+    "titleIndex": "Matteo Courquin • Full Stack Developer 🚀",
     "titleProjects": "Matteo Courquin • Projects",
     "titleAbout": "Matteo Courquin • About",
     "titleContact": "Matteo Courquin • Contact",
@@ -19,7 +19,7 @@
   "home": {
     "hero": {
       "title": "Hi! 👋 I’m",
-      "subtitle": "<span class='text-primary'>EXPERIENCED</span> FULLSTACK DEVELOPER",
+      "subtitle": "<span class='text-white'>EXPERIENCED</span> FULLSTACK DEVELOPER",
       "avaible": "Available for new projects 🚀",
       "button": "Contact me"
     },

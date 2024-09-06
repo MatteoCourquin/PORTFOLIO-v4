@@ -39,7 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <SmoothScrolling>
             <AnimatePresence mode="wait">
               <PageTransition key={pathname}>
-                <Component {...pageProps} />
+                <Component key={router.route} {...pageProps} />
               </PageTransition>
             </AnimatePresence>
           </SmoothScrolling>

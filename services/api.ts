@@ -1,5 +1,5 @@
 import { TypeContactFormData } from '@/data/types';
-import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
+import { EmailJSResponseStatus, send } from '@emailjs/browser';
 
 export const submitContactForm = async (
   data: TypeContactFormData,
@@ -14,7 +14,7 @@ export const submitContactForm = async (
   }
 
   try {
-    const response = await emailjs.send(
+    const response = await send(
       process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
       process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
       data,

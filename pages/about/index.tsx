@@ -49,7 +49,7 @@ export default function About({
     gsap.registerPlugin(ScrollTrigger);
 
     gsap.to([heroRefs.lines.H4.current, heroRefs.lines.H5.current], {
-      width: '100%',
+      width: '100vw',
       scrollTrigger: {
         trigger: heroRefs.wrappers.wrapperAbout.current,
         start: '-50vw bottom',
@@ -95,7 +95,7 @@ export default function About({
       )
       .add(
         gsap.to([heroRefs.lines.H2.current, heroRefs.lines.H1.current, heroRefs.lines.H3.current], {
-          width: '100%',
+          width: '100vw',
           duration: 2,
           ease: 'power3.inOut',
           stagger: 0.1,
@@ -133,7 +133,7 @@ export default function About({
           {data.about.title}
         </Typography>
       </section>
-      <section className="relative flex flex-col">
+      <section className="relative mx-auto flex max-w-default flex-col px-x-default">
         <div
           ref={heroRefs.lines.V1}
           className="absolute left-x-default top-0 h-0 w-px bg-black"
@@ -143,11 +143,17 @@ export default function About({
           className="absolute right-x-default top-0 h-0 w-px bg-black"
         ></div>
         <div className="relative h-24">
-          <div ref={heroRefs.lines.H1} className="absolute bottom-0 left-0 h-px w-0 bg-black"></div>
-          <div ref={heroRefs.lines.H2} className="absolute left-0 top-0 h-px w-0 bg-black"></div>
+          <div
+            ref={heroRefs.lines.H1}
+            className="-left-x-calc absolute bottom-0 h-px w-0 bg-black"
+          ></div>
+          <div
+            ref={heroRefs.lines.H2}
+            className="-left-x-calc absolute top-0 h-px w-0 bg-black"
+          ></div>
         </div>
-        <div className="aspect-[3/2] max-h-[70vh] px-x-default">
-          <div ref={heroRefs.wrappers.wrapperImg} className="h-full w-0 overflow-hidden px-px">
+        <div className="aspect-[3/2] max-h-[70vh]">
+          <div ref={heroRefs.wrappers.wrapperImg} className="h-full w-0 overflow-hidden p-px">
             <Image
               width={1920}
               height={1080}
@@ -159,11 +165,14 @@ export default function About({
           </div>
         </div>
         <div ref={heroRefs.wrappers.wrapperAbout} className="relative">
-          <div ref={heroRefs.lines.H3} className="absolute right-0 top-0 h-px w-0 bg-black"></div>
+          <div
+            ref={heroRefs.lines.H3}
+            className="-right-x-calc absolute top-0 h-px w-0 bg-black"
+          ></div>
           <div className="px-x-default py-y-default">
             <Typography
               ref={heroRefs.texts.text2}
-              className="-translate-y-10 px-x-default pb-4"
+              className="-translate-y-10 pb-4"
               type={TYPOGRAPHY_TYPE.HEADING2}
               as={TYPOGRAPHY_TYPE.HEADING4}
             >
@@ -171,7 +180,7 @@ export default function About({
             </Typography>
             <div
               ref={heroRefs.texts.text3}
-              className="text -translate-y-10 px-x-default"
+              className="text -translate-y-10"
               dangerouslySetInnerHTML={{
                 __html: interpolate(data.home.about.description, {
                   yearsExperience: Math.floor(
@@ -187,25 +196,32 @@ export default function About({
         <div className="relative h-24">
           <div
             ref={heroRefs.lines.H4}
-            className="absolute bottom-0 right-0 h-px w-0 bg-black"
+            className="-right-x-calc absolute bottom-0 h-px w-0 bg-black"
           ></div>
-          <div ref={heroRefs.lines.H5} className="absolute left-0 top-0 h-px w-0 bg-black"></div>
+          <div
+            ref={heroRefs.lines.H5}
+            className="-left-x-calc absolute top-0 h-px w-0 bg-black"
+          ></div>
         </div>
       </section>
       <section className="relative px-x-default">
-        <Typography className="w-full py-y-default text-center" type={TYPOGRAPHY_TYPE.HEADING3}>
-          {data.about.carreer.title}
-        </Typography>
-        <div className="relative flex flex-col gap-y-default pb-y-default">
-          <div className="absolute bottom-0 left-0 h-full w-px bg-black md:left-x-default"></div>
-          {career.map((career, index) => (
-            <CardCareer key={career.titleEn + index} {...career} />
-          ))}
+        <div className="mx-auto max-w-default">
+          <Typography className="w-full py-y-default text-center" type={TYPOGRAPHY_TYPE.HEADING3}>
+            {data.about.carreer.title}
+          </Typography>
+          <div className="relative flex flex-col gap-y-default pb-y-default">
+            <div className="absolute bottom-0 left-0 h-full w-px bg-black md:left-x-default"></div>
+            {career.map((career, index) => (
+              <CardCareer key={career.titleEn + index} {...career} />
+            ))}
+          </div>
+          <div className="absolute bottom-0 right-0 h-px w-full bg-black"></div>
         </div>
-        <div className="absolute bottom-0 right-0 h-px w-full bg-black"></div>
       </section>
       <section className="px-x-default py-y-default">
-        <Questions questions={questions} />
+        <div className="mx-auto max-w-default">
+          <Questions questions={questions} />
+        </div>
       </section>
     </>
   );

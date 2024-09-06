@@ -10,8 +10,8 @@ const config: Config = {
     extend: {
       colors: {
         white: '#ffffff',
-        black: '#181818',
-        primary: '#0047FF',
+        black: '#111111',
+        primary: '#0034EB',
       },
       padding: {
         'x-default': 'clamp(20px, 8vw, 100px)',
@@ -28,6 +28,9 @@ const config: Config = {
       width: {
         'x-default': 'clamp(20px, 8vw, 100px)',
         'y-default': 'clamp(20px, 8vh, 100px)',
+      },
+      maxWidth: {
+        default: '1440px',
       },
     },
   },

@@ -70,7 +70,7 @@ const anim = (variants: { [key: string]: TargetAndTransition }) => {
   };
 };
 
-export default function Curve({ children }: { children: ReactNode }) {
+export default function PageTransition({ children }: { children: ReactNode }) {
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({
     width: 0,
     height: 0,
