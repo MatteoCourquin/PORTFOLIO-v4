@@ -114,7 +114,7 @@ const Burger = () => {
       .add(
         gsap.to(backgroundRef.current, {
           scale: 0,
-          duration: 0.8,
+          duration: 1,
           ease: 'power3.inOut',
         }),
         '-=0.7',
@@ -145,7 +145,7 @@ const Burger = () => {
     <>
       <div
         ref={wrapperRef}
-        className="invisible fixed left-0 right-0 top-0 z-[90] h-screen w-screen scale-0"
+        className="invisible fixed left-0 right-0 top-0 z-[600] h-screen w-screen scale-0"
       >
         <div
           ref={backgroundRef}
@@ -157,12 +157,7 @@ const Burger = () => {
           </div>
         </div>
         <nav className="z-[90] flex h-screen w-screen flex-col items-center justify-center gap-8 uppercase text-white">
-          <Link
-            ref={text1Ref}
-            href="/?animate=false"
-            onClick={handdleClose}
-            className="-translate-y-4 opacity-0"
-          >
+          <Link ref={text1Ref} href="/" onClick={handdleClose} className="-translate-y-4 opacity-0">
             <Typography
               type={TYPOGRAPHY_TYPE.TEXT}
               as={TYPOGRAPHY_TYPE.HEADING3}
@@ -173,7 +168,7 @@ const Burger = () => {
           </Link>
           <Link
             ref={text2Ref}
-            href="/projects?animate=false"
+            href="/projects"
             onClick={handdleClose}
             className="-translate-y-4 opacity-0"
           >
@@ -187,7 +182,7 @@ const Burger = () => {
           </Link>
           <Link
             ref={text3Ref}
-            href="/about?animate=false"
+            href="/about"
             onClick={handdleClose}
             className="-translate-y-4 opacity-0"
           >
@@ -201,7 +196,7 @@ const Burger = () => {
           </Link>
           <Link
             ref={text4Ref}
-            href="/contact?animate=false"
+            href="/contact"
             onClick={handdleClose}
             className="-translate-y-4 opacity-0"
           >
@@ -241,7 +236,7 @@ const Burger = () => {
           </div>
         </nav>
       </div>
-      <div className="fixed right-x-default top-y-default z-[100] -translate-y-1/2 sm:translate-x-10">
+      <div className="fixed right-x-default top-y-default z-[700] -translate-y-1/2 sm:translate-x-10">
         <Button
           onClick={() => (isOpen ? handdleClose() : handdleOpen())}
           type={BUTTON_TYPE.ICON}

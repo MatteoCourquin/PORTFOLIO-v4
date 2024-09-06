@@ -104,21 +104,21 @@ export default function Page({ project }: { project: TypeProject }) {
         title={'Matteo Courquin • ' + project.title}
         image={project.ogImage ? urlForImage(project.ogImage).toString() : '/ogProjects.png'}
       />
-      <div className="px-x-default pt-y-default">
-        <div className="relative mx-auto max-w-default">
-          <div
-            onMouseMove={(e) => useMagnet(e, 1)}
-            onMouseOut={(e) => useResetMagnet(e)}
-            onClick={() => router.back()}
-            className="absolute left-0 top-0 flex h-20 -translate-y-1/2 cursor-pointer items-center shadow-white sm:-translate-x-1/2"
-          >
-            <IconBack className="stroke-primary" />
-          </div>
-          <div className="pt-y-default">
-            <div className="relative overflow-hidden py-px">
+      <div className="pt-y-default">
+        <div
+          onMouseMove={(e) => useMagnet(e, 1)}
+          onMouseOut={(e) => useResetMagnet(e)}
+          onClick={() => router.back()}
+          className="absolute left-x-default top-y-default flex h-20 -translate-y-1/2 cursor-pointer items-center shadow-white sm:-translate-x-1/2"
+        >
+          <IconBack className="stroke-primary" />
+        </div>
+        <div className="relative px-x-default">
+          <div className="mx-auto max-w-default pt-y-default">
+            <div className="relative py-px">
               <div
                 ref={heroRefs.lines.H1}
-                className="absolute left-0 top-0 h-px w-0 bg-black"
+                className="-left-x-calc-padding absolute top-0 h-px w-0 bg-black"
               ></div>
               <div
                 ref={heroRefs.lines.V1}
@@ -131,7 +131,7 @@ export default function Page({ project }: { project: TypeProject }) {
               <section className="relative pb-px">
                 <div
                   ref={heroRefs.lines.H2}
-                  className="absolute bottom-0 right-0 h-px w-0 bg-black"
+                  className="-right-x-calc-padding absolute bottom-0 h-px w-0 bg-black"
                 ></div>
                 <div
                   ref={heroRefs.wrappers.wrapperImg}
@@ -158,7 +158,7 @@ export default function Page({ project }: { project: TypeProject }) {
               <section className="py-y-default">
                 <div
                   ref={heroRefs.lines.H3}
-                  className="absolute bottom-0 right-0 h-px w-0 bg-black"
+                  className="-right-x-calc-padding absolute bottom-0 h-px w-0 bg-black"
                 ></div>
                 <div className="px-x-default">
                   <Typography

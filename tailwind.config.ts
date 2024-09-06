@@ -30,7 +30,7 @@ const config: Config = {
         'y-default': 'clamp(20px, 8vh, 100px)',
       },
       maxWidth: {
-        default: '1280px',
+        default: '1440px',
       },
     },
   },

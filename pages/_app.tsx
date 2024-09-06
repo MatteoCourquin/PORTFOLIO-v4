@@ -38,9 +38,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <Layout>
           <SmoothScrolling>
             <AnimatePresence mode="wait">
-              {/* <PageTransition key={pathname}> */}
-              <Component key={router.route} {...pageProps} />
-              {/* </PageTransition> */}
+              <PageTransition key={pathname}>
+                <Component key={router.route} {...pageProps} />
+              </PageTransition>
             </AnimatePresence>
           </SmoothScrolling>
         </Layout>
