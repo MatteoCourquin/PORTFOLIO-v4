@@ -3,6 +3,7 @@ import { IconArrowTopRight } from '@/components/atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
 import CardTestimonial from '@/components/CardTestimonial';
+import Curve from '@/components/PageTransition';
 import Questions from '@/components/Questions';
 import SEO from '@/components/SEO';
 import { TypeProject, TypeQuestion, TypeTestimonial } from '@/data/types';
@@ -242,17 +243,25 @@ export default function Home({
   }, []);
 
   return (
-    <>
+    <Curve backgroundColor="white">
       <SEO title={data.head.titleIndex} image="/ogIndex.png" />
       <section
         ref={heroRefs.triggerRef}
         className="relative h-screen w-screen overflow-hidden px-x-default py-y-default text-center text-black"
       >
-        <Image
+        {/* <Image
           ref={heroRefs.image}
           width={1920}
           height={1080}
           src="/images/background.png"
+          alt=""
+          className="absolute -left-4 -top-4 h-[calc(100vh+32px)] w-[calc(100vw+32px)] !max-w-none object-cover opacity-0 blur-[100px]"
+        /> */}
+        <Image
+          ref={heroRefs.image}
+          width={1920}
+          height={1080}
+          src="/images/matteo.webp"
           alt=""
           className="absolute -left-4 -top-4 h-[calc(100vh+32px)] w-[calc(100vw+32px)] !max-w-none object-cover opacity-0 blur-[100px]"
         />
@@ -474,7 +483,7 @@ export default function Home({
           <Questions questions={questions} />
         </div>
       </section>
-    </>
+    </Curve>
   );
 }
 

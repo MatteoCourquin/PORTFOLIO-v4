@@ -1,42 +1,16 @@
-import clsx from 'clsx';
-import { motion, TargetAndTransition } from 'framer-motion';
+'use client';
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
-import { ReactNode, useEffect, useState } from 'react';
+import { text, curve, translate } from './anim';
 
-const curve = (initialPath: string, targetPath: string) => {
-  return {
-    initial: {
-      d: initialPath,
-    },
-    enter: {
-      d: targetPath,
-      transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] },
-    },
-    exit: {
-      d: initialPath,
-      transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] },
-    },
-  };
+const routes = {
+  '/': 'Home',
+  '/about': 'About',
+  '/contact': 'Contact',
 };
 
-const translate = {
-  initial: {
-    top: '-300px',
-  },
-  enter: {
-    top: '-100vh',
-    transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] },
-    transitionEnd: {
-      top: '100vh',
-    },
-  },
-  exit: {
-    top: '-300px',
-    transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] },
-  },
-};
-
-const anim = (variants: { [key: string]: TargetAndTransition }) => {
+const anim = (variants) => {
   return {
     variants,
     initial: 'initial',
@@ -45,41 +19,58 @@ const anim = (variants: { [key: string]: TargetAndTransition }) => {
   };
 };
 
-export default function PageTransition({ children }: { children: ReactNode }) {
+export default function Curve({ children, backgroundColor }) {
+  const router = useRouter();
   const [dimensions, setDimensions] = useState({
-    width: 0,
-    height: 0,
+    width: null,
+    height: null,
   });
 
   useEffect(() => {
-    const resize = () => {
+    function resize() {
       setDimensions({
         width: window.innerWidth,
         height: window.innerHeight,
       });
-    };
+    }
     resize();
     window.addEventListener('resize', resize);
+    return () => {
+      window.removeEventListener('resize', resize);
+    };
   }, []);
 
   return (
-    <div className="page curve">
-      {!!dimensions.width && <SVG {...dimensions} />}
+    <div className="page curve" style={{ backgroundColor }}>
+      <div style={{ opacity: dimensions.width == null ? 1 : 0 }} className="background" />
+      <motion.p className="route" {...anim(text)}>
+        {routes[router.route]}
+      </motion.p>
+      {dimensions.width != null && <SVG {...dimensions} />}
       {children}
     </div>
   );
 }
 
-const SVG = ({ height, width }: { height: number; width: number }) => {
-  const router = useRouter();
-  const initialPath = `M0 300 Q${width / 2} 0 ${width} 300 L${width} ${height + 300} Q${width / 2} ${height + 600} 0 ${height + 300} L0 0`;
-  const targetPath = `M0 300 Q${width / 2} 0 ${width} 300 L${width} ${height} Q${width / 2} ${height} 0 ${height} L0 0`;
+const SVG = ({ height, width }) => {
+  const initialPath = `
+        M0 300 
+        Q${width / 2} 0 ${width} 300
+        L${width} ${height + 300}
+        Q${width / 2} ${height + 600} 0 ${height + 300}
+        L0 0
+    `;
+
+  const targetPath = `
+        M0 300
+        Q${width / 2} 0 ${width} 300
+        L${width} ${height}
+        Q${width / 2} ${height} 0 ${height}
+        L0 0
+    `;
 
   return (
-    <motion.svg
-      className={clsx(router.query.animate === 'false' && 'hide', 'svg-anim z-[9999]')}
-      {...anim(translate)}
-    >
+    <motion.svg className="svg" {...anim(translate)}>
       <motion.path {...anim(curve(initialPath, targetPath))} />
     </motion.svg>
   );
