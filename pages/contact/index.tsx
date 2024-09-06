@@ -1,7 +1,6 @@
 import Button, { BUTTON_SIZE, BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import FormContact from '@/components/FormContact';
-import Curve from '@/components/PageTransition';
 import SEO from '@/components/SEO';
 import { LanguageContext } from '@/layout/default';
 import { useContext } from 'react';
@@ -10,7 +9,7 @@ export default function Contact() {
   const { data } = useContext(LanguageContext);
 
   return (
-    <Curve backgroundColor="white">
+    <>
       <SEO title={data.head.titleAbout} image="/ogContact.png" />
       <section className="px-x-default py-y-default">
         <div className="mx-auto flex min-h-screen max-w-default flex-col items-center gap-16">
@@ -37,6 +36,6 @@ export default function Contact() {
           </div>
         </div>
       </section>
-    </Curve>
+    </>
   );
 }

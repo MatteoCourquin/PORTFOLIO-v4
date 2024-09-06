@@ -1,7 +1,7 @@
 .curve {
   .svg,
   .background {
-    z-index: 999;
+    z-index: 500;
     position: fixed;
     height: calc(100vh + 600px);
     width: 100vw;
@@ -9,17 +9,19 @@
     left: 0;
     top: 0;
   }
+  .svg {
+    fill: $color-black;
+  }
   .background {
     background-color: $color-black;
     transition: opacity 0s linear 0.1s;
   }
   .route {
+    z-index: 600;
     position: absolute;
     left: 50%;
     top: 40%;
     color: $color-white;
-    font-size: 46px;
-    z-index: 3;
     transform: translateX(-50%);
     text-align: center;
   }
