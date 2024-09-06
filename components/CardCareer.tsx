@@ -81,7 +81,7 @@ const CardCareer = ({
             {language === 'fr' ? titleFr : titleEn}
           </Typography>
           <RichText
-            className="pl-[6vw] md:pl-[4vw]"
+            className="pl-[6vw] md:pl-[4vw] pt-6"
             value={language === 'fr' ? descriptionFr : descriptionEn}
           />
         </div>

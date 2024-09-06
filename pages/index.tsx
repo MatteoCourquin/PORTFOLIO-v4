@@ -1,10 +1,23 @@
 import Button, { BUTTON_SIZE } from '@/components/atoms/Button';
-import { IconArrowTopRight } from '@/components/atoms/Icons';
+import {
+  IconArrowTopRight,
+  IconAWS,
+  IconFigma,
+  IconGSAP,
+  IconIllustrator,
+  IconNext,
+  IconNuxt,
+  IconPhotoshop,
+  IconReact,
+  IconThreeJS,
+  IconVue,
+} from '@/components/atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
+import CardTestimonial from '@/components/CardTestimonial';
+import DropUp from '@/components/DropUp';
 import Questions from '@/components/Questions';
 import SEO from '@/components/SEO';
-import Testimonials from '@/components/Testimonials';
 import { TypeProject, TypeQuestion, TypeTestimonial } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
@@ -115,16 +128,16 @@ export default function Home({
       },
     });
 
-    if (heroRefs.icons.current) {
-      gsap.to(heroRefs.icons.current.children, {
-        x: (index) => 10 + index * 20,
-        scrollTrigger: {
-          start: 'top top',
-          end: '50% 50%',
-          scrub: true,
-        },
-      });
-    }
+    // if (heroRefs.icons.current) {
+    //   gsap.to(heroRefs.icons.current.children, {
+    //     x: (index) => 10 + index * 20,
+    //     scrollTrigger: {
+    //       start: 'top top',
+    //       end: '50% 50%',
+    //       scrub: true,
+    //     },
+    //   });
+    // }
 
     gsap.to([aboutRefs.texts.text1.current, aboutRefs.texts.text2.current], {
       y: 0,
@@ -246,32 +259,31 @@ export default function Home({
       <SEO title={data.head.titleIndex} image="/ogIndex.png" />
       <section
         ref={heroRefs.triggerRef}
-        className="relative h-screen w-screen overflow-hidden px-x-default py-y-default text-center text-black"
+        className="relative h-screen w-screen overflow-hidden px-x-default py-y-default text-center text-white"
       >
         <Image
-          ref={heroRefs.image}
-          width={1920}
-          height={1080}
-          src="/images/background.png"
+          width={2080}
+          height={1920}
+          src="/images/gradient1.png"
           alt=""
-          className="absolute -left-4 -top-4 h-[calc(100vh+32px)] w-[calc(100vw+32px)] !max-w-none object-cover opacity-0 blur-[100px]"
+          className="absolute inset-0 h-screen w-screen object-cover"
         />
-        <div className="relative h-full w-full">
-          <div
-            ref={heroRefs.lines.H1}
-            className="absolute -right-x-default top-0 h-px w-0 bg-black"
-          ></div>
-          <div
-            ref={heroRefs.lines.H2}
-            className="absolute -left-x-default bottom-0 h-px w-0 bg-black"
-          ></div>
+        <div
+          ref={heroRefs.lines.H1}
+          className="absolute right-0 top-y-default h-px w-0 bg-white"
+        ></div>
+        <div
+          ref={heroRefs.lines.H2}
+          className="absolute bottom-y-default left-0 h-px w-0 bg-white"
+        ></div>
+        <div className="relative mx-auto h-full w-full max-w-default">
           <div
             ref={heroRefs.lines.V1}
-            className="absolute -top-y-default right-0 h-0 w-px bg-black"
+            className="absolute -top-y-default right-0 h-0 w-px bg-white"
           ></div>
           <div
             ref={heroRefs.lines.V2}
-            className="absolute -bottom-y-default left-0 h-0 w-px bg-black"
+            className="absolute -bottom-y-default left-0 h-0 w-px bg-white"
           ></div>
           <div className="flex h-full w-full flex-col justify-center overflow-hidden px-4">
             <Typography
@@ -289,13 +301,15 @@ export default function Home({
             >
               COURQUIN
             </Typography>
-            <div ref={heroRefs.texts.text3} className="-translate-x-full pb-20 opacity-0">
+            <div
+              ref={heroRefs.texts.text3}
+              className="flex -translate-x-full flex-col items-center py-10 opacity-0 sm:items-start"
+            >
               <Typography
                 type={TYPOGRAPHY_TYPE.SUBTITLE}
                 dangerouslySetInnerHTML={data.home.hero.subtitle}
                 className="text-center md:text-left"
               />
-              <div className="flex flex-col items-center"></div>
               <div className="flex w-fit items-center gap-3 text-green-500">
                 <div className="relative flex h-2 w-2 items-center justify-center">
                   <div className="absolute h-1 w-1 animate-pulse rounded-full bg-green-500"></div>
@@ -305,70 +319,6 @@ export default function Home({
                   {data.home.hero.avaible}
                 </Typography>
               </div>
-              {/* <div ref={heroRefs.icons} className="hidden h-6 items-center gap-2 md:flex">
-                <DropUp
-                  className="-translate-y-full opacity-0"
-                  href="https://react.dev/"
-                  text="React"
-                  icon={<IconReact className="h-full w-auto" />}
-                />
-                <DropUp
-                  className="-translate-y-full opacity-0"
-                  href="https://nextjs.org/"
-                  text="Next.js"
-                  icon={<IconNext className="h-full w-auto" />}
-                ></DropUp>
-                <DropUp
-                  className="-translate-y-full opacity-0"
-                  href="https://vuejs.org/"
-                  text="Vue.js"
-                  icon={<IconVue className="h-full w-auto" />}
-                ></DropUp>
-                <DropUp
-                  className="-translate-y-full opacity-0"
-                  href="https://nuxt.com/"
-                  text="Nuxt.js"
-                  icon={<IconNuxt className="h-full w-auto" />}
-                ></DropUp>
-                <DropUp
-                  className="-translate-y-full opacity-0"
-                  href="https://aws.amazon.com/"
-                  text="AWS"
-                  icon={<IconAWS className="h-full w-auto" />}
-                ></DropUp>
-                <div className="mx-2 h-0 w-px bg-black"></div>
-                <DropUp
-                  className="-translate-y-full opacity-0"
-                  href="https://gsap.com/"
-                  text="GSAP"
-                  icon={<IconGSAP className="h-4 w-auto" />}
-                ></DropUp>
-                <DropUp
-                  className="-translate-y-full opacity-0"
-                  href="https://threejs.org/"
-                  text="THREE.js"
-                  icon={<IconThreeJS className="h-full w-auto" />}
-                ></DropUp>
-                <div className="mx-2 h-0 w-px bg-black"></div>
-                <DropUp
-                  className="-translate-y-full opacity-0"
-                  href="https://www.adobe.com/products/illustrator.html"
-                  text="Illustrator"
-                  icon={<IconIllustrator className="h-full w-auto" />}
-                ></DropUp>
-                <DropUp
-                  className="-translate-y-full opacity-0"
-                  href="https://www.adobe.com/products/photoshop.html"
-                  text="Photoshop"
-                  icon={<IconPhotoshop className="h-full w-auto" />}
-                ></DropUp>
-                <DropUp
-                  className="-translate-y-full opacity-0"
-                  href="https://www.figma.com/"
-                  text="Figma"
-                  icon={<IconFigma className="h-full w-auto" />}
-                ></DropUp>
-              </div> */}
             </div>
             <Button
               ref={heroRefs.button}
@@ -389,73 +339,147 @@ export default function Home({
             >
               matteo.courquin@gmail.com
             </Link>
-            <Typography
-              ref={heroRefs.texts.text5}
-              type={TYPOGRAPHY_TYPE.TEXT}
-              className="translate-x-full uppercase opacity-0"
-            >
-              ©{new Date().getFullYear()}
-            </Typography>
+            <div ref={heroRefs.icons} className="hidden h-6 items-center gap-2 md:flex">
+              <DropUp
+                className="-translate-y-full opacity-0"
+                href="https://react.dev/"
+                text="React"
+                icon={<IconReact className="h-full w-auto fill-white" />}
+              />
+              <DropUp
+                className="-translate-y-full opacity-0"
+                href="https://nextjs.org/"
+                text="Next.js"
+                icon={<IconNext className="h-full w-auto fill-white" />}
+              ></DropUp>
+              <DropUp
+                className="-translate-y-full opacity-0"
+                href="https://vuejs.org/"
+                text="Vue.js"
+                icon={<IconVue className="h-full w-auto fill-white" />}
+              ></DropUp>
+              <DropUp
+                className="-translate-y-full opacity-0"
+                href="https://nuxt.com/"
+                text="Nuxt.js"
+                icon={<IconNuxt className="h-full w-auto fill-white" />}
+              ></DropUp>
+              <DropUp
+                className="-translate-y-full opacity-0"
+                href="https://aws.amazon.com/"
+                text="AWS"
+                icon={<IconAWS className="h-full w-auto fill-white" />}
+              ></DropUp>
+              <div className="mx-2 h-0 w-px bg-white"></div>
+              <DropUp
+                className="-translate-y-full opacity-0"
+                href="https://gsap.com/"
+                text="GSAP"
+                icon={<IconGSAP className="h-4 w-auto fill-white" />}
+              ></DropUp>
+              <DropUp
+                className="-translate-y-full opacity-0"
+                href="https://threejs.org/"
+                text="THREE.js"
+                icon={<IconThreeJS className="h-full w-auto stroke-white" />}
+              ></DropUp>
+              <div className="mx-2 h-0 w-px bg-white"></div>
+              <DropUp
+                className="-translate-y-full opacity-0"
+                href="https://www.adobe.com/products/illustrator.html"
+                text="Illustrator"
+                icon={<IconIllustrator className="h-full w-auto fill-white" />}
+              ></DropUp>
+              <DropUp
+                className="-translate-y-full opacity-0"
+                href="https://www.adobe.com/products/photoshop.html"
+                text="Photoshop"
+                icon={<IconPhotoshop className="h-full w-auto fill-white" />}
+              ></DropUp>
+              <DropUp
+                className="-translate-y-full opacity-0"
+                href="https://www.figma.com/"
+                text="Figma"
+                icon={<IconFigma className="h-full w-auto fill-white" />}
+              ></DropUp>
+            </div>
           </div>
         </div>
       </section>
       <section
         ref={aboutRefs.triggerRef}
-        className="relative min-h-screen w-screen overflow-hidden bg-black px-x-default pt-y-default text-white md:py-y-default"
+        className="relative h-fit w-screen overflow-hidden bg-black px-x-default text-white"
       >
-        <div className="absolute left-0 h-px w-full px-x-default">
-          <div ref={aboutRefs.line} className="h-px w-0 bg-white"></div>
+        <div className="relative mx-auto max-w-default pt-y-default md:py-y-default">
+          <div className="absolute left-0 h-px w-full">
+            <div ref={aboutRefs.line} className="h-px w-0 bg-white"></div>
+          </div>
+          <div className="pt-y-default md:grid md:grid-cols-2">
+            <Typography
+              ref={aboutRefs.texts.text1}
+              type={TYPOGRAPHY_TYPE.HEADING3}
+              className="-translate-y-4 pb-10 uppercase opacity-0 md:pb-0"
+            >
+              {data.home.about.title}
+            </Typography>
+            <div
+              ref={aboutRefs.texts.text2}
+              className="text -translate-y-4 text-2xl opacity-0"
+              dangerouslySetInnerHTML={{
+                __html: interpolate(data.home.about.description, {
+                  yearsExperience: Math.floor(
+                    (new Date().getTime() -
+                      new Date('Wed Jan 15 2019 16:00:00 GMT+0100').getTime()) /
+                      31536000000,
+                  ).toString(),
+                }),
+              }}
+            />
+            <Image
+              width={300}
+              height={300}
+              ref={aboutRefs.img}
+              src="/images/avatar.webp"
+              alt=""
+              className="translate-y-full md:absolute md:bottom-0 md:left-0 md:w-1/3"
+            />
+          </div>
         </div>
-        <div className="pt-y-default md:grid md:grid-cols-2">
-          <Typography
-            ref={aboutRefs.texts.text1}
-            type={TYPOGRAPHY_TYPE.HEADING3}
-            className="-translate-y-4 pb-10 uppercase opacity-0 md:pb-0"
-          >
-            {data.home.about.title}
+      </section>
+      <section className="px-x-default py-y-default">
+        <div className="mx-auto max-w-default">
+          <Typography className="w-full text-center sm:text-left" type={TYPOGRAPHY_TYPE.HEADING3}>
+            {data.home.projects.title}
           </Typography>
-          <div
-            ref={aboutRefs.texts.text2}
-            className="text -translate-y-4 text-2xl opacity-0"
-            dangerouslySetInnerHTML={{
-              __html: interpolate(data.home.about.description, {
-                yearsExperience: Math.floor(
-                  (new Date().getTime() - new Date('Wed Jan 15 2019 16:00:00 GMT+0100').getTime()) /
-                    31536000000,
-                ).toString(),
-              }),
-            }}
-          />
+          <div className="grid grid-cols-1 gap-10 pt-y-default md:grid-cols-2">
+            {projects.map((project, index) => (
+              <CardProject {...project} key={project.title + index} />
+            ))}
+          </div>
+          <Button as="a" href="/projects" size={BUTTON_SIZE.L} className="mx-auto my-20">
+            {data.home.projects.button}
+          </Button>
         </div>
-        <Image
-          width={300}
-          height={300}
-          ref={aboutRefs.img}
-          src="/images/avatar.webp"
-          alt=""
-          className="translate-y-full md:absolute md:bottom-0 md:left-x-default md:w-1/3"
-        />
       </section>
-      <section className="px-x-default py-y-default">
-        <Typography className="w-full text-center sm:text-left" type={TYPOGRAPHY_TYPE.HEADING3}>
-          {data.home.projects.title}
-        </Typography>
-        <div className="grid grid-cols-1 gap-10 pt-y-default md:grid-cols-2">
-          {projects.map((project, index) => (
-            <CardProject {...project} key={project.title + index} />
-          ))}
-        </div>
-        <Button as="a" href="/projects" size={BUTTON_SIZE.L} className="mx-auto my-20">
-          {data.home.projects.button}
-        </Button>
-      </section>
-      <section className="bg-black">
-        <div className="py-y-default">
-          <Testimonials testimonials={testimonials} />
+      <section className="bg-black px-x-default">
+        <div className="mx-auto max-w-default py-y-default">
+          <Typography
+            className="w-full text-center text-white sm:text-left"
+            type={TYPOGRAPHY_TYPE.HEADING3}
+          >
+            {data.home.testimonials.title}
+          </Typography>
+          <div className="no-scrollbar flex flex-row overflow-x-scroll pt-y-default">
+            {testimonials.map((testimonial, index) => (
+              <CardTestimonial key={testimonial.author + index} {...testimonial} />
+            ))}
+          </div>
         </div>
       </section>
       <section className="px-x-default py-y-default">
-        <Questions questions={questions} />
+        <div className="mx-auto max-w-default">
+          <Questions questions={questions} />
+        </div>
       </section>
     </>
   );

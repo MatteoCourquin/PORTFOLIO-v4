@@ -11,26 +11,28 @@ export default function Contact() {
   return (
     <>
       <SEO title={data.head.titleAbout} image="/ogContact.png" />
-      <section className="flex min-h-screen flex-col items-center justify-between gap-16 px-x-default py-y-default">
-        <Typography type={TYPOGRAPHY_TYPE.HEADING1} className="pt-y-default text-center">
-          {data.contact.title}
-        </Typography>
-        <div className="flex w-full flex-col items-center justify-center gap-8">
-          <FormContact />
-          <div className="flex flex-col items-center justify-center gap-8">
-            <Typography
-              as={TYPOGRAPHY_TYPE.TEXT}
-              dangerouslySetInnerHTML={data.contact.consultation}
-            />
-            <Button
-              as="a"
-              href="https://calendly.com/matteo-courquin/consultation-projet-client"
-              target="_blank"
-              size={BUTTON_SIZE.L}
-              type={BUTTON_TYPE.SECONDARY}
-            >
-              CALENDLY
-            </Button>
+      <section className="px-x-default py-y-default">
+        <div className="mx-auto flex min-h-screen max-w-default flex-col items-center gap-16">
+          <Typography type={TYPOGRAPHY_TYPE.HEADING1} className="pt-y-default text-center">
+            {data.contact.title}
+          </Typography>
+          <div className="flex w-full flex-col items-center justify-center gap-8">
+            <FormContact />
+            <div className="flex flex-col items-center justify-center gap-8">
+              <Typography
+                as={TYPOGRAPHY_TYPE.TEXT}
+                dangerouslySetInnerHTML={data.contact.consultation}
+              />
+              <Button
+                as="a"
+                href="https://calendly.com/matteo-courquin/consultation-projet-client"
+                target="_blank"
+                size={BUTTON_SIZE.L}
+                type={BUTTON_TYPE.SECONDARY}
+              >
+                CALENDLY
+              </Button>
+            </div>
           </div>
         </div>
       </section>

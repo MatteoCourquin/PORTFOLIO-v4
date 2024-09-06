@@ -1,6 +1,6 @@
 {
   "head": {
-    "titleIndex": "Matteo Courquin • Développeur Full Stack !! 🚀",
+    "titleIndex": "Matteo Courquin • Développeur Full Stack 🚀",
     "titleProjects": "Matteo Courquin • Projets",
     "titleAbout": "Matteo Courquin • À propos",
     "titleContact": "Matteo Courquin • Contact",
@@ -19,13 +19,13 @@
   "home": {
     "hero": {
       "title": "Salut ! 👋 Moi c’est",
-      "subtitle": "DÉVELOPPEUR FULLSTACK <span class='text-primary'>EXPÉRIMENTÉ</span>",
+      "subtitle": "DÉVELOPPEUR FULLSTACK <span class='text-white'>EXPÉRIMENTÉ</span>",
       "avaible": "Disponible pour de nouveaux projets 🚀",
       "button": "Contactez-moi"
     },
     "about": {
       "title": "Qui suis-je ?",
-      "description": "<p>Salut 👋 ! Moi c’est Matteo, développeur FullStack depuis plus de {{yearsExperience}} ans. <br /><br />Initialement parti pour être architecte, ma passion pour le développement web a émergé pendant le confinement, consolidée par un Bachelor à l’<a href=\"https://www.iim.fr/cursus/bachelor-coding-digital-innovation/\" target=\"_blank\" class=\"underline\">IIM</a> et un Master à l’<a href=\"https://www.hetic.net/formations/mastere-cto-tech-lead\" target=\"_blank\" class=\"underline\">HETIC</a>, j’ai consolidé mes compétences techniques et ma sensibilité esthétique. 💻<br /><br />Tout a commencé depuis <a href=\"https://openclassrooms.com/fr/\" target=\"_blank\" class=\"underline\">OpenClassrooms</a>. Le premier site vers lequel on se dirige lorsque l’on s’intéresse au web !<br /><br />Aujourd’hui, en tant que freelance, je crée des projets variés et sur-mesure pour mes clients. 🚀<br /><br /> Ma rigueur, mon sens du détail et mon approche esthétique me permettent de livrer des solutions élégantes et efficaces.<br /><br />Ma philosophie ? « Un code propre en vaut dix ». 😉</p>"
+      "description": "<p>Salut 👋 ! Moi c’est Matteo, développeur FullStack depuis plus de {{yearsExperience}} ans. <br /><br />Initialement parti pour être architecte, ma passion pour le développement web a émergé pendant le confinement, consolidée par un Bachelor à l’<a href=\"https://www.iim.fr/cursus/bachelor-coding-digital-innovation/\" target=\"_blank\" class=\"underline\">IIM</a> et un Master à l’<a href=\"https://www.hetic.net/formations/mastere-cto-tech-lead\" target=\"_blank\" class=\"underline\">HETIC</a>, j’ai consolidé mes compétences techniques et ma sensibilité esthétique. 💻<br /><br />Tout a commencé depuis <a href=\"https://openclassrooms.com/fr/\" target=\"_blank\" class=\"underline\">OpenClassrooms</a>. Le premier site vers lequel on se dirige lorsque l’on s’intéresse au web !<br /><br />Aujourd’hui, en tant que freelance, je crée des projets variés et sur-mesure pour mes clients. 🚀<br /><br /> Ma rigueur, mon sens du détail et mon approche esthétique me permettent de livrer des solutions élégantes et efficaces.<br /><br />Ma philosophie ? « Un code propre en vaut dix » 😉</p>"
     },
     "projects": {
       "title": "Projets",

@@ -95,67 +95,78 @@ export default function Projects({
           {data.projects.title}
         </Typography>
       </section>
-      <section>
-        <div className="relative px-x-default">
-          <div ref={heroRefs.lines.H1} className="absolute right-0 top-0 h-px w-0 bg-black"></div>
-          <div ref={heroRefs.lines.H2} className="absolute bottom-0 left-0 h-px w-0 bg-black"></div>
-          <div
-            ref={heroRefs.lines.V1}
-            className="absolute right-x-default top-0 h-0 w-px bg-black"
-          ></div>
-          <div
-            ref={heroRefs.lines.V2}
-            className="absolute bottom-0 left-x-default h-0 w-px bg-black"
-          ></div>
-          <div className="p-px">
-            <div className="shadow-x-white h-24 overflow-hidden">
-              <div className="no-scrollbar h-24 w-full overflow-scroll">
+      <section className="">
+        <div className="">
+          <div className="relative">
+            <div ref={heroRefs.lines.H1} className="absolute right-0 top-0 h-px w-0 bg-black"></div>
+            <div
+              ref={heroRefs.lines.H2}
+              className="absolute bottom-0 left-0 h-px w-0 bg-black"
+            ></div>
+            <div className="px-x-default">
+              <div className="relative mx-auto max-w-default px-x-default">
                 <div
-                  ref={heroRefs.buttons.wrapperFilters}
-                  className="mx-auto flex h-full w-fit items-center justify-start gap-4 overflow-hidden px-4 sm:justify-center"
-                >
-                  {filters.map((filter, index) => (
-                    <Button
-                      key={filter.value + index}
-                      isActive={activeFilter === filter.value}
-                      as="button"
-                      type={BUTTON_TYPE.SECONDARY}
-                      onClick={() => setActiveFilter(filter.value)}
-                      className="h-fit shrink-0 translate-y-24"
-                    >
-                      {language === 'fr' ? filter.labelFr : filter.labelEn}
-                    </Button>
-                  ))}
+                  ref={heroRefs.lines.V1}
+                  className="absolute right-0 top-0 h-0 w-px bg-black"
+                ></div>
+                <div
+                  ref={heroRefs.lines.V2}
+                  className="absolute bottom-0 left-0 h-0 w-px bg-black"
+                ></div>
+                <div className="p-px">
+                  <div className="shadow-x-white h-24 overflow-hidden">
+                    <div className="no-scrollbar h-24 w-full overflow-scroll">
+                      <div
+                        ref={heroRefs.buttons.wrapperFilters}
+                        className="mx-auto flex h-full w-fit items-center justify-start gap-4 overflow-hidden px-4 sm:justify-center"
+                      >
+                        {filters.map((filter, index) => (
+                          <Button
+                            key={filter.value + index}
+                            isActive={activeFilter === filter.value}
+                            as="button"
+                            type={BUTTON_TYPE.SECONDARY}
+                            onClick={() => setActiveFilter(filter.value)}
+                            className="h-fit shrink-0 translate-y-24"
+                          >
+                            {language === 'fr' ? filter.labelFr : filter.labelEn}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-10 px-x-default py-y-default lg:grid-cols-2">
-          <AnimatePresence>
-            {projects
-              .filter(
-                (project) =>
-                  project.types.join().includes(activeFilter.toLowerCase()) ||
-                  activeFilter === 'all',
-              )
-              .map((project, index) => (
-                <motion.div
-                  key={project.title}
-                  layout
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{
-                    duration: 0.3,
-                    ease: 'easeInOut',
-                    delay: index * 0.02,
-                  }}
-                >
-                  <CardProject {...project} />
-                </motion.div>
-              ))}
-          </AnimatePresence>
+        <div className="px-x-default">
+          <div className="mx-auto grid max-w-default grid-cols-1 gap-10 py-y-default lg:grid-cols-2">
+            <AnimatePresence>
+              {projects
+                .filter(
+                  (project) =>
+                    project.types.join().includes(activeFilter.toLowerCase()) ||
+                    activeFilter === 'all',
+                )
+                .map((project, index) => (
+                  <motion.div
+                    key={project.title}
+                    layout
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      duration: 0.3,
+                      ease: 'easeInOut',
+                      delay: index * 0.02,
+                    }}
+                  >
+                    <CardProject {...project} />
+                  </motion.div>
+                ))}
+            </AnimatePresence>
+          </div>
         </div>
       </section>
     </>
