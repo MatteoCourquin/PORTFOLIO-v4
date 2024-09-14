@@ -14,11 +14,11 @@
   },
   "footer": {
     "title": "Parlons de votre prochain projet ! 🚀",
-    "button": "Je suis prêt"
+    "button": "Contactez-moi"
   },
   "home": {
     "hero": {
-      "title": "Salut ! 👋 Moi c’est",
+      "rating": "avis clients",
       "subtitle": "DÉVELOPPEUR FULLSTACK <span class='text-white'>EXPÉRIMENTÉ</span>",
       "avaible": "Disponible pour de nouveaux projets 🚀",
       "button": "Contactez-moi"

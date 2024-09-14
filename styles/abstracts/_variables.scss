@@ -167,7 +167,7 @@ $transition-default: all 0.3s cubic-bezier(0.84, 0, 0.16, 1);
 }
 .-left-x-calc-padding {
   left: calc(((100vw - $max-width) / 2) * -1);
-  @media screen and (max-width: 1639px) {
+  @media screen and (max-width: 1920px) {
     left: calc($x-default * -1);
   }
 }
@@ -179,7 +179,7 @@ $transition-default: all 0.3s cubic-bezier(0.84, 0, 0.16, 1);
 }
 .-right-x-calc-padding {
   right: calc(((100vw - $max-width) / 2) * -1);
-  @media screen and (max-width: 1639px) {
+  @media screen and (max-width: 1920px) {
     right: calc($x-default * -1);
   }
 }

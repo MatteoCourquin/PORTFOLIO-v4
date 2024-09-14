@@ -1,21 +1,18 @@
 import clsx from 'clsx';
-import Link from 'next/link';
 import { ReactNode } from 'react';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 
 const DropUp = ({
-  href,
   text,
   icon,
   className,
 }: {
-  href: string;
   text: string;
   icon: ReactNode;
   className?: string;
 }) => {
   return (
-    <Link href={href} target="_blank" className={clsx(className, 'group/icon relative')}>
+    <div className={clsx(className, 'group/icon relative')}>
       {icon}
       <Typography
         type={TYPOGRAPHY_TYPE.TEXT}
@@ -24,7 +21,7 @@ const DropUp = ({
       >
         {text}
       </Typography>
-    </Link>
+    </div>
   );
 };
 

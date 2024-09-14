@@ -1,5 +1,7 @@
 import Burger from '@/components/Burger';
 import Footer from '@/components/Footer';
+import Header from '@/components/Header';
+import ScrollTop from '@/components/ScrollTop';
 import english from '@/data/languages/english.json';
 import french from '@/data/languages/french.json';
 import { Language } from '@/data/types';
@@ -41,6 +43,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
+        <ScrollTop />
+        <Header />
         <Burger />
         <main>{children}</main>
         <Footer />

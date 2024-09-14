@@ -75,7 +75,7 @@ export type Language = {
   };
   home: {
     hero: {
-      title: string;
+      rating: string;
       subtitle: string;
       avaible: string;
       button: string;

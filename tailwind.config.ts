@@ -29,8 +29,12 @@ const config: Config = {
         'x-default': 'clamp(20px, 8vw, 100px)',
         'y-default': 'clamp(20px, 8vh, 100px)',
       },
+      height: {
+        'x-default': 'clamp(20px, 8vw, 100px)',
+        'y-default': 'clamp(20px, 8vh, 100px)',
+      },
       maxWidth: {
-        default: '1440px',
+        default: '1730px',
       },
     },
   },

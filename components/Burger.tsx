@@ -1,5 +1,6 @@
 import { LanguageContext } from '@/layout/default';
 import { useGSAP } from '@gsap/react';
+import { useLenis } from '@studio-freight/react-lenis';
 import clsx from 'clsx';
 import gsap from 'gsap';
 import Link from 'next/link';
@@ -13,6 +14,16 @@ const Burger = () => {
   const { contextSafe } = useGSAP();
   const { data } = useContext(LanguageContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [display, setDisplay] = useState(false);
+  const lenis = useLenis();
+
+  lenis?.on('scroll', (event: { targetScroll: number }) => {
+    if (event.targetScroll > 300) {
+      setDisplay(true);
+    } else {
+      setDisplay(false);
+    }
+  });
 
   const text1Ref = useRef(null);
   const text2Ref = useRef(null);
@@ -236,7 +247,12 @@ const Burger = () => {
           </div>
         </nav>
       </div>
-      <div className="fixed right-x-default top-y-default z-[700] -translate-y-1/2 sm:translate-x-10">
+      <div
+        className={clsx(
+          'right-x-calc fixed right-x-default top-y-default z-[700] -translate-y-1/2 transition-[transform,height,width] sm:translate-x-10',
+          display ? 'scale-100' : 'scale-0',
+        )}
+      >
         <Button
           onClick={() => (isOpen ? handdleClose() : handdleOpen())}
           type={BUTTON_TYPE.ICON}

@@ -1,5 +1,6 @@
 import { TypeQuestion } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
+import { useTouchDevice } from '@/utils/states';
 import clsx from 'clsx';
 import { useContext } from 'react';
 import { IconAdd } from './atoms/Icons';
@@ -22,7 +23,10 @@ const CardQuestion = ({ isOpen, onClick, ...question }: CardQuestionProps) => {
     >
       <div className="flex items-center justify-between gap-8">
         <Typography
-          className="!font-normal transition-transform duration-300 ease-in-out group-hover/card-question:translate-x-4"
+          className={clsx(
+            '!font-normal transition-transform duration-300 ease-in-out',
+            !useTouchDevice() && 'sm:group-hover/card-question:translate-x-4',
+          )}
           type={TYPOGRAPHY_TYPE.HEADING4}
           as={TYPOGRAPHY_TYPE.HEADING5}
         >
@@ -30,16 +34,18 @@ const CardQuestion = ({ isOpen, onClick, ...question }: CardQuestionProps) => {
         </Typography>
         <IconAdd
           className={clsx(
+            'transition-[transform,stroke] duration-300 ease-in-out',
             isOpen ? 'rotate-[135deg] stroke-primary' : 'rotate-0 stroke-black',
-            'transition-[transform,stroke] duration-300 ease-in-out group-hover/card-question:-translate-x-4',
+            !useTouchDevice() && 'sm:group-hover/card-question:-translate-x-4',
           )}
           size={42}
         />
       </div>
       <div
         className={clsx(
-          'overflow-hidden pr-8 transition-[height,padding,transform] duration-300 ease-in-out group-hover/card-question:translate-x-4',
-          isOpen ? 'h-60 pt-4 sm:h-52 md:h-40 lg:h-40' : 'h-0 pt-0',
+          'overflow-hidden pr-8 transition-[height,padding,transform] duration-300 ease-in-out',
+          isOpen ? 'h-96 pt-4 sm:h-52 md:h-40 lg:h-40' : 'h-0 pt-0',
+          !useTouchDevice() && 'sm:group-hover/card-question:translate-x-4',
         )}
       >
         <RichText value={language === 'fr' ? answerFr : answerEn} />

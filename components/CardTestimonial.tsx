@@ -21,7 +21,7 @@ const CardTestimonial = ({ ...testimonial }: TypeTestimonial) => {
         </Typography>
       </div>
       <div className="relative border-t border-white py-4">
-        <div className="absolute -top-4 left-3/4 bg-black px-4">
+        <div className="absolute -top-4 right-6 bg-black px-4 sm:left-3/4">
           <IconQuote className="fill-white" />
         </div>
         <RichText

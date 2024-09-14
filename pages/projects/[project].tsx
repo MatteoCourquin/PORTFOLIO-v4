@@ -105,13 +105,14 @@ export default function Page({ project }: { project: TypeProject }) {
         image={project.ogImage ? urlForImage(project.ogImage).toString() : '/ogProjects.png'}
       />
       <div className="pt-y-default">
-        <div
-          onMouseMove={(e) => useMagnet(e, 1)}
-          onMouseOut={(e) => useResetMagnet(e)}
-          onClick={() => router.back()}
-          className="absolute left-x-default top-y-default flex h-20 -translate-y-1/2 cursor-pointer items-center shadow-white sm:-translate-x-1/2"
-        >
-          <IconBack className="stroke-primary" />
+        <div className="absolute left-x-default top-y-default z-50 flex -translate-y-1/2 cursor-pointer items-center shadow-white transition-transform sm:-translate-x-1/2">
+          <div
+            onMouseMove={(e) => useMagnet(e, 1)}
+            onMouseOut={(e) => useResetMagnet(e)}
+            onClick={() => router.back()}
+          >
+            <IconBack className="stroke-primary" />
+          </div>
         </div>
         <div className="relative px-x-default">
           <div className="mx-auto max-w-default pt-y-default">
@@ -178,9 +179,7 @@ export default function Page({ project }: { project: TypeProject }) {
               <div className="flex justify-between gap-2">
                 <Typography className="text-primary">Made by 🤝</Typography>
                 <div>
-                  <Link href="/" target="_blank" className="text block font-medium hover:underline">
-                    Matteo Couruqin
-                  </Link>
+                  <p className="text block font-medium">Matteo Courquin</p>
                   {project.authors?.map((author: { name: string; websiteUrl: string }) => {
                     if (!author.websiteUrl) {
                       return (
