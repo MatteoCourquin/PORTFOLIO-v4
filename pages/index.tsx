@@ -9,6 +9,7 @@ import {
   IconNuxt,
   IconPhotoshop,
   IconReact,
+  IconStar,
   IconThreeJS,
   IconVue,
 } from '@/components/atoms/Icons';
@@ -128,17 +129,6 @@ export default function Home({
       },
     });
 
-    // if (heroRefs.icons.current) {
-    //   gsap.to(heroRefs.icons.current.children, {
-    //     x: (index) => 10 + index * 20,
-    //     scrollTrigger: {
-    //       start: 'top top',
-    //       end: '50% 50%',
-    //       scrub: true,
-    //     },
-    //   });
-    // }
-
     gsap.to([aboutRefs.texts.text1.current, aboutRefs.texts.text2.current], {
       y: 0,
       opacity: 1,
@@ -227,7 +217,7 @@ export default function Home({
     if (heroRefs.icons.current) {
       timelineRef.current
         .add(
-          gsap.to(heroRefs.icons.current.querySelectorAll('a'), {
+          gsap.to(heroRefs.icons.current.querySelectorAll('.dropup'), {
             y: 0,
             opacity: 1,
             duration: 1.2,
@@ -237,7 +227,7 @@ export default function Home({
           '-=0.8',
         )
         .add(
-          gsap.to(heroRefs.icons.current.querySelectorAll('div'), {
+          gsap.to(heroRefs.icons.current.querySelectorAll('.dropup-line'), {
             height: '66%',
             duration: 2,
             ease: 'power4.out',
@@ -285,7 +275,18 @@ export default function Home({
             ref={heroRefs.lines.V2}
             className="absolute -bottom-y-default left-0 h-0 w-px bg-white"
           ></div>
-          <div className="flex h-full w-full flex-col justify-center overflow-hidden px-4">
+          <div className="absolute top-0 flex w-full gap-2 p-4 pb-10">
+            5/5
+            <div className="flex">
+              <IconStar />
+              <IconStar />
+              <IconStar />
+              <IconStar />
+              <IconStar />
+            </div>
+            {data.home.hero.rating}
+          </div>
+          <div className="flex h-full w-full flex-col justify-center overflow-hidden px-x-default">
             <Typography
               ref={heroRefs.texts.text1}
               type={TYPOGRAPHY_TYPE.HEADING1}
@@ -310,15 +311,17 @@ export default function Home({
                 dangerouslySetInnerHTML={data.home.hero.subtitle}
                 className="text-center md:text-left"
               />
-              <div className="flex w-fit items-center gap-3 text-green-500">
+              <Link href="/contact" className="flex w-fit items-center gap-3 text-green-500">
                 <div className="relative flex h-2 w-2 items-center justify-center">
                   <div className="absolute h-1 w-1 animate-pulse rounded-full bg-green-500"></div>
                   <div className="absolute h-2 w-2 animate-ping rounded-full bg-green-500"></div>
                 </div>
-                <Typography type={TYPOGRAPHY_TYPE.TEXT} className="font-medium">
-                  {data.home.hero.avaible}
-                </Typography>
-              </div>
+                <Typography
+                  type={TYPOGRAPHY_TYPE.TEXT}
+                  className="$ font-medium"
+                  dangerouslySetInnerHTML={data.home.hero.avaible}
+                />
+              </Link>
             </div>
             <Button
               ref={heroRefs.button}
@@ -341,64 +344,54 @@ export default function Home({
             </Link>
             <div ref={heroRefs.icons} className="hidden h-6 items-center gap-2 md:flex">
               <DropUp
-                className="-translate-y-full opacity-0"
-                href="https://react.dev/"
+                className="dropup -translate-y-full opacity-0"
                 text="React"
                 icon={<IconReact className="h-full w-auto fill-white" />}
               />
               <DropUp
-                className="-translate-y-full opacity-0"
-                href="https://nextjs.org/"
+                className="dropup -translate-y-full opacity-0"
                 text="Next.js"
                 icon={<IconNext className="h-full w-auto fill-white" />}
               ></DropUp>
               <DropUp
-                className="-translate-y-full opacity-0"
-                href="https://vuejs.org/"
+                className="dropup -translate-y-full opacity-0"
                 text="Vue.js"
                 icon={<IconVue className="h-full w-auto fill-white" />}
               ></DropUp>
               <DropUp
-                className="-translate-y-full opacity-0"
-                href="https://nuxt.com/"
+                className="dropup -translate-y-full opacity-0"
                 text="Nuxt.js"
                 icon={<IconNuxt className="h-full w-auto fill-white" />}
               ></DropUp>
               <DropUp
-                className="-translate-y-full opacity-0"
-                href="https://aws.amazon.com/"
+                className="dropup -translate-y-full opacity-0"
                 text="AWS"
                 icon={<IconAWS className="h-full w-auto fill-white" />}
               ></DropUp>
-              <div className="mx-2 h-0 w-px bg-white"></div>
+              <div className="dropup-line mx-2 h-0 w-px bg-white"></div>
               <DropUp
-                className="-translate-y-full opacity-0"
-                href="https://gsap.com/"
+                className="dropup -translate-y-full opacity-0"
                 text="GSAP"
                 icon={<IconGSAP className="h-4 w-auto fill-white" />}
               ></DropUp>
               <DropUp
-                className="-translate-y-full opacity-0"
-                href="https://threejs.org/"
+                className="dropup -translate-y-full opacity-0"
                 text="THREE.js"
                 icon={<IconThreeJS className="h-full w-auto stroke-white" />}
               ></DropUp>
-              <div className="mx-2 h-0 w-px bg-white"></div>
+              <div className="dropup-line mx-2 h-0 w-px bg-white"></div>
               <DropUp
-                className="-translate-y-full opacity-0"
-                href="https://www.adobe.com/products/illustrator.html"
+                className="dropup -translate-y-full opacity-0"
                 text="Illustrator"
                 icon={<IconIllustrator className="h-full w-auto fill-white" />}
               ></DropUp>
               <DropUp
-                className="-translate-y-full opacity-0"
-                href="https://www.adobe.com/products/photoshop.html"
+                className="dropup -translate-y-full opacity-0"
                 text="Photoshop"
                 icon={<IconPhotoshop className="h-full w-auto fill-white" />}
               ></DropUp>
               <DropUp
-                className="-translate-y-full opacity-0"
-                href="https://www.figma.com/"
+                className="dropup -translate-y-full opacity-0"
                 text="Figma"
                 icon={<IconFigma className="h-full w-auto fill-white" />}
               ></DropUp>
@@ -464,7 +457,7 @@ export default function Home({
       <section className="bg-black px-x-default">
         <div className="mx-auto max-w-default py-y-default">
           <Typography
-            className="w-full text-center text-white sm:text-left"
+            className="w-full text-center uppercase text-white sm:text-left"
             type={TYPOGRAPHY_TYPE.HEADING3}
           >
             {data.home.testimonials.title}

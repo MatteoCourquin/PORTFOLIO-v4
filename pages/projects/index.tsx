@@ -1,13 +1,16 @@
 import Button, { BUTTON_TYPE } from '@/components/atoms/Button';
+import { IconBack } from '@/components/atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
 import SEO from '@/components/SEO';
 import { TypeFilters, TypeProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
+import { useMagnet, useResetMagnet } from '@/utils/animations';
 import { useGSAP } from '@gsap/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import gsap from 'gsap';
+import { useRouter } from 'next/router';
 import { useContext, useRef, useState } from 'react';
 
 export default function Projects({
@@ -18,6 +21,7 @@ export default function Projects({
   filters: TypeFilters[];
 }) {
   const { data, language } = useContext(LanguageContext);
+  const router = useRouter();
 
   const [activeFilter, setActiveFilter] = useState('all');
 
@@ -96,6 +100,15 @@ export default function Projects({
         </Typography>
       </section>
       <section className="">
+        <div className="absolute left-x-default top-y-default z-50 flex -translate-y-1/2 cursor-pointer items-center shadow-white transition-transform sm:-translate-x-1/2">
+          <div
+            onMouseMove={(e) => useMagnet(e, 1)}
+            onMouseOut={(e) => useResetMagnet(e)}
+            onClick={() => router.back()}
+          >
+            <IconBack className="stroke-primary" />
+          </div>
+        </div>
         <div className="">
           <div className="relative">
             <div ref={heroRefs.lines.H1} className="absolute right-0 top-0 h-px w-0 bg-black"></div>

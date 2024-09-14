@@ -54,6 +54,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement | null, ButtonPr
       if (!circleRef.current || isActive || useTouchDevice()) return;
       const bounding = e.currentTarget.getBoundingClientRect();
       setCircleActive(true);
+      circleRef.current.style.opacity = '1';
       circleRef.current.style.left = `${e.clientX - bounding.left}px`;
       circleRef.current.style.top = `${e.clientY - bounding.top}px`;
     };
@@ -87,8 +88,8 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement | null, ButtonPr
             <div
               ref={circleRef}
               className={clsx(
-                'circle-button absolute z-0 scale-0 transform rounded-full transition-all',
-                circleActive && 'active',
+                'circle-button absolute z-0 rounded-full opacity-0',
+                circleActive ? 'active' : 'inactive',
                 isActive && 'bg-primary',
                 color === 'black' && type === BUTTON_TYPE.PRIMARY && 'bg-white',
                 color === 'black' && type === BUTTON_TYPE.SECONDARY && 'bg-black',
@@ -129,8 +130,8 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement | null, ButtonPr
             <div
               ref={circleRef}
               className={clsx(
-                'circle-button absolute z-0 scale-0 transform rounded-full transition-all',
-                circleActive && 'active',
+                'circle-button absolute z-0 rounded-full opacity-0',
+                circleActive ? 'active' : 'inactive',
                 isActive && 'bg-primary',
                 color === 'black' && type === BUTTON_TYPE.PRIMARY && 'bg-white',
                 color === 'black' && type === BUTTON_TYPE.SECONDARY && 'bg-black',
