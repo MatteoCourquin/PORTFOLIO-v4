@@ -275,7 +275,7 @@ export default function Home({
             ref={heroRefs.lines.V2}
             className="absolute -bottom-y-default left-0 h-0 w-px bg-white"
           ></div>
-          <div className="absolute top-0 flex w-full gap-2 p-4 pb-10">
+          <div className="absolute top-0 flex w-full justify-center gap-2 p-4 pb-10 md:justify-start">
             5/5
             <div className="flex">
               <IconStar />
@@ -342,7 +342,7 @@ export default function Home({
             >
               matteo.courquin@gmail.com
             </Link>
-            <div ref={heroRefs.icons} className="hidden h-6 items-center gap-2 md:flex">
+            <div ref={heroRefs.icons} className="hidden h-6 items-center gap-2 lg:flex">
               <DropUp
                 className="dropup -translate-y-full opacity-0"
                 text="React"

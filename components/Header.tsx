@@ -1,9 +1,17 @@
+import clsx from 'clsx';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 
 const Header = () => {
+  const pathname = usePathname();
   return (
-    <header className="h-y-default absolute z-10 mx-auto hidden w-screen max-w-default items-center justify-center gap-4 uppercase text-white mix-blend-difference md:flex">
+    <header
+      className={clsx(
+        'absolute z-10 mx-auto hidden h-y-default w-screen max-w-default items-center justify-center gap-4 uppercase text-white md:flex',
+        pathname === '/' ? 'mix-blend-normal' : 'mix-blend-difference',
+      )}
+    >
       <Link href="/">
         <Typography as={TYPOGRAPHY_TYPE.HEADING6}>Home</Typography>
       </Link>

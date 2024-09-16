@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useContext } from 'react';
 import Button, { BUTTON_SIZE, BUTTON_TYPE } from './atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
+import { IconGithub, IconInsta, IconLinkedin } from './atoms/Icons';
 
 const Footer = () => {
   const { data } = useContext(LanguageContext);
@@ -40,37 +41,63 @@ const Footer = () => {
         <div className="hidden flex-col items-end gap-3 md:flex">
           <Typography
             type={TYPOGRAPHY_TYPE.TEXT}
-            as={TYPOGRAPHY_TYPE.HEADING5}
+            as={TYPOGRAPHY_TYPE.HEADING4}
             className="pb-4 uppercase"
           >
             Menu
           </Typography>
-          <Link className="link link_white heading5 !font-thin uppercase !opacity-80" href="/">
+          <Link
+            className="link link_white heading5 !font-thin uppercase text-white-opacity"
+            href="/"
+          >
             {data.nav.home}
           </Link>
           <Link
-            className="link link_white heading5 whitespace-nowrap !font-thin uppercase !opacity-80"
+            className="link link_white heading5 whitespace-nowrap !font-thin uppercase text-white-opacity"
             href="/projects"
           >
             {data.nav.projects}
           </Link>
           <Link
-            className="link link_white heading5 whitespace-nowrap !font-thin uppercase !opacity-80"
+            className="link link_white heading5 whitespace-nowrap !font-thin uppercase text-white-opacity"
             href="/about"
           >
             {data.nav.about}
           </Link>
           <Link
-            className="link link_white heading5 whitespace-nowrap !font-thin uppercase !opacity-80"
+            className="link link_white heading5 whitespace-nowrap !font-thin uppercase text-white-opacity"
             href="/contact"
           >
             {data.nav.contact}
           </Link>
+          <div className="flex items-center justify-center gap-4 pt-10">
+            <Link
+              href="https://github.com/matteocourquin"
+              target="_blank"
+              className="group/icon shadow-bakground"
+            >
+              <IconGithub className="transition-colors duration-300 group-hover/icon:stroke-primary" />
+            </Link>
+            <Link
+              href="https://www.linkedin.com/in/matteo-courquin/"
+              target="_blank"
+              className="group/icon shadow-bakground"
+            >
+              <IconLinkedin className="transition-colors duration-300 group-hover/icon:stroke-primary" />
+            </Link>
+            <Link
+              href="https://www.instagram.com/matteocourquin.dev/"
+              target="_blank"
+              className="group/icon shadow-bakground"
+            >
+              <IconInsta className="transition-colors duration-300 group-hover/icon:stroke-primary" />
+            </Link>
+          </div>
         </div>
       </div>
       <Typography
         type={TYPOGRAPHY_TYPE.TEXT}
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm opacity-50"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-white-opacity"
       >
         MATTEO COURQUIN ©{new Date().getFullYear()}
       </Typography>

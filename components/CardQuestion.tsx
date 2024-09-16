@@ -48,7 +48,7 @@ const CardQuestion = ({ isOpen, onClick, ...question }: CardQuestionProps) => {
           !useTouchDevice() && 'sm:group-hover/card-question:translate-x-4',
         )}
       >
-        <RichText value={language === 'fr' ? answerFr : answerEn} />
+        <RichText className="text-black-opacity" value={language === 'fr' ? answerFr : answerEn} />
       </div>
     </div>
   );

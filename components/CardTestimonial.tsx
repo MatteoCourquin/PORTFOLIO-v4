@@ -25,7 +25,7 @@ const CardTestimonial = ({ ...testimonial }: TypeTestimonial) => {
           <IconQuote className="fill-white" />
         </div>
         <RichText
-          className={clsx(!isOpen && 'text-ellipsis-4')}
+          className={clsx(!isOpen && 'text-ellipsis-4', 'text-white-opacity')}
           value={language === 'fr' ? testimonialFr : testimonialEn}
         />
         <button className="pt-2 underline" onClick={() => setIsOpen(!isOpen)}>
