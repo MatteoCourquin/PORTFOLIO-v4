@@ -193,7 +193,7 @@ export default function About({
             </Typography>
             <div
               ref={heroRefs.texts.text3}
-              className="text -translate-y-10"
+              className="text -translate-y-10 text-black-opacity"
               dangerouslySetInnerHTML={{
                 __html: interpolate(data.home.about.description, {
                   yearsExperience: Math.floor(

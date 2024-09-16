@@ -18,7 +18,7 @@ const Burger = () => {
   const lenis = useLenis();
 
   lenis?.on('scroll', (event: { targetScroll: number }) => {
-    if (event.targetScroll > 300) {
+    if (event.targetScroll > 300 || window.innerWidth < 1024) {
       setDisplay(true);
     } else {
       setDisplay(false);
@@ -40,47 +40,81 @@ const Burger = () => {
     const timelineOpen = gsap.timeline({ paused: true });
     timelineOpen
       .add(
-        gsap.to(wrapperRef.current, {
-          visibility: 'visible',
-          scale: 1,
-          duration: 0,
-        }),
+        gsap.fromTo(
+          wrapperRef.current,
+          {
+            visibility: 'invisible',
+            scale: 0,
+          },
+          {
+            visibility: 'visible',
+            scale: 1,
+            duration: 0,
+          },
+        ),
       )
       .add(
-        gsap.to(backgroundRef.current, {
-          scale: 60,
-          duration: 0.8,
-          ease: 'power3.inOut',
-        }),
+        gsap.fromTo(
+          backgroundRef.current,
+          {
+            scale: 0,
+          },
+          {
+            scale: 60,
+            duration: 0.8,
+            ease: 'power3.inOut',
+          },
+        ),
       )
       .add(
-        gsap.to([text1Ref.current, text2Ref.current, text3Ref.current, text4Ref.current], {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: 'power4.inOut',
-          stagger: 0.1,
-        }),
+        gsap.fromTo(
+          [text1Ref.current, text2Ref.current, text3Ref.current, text4Ref.current],
+          {
+            y: -16,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power4.inOut',
+            stagger: 0.1,
+          },
+        ),
         '-=0.6',
       )
       .add(
-        gsap.to([button1Ref.current, button2Ref.current, button3Ref.current], {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          ease: 'power4.inOut',
-          stagger: 0.1,
-        }),
-        0,
+        gsap.fromTo(
+          [button1Ref.current, button2Ref.current, button3Ref.current],
+          {
+            y: -16,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power4.inOut',
+            stagger: 0.1,
+          },
+        ),
+        '-=1',
       )
       .add(
-        gsap.to(buttonLanguageRef.current, {
-          x: 0,
-          opacity: 1,
-          duration: 1,
-          ease: 'power4.inOut',
-        }),
-        0,
+        gsap.fromTo(
+          buttonLanguageRef.current,
+          {
+            x: -16,
+            opacity: 0,
+          },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power4.inOut',
+          },
+        ),
+        '-=1',
       )
       .play();
 
@@ -90,52 +124,84 @@ const Burger = () => {
   const closeBurger = contextSafe(() => {
     const timelineClose = gsap.timeline({ paused: true });
     timelineClose
+      .addLabel('startAnimations')
       .add(
-        gsap.to(buttonLanguageRef.current, {
-          x: -16,
-          opacity: 0,
-          duration: 1,
-          ease: 'power4.inOut',
-        }),
-        0,
+        gsap.fromTo(
+          buttonLanguageRef.current,
+          {
+            x: 0,
+            opacity: 1,
+          },
+          {
+            x: -16,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power4.inOut',
+          },
+        ),
+        'startAnimations',
       )
       .add(
-        gsap.to([button1Ref.current, button2Ref.current, button3Ref.current].reverse(), {
-          y: -16,
-          opacity: 0,
-          duration: 1,
-          ease: 'power4.inOut',
-          stagger: 0.1,
-        }),
-        0,
-      )
-      .add(
-        gsap.to(
-          [text1Ref.current, text2Ref.current, text3Ref.current, text4Ref.current].reverse(),
+        gsap.fromTo(
+          [button1Ref.current, button2Ref.current, button3Ref.current].reverse(),
+          {
+            y: 0,
+            opacity: 1,
+          },
           {
             y: -16,
             opacity: 0,
-            duration: 1,
+            duration: 0.8,
             ease: 'power4.inOut',
             stagger: 0.1,
           },
         ),
-        0,
+        'startAnimations',
       )
       .add(
-        gsap.to(backgroundRef.current, {
-          scale: 0,
-          duration: 1,
-          ease: 'power3.inOut',
-        }),
-        '-=0.7',
+        gsap.fromTo(
+          [text1Ref.current, text2Ref.current, text3Ref.current, text4Ref.current].reverse(),
+          {
+            y: 0,
+            opacity: 1,
+          },
+          {
+            y: -16,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power4.inOut',
+            stagger: 0.1,
+          },
+        ),
+        'startAnimations',
       )
       .add(
-        gsap.to(wrapperRef.current, {
-          visibility: 'hidden',
-          scale: 0,
-          duration: 0,
-        }),
+        gsap.fromTo(
+          backgroundRef.current,
+          {
+            scale: 60,
+          },
+          {
+            scale: 0,
+            duration: 0.8,
+            ease: 'power3.inOut',
+          },
+        ),
+        0.3,
+      )
+      .add(
+        gsap.fromTo(
+          wrapperRef.current,
+          {
+            visibility: 'visible',
+            scale: 1,
+          },
+          {
+            visibility: 'hidden',
+            scale: 0,
+            duration: 0,
+          },
+        ),
       )
       .play();
 
@@ -219,7 +285,7 @@ const Burger = () => {
               {data.nav.contact}
             </Typography>
           </Link>
-          <div className="absolute bottom-y-default left-0 flex w-screen items-center justify-center gap-4">
+          <div className="absolute bottom-y-large left-0 flex w-screen items-center justify-center gap-4 md:bottom-y-default">
             <Link
               ref={button1Ref}
               href="https://github.com/matteocourquin"

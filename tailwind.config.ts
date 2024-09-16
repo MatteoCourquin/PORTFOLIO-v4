@@ -10,7 +10,9 @@ const config: Config = {
     extend: {
       colors: {
         white: '#ffffff',
+        'white-opacity': '#a3a3a3',
         black: '#111111',
+        'black-opacity': '#585858',
         primary: '#0034EB',
       },
       padding: {
@@ -20,6 +22,7 @@ const config: Config = {
       inset: {
         'x-default': 'clamp(20px, 8vw, 100px)',
         'y-default': 'clamp(20px, 8vh, 100px)',
+        'y-large': 'clamp(40px, 16vh, 200px)',
       },
       gap: {
         'x-default': 'clamp(20px, 8vw, 100px)',

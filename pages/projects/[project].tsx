@@ -170,6 +170,7 @@ export default function Page({ project }: { project: TypeProject }) {
                     {project.title}
                   </Typography>
                   <RichText
+                    className="text-black-opacity"
                     value={language === 'fr' ? project.descriptionFr : project.descriptionEn}
                   />
                 </div>
