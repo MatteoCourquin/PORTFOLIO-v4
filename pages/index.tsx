@@ -24,11 +24,12 @@ import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
 import { interpolate } from '@/utils/functions';
 import { useGSAP } from '@gsap/react';
+import clsx from 'clsx';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 
 export default function Home({
   projects,
@@ -40,6 +41,7 @@ export default function Home({
   testimonials: TypeTestimonial[];
 }) {
   const { data } = useContext(LanguageContext);
+  const [activeIndexTestimonial, setActiveIndexTestimonial] = useState(0);
 
   const heroRefs = {
     triggerRef: useRef(null),
@@ -56,8 +58,7 @@ export default function Home({
       text4: useRef(null),
       text5: useRef(null),
     },
-    icons: useRef<HTMLDivElement | null>(null),
-    image: useRef(null),
+    icons: useRef<HTMLDivElement>(null),
     button: useRef(null),
   };
 
@@ -69,6 +70,11 @@ export default function Home({
       text1: useRef(null),
       text2: useRef(null),
     },
+  };
+
+  const testimonialsRefs = {
+    wrapper: useRef<HTMLDivElement>(null),
+    items: useRef<Array<HTMLDivElement | null>>([]),
   };
 
   const timelineRef = useRef(gsap.timeline({ paused: true }));
@@ -156,6 +162,7 @@ export default function Home({
 
   const playAnimation = () => {
     timelineRef.current
+      .addLabel('startAnimations')
       .add(
         gsap.to([heroRefs.lines.H1.current, heroRefs.lines.H2.current], {
           width: '100vw',
@@ -163,7 +170,7 @@ export default function Home({
           ease: 'power4.inOut',
           stagger: 0,
         }),
-        0,
+        'startAnimations',
       )
       .add(
         gsap.to([heroRefs.lines.V1.current, heroRefs.lines.V2.current], {
@@ -172,23 +179,14 @@ export default function Home({
           ease: 'power4.inOut',
           stagger: 0,
         }),
-        0,
-      )
-      .add(
-        gsap.to(heroRefs.image.current, {
-          opacity: 1,
-          filter: 'blur(8px)',
-          duration: 2,
-          ease: 'power1.out',
-        }),
-        '-=1',
+        'startAnimations',
       )
       .add(
         gsap.to([heroRefs.texts.text1.current, heroRefs.texts.text2.current], {
           x: 0,
           opacity: 1,
           duration: 1,
-          ease: 'power2.out',
+          ease: 'power4.out',
           stagger: 0.1,
         }),
         '-=1',
@@ -239,9 +237,42 @@ export default function Home({
     timelineRef.current.play();
   };
 
+  const haandleChangeIndexTestimonial = (index: number) => {
+    setActiveIndexTestimonial(index);
+
+    if (!testimonialsRefs.wrapper.current || !testimonialsRefs.items.current[index]) return;
+
+    const cardWidth = testimonialsRefs.items.current[index].getBoundingClientRect().width;
+    const gap = 40;
+
+    testimonialsRefs.wrapper.current.scrollTo({
+      left: index === 0 ? 0 : (cardWidth + gap) * index,
+      behavior: 'smooth',
+    });
+  };
+
+  const setIndexOnScrollTestimonials = () => {
+    testimonialsRefs.items.current.forEach((item, index) => {
+      ScrollTrigger.create({
+        trigger: item,
+        start: '-40px left',
+        end: 'left -40px',
+        horizontal: true,
+        onEnter: () => setActiveIndexTestimonial(index),
+        onEnterBack: () => setActiveIndexTestimonial(index),
+        scroller: testimonialsRefs.wrapper.current,
+      });
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    };
+  };
+
   useGSAP(() => {
     playAnimation();
     scrollTriggerAnimation();
+    setIndexOnScrollTestimonials();
   }, []);
 
   return (
@@ -462,9 +493,40 @@ export default function Home({
           >
             {data.home.testimonials.title}
           </Typography>
-          <div className="no-scrollbar flex flex-row overflow-x-scroll pt-y-default">
+          <div
+            ref={testimonialsRefs.wrapper}
+            className="no-scrollbar flex flex-row gap-10 overflow-x-scroll pt-y-default"
+          >
             {testimonials.map((testimonial, index) => (
-              <CardTestimonial key={testimonial.author + index} {...testimonial} />
+              <div
+                key={testimonial.author + index}
+                ref={(el) => {
+                  if (!el) return;
+                  testimonialsRefs.items.current[index] = el;
+                }}
+                className="slider-item"
+              >
+                <CardTestimonial {...testimonial} />
+              </div>
+            ))}
+          </div>
+          <div className="flex justify-center gap-1 pt-10">
+            {testimonials.map((_, index) => (
+              <div
+                key={index}
+                onClick={() => haandleChangeIndexTestimonial(index)}
+                className={clsx(
+                  'h-2 cursor-pointer overflow-hidden rounded-full transition-[opacity,width] duration-300',
+                  index === activeIndexTestimonial ? 'w-8' : 'w-2',
+                )}
+              >
+                <div
+                  className={clsx(
+                    'h-full rounded-full',
+                    index === activeIndexTestimonial ? 'bg-white' : 'bg-[#FFFFFF50]',
+                  )}
+                />
+              </div>
             ))}
           </div>
         </div>
@@ -489,14 +551,6 @@ export async function getStaticProps() {
       websiteUrl,
     }`;
 
-  const queryQuestions = `
-    *[_type == "questions"] {
-      questionEn,
-      questionFr,
-      answerEn,
-      answerFr,
-    }`;
-
   const queryTestimonials = `
     *[_type == "testimonials"] {
       author,
@@ -505,15 +559,23 @@ export async function getStaticProps() {
       testimonialEn,
     }`;
 
+  const queryQuestions = `
+    *[_type == "questions"] {
+      questionEn,
+      questionFr,
+      answerEn,
+      answerFr,
+    }`;
+
   const projects = await client.fetch(queryProjects);
-  const questions = await client.fetch(queryQuestions);
   const testimonials = await client.fetch(queryTestimonials);
+  const questions = await client.fetch(queryQuestions);
 
   return {
     props: {
       projects,
-      questions,
       testimonials,
+      questions,
     },
   };
 }

@@ -10,10 +10,11 @@ const config: Config = {
     extend: {
       colors: {
         white: '#ffffff',
-        'white-opacity': '#a3a3a3',
+        'white-light': '#a3a3a3',
         black: '#111111',
-        'black-opacity': '#585858',
+        'black-light': '#585858',
         primary: '#0034EB',
+        'primary-light': '#4191da',
       },
       padding: {
         'x-default': 'clamp(20px, 8vw, 100px)',

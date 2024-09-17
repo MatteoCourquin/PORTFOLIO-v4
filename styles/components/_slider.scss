@@ -1,0 +1,21 @@
+.slider-item {
+  flex: 0 0 50%;
+
+  &:last-child {
+    margin-right: 50%;
+  }
+
+  @media screen and (max-width: 768px) {
+    &:last-child {
+      margin-right: 25%;
+    }
+    flex: 0 0 75%;
+  }
+
+  @media screen and (min-width: 1024px) {
+    &:last-child {
+      margin-right: 66.66%;
+    }
+    flex: 0 0 33.33%;
+  }
+}

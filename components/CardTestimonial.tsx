@@ -13,10 +13,10 @@ const CardTestimonial = ({ ...testimonial }: TypeTestimonial) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="slider-item text-white">
+    <div className="text-white">
       <div className="flex flex-col pb-4">
         <Typography type={TYPOGRAPHY_TYPE.HEADING6}>{author}</Typography>
-        <Typography className="text-primary" type={TYPOGRAPHY_TYPE.TEXT}>
+        <Typography className="text-primary-light" type={TYPOGRAPHY_TYPE.TEXT}>
           @{entity}
         </Typography>
       </div>
@@ -25,7 +25,7 @@ const CardTestimonial = ({ ...testimonial }: TypeTestimonial) => {
           <IconQuote className="fill-white" />
         </div>
         <RichText
-          className={clsx(!isOpen && 'text-ellipsis-4', 'text-white-opacity')}
+          className={clsx(!isOpen && 'text-ellipsis-4', 'text-white-light')}
           value={language === 'fr' ? testimonialFr : testimonialEn}
         />
         <button className="pt-2 underline" onClick={() => setIsOpen(!isOpen)}>

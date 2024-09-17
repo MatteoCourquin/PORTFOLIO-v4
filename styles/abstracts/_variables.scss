@@ -6,10 +6,11 @@
 
 // COLORS
 $color-white: theme('colors.white');
-$color-white-opacity: theme('colors.white-opacity');
+$color-white-opacity: theme('colors.white-light');
 $color-black: theme('colors.black');
-$color-black-opacity: theme('colors.black-opacity');
+$color-black-opacity: theme('colors.black-light');
 $color-primary: theme('colors.primary');
+$color-primary-light: theme('colors.primary-light');
 
 // MAX WIDTH
 $max-width: theme('maxWidth.default');
@@ -139,26 +140,6 @@ $transition-default: all 0.3s cubic-bezier(0.84, 0, 0.16, 1);
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
-}
-
-.slider-item {
-  flex: 0 0 50%;
-
-  &:not(:last-child) {
-    padding-right: 20px;
-  }
-
-  &:not(:first-child) {
-    padding-left: 20px;
-  }
-
-  @media screen and (max-width: 768px) {
-    flex: 0 0 75%;
-  }
-
-  @media screen and (min-width: 1024px) {
-    flex: 0 0 33.33%;
-  }
 }
 
 .-left-x-calc {

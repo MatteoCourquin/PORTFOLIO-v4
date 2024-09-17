@@ -23,7 +23,7 @@ const ScrollTop = () => {
   return (
     <div
       className={clsx(
-        'right-x-calc fixed right-x-default z-[700] flex h-6 w-6 translate-y-1/2 cursor-pointer items-center justify-center transition-transform bottom-y-default sm:translate-x-10',
+        'right-x-calc fixed bottom-y-default right-x-default z-[700] flex h-6 w-6 translate-y-1/2 cursor-pointer items-center justify-center transition-transform sm:translate-x-10',
         display ? 'scale-100' : 'scale-0',
       )}
       onClick={scrollTop}
