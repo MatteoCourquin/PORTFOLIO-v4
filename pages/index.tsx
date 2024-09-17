@@ -516,14 +516,14 @@ export default function Home({
                 key={index}
                 onClick={() => haandleChangeIndexTestimonial(index)}
                 className={clsx(
-                  'h-2 cursor-pointer overflow-hidden rounded-full transition-[opacity,width] duration-300',
+                  'h-2 cursor-pointer overflow-hidden rounded-full transition-[width] duration-300',
                   index === activeIndexTestimonial ? 'w-8' : 'w-2',
                 )}
               >
                 <div
                   className={clsx(
-                    'h-full rounded-full',
-                    index === activeIndexTestimonial ? 'bg-white' : 'bg-[#FFFFFF50]',
+                    'h-full rounded-full transition-colors duration-300',
+                    index === activeIndexTestimonial ? 'bg-primary-light' : 'bg-[#FFFFFF50]',
                   )}
                 />
               </div>

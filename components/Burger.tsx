@@ -4,7 +4,7 @@ import { useLenis } from '@studio-freight/react-lenis';
 import clsx from 'clsx';
 import gsap from 'gsap';
 import Link from 'next/link';
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import Button, { BUTTON_TYPE } from './atoms/Button';
 import { IconGithub, IconInsta, IconLinkedin } from './atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
@@ -16,14 +16,6 @@ const Burger = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [display, setDisplay] = useState(false);
   const lenis = useLenis();
-
-  lenis?.on('scroll', (event: { targetScroll: number }) => {
-    if (event.targetScroll > 300 || window.innerWidth < 1024) {
-      setDisplay(true);
-    } else {
-      setDisplay(false);
-    }
-  });
 
   const text1Ref = useRef(null);
   const text2Ref = useRef(null);
@@ -217,6 +209,29 @@ const Burger = () => {
     setIsOpen(false);
     closeBurger();
   };
+
+  lenis?.on('scroll', (event: { targetScroll: number }) => {
+    if (event.targetScroll > 300) {
+      setDisplay(true);
+    } else {
+      setDisplay(false);
+    }
+  });
+
+  useEffect(() => {
+    const showBurger = () => {
+      if (window.innerWidth < 1024) {
+        setDisplay(true);
+      } else {
+        setDisplay(false);
+      }
+    };
+    showBurger();
+    window.addEventListener('resize', showBurger);
+    return () => {
+      window.removeEventListener('resize', showBurger);
+    };
+  }, []);
 
   return (
     <>
