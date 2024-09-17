@@ -33,7 +33,7 @@ export default function Contact() {
             <FormContact />
             <div className="flex flex-col items-center justify-center gap-8">
               <Typography
-                className="text-black-opacity"
+                className="text-black-light"
                 as={TYPOGRAPHY_TYPE.TEXT}
                 dangerouslySetInnerHTML={data.contact.consultation}
               />

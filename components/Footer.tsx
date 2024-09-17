@@ -46,26 +46,23 @@ const Footer = () => {
           >
             Menu
           </Typography>
-          <Link
-            className="link link_white heading5 !font-thin uppercase text-white-opacity"
-            href="/"
-          >
+          <Link className="link link_white heading5 !font-thin uppercase text-white-light" href="/">
             {data.nav.home}
           </Link>
           <Link
-            className="link link_white heading5 whitespace-nowrap !font-thin uppercase text-white-opacity"
+            className="link link_white heading5 whitespace-nowrap !font-thin uppercase text-white-light"
             href="/projects"
           >
             {data.nav.projects}
           </Link>
           <Link
-            className="link link_white heading5 whitespace-nowrap !font-thin uppercase text-white-opacity"
+            className="link link_white heading5 whitespace-nowrap !font-thin uppercase text-white-light"
             href="/about"
           >
             {data.nav.about}
           </Link>
           <Link
-            className="link link_white heading5 whitespace-nowrap !font-thin uppercase text-white-opacity"
+            className="link link_white heading5 whitespace-nowrap !font-thin uppercase text-white-light"
             href="/contact"
           >
             {data.nav.contact}
@@ -97,7 +94,7 @@ const Footer = () => {
       </div>
       <Typography
         type={TYPOGRAPHY_TYPE.TEXT}
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-white-opacity"
+        className="absolute bottom-4 left-1/2 -translate-x-1/2 text-sm text-white-light"
       >
         MATTEO COURQUIN ©{new Date().getFullYear()}
       </Typography>

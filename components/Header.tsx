@@ -12,16 +12,22 @@ const Header = () => {
         pathname === '/' ? 'mix-blend-normal' : 'mix-blend-difference',
       )}
     >
-      <Link href="/">
+      <Link href="/" className={clsx('link link_white', pathname === '/' && 'active')}>
         <Typography as={TYPOGRAPHY_TYPE.HEADING6}>Home</Typography>
       </Link>
-      <Link href="/about">
+      <Link href="/about" className={clsx('link link_white', pathname === '/about' && 'active')}>
         <Typography as={TYPOGRAPHY_TYPE.HEADING6}>About</Typography>
       </Link>
-      <Link href="/projects">
+      <Link
+        href="/projects"
+        className={clsx('link link_white', pathname === '/projects' && 'active')}
+      >
         <Typography as={TYPOGRAPHY_TYPE.HEADING6}>Projects</Typography>
       </Link>
-      <Link href="/contact">
+      <Link
+        href="/contact"
+        className={clsx('link link_white', pathname === '/contact' && 'active')}
+      >
         <Typography as={TYPOGRAPHY_TYPE.HEADING6}>Contact</Typography>
       </Link>
     </header>
