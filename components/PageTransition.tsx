@@ -1,33 +1,6 @@
 import { motion, TargetAndTransition } from 'framer-motion';
 import { ReactNode, useEffect, useState } from 'react';
 
-// const routes: { [key: string]: string } = {
-//   '/': 'Home',
-//   '/about': 'About',
-//   '/contact': 'Contact',
-//   '/projects': 'Projects',
-//   '/projects/[project]': 'Project',
-// };
-
-// const text = {
-//   initial: {
-//     opacity: 1,
-//     visibility: 'visible',
-//   },
-//   enter: {
-//     opacity: 0,
-//     top: -100,
-//     transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] },
-//     transitionEnd: { top: '47.5%', visibility: 'hidden' },
-//   },
-//   exit: {
-//     opacity: 1,
-//     top: '40%',
-//     visibility: 'visible',
-//     transition: { duration: 0.5, delay: 0.4, ease: [0.33, 1, 0.68, 1] },
-//   },
-// };
-
 export const curve = (initialPath: string, targetPath: string) => {
   return {
     initial: {
@@ -35,11 +8,11 @@ export const curve = (initialPath: string, targetPath: string) => {
     },
     enter: {
       d: targetPath,
-      transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] },
+      transition: { duration: 0.6, delay: 0.3, ease: [0.76, 0, 0.24, 1] },
     },
     exit: {
       d: initialPath,
-      transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] },
+      transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] },
     },
   };
 };
@@ -50,14 +23,14 @@ export const translate = {
   },
   enter: {
     top: '-100vh',
-    transition: { duration: 0.75, delay: 0.35, ease: [0.76, 0, 0.24, 1] },
+    transition: { duration: 0.6, delay: 0.3, ease: [0.76, 0, 0.24, 1] },
     transitionEnd: {
       top: '100vh',
     },
   },
   exit: {
     top: '-300px',
-    transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] },
+    transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] },
   },
 };
 
@@ -77,12 +50,12 @@ export default function PageTransition({ children }: { children: ReactNode }) {
   });
 
   useEffect(() => {
-    function resize() {
+    const resize = () => {
       setDimensions({
         width: window.innerWidth,
         height: window.innerHeight,
       });
-    }
+    };
     resize();
     window.addEventListener('resize', resize);
     return () => {
