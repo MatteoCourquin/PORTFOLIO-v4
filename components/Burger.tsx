@@ -211,7 +211,7 @@ const Burger = () => {
   };
 
   lenis?.on('scroll', (event: { targetScroll: number }) => {
-    if (event.targetScroll > 300) {
+    if (event.targetScroll > 300 || window.innerWidth < 1024) {
       setDisplay(true);
     } else {
       setDisplay(false);
@@ -331,7 +331,7 @@ const Burger = () => {
       <div
         className={clsx(
           'right-x-calc fixed right-x-default top-y-default z-[700] -translate-y-1/2 transition-[transform,height,width] sm:translate-x-10',
-          display ? 'scale-100' : 'scale-0',
+          display || isOpen ? 'scale-100' : 'scale-0',
         )}
       >
         <Button
