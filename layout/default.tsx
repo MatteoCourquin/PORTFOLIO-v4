@@ -1,4 +1,5 @@
 import Burger from '@/components/Burger';
+import Cursor from '@/components/Cursor';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import ScrollTop from '@/components/ScrollTop';
@@ -43,6 +44,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
           />
           <link rel="icon" href="/favicon.ico" />
         </Head>
+        <Cursor />
         <ScrollTop />
         <Header />
         <Burger />

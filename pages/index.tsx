@@ -15,21 +15,21 @@ import {
 } from '@/components/atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
-import CardTestimonial from '@/components/CardTestimonial';
 import DropUp from '@/components/DropUp';
 import Questions from '@/components/Questions';
 import SEO from '@/components/SEO';
+import Testimonials from '@/components/Testimonials';
 import { TypeProject, TypeQuestion, TypeTestimonial } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
 import { interpolate } from '@/utils/functions';
 import { useGSAP } from '@gsap/react';
-import clsx from 'clsx';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useContext, useRef, useState } from 'react';
+import { useContext, useRef } from 'react';
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home({
   projects,
@@ -41,7 +41,6 @@ export default function Home({
   testimonials: TypeTestimonial[];
 }) {
   const { data } = useContext(LanguageContext);
-  const [activeIndexTestimonial, setActiveIndexTestimonial] = useState(0);
 
   const heroRefs = {
     triggerRef: useRef(null),
@@ -72,16 +71,9 @@ export default function Home({
     },
   };
 
-  const testimonialsRefs = {
-    wrapper: useRef<HTMLDivElement>(null),
-    items: useRef<Array<HTMLDivElement | null>>([]),
-  };
-
   const timelineRef = useRef(gsap.timeline({ paused: true }));
 
   const scrollTriggerAnimation = () => {
-    gsap.registerPlugin(ScrollTrigger);
-
     gsap.to(heroRefs.texts.text1.current, {
       xPercent: 70,
       ease: 'power4.out',
@@ -237,42 +229,9 @@ export default function Home({
     timelineRef.current.play();
   };
 
-  const haandleChangeIndexTestimonial = (index: number) => {
-    setActiveIndexTestimonial(index);
-
-    if (!testimonialsRefs.wrapper.current || !testimonialsRefs.items.current[index]) return;
-
-    const cardWidth = testimonialsRefs.items.current[index].getBoundingClientRect().width;
-    const gap = 40;
-
-    testimonialsRefs.wrapper.current.scrollTo({
-      left: index === 0 ? 0 : (cardWidth + gap) * index,
-      behavior: 'smooth',
-    });
-  };
-
-  const setIndexOnScrollTestimonials = () => {
-    testimonialsRefs.items.current.forEach((item, index) => {
-      ScrollTrigger.create({
-        trigger: item,
-        start: '-40px left',
-        end: 'left -40px',
-        horizontal: true,
-        onEnter: () => setActiveIndexTestimonial(index),
-        onEnterBack: () => setActiveIndexTestimonial(index),
-        scroller: testimonialsRefs.wrapper.current,
-      });
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  };
-
   useGSAP(() => {
     playAnimation();
     scrollTriggerAnimation();
-    setIndexOnScrollTestimonials();
   }, []);
 
   return (
@@ -487,48 +446,7 @@ export default function Home({
       </section>
       <section className="bg-black px-x-default">
         <div className="mx-auto max-w-default py-y-default">
-          <Typography
-            className="w-full text-center uppercase text-white sm:text-left"
-            type={TYPOGRAPHY_TYPE.HEADING3}
-          >
-            {data.home.testimonials.title}
-          </Typography>
-          <div
-            ref={testimonialsRefs.wrapper}
-            className="no-scrollbar flex flex-row gap-10 overflow-x-scroll pt-y-default"
-          >
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={testimonial.author + index}
-                ref={(el) => {
-                  if (!el) return;
-                  testimonialsRefs.items.current[index] = el;
-                }}
-                className="slider-item"
-              >
-                <CardTestimonial {...testimonial} />
-              </div>
-            ))}
-          </div>
-          <div className="flex justify-center gap-1 pt-10">
-            {testimonials.map((_, index) => (
-              <div
-                key={index}
-                onClick={() => haandleChangeIndexTestimonial(index)}
-                className={clsx(
-                  'h-2 cursor-pointer overflow-hidden rounded-full transition-[width] duration-300',
-                  index === activeIndexTestimonial ? 'w-8' : 'w-2',
-                )}
-              >
-                <div
-                  className={clsx(
-                    'h-full rounded-full transition-colors duration-300',
-                    index === activeIndexTestimonial ? 'bg-primary-light' : 'bg-[#FFFFFF50]',
-                  )}
-                />
-              </div>
-            ))}
-          </div>
+          <Testimonials testimonials={testimonials} />
         </div>
       </section>
       <section className="px-x-default py-y-default">

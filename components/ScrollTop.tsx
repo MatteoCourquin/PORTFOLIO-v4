@@ -28,9 +28,9 @@ const ScrollTop = () => {
       )}
       onClick={scrollTop}
     >
-      <div className="absolute h-[1px] w-4 translate-x-[6px] rotate-45 backdrop-invert"></div>
-      <div className="absolute h-[1px] w-[1px] -translate-y-[6px] translate-x-0 rotate-45 backdrop-invert"></div>
-      <div className="absolute h-[1px] w-4 -translate-x-[6px] -rotate-45 backdrop-invert"></div>
+      <div className="absolute h-[1px] w-4 translate-x-[6px] rotate-45 backdrop-invert" />
+      <div className="absolute h-[1px] w-[1px] -translate-y-[6px] translate-x-0 rotate-45 backdrop-invert" />
+      <div className="absolute h-[1px] w-4 -translate-x-[6px] -rotate-45 backdrop-invert" />
     </div>
   );
 };
