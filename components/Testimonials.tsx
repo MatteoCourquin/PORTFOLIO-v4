@@ -69,7 +69,7 @@ const Testimonials = ({ testimonials }: { testimonials: TypeTestimonial[] }) => 
               if (!el) return;
               itemsRef.current[index] = el;
             }}
-            className="slider-item"
+            className={clsx('slider-item', index === testimonials.length && 'margin-right')}
           >
             <CardTestimonial {...testimonial} />
           </div>
@@ -88,7 +88,7 @@ const Testimonials = ({ testimonials }: { testimonials: TypeTestimonial[] }) => 
             <div
               className={clsx(
                 'h-full rounded-full transition-colors duration-300',
-                index === activeIndexTestimonial ? 'bg-primary-light' : 'bg-[#FFFFFF50]',
+                index === activeIndexTestimonial ? 'bg-white' : 'bg-[#FFFFFF50]',
               )}
             />
           </div>
