@@ -66,9 +66,6 @@ export default function PageTransition({ children }: { children: ReactNode }) {
   return (
     <div className="page curve">
       <div style={{ opacity: dimensions.width == 0 ? 1 : 0 }} className="background" />
-      {/* <motion.div className="route" {...anim(text)}>
-        <Typography type={TYPOGRAPHY_TYPE.HEADING1}>{routes[router.route]}</Typography>
-      </motion.div> */}
       {dimensions.width !== 0 && dimensions.height !== 0 && <SVG {...dimensions} />}
       {children}
     </div>
