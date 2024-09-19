@@ -1,5 +1,6 @@
 import { TypeTestimonial } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
+import { calculatePadding } from '@/utils/functions';
 import clsx from 'clsx';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
@@ -33,8 +34,8 @@ const Testimonials = ({ testimonials }: { testimonials: TypeTestimonial[] }) => 
     itemsRef.current.forEach((item, index) => {
       ScrollTrigger.create({
         trigger: item,
-        start: '-40px left',
-        end: 'left -40px',
+        start: () => `·-40px ${calculatePadding()}`,
+        end: () => `·${calculatePadding()} -40px`,
         horizontal: true,
         onEnter: () => setActiveIndexTestimonial(index),
         onEnterBack: () => setActiveIndexTestimonial(index),
@@ -50,30 +51,33 @@ const Testimonials = ({ testimonials }: { testimonials: TypeTestimonial[] }) => 
   useEffect(() => {
     setIndexOnScrollTestimonials();
   }, []);
+
   return (
     <>
       <Typography
-        className="w-full text-center uppercase text-white sm:text-left"
+        className="px-x-default-calc w-full text-center uppercase text-white sm:text-left"
         type={TYPOGRAPHY_TYPE.HEADING3}
       >
         {data.home.testimonials.title}
       </Typography>
-      <div
-        ref={wrapperRef}
-        className="no-scrollbar flex flex-row gap-10 overflow-x-scroll pt-y-default"
-      >
-        {testimonials.map((testimonial, index) => (
-          <div
-            key={testimonial.author + index}
-            ref={(el) => {
-              if (!el) return;
-              itemsRef.current[index] = el;
-            }}
-            className={clsx('slider-item', index === testimonials.length && 'margin-right')}
-          >
-            <CardTestimonial {...testimonial} />
-          </div>
-        ))}
+      <div className="shadow-x-black">
+        <div
+          ref={wrapperRef}
+          className="no-scrollbar px-x-default-calc flex flex-row overflow-x-scroll pt-y-default"
+        >
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={testimonial.author + index}
+              ref={(el) => {
+                if (!el) return;
+                itemsRef.current[index] = el;
+              }}
+              className={clsx('slider-item', index + 1 === testimonials.length && 'margin-right')}
+            >
+              <CardTestimonial {...testimonial} />
+            </div>
+          ))}
+        </div>
       </div>
       <div className="flex justify-center gap-1 pt-10">
         {testimonials.map((_, index) => (

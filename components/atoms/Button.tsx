@@ -20,7 +20,7 @@ type ButtonProps = {
   as: 'a' | 'button';
   target?: '_blank';
   type?: BUTTON_TYPE;
-  color?: 'black' | 'white' | 'red';
+  color?: 'black' | 'white';
   href?: string;
   children: ReactNode;
   className?: string;
@@ -95,7 +95,6 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement | null, ButtonPr
                 color === 'black' && type === BUTTON_TYPE.SECONDARY && 'bg-black',
                 color === 'white' && type === BUTTON_TYPE.PRIMARY && 'bg-black',
                 color === 'white' && type === BUTTON_TYPE.SECONDARY && 'bg-white',
-                color === 'red' && 'bg-black',
               )}
             ></div>
             <span
@@ -138,7 +137,6 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement | null, ButtonPr
                 color === 'white' && type === BUTTON_TYPE.PRIMARY && 'bg-black',
                 color === 'white' && type === BUTTON_TYPE.SECONDARY && 'bg-white',
                 color === 'white' && type === BUTTON_TYPE.ICON && 'bg-black',
-                color === 'red' && 'bg-black',
               )}
             ></div>
             <div

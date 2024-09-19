@@ -1,3 +1,6 @@
+const MAX_WIDTH = 1730;
+const RESPONSIVE_WIDTH = 1920;
+
 export const formatSlug = (slug: string) =>
   slug
     .toLowerCase()
@@ -25,3 +28,13 @@ export const formatDate = (date: string, language: string) => {
 export const formatDateToYear = (date: string) => {
   return new Date(date).getFullYear();
 };
+
+export const calculateClamp = (min: number, current: number, max: number) => {
+  const vw = window.innerWidth * (current / 100);
+  return Math.min(Math.max(min, vw), max);
+};
+
+export const calculatePadding = () =>
+  window.innerWidth > RESPONSIVE_WIDTH
+    ? (window.innerWidth - MAX_WIDTH) / 2
+    : calculateClamp(20, 8, 100);

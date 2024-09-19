@@ -75,7 +75,7 @@ export default function Home({
 
   const scrollTriggerAnimation = () => {
     gsap.to(heroRefs.texts.text1.current, {
-      xPercent: 70,
+      xPercent: 100,
       ease: 'power4.out',
       scrollTrigger: {
         start: 'top top',
@@ -86,7 +86,7 @@ export default function Home({
     });
 
     gsap.to(heroRefs.texts.text2.current, {
-      xPercent: -70,
+      xPercent: -100,
       ease: 'power4.out',
       scrollTrigger: {
         start: 'top top',
@@ -280,7 +280,7 @@ export default function Home({
             <Typography
               ref={heroRefs.texts.text1}
               type={TYPOGRAPHY_TYPE.HEADING1}
-              className="text-home w-full -translate-x-full whitespace-nowrap text-left opacity-0"
+              className="text-home w-full -translate-x-full whitespace-nowrap text-center opacity-0 sm:text-left"
             >
               MA<span className="inline-block -translate-x-2">TTEO</span>
             </Typography>
@@ -288,7 +288,7 @@ export default function Home({
               ref={heroRefs.texts.text2}
               type={TYPOGRAPHY_TYPE.HEADING2}
               as={TYPOGRAPHY_TYPE.HEADING1}
-              className="text-home shrink translate-x-full self-end whitespace-nowrap pb-4 text-right opacity-0"
+              className="text-home w-full shrink translate-x-full self-end whitespace-nowrap pb-4 text-center opacity-0 sm:text-right"
             >
               COURQUIN
             </Typography>
@@ -301,7 +301,10 @@ export default function Home({
                 dangerouslySetInnerHTML={data.home.hero.subtitle}
                 className="text-center md:text-left"
               />
-              <Link href="/contact" className="flex w-fit items-center gap-3 text-green-500">
+              <Link
+                href="/contact"
+                className="hidden w-fit items-center gap-3 text-green-500 md:flex"
+              >
                 <div className="relative flex h-2 w-2 items-center justify-center">
                   <div className="absolute h-1 w-1 animate-pulse rounded-full bg-green-500"></div>
                   <div className="absolute h-2 w-2 animate-ping rounded-full bg-green-500"></div>
@@ -444,8 +447,8 @@ export default function Home({
           </Button>
         </div>
       </section>
-      <section className="bg-black px-x-default">
-        <div className="mx-auto max-w-default py-y-default">
+      <section className="bg-black">
+        <div className="py-y-default">
           <Testimonials testimonials={testimonials} />
         </div>
       </section>
