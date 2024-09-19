@@ -19,3 +19,15 @@
     flex: 0 0 33.33%;
   }
 }
+
+.slider-item.margin-right {
+  margin-right: 50%;
+
+  @media screen and (max-width: 768px) {
+    margin-right: 25%;
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin-right: 66.66%;
+  }
+}
