@@ -79,20 +79,17 @@ const Testimonials = ({ testimonials }: { testimonials: TypeTestimonial[] }) => 
           ))}
         </div>
       </div>
-      <div className="flex justify-center gap-1 pt-10">
+      <div className="flex justify-center pt-10">
         {testimonials.map((_, index) => (
           <div
             key={index}
             onClick={() => haandleChangeIndexTestimonial(index)}
-            className={clsx(
-              'h-2 cursor-pointer overflow-hidden rounded-full transition-[width] duration-300',
-              index === activeIndexTestimonial ? 'w-8' : 'w-2',
-            )}
+            className="cursor-pointer overflow-hidden rounded-full px-0.5 py-1"
           >
             <div
               className={clsx(
-                'h-full rounded-full transition-colors duration-300',
-                index === activeIndexTestimonial ? 'bg-white' : 'bg-[#FFFFFF50]',
+                'h-2 rounded-full transition-[width] duration-300',
+                index === activeIndexTestimonial ? 'w-8 bg-white' : 'w-2 bg-[#FFFFFF50]',
               )}
             />
           </div>
