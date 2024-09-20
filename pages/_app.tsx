@@ -24,11 +24,11 @@ export default function App({ Component, pageProps }: AppProps) {
         lenis.scrollTo(0, {
           immediate: true,
         });
-      }, 1000);
+      }, 800);
     };
 
     router.events.on('routeChangeStart', handleRouteChange);
-  }, [router.events, lenis]);
+  }, [router.events, lenis, pathname]);
 
   return (
     <>

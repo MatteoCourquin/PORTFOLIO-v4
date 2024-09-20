@@ -1,7 +1,7 @@
 import { motion, TargetAndTransition } from 'framer-motion';
 import { ReactNode, useEffect, useState } from 'react';
 
-export const curve = (initialPath: string, targetPath: string) => {
+const curve = (initialPath: string, targetPath: string) => {
   return {
     initial: {
       d: initialPath,
@@ -17,7 +17,7 @@ export const curve = (initialPath: string, targetPath: string) => {
   };
 };
 
-export const translate = {
+const translate = {
   initial: {
     top: '-300px',
   },
@@ -30,6 +30,23 @@ export const translate = {
   },
   exit: {
     top: '-300px',
+    transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] },
+  },
+};
+
+const translateMain = {
+  initial: {
+    opacity: 0,
+    y: '50vh',
+  },
+  enter: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, delay: 0.2, ease: [0.76, 0, 0.24, 1] },
+  },
+  exit: {
+    opacity: 0,
+    y: '-20vh',
     transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] },
   },
 };
@@ -67,7 +84,7 @@ export default function PageTransition({ children }: { children: ReactNode }) {
     <div className="page curve">
       <div style={{ opacity: dimensions.width == 0 ? 1 : 0 }} className="background" />
       {dimensions.width !== 0 && dimensions.height !== 0 && <SVG {...dimensions} />}
-      {children}
+      <motion.main {...anim(translateMain)}>{children}</motion.main>
     </div>
   );
 }
