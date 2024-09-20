@@ -65,7 +65,7 @@ export default function PageTransition({ children }: { children: ReactNode }) {
 
   return (
     <div className="page curve">
-      <div style={{ opacity: dimensions.width == 0 ? 1 : 0 }} className="background" />
+      {/* <div style={{ opacity: dimensions.width == 0 ? 1 : 0 }} className="background" /> */}
       {dimensions.width !== 0 && dimensions.height !== 0 && <SVG {...dimensions} />}
       {children}
     </div>
