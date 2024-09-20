@@ -1,5 +1,6 @@
 import Button, { BUTTON_SIZE, BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
+import PageTransition from '@/components/PageTransition';
 import { LanguageContext } from '@/layout/default';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
@@ -25,7 +26,7 @@ export default function Contact() {
   }, [countdown, router]);
 
   return (
-    <>
+    <PageTransition>
       <section className="mx-auto flex min-h-screen max-w-default flex-col items-center justify-center gap-8 px-x-default py-y-default text-center">
         <Typography type={TYPOGRAPHY_TYPE.HEADING1} className="text-center">
           {data.success.title}
@@ -44,6 +45,6 @@ export default function Contact() {
           </Button>
         </div>
       </section>
-    </>
+    </PageTransition>
   );
 }

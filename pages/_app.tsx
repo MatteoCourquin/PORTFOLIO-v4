@@ -1,4 +1,3 @@
-import PageTransition from '@/components/PageTransition';
 import Layout from '@/layout/default';
 import SmoothScrolling from '@/layout/lenis';
 import '@/styles/main.scss';
@@ -7,6 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 import type { AppProps } from 'next/app';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/router';
+import path from 'path';
 import { useEffect } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -30,21 +30,19 @@ export default function App({ Component, pageProps }: AppProps) {
     router.events.on('routeChangeStart', handleRouteChange);
   }, [router.events, lenis, pathname]);
 
+  useEffect(() => {
+    console.log(pathname);
+  }, [pathname]);
+
   return (
     <>
-      {pathname?.includes('studio') ? (
-        <Component {...pageProps} />
-      ) : (
-        <Layout>
-          <SmoothScrolling>
-            <AnimatePresence mode="wait">
-              <PageTransition key={pathname}>
-                <Component key={pathname} {...pageProps} />
-              </PageTransition>
-            </AnimatePresence>
-          </SmoothScrolling>
-        </Layout>
-      )}
+      <Layout>
+        <SmoothScrolling>
+          <AnimatePresence mode="wait">
+            <Component key={router.asPath} {...pageProps} />
+          </AnimatePresence>
+        </SmoothScrolling>
+      </Layout>
     </>
   );
 }
