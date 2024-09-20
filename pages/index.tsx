@@ -16,6 +16,7 @@ import {
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
 import DropUp from '@/components/DropUp';
+import PageTransition from '@/components/PageTransition';
 import Questions from '@/components/Questions';
 import SEO from '@/components/SEO';
 import Testimonials from '@/components/Testimonials';
@@ -235,7 +236,7 @@ export default function Home({
   }, []);
 
   return (
-    <>
+    <PageTransition>
       <SEO title={data.head.titleIndex} image="/ogIndex.png" />
       <section
         ref={heroRefs.triggerRef}
@@ -457,7 +458,7 @@ export default function Home({
           <Questions questions={questions} />
         </div>
       </section>
-    </>
+    </PageTransition>
   );
 }
 

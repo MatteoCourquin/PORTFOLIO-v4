@@ -2,6 +2,7 @@ import Button, { BUTTON_SIZE } from '@/components/atoms/Button';
 import { IconArrowTopRight, IconBack } from '@/components/atoms/Icons';
 import RichText from '@/components/atoms/RichText';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
+import PageTransition from '@/components/PageTransition';
 import SEO from '@/components/SEO';
 import { TypeProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
@@ -99,7 +100,7 @@ export default function Page({ project }: { project: TypeProject }) {
   }, []);
 
   return (
-    <>
+    <PageTransition>
       <SEO
         title={'Matteo Courquin • ' + project.title}
         image={project.ogImage ? urlForImage(project.ogImage).toString() : '/ogProjects.png'}
@@ -230,7 +231,7 @@ export default function Page({ project }: { project: TypeProject }) {
           </div>
         </div>
       </div>
-    </>
+    </PageTransition>
   );
 }
 
