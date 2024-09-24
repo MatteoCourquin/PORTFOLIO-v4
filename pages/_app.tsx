@@ -6,7 +6,6 @@ import { AnimatePresence } from 'framer-motion';
 import type { AppProps } from 'next/app';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/router';
-import path from 'path';
 import { useEffect } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -30,19 +29,19 @@ export default function App({ Component, pageProps }: AppProps) {
     router.events.on('routeChangeStart', handleRouteChange);
   }, [router.events, lenis, pathname]);
 
-  useEffect(() => {
-    console.log(pathname);
-  }, [pathname]);
-
   return (
     <>
-      <Layout>
-        <SmoothScrolling>
-          <AnimatePresence mode="wait">
-            <Component key={router.asPath} {...pageProps} />
-          </AnimatePresence>
-        </SmoothScrolling>
-      </Layout>
+      {pathname?.includes('studio') ? (
+        <Component key={pathname} {...pageProps} />
+      ) : (
+        <Layout>
+          <SmoothScrolling>
+            <AnimatePresence mode="wait">
+              <Component key={pathname} {...pageProps} />
+            </AnimatePresence>
+          </SmoothScrolling>
+        </Layout>
+      )}
     </>
   );
 }
