@@ -1,4 +1,3 @@
-import PageTransition from '@/components/PageTransition';
 import Layout from '@/layout/default';
 import SmoothScrolling from '@/layout/lenis';
 import '@/styles/main.scss';
@@ -33,14 +32,12 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       {pathname?.includes('studio') ? (
-        <Component {...pageProps} />
+        <Component key={pathname} {...pageProps} />
       ) : (
         <Layout>
           <SmoothScrolling>
             <AnimatePresence mode="wait">
-              <PageTransition key={pathname}>
-                <Component key={pathname} {...pageProps} />
-              </PageTransition>
+              <Component key={pathname} {...pageProps} />
             </AnimatePresence>
           </SmoothScrolling>
         </Layout>

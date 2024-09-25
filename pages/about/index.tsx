@@ -1,6 +1,7 @@
 import { IconBack } from '@/components/atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardCareer from '@/components/CardCareer';
+import PageTransition from '@/components/PageTransition';
 import Questions from '@/components/Questions';
 import SEO from '@/components/SEO';
 import { TypeCareer, TypeQuestion } from '@/data/types';
@@ -126,7 +127,7 @@ export default function About({
   }, [data]);
 
   return (
-    <>
+    <PageTransition>
       <SEO title={data.head.titleAbout} image="/ogAbout.png" />
       <div className="absolute left-x-default top-y-default z-50 flex -translate-y-1/2 cursor-pointer items-center shadow-white transition-transform sm:-translate-x-1/2">
         <div
@@ -236,7 +237,7 @@ export default function About({
           <Questions questions={questions} />
         </div>
       </section>
-    </>
+    </PageTransition>
   );
 }
 

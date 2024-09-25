@@ -2,6 +2,7 @@ import Button, { BUTTON_TYPE } from '@/components/atoms/Button';
 import { IconBack } from '@/components/atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
+import PageTransition from '@/components/PageTransition';
 import SEO from '@/components/SEO';
 import { TypeFilters, TypeProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
@@ -88,7 +89,7 @@ export default function Projects({
   }, []);
 
   return (
-    <>
+    <PageTransition>
       <SEO title={data.head.titleProjects} image="/ogProjects.png" />
       <section className="flex h-[60vh] items-center justify-center">
         <Typography
@@ -182,7 +183,7 @@ export default function Projects({
           </div>
         </div>
       </section>
-    </>
+    </PageTransition>
   );
 }
 

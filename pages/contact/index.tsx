@@ -2,6 +2,7 @@ import Button, { BUTTON_SIZE, BUTTON_TYPE } from '@/components/atoms/Button';
 import { IconBack } from '@/components/atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import FormContact from '@/components/FormContact';
+import PageTransition from '@/components/PageTransition';
 import SEO from '@/components/SEO';
 import { LanguageContext } from '@/layout/default';
 import { useMagnet, useResetMagnet } from '@/utils/animations';
@@ -13,7 +14,7 @@ export default function Contact() {
   const router = useRouter();
 
   return (
-    <>
+    <PageTransition>
       <SEO title={data.head.titleAbout} image="/ogContact.png" />
       <section className="px-x-default py-y-default">
         <div className="absolute left-x-default top-y-default z-50 flex -translate-y-1/2 cursor-pointer items-center shadow-white transition-transform sm:-translate-x-1/2">
@@ -50,6 +51,6 @@ export default function Contact() {
           </div>
         </div>
       </section>
-    </>
+    </PageTransition>
   );
 }

@@ -7,6 +7,7 @@ import english from '@/data/languages/english.json';
 import french from '@/data/languages/french.json';
 import { Language } from '@/data/types';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Analytics } from '@vercel/analytics/react';
 import Head from 'next/head';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 
@@ -50,6 +51,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <Burger />
         <main>{children}</main>
         <Footer />
+        <Analytics />
       </LanguageContext.Provider>
     </QueryClientProvider>
   );
