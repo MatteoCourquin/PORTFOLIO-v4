@@ -1,4 +1,5 @@
 import { TypeProject } from '@/data/types';
+import { LanguageContext } from '@/layout/default';
 import { urlForImage } from '@/sanity/lib/image';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -10,7 +11,6 @@ import AnimText, { ANIM_TEXT_TYPE } from './AnimText';
 import Button, { BUTTON_SIZE } from './atoms/Button';
 import { IconArrowTopRight } from './atoms/Icons';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
-import { LanguageContext } from '@/layout/default';
 
 const CardProject = ({
   projectIndex,
