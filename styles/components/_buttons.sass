@@ -1,0 +1,155 @@
+.wrapper-button
+  display: flex
+  justify-content: center
+  align-items: center
+  cursor: pointer
+  border-radius: 9999px
+  position: relative
+  overflow: hidden
+
+.button
+  display: flex
+  justify-content: center
+  align-items: center
+  width: fit-content
+  white-space: nowrap
+  font-family: $font-clash-display
+  text-transform: uppercase
+  width: 100%
+  height: 100%
+  display: flex
+  mix-blend-mode: difference
+
+.button-icon.button-white
+  border: 1px solid $color-black
+  background-color: $color-white
+  color: $color-white
+
+.button-primary.button-white
+  border: 1px solid $color-white
+  background-color: $color-white
+  color: $color-white
+
+.button-primary.button-black
+  border: 1px solid $color-black
+  background-color: $color-black
+  color: $color-white
+
+.button-secondary.button-white
+  border: 1px solid $color-white
+  background-color: $color-black
+  color: $color-white
+
+.button-secondary.button-black
+  border: 1px solid $color-black
+  background-color: $color-white
+  color: $color-white
+
+.button-icon
+  padding: 0 !important
+
+.button-s
+  padding: 4px 24px
+  font-size: 16px
+
+.button-m
+  padding: 6px 32px
+  font-size: clamp(1rem, 1.5vw, 3rem)
+
+.button-l
+  padding: 12px clamp(3rem, 8vw, 6rem)
+  font-size: clamp(1rem, 2vw, 2rem)
+
+.circle-button
+  width: 210%
+  height: auto
+  aspect-ratio: 1/1
+  transition: transform 0.4s cubic-bezier(0.66, 0, 0.35, 1)
+
+.circle-button.active
+  transform: translate(-50%, -50%) scale(1)
+
+.circle-button.inactive
+  transform: translate(-50%, -50%) scale(0)
+
+  // .wrapper-button {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   cursor: pointer;
+//   border-radius: 9999px;
+//   position: relative;
+//   overflow: hidden;
+// }
+
+// .button {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: fit-content;
+//   white-space: nowrap;
+//   font-family: $font-clash-display;
+//   text-transform: uppercase;
+//   width: 100%;
+//   height: 100%;
+//   display: flex;
+//   mix-blend-mode: difference;
+// }
+
+// .button-icon.button-white {
+//   border: 1px solid $color-black;
+//   background-color: $color-white;
+//   color: $color-white;
+// }
+// .button-primary.button-white {
+//   border: 1px solid $color-white;
+//   background-color: $color-white;
+//   color: $color-white;
+// }
+// .button-primary.button-black {
+//   border: 1px solid $color-black;
+//   background-color: $color-black;
+//   color: $color-white;
+// }
+
+// .button-secondary.button-white {
+//   border: 1px solid $color-white;
+//   background-color: $color-black;
+//   color: $color-white;
+// }
+// .button-secondary.button-black {
+//   border: 1px solid $color-black;
+//   background-color: $color-white;
+//   color: $color-white;
+// }
+
+// .button-icon {
+//   padding: 0 !important;
+// }
+
+// .button-s {
+//   padding: 4px 24px;
+//   font-size: 16px;
+// }
+// .button-m {
+//   padding: 6px 32px;
+//   font-size: clamp(1rem, 1.5vw, 3rem);
+// }
+// .button-l {
+//   padding: 12px clamp(3rem, 8vw, 6rem);
+//   font-size: clamp(1rem, 2vw, 2rem);
+// }
+
+// .circle-button {
+//   width: 210%;
+//   height: auto;
+//   aspect-ratio: 1/1;
+//   transition: transform 0.4s cubic-bezier(0.66, 0, 0.35, 1);
+// }
+
+// .circle-button.active {
+//   transform: translate(-50%, -50%) scale(1);
+// }
+// .circle-button.inactive {
+//   transform: translate(-50%, -50%) scale(0);
+// }
