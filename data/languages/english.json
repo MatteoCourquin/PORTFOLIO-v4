@@ -80,11 +80,16 @@
   },
   "success": {
     "title": "Message sent ! 🚀",
-    "text": "<p>Thank you for reaching out. I will get back to you within <strong>2 days</strong>. In the meantime, you can check out my <a class='underline' href='/projects'>other projects</a> or explore my site.</p>",
+    "text": "Thank you for reaching out. I will get back to you within 2 days. In the meantime, you can check out my other projects or explore my site.",
     "redirect": "You will be redirected to the homepage in ",
     "buttons": {
       "project": "PROJECTS",
       "home": "HOME"
     }
+  },
+  "404": {
+    "text": "The page you are looking for does not exist or has been moved.",
+    "redirect": "You will be redirected to the homepage in ",
+    "button": "Back to the homepage"
   }
 }

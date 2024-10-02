@@ -89,6 +89,7 @@ const CardProject = ({
     <Link
       href={`/projects/${slug.current}`}
       prefetch={false}
+      scroll={false}
       className="group/card-project"
       ref={triggerRef}
       onMouseEnter={() => {

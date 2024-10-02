@@ -80,11 +80,16 @@
   },
   "success": {
     "title": "Merci de m’avoir contacté ! 🚀",
-    "text": "<p>Merci pour votre prise de contact. Je vous répondrais dans un délai de <strong>2 jours</strong>. En attendant, vous pouvez voir mes <a class='underline' href='/projects'>autres projets</a> ou naviguer sur mon site.</p>",
+    "text": "Merci pour votre prise de contact. Je vous répondrais dans un délai de 2 jours. En attendant, vous pouvez voir mes autres projets ou naviguer sur mon site.",
     "redirect": "Vous allez être redirigé vers la page d'accueil dans ",
     "buttons": {
       "project": "PROJETS",
       "home": "ACCUEIL"
     }
+  },
+  "404": {
+    "text": "La page que vous cherchez n'existe pas.",
+    "redirect": "Vous allez être redirigé vers la page d'accueil dans ",
+    "button": "Retour à l'accueil"
   }
 }

@@ -46,22 +46,29 @@ const Footer = () => {
           >
             Menu
           </Typography>
-          <Link className="link link_white heading5 !font-thin uppercase text-white-light" href="/">
+          <Link
+            scroll={false}
+            className="link link_white heading5 !font-thin uppercase text-white-light"
+            href="/"
+          >
             {data.nav.home}
           </Link>
           <Link
+            scroll={false}
             className="link link_white heading5 whitespace-nowrap !font-thin uppercase text-white-light"
             href="/projects"
           >
             {data.nav.projects}
           </Link>
           <Link
+            scroll={false}
             className="link link_white heading5 whitespace-nowrap !font-thin uppercase text-white-light"
             href="/about"
           >
             {data.nav.about}
           </Link>
           <Link
+            scroll={false}
             className="link link_white heading5 whitespace-nowrap !font-thin uppercase text-white-light"
             href="/contact"
           >

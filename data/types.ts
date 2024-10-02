@@ -144,4 +144,9 @@ export type Language = {
       home: string;
     };
   };
+  404: {
+    text: string;
+    redirect: string;
+    button: string;
+  };
 };

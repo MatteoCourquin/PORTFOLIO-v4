@@ -1,4 +1,3 @@
-'use client';
 import Button, { BUTTON_SIZE, BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import { LanguageContext } from '@/layout/default';
@@ -6,9 +5,9 @@ import MotionNumber from 'motion-number';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 
-export default function Contact() {
-  const { data } = useContext(LanguageContext);
+export default function Custom404() {
   const router = useRouter();
+  const { data } = useContext(LanguageContext);
   const [countdown, setCountdown] = useState(15);
 
   useEffect(() => {
@@ -27,13 +26,12 @@ export default function Contact() {
 
   return (
     <section className="mx-auto flex min-h-screen max-w-default flex-col items-center justify-center gap-8 px-x-default py-y-default pb-[20vh] text-center">
-      <Typography type={TYPOGRAPHY_TYPE.HEADING1} className="text-center">
-        {data.success.title}
+      <Typography type={TYPOGRAPHY_TYPE.HEADING1} className="text-home">
+        404
       </Typography>
-      <Typography type={TYPOGRAPHY_TYPE.TEXT}>{data.success.text}</Typography>
+      <Typography type={TYPOGRAPHY_TYPE.TEXT}>{data[404].text} 🕵️‍♂️</Typography>
       <Typography type={TYPOGRAPHY_TYPE.TEXT}>
-        {data.success.redirect}
-        <MotionNumber value={countdown} className="w-8 font-bold" />
+        {data[404].redirect} <MotionNumber value={countdown} className="w-8 font-bold" />
       </Typography>
       <div className="flex gap-4">
         <Button as="a" href="/projects" size={BUTTON_SIZE.L} type={BUTTON_TYPE.PRIMARY}>

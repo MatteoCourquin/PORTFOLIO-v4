@@ -1,25 +1,22 @@
+import ArrowBack from '@/components/ArrowBack';
 import Button, { BUTTON_SIZE } from '@/components/atoms/Button';
-import { IconArrowTopRight, IconBack } from '@/components/atoms/Icons';
+import { IconArrowTopRight } from '@/components/atoms/Icons';
 import RichText from '@/components/atoms/RichText';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
-import PageTransition from '@/components/PageTransition';
 import SEO from '@/components/SEO';
 import { TypeProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
-import { useMagnet, useResetMagnet } from '@/utils/animations';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import { GetStaticPropsContext } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import { useContext, useRef } from 'react';
 
 export default function Page({ project }: { project: TypeProject }) {
-  const router = useRouter();
   const { language } = useContext(LanguageContext);
 
   if (!project) {
@@ -100,20 +97,14 @@ export default function Page({ project }: { project: TypeProject }) {
   }, []);
 
   return (
-    <PageTransition>
+    <>
       <SEO
         title={'Matteo Courquin • ' + project.title}
         image={project.ogImage ? urlForImage(project.ogImage).toString() : '/ogProjects.png'}
       />
       <div className="pt-y-default">
         <div className="absolute left-x-default top-y-default z-50 flex -translate-y-1/2 cursor-pointer items-center shadow-white transition-transform sm:-translate-x-1/2">
-          <div
-            onMouseMove={(e) => useMagnet(e, 1)}
-            onMouseOut={(e) => useResetMagnet(e)}
-            onClick={() => router.back()}
-          >
-            <IconBack className="stroke-primary" />
-          </div>
+          <ArrowBack href="/projects" />
         </div>
         <div className="relative px-x-default">
           <div className="mx-auto max-w-default pt-y-default">
@@ -231,7 +222,7 @@ export default function Page({ project }: { project: TypeProject }) {
           </div>
         </div>
       </div>
-    </PageTransition>
+    </>
   );
 }
 

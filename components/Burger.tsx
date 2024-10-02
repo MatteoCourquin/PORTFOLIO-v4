@@ -249,7 +249,13 @@ const Burger = () => {
           </div>
         </div>
         <nav className="z-[90] flex h-screen w-screen flex-col items-center justify-center gap-8 uppercase text-white">
-          <Link ref={text1Ref} href="/" onClick={handdleClose} className="-translate-y-4 opacity-0">
+          <Link
+            scroll={false}
+            ref={text1Ref}
+            href="/"
+            onClick={handdleClose}
+            className="-translate-y-4 opacity-0"
+          >
             <Typography
               type={TYPOGRAPHY_TYPE.TEXT}
               as={TYPOGRAPHY_TYPE.HEADING3}
@@ -259,6 +265,7 @@ const Burger = () => {
             </Typography>
           </Link>
           <Link
+            scroll={false}
             ref={text2Ref}
             href="/projects"
             onClick={handdleClose}
@@ -273,6 +280,7 @@ const Burger = () => {
             </Typography>
           </Link>
           <Link
+            scroll={false}
             ref={text3Ref}
             href="/about"
             onClick={handdleClose}
@@ -287,6 +295,7 @@ const Burger = () => {
             </Typography>
           </Link>
           <Link
+            scroll={false}
             ref={text4Ref}
             href="/contact"
             onClick={handdleClose}

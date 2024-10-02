@@ -15,7 +15,7 @@
         "@typescript-eslint/ban-tslint-comment": "warn",
         "@typescript-eslint/ban-ts-comment": "warn",
         "no-nested-ternary": "warn",
-        "no-console": ["warn", { "allow": ["warn", "error", "assert"] }],
+        "no-console": ["warn", { "allow": ["warn", "error", "assert", "info"] }],
         "react/jsx-curly-brace-presence": ["warn", { "props": "never", "children": "never" }],
         "@typescript-eslint/naming-convention": [
           "warn",

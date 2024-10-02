@@ -67,6 +67,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement | null, ButtonPr
       <>
         {as === 'a' && href && (
           <Link
+            scroll={false}
             ref={ref as ForwardedRef<HTMLAnchorElement>}
             href={href}
             target={target}

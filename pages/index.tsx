@@ -16,7 +16,6 @@ import {
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
 import DropUp from '@/components/DropUp';
-import PageTransition from '@/components/PageTransition';
 import Questions from '@/components/Questions';
 import SEO from '@/components/SEO';
 import Testimonials from '@/components/Testimonials';
@@ -52,11 +51,11 @@ export default function Home({
       V2: useRef(null),
     },
     texts: {
-      text1: useRef(null),
-      text2: useRef(null),
-      text3: useRef(null),
-      text4: useRef(null),
-      text5: useRef(null),
+      firstName: useRef(null),
+      lastName: useRef(null),
+      testimonials: useRef(null),
+      subtitle: useRef(null),
+      mail: useRef(null),
     },
     icons: useRef<HTMLDivElement>(null),
     button: useRef(null),
@@ -75,7 +74,7 @@ export default function Home({
   const timelineRef = useRef(gsap.timeline({ paused: true }));
 
   const scrollTriggerAnimation = () => {
-    gsap.to(heroRefs.texts.text1.current, {
+    gsap.to(heroRefs.texts.firstName.current, {
       xPercent: 100,
       ease: 'power4.out',
       scrollTrigger: {
@@ -86,7 +85,7 @@ export default function Home({
       },
     });
 
-    gsap.to(heroRefs.texts.text2.current, {
+    gsap.to(heroRefs.texts.lastName.current, {
       xPercent: -100,
       ease: 'power4.out',
       scrollTrigger: {
@@ -108,7 +107,7 @@ export default function Home({
       },
     });
 
-    gsap.to(heroRefs.texts.text3.current, {
+    gsap.to(heroRefs.texts.subtitle.current, {
       y: 150,
       ease: 'power4.out',
       scrollTrigger: {
@@ -175,7 +174,7 @@ export default function Home({
         'startAnimations',
       )
       .add(
-        gsap.to([heroRefs.texts.text1.current, heroRefs.texts.text2.current], {
+        gsap.to([heroRefs.texts.firstName.current, heroRefs.texts.lastName.current], {
           x: 0,
           opacity: 1,
           duration: 1,
@@ -185,7 +184,7 @@ export default function Home({
         '-=1',
       )
       .add(
-        gsap.to([heroRefs.texts.text3.current, heroRefs.button.current], {
+        gsap.to([heroRefs.texts.subtitle.current, heroRefs.button.current], {
           x: 0,
           opacity: 1,
           duration: 1,
@@ -195,7 +194,7 @@ export default function Home({
         '-=1',
       )
       .add(
-        gsap.to([heroRefs.texts.text4.current, heroRefs.texts.text5.current], {
+        gsap.to([heroRefs.texts.testimonials.current, heroRefs.texts.mail.current], {
           x: 0,
           opacity: 1,
           duration: 1,
@@ -236,7 +235,7 @@ export default function Home({
   }, []);
 
   return (
-    <PageTransition>
+    <>
       <SEO title={data.head.titleIndex} image="/ogIndex.png" />
       <section
         ref={heroRefs.triggerRef}
@@ -266,27 +265,32 @@ export default function Home({
             ref={heroRefs.lines.V2}
             className="absolute -bottom-y-default left-0 h-0 w-px bg-white"
           ></div>
-          <div className="absolute top-0 flex w-full justify-center gap-2 p-4 pb-10 md:justify-start">
-            5/5
-            <div className="flex">
-              <IconStar />
-              <IconStar />
-              <IconStar />
-              <IconStar />
-              <IconStar />
+          <div className="absolute top-0 overflow-hidden">
+            <div
+              ref={heroRefs.texts.testimonials}
+              className="flex w-full -translate-x-full justify-center gap-2 p-4 pb-10 uppercase underline opacity-0 md:justify-start"
+            >
+              5/5
+              <div className="flex">
+                <IconStar />
+                <IconStar />
+                <IconStar />
+                <IconStar />
+                <IconStar />
+              </div>
+              {data.home.hero.rating}
             </div>
-            {data.home.hero.rating}
           </div>
           <div className="flex h-full w-full flex-col justify-center overflow-hidden px-x-default">
             <Typography
-              ref={heroRefs.texts.text1}
+              ref={heroRefs.texts.firstName}
               type={TYPOGRAPHY_TYPE.HEADING1}
               className="text-home w-full -translate-x-full whitespace-nowrap text-center opacity-0 sm:text-left"
             >
               MA<span className="inline-block -translate-x-2">TTEO</span>
             </Typography>
             <Typography
-              ref={heroRefs.texts.text2}
+              ref={heroRefs.texts.lastName}
               type={TYPOGRAPHY_TYPE.HEADING2}
               as={TYPOGRAPHY_TYPE.HEADING1}
               className="text-home w-full shrink translate-x-full self-end whitespace-nowrap pb-4 text-center opacity-0 sm:text-right"
@@ -294,7 +298,7 @@ export default function Home({
               COURQUIN
             </Typography>
             <div
-              ref={heroRefs.texts.text3}
+              ref={heroRefs.texts.subtitle}
               className="flex -translate-x-full flex-col items-center py-10 opacity-0 sm:items-start"
             >
               <Typography
@@ -303,6 +307,7 @@ export default function Home({
                 className="text-center md:text-left"
               />
               <Link
+                scroll={false}
                 href="/contact"
                 className="hidden w-fit items-center gap-3 text-green-500 md:flex"
               >
@@ -330,7 +335,7 @@ export default function Home({
           </div>
           <div className="absolute bottom-0 flex w-full flex-col items-center justify-center overflow-hidden p-4 pt-10 md:flex-row md:items-end md:justify-between">
             <Link
-              ref={heroRefs.texts.text4}
+              ref={heroRefs.texts.mail}
               className="-translate-x-full uppercase underline opacity-0"
               href="mailto:matteo.courquin@gmail.com"
             >
@@ -458,7 +463,7 @@ export default function Home({
           <Questions questions={questions} />
         </div>
       </section>
-    </PageTransition>
+    </>
   );
 }
 

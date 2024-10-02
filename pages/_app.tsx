@@ -1,33 +1,27 @@
+import PageTransition from '@/components/PageTransition';
+import { TypeProject } from '@/data/types';
 import Layout from '@/layout/default';
 import SmoothScrolling from '@/layout/lenis';
 import '@/styles/main.sass';
 import { AnimatePresence } from 'framer-motion';
-import type { AppProps } from 'next/app';
+import { AppProps } from 'next/app';
 import { usePathname } from 'next/navigation';
-// import { useLenis } from '@studio-freight/react-lenis';
-// import { useRouter } from 'next/router';
-// import { useEffect } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
   const pathname = usePathname();
-  // const router = useRouter();
-  // const lenis = useLenis();
 
-  // useEffect(() => {
-  //   const handleRouteChange = () => {
-  //     if (!lenis) return;
+  const createBaseRoutes = (projects: TypeProject | TypeProject[]) => {
+    const baseRoutes: { [key: string]: string } = {};
 
-  //     lenis.scrollTo(lenis.actualScroll);
+    const projectArray = Array.isArray(projects) ? projects : [projects];
 
-  //     setTimeout(() => {
-  //       lenis.scrollTo(0, {
-  //         immediate: true,
-  //       });
-  //     }, 800);
-  //   };
+    projectArray.forEach((project: TypeProject) => {
+      if (!project?.slug?.current || !project?.title) return;
+      baseRoutes[`/projects/${project.slug.current}`] = project.title;
+    });
 
-  //   router.events.on('routeChangeStart', handleRouteChange);
-  // }, [router.events, lenis, pathname]);
+    return baseRoutes;
+  };
 
   return (
     <>
@@ -36,8 +30,13 @@ export default function App({ Component, pageProps }: AppProps) {
       ) : (
         <Layout>
           <SmoothScrolling>
-            <AnimatePresence mode="wait">
-              <Component key={pathname} {...pageProps} />
+            <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
+              <PageTransition
+                key={pathname}
+                project={createBaseRoutes(pageProps.projects || pageProps.project)}
+              >
+                <Component {...pageProps} />
+              </PageTransition>
             </AnimatePresence>
           </SmoothScrolling>
         </Layout>

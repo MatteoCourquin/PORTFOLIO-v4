@@ -1,19 +1,16 @@
-import { IconBack } from '@/components/atoms/Icons';
+import ArrowBack from '@/components/ArrowBack';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardCareer from '@/components/CardCareer';
-import PageTransition from '@/components/PageTransition';
 import Questions from '@/components/Questions';
 import SEO from '@/components/SEO';
 import { TypeCareer, TypeQuestion } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
-import { useMagnet, useResetMagnet } from '@/utils/animations';
 import { interpolate } from '@/utils/functions';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { useContext, useRef } from 'react';
 
 export default function About({
@@ -24,7 +21,6 @@ export default function About({
   questions: TypeQuestion[];
 }) {
   const { data } = useContext(LanguageContext);
-  const router = useRouter();
 
   const heroRefs = {
     lines: {
@@ -127,16 +123,10 @@ export default function About({
   }, [data]);
 
   return (
-    <PageTransition>
+    <>
       <SEO title={data.head.titleAbout} image="/ogAbout.png" />
       <div className="absolute left-x-default top-y-default z-50 flex -translate-y-1/2 cursor-pointer items-center shadow-white transition-transform sm:-translate-x-1/2">
-        <div
-          onMouseMove={(e) => useMagnet(e, 1)}
-          onMouseOut={(e) => useResetMagnet(e)}
-          onClick={() => router.back()}
-        >
-          <IconBack className="stroke-primary" />
-        </div>
+        <ArrowBack href="/" />
       </div>
       <section className="flex h-[60vh] items-center justify-center">
         <Typography
@@ -237,7 +227,7 @@ export default function About({
           <Questions questions={questions} />
         </div>
       </section>
-    </PageTransition>
+    </>
   );
 }
 
