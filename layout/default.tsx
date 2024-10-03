@@ -1,4 +1,5 @@
 import Burger from '@/components/Burger';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import Cursor from '@/components/Cursor';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -52,6 +53,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <main>{children}</main>
         <Footer />
         <Analytics />
+        <SpeedInsights />
       </LanguageContext.Provider>
     </QueryClientProvider>
   );
