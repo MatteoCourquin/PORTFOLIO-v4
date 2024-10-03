@@ -1,5 +1,4 @@
 import PageTransition from '@/components/PageTransition';
-import { TypeProject } from '@/data/types';
 import Layout from '@/layout/default';
 import SmoothScrolling from '@/layout/lenis';
 import '@/styles/main.sass';
@@ -10,19 +9,6 @@ import { usePathname } from 'next/navigation';
 export default function App({ Component, pageProps }: AppProps) {
   const pathname = usePathname();
 
-  const createBaseRoutes = (projects: TypeProject | TypeProject[]) => {
-    const baseRoutes: { [key: string]: string } = {};
-
-    const projectArray = Array.isArray(projects) ? projects : [projects];
-
-    projectArray.forEach((project: TypeProject) => {
-      if (!project?.slug?.current || !project?.title) return;
-      baseRoutes[`/projects/${project.slug.current}`] = project.title;
-    });
-
-    return baseRoutes;
-  };
-
   return (
     <>
       {pathname?.includes('studio') ? (
@@ -31,10 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Layout>
           <SmoothScrolling>
             <AnimatePresence mode="wait" onExitComplete={() => window.scrollTo(0, 0)}>
-              <PageTransition
-                key={pathname}
-                project={createBaseRoutes(pageProps.projects || pageProps.project)}
-              >
+              <PageTransition key={pathname} paths={pageProps.paths}>
                 <Component {...pageProps} />
               </PageTransition>
             </AnimatePresence>

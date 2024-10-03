@@ -19,9 +19,10 @@ import DropUp from '@/components/DropUp';
 import Questions from '@/components/Questions';
 import SEO from '@/components/SEO';
 import Testimonials from '@/components/Testimonials';
-import { TypeProject, TypeQuestion, TypeTestimonial } from '@/data/types';
+import { TypePaths, TypeProject, TypeQuestion, TypeTestimonial } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
+import { fetchPaths } from '@/utils/fetchPaths';
 import { interpolate } from '@/utils/functions';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -36,6 +37,7 @@ export default function Home({
   questions,
   testimonials,
 }: {
+  paths: TypePaths[];
   projects: TypeProject[];
   questions: TypeQuestion[];
   testimonials: TypeTestimonial[];
@@ -497,9 +499,11 @@ export async function getStaticProps() {
   const projects = await client.fetch(queryProjects);
   const testimonials = await client.fetch(queryTestimonials);
   const questions = await client.fetch(queryQuestions);
+  const paths = await fetchPaths();
 
   return {
     props: {
+      paths,
       projects,
       testimonials,
       questions,

@@ -1,12 +1,14 @@
 'use client';
 import Button, { BUTTON_SIZE, BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
+import { TypePaths } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
+import { fetchPaths } from '@/utils/fetchPaths';
 import MotionNumber from 'motion-number';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 
-export default function Contact() {
+export default function Success(_: { paths: TypePaths[] }) {
   const { data } = useContext(LanguageContext);
   const router = useRouter();
   const [countdown, setCountdown] = useState(15);
@@ -46,3 +48,13 @@ export default function Contact() {
     </section>
   );
 }
+
+export const getStaticProps = async () => {
+  const paths = await fetchPaths();
+
+  return {
+    props: {
+      paths,
+    },
+  };
+};

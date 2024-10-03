@@ -1,5 +1,10 @@
 import { Image, Slug, TypedObject } from 'sanity';
 
+export type TypePaths = {
+  slug: string;
+  title: string;
+};
+
 export type TypeProject = {
   projectIndex: number;
   slug: Slug;

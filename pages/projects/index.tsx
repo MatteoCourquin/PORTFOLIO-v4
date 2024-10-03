@@ -3,9 +3,10 @@ import Button, { BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardProject from '@/components/CardProject';
 import SEO from '@/components/SEO';
-import { TypeFilters, TypeProject } from '@/data/types';
+import { TypeFilters, TypePaths, TypeProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
+import { fetchPaths } from '@/utils/fetchPaths';
 import { useGSAP } from '@gsap/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import gsap from 'gsap';
@@ -17,6 +18,7 @@ export default function Projects({
 }: {
   projects: TypeProject[];
   filters: TypeFilters[];
+  paths: TypePaths[];
 }) {
   const { data, language } = useContext(LanguageContext);
 
@@ -196,6 +198,7 @@ export async function getStaticProps() {
       value,
     }`;
 
+  const paths = await fetchPaths();
   const projects = await client.fetch(queryProjects);
   const projectTypes = await client.fetch(queryProjectType);
   const filters = [
@@ -209,6 +212,7 @@ export async function getStaticProps() {
 
   return {
     props: {
+      paths,
       projects,
       filters,
     },

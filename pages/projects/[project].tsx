@@ -4,10 +4,11 @@ import { IconArrowTopRight } from '@/components/atoms/Icons';
 import RichText from '@/components/atoms/RichText';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import SEO from '@/components/SEO';
-import { TypeProject } from '@/data/types';
+import { TypePaths, TypeProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
+import { fetchPaths } from '@/utils/fetchPaths';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
@@ -16,7 +17,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useContext, useRef } from 'react';
 
-export default function Page({ project }: { project: TypeProject }) {
+export default function Page({ project }: { project: TypeProject; paths: TypePaths[] }) {
   const { language } = useContext(LanguageContext);
 
   if (!project) {
@@ -248,12 +249,14 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     }
   `;
 
+  const paths = await fetchPaths();
   const project = await client.fetch(query, {
     project: params?.project,
   });
 
   return {
     props: {
+      paths,
       project: project || null,
       params,
     },

@@ -3,10 +3,12 @@ import Button, { BUTTON_SIZE, BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import FormContact from '@/components/FormContact';
 import SEO from '@/components/SEO';
+import { TypePaths } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
+import { fetchPaths } from '@/utils/fetchPaths';
 import { useContext } from 'react';
 
-export default function Contact() {
+export default function Contact(_: { paths: TypePaths[] }) {
   const { data } = useContext(LanguageContext);
 
   return (
@@ -43,4 +45,14 @@ export default function Contact() {
       </section>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const paths = await fetchPaths();
+
+  return {
+    props: {
+      paths,
+    },
+  };
 }

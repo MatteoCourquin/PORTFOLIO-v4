@@ -107,10 +107,10 @@ const SVG = ({ height, width }: { height: number; width: number }) => {
 
 export default function PageTransition({
   children,
-  project,
+  paths,
 }: {
   children: ReactNode;
-  project?: { [key: string]: string };
+  paths?: { slug: string; title: string }[];
 }) {
   const pathname = usePathname();
   const { language } = useContext(LanguageContext);
@@ -142,17 +142,14 @@ export default function PageTransition({
       '/contact': 'Contact',
       '/projects': language === 'fr' ? 'Projets' : 'Projects',
       '/contact/success': language === 'fr' ? 'Succès' : 'Success',
-      '/*': '404',
     };
 
-    if (project) {
-      Object.keys(project).forEach((key) => {
-        baseRoutes[key] = project[key];
-      });
-    }
+    paths?.forEach((path) => {
+      baseRoutes[`/projects/${path.slug}`] = path.title;
+    });
 
     return baseRoutes;
-  }, [project]);
+  }, [paths]);
 
   return (
     <div className="page curve">
@@ -164,7 +161,7 @@ export default function PageTransition({
         {...anim(text)}
       >
         <Typography type={TYPOGRAPHY_TYPE.HEADING1} className="uppercase">
-          {routes[pathname] || ''}
+          {routes[pathname] || '404'}
         </Typography>
       </motion.div>
 

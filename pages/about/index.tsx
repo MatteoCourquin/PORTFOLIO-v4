@@ -3,9 +3,10 @@ import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import CardCareer from '@/components/CardCareer';
 import Questions from '@/components/Questions';
 import SEO from '@/components/SEO';
-import { TypeCareer, TypeQuestion } from '@/data/types';
+import { TypeCareer, TypePaths, TypeQuestion } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
+import { fetchPaths } from '@/utils/fetchPaths';
 import { interpolate } from '@/utils/functions';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -17,6 +18,7 @@ export default function About({
   career,
   questions,
 }: {
+  paths: TypePaths[];
   career: TypeCareer[];
   questions: TypeQuestion[];
 }) {
@@ -250,11 +252,13 @@ export async function getStaticProps() {
         answerFr,
       }`;
 
+  const paths = await fetchPaths();
   const career = await client.fetch(queryCarreer);
   const questions = await client.fetch(queryQuestions);
 
   return {
     props: {
+      paths,
       career,
       questions,
     },

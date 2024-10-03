@@ -1,11 +1,13 @@
 import Button, { BUTTON_SIZE, BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
+import { TypePaths } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
+import { fetchPaths } from '@/utils/fetchPaths';
 import MotionNumber from 'motion-number';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 
-export default function Custom404() {
+export default function Custom404(_: { paths: TypePaths[] }) {
   const router = useRouter();
   const { data } = useContext(LanguageContext);
   const [countdown, setCountdown] = useState(15);
@@ -44,3 +46,13 @@ export default function Custom404() {
     </section>
   );
 }
+
+export const getStaticProps = async () => {
+  const paths = await fetchPaths();
+
+  return {
+    props: {
+      paths,
+    },
+  };
+};
