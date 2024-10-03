@@ -1,5 +1,4 @@
 import Burger from '@/components/Burger';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import Cursor from '@/components/Cursor';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
@@ -9,6 +8,7 @@ import french from '@/data/languages/french.json';
 import { Language } from '@/data/types';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import Head from 'next/head';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 
@@ -50,7 +50,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         <ScrollTop />
         <Header />
         <Burger />
-        <main>{children}</main>
+        {children}
         <Footer />
         <Analytics />
         <SpeedInsights />

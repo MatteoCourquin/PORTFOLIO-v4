@@ -16,17 +16,17 @@ const Header = () => {
       </Link>
       <Link
         scroll={false}
-        href="/about"
-        className={clsx('link link_white', pathname === '/about' && 'active')}
-      >
-        <Typography as={TYPOGRAPHY_TYPE.HEADING6}>About</Typography>
-      </Link>
-      <Link
-        scroll={false}
         href="/projects"
         className={clsx('link link_white', pathname?.includes('/projects') && 'active')}
       >
         <Typography as={TYPOGRAPHY_TYPE.HEADING6}>Projects</Typography>
+      </Link>
+      <Link
+        scroll={false}
+        href="/about"
+        className={clsx('link link_white', pathname === '/about' && 'active')}
+      >
+        <Typography as={TYPOGRAPHY_TYPE.HEADING6}>About</Typography>
       </Link>
       <Link
         scroll={false}

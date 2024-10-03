@@ -5,7 +5,7 @@ import FormContact from '@/components/FormContact';
 import SEO from '@/components/SEO';
 import { TypePaths } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
-import { fetchPaths } from '@/utils/fetchPaths';
+import { fetchPaths } from '@/services/paths.sevices';
 import { useContext } from 'react';
 
 export default function Contact(_: { paths: TypePaths[] }) {

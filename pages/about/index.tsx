@@ -5,8 +5,9 @@ import Questions from '@/components/Questions';
 import SEO from '@/components/SEO';
 import { TypeCareer, TypePaths, TypeQuestion } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
-import { client } from '@/sanity/lib/client';
-import { fetchPaths } from '@/utils/fetchPaths';
+import { fetchCarreer } from '@/services/carreer.sevices';
+import { fetchPaths } from '@/services/paths.sevices';
+import { fetchQuestions } from '@/services/questions.sevices';
 import { interpolate } from '@/utils/functions';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -234,27 +235,9 @@ export default function About({
 }
 
 export async function getStaticProps() {
-  const queryCarreer = `
-    *[_type == "careers"] | order(endDate desc) {
-      startDate,
-      endDate,
-      titleEn,
-      titleFr,
-      descriptionEn,
-      descriptionFr,
-    }`;
-
-  const queryQuestions = `
-      *[_type == "questions"] {
-        questionEn,
-        questionFr,
-        answerEn,
-        answerFr,
-      }`;
-
   const paths = await fetchPaths();
-  const career = await client.fetch(queryCarreer);
-  const questions = await client.fetch(queryQuestions);
+  const career = await fetchCarreer();
+  const questions = await fetchQuestions();
 
   return {
     props: {

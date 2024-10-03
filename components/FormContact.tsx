@@ -1,5 +1,5 @@
 import { LanguageContext } from '@/layout/default';
-import { submitContactForm } from '@/services/api';
+import { submitContactForm } from '@/services/contact.services';
 import { isEmail } from '@/utils/functions';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/router';

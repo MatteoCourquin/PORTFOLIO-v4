@@ -59,7 +59,7 @@
       },
       "email": {
         "label": "What’s your <span class='text-primary'>email</span> ?",
-        "placeholder": "johndoe@gmail.com"
+        "placeholder": "john.doe@gmail.com"
       },
       "message": {
         "label": "What’s your <span class='text-primary'>message</span> ?",

@@ -21,8 +21,10 @@ import SEO from '@/components/SEO';
 import Testimonials from '@/components/Testimonials';
 import { TypePaths, TypeProject, TypeQuestion, TypeTestimonial } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
-import { client } from '@/sanity/lib/client';
-import { fetchPaths } from '@/utils/fetchPaths';
+import { fetchPaths } from '@/services/paths.sevices';
+import { fetchProjects } from '@/services/projects.sevices';
+import { fetchQuestions } from '@/services/questions.sevices';
+import { fetchTestimonials } from '@/services/testimonials.sevices';
 import { interpolate } from '@/utils/functions';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
@@ -270,7 +272,7 @@ export default function Home({
           <div className="absolute top-0 overflow-hidden">
             <div
               ref={heroRefs.texts.testimonials}
-              className="flex w-full -translate-x-full justify-center gap-2 p-4 pb-10 uppercase underline opacity-0 md:justify-start"
+              className="flex w-full -translate-x-full justify-center gap-2 p-4 pb-10 uppercase opacity-0 md:justify-start"
             >
               5/5
               <div className="flex">
@@ -470,35 +472,9 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  const queryProjects = `
-    *[_type == "projects"] | order(projectIndex asc)[0...4] {
-      projectIndex,
-      title,
-      slug,
-      mainImageDesktop,
-      mainImageMobile,
-      websiteUrl,
-    }`;
-
-  const queryTestimonials = `
-    *[_type == "testimonials"] {
-      author,
-      entity,
-      testimonialFr,
-      testimonialEn,
-    }`;
-
-  const queryQuestions = `
-    *[_type == "questions"] {
-      questionEn,
-      questionFr,
-      answerEn,
-      answerFr,
-    }`;
-
-  const projects = await client.fetch(queryProjects);
-  const testimonials = await client.fetch(queryTestimonials);
-  const questions = await client.fetch(queryQuestions);
+  const projects = await fetchProjects();
+  const testimonials = await fetchTestimonials();
+  const questions = await fetchQuestions();
   const paths = await fetchPaths();
 
   return {

@@ -82,11 +82,12 @@ const anim = (variants: { [key: string]: TargetAndTransition }) => {
 };
 
 const SVG = ({ height, width }: { height: number; width: number }) => {
+  const vertical = height > width ? 500 : 300;
   const initialPath = `
       M0 300 
       Q${width / 2} 0 ${width} 300
-      L${width} ${height + 300}
-      Q${width / 2} ${height + 600} 0 ${height + 300}
+      L${width} ${height + vertical}
+      Q${width / 2} ${height + 600} 0 ${height + vertical}
       L0 0
   `;
 
@@ -110,7 +111,7 @@ export default function PageTransition({
   paths,
 }: {
   children: ReactNode;
-  paths?: { slug: string; title: string }[];
+  paths: { slug: string; title: string }[];
 }) {
   const pathname = usePathname();
   const { language } = useContext(LanguageContext);
@@ -144,7 +145,7 @@ export default function PageTransition({
       '/contact/success': language === 'fr' ? 'Succès' : 'Success',
     };
 
-    paths?.forEach((path) => {
+    paths.forEach((path) => {
       baseRoutes[`/projects/${path.slug}`] = path.title;
     });
 

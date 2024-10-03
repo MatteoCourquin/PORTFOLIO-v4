@@ -2,8 +2,8 @@ import { LanguageContext } from '@/layout/default';
 import Link from 'next/link';
 import { useContext } from 'react';
 import Button, { BUTTON_SIZE, BUTTON_TYPE } from './atoms/Button';
-import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 import { IconGithub, IconInsta, IconLinkedin } from './atoms/Icons';
+import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 
 const Footer = () => {
   const { data } = useContext(LanguageContext);

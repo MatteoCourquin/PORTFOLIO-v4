@@ -1,9 +1,8 @@
-'use client';
 import Button, { BUTTON_SIZE, BUTTON_TYPE } from '@/components/atoms/Button';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import { TypePaths } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
-import { fetchPaths } from '@/utils/fetchPaths';
+import { fetchPaths } from '@/services/paths.sevices';
 import MotionNumber from 'motion-number';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';

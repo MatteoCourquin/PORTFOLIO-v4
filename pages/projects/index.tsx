@@ -5,8 +5,9 @@ import CardProject from '@/components/CardProject';
 import SEO from '@/components/SEO';
 import { TypeFilters, TypePaths, TypeProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
-import { client } from '@/sanity/lib/client';
-import { fetchPaths } from '@/utils/fetchPaths';
+import { fetchFilters } from '@/services/filters.sevices';
+import { fetchPaths } from '@/services/paths.sevices';
+import { fetchProjects } from '@/services/projects.sevices';
 import { useGSAP } from '@gsap/react';
 import { AnimatePresence, motion } from 'framer-motion';
 import gsap from 'gsap';
@@ -180,35 +181,9 @@ export default function Projects({
 }
 
 export async function getStaticProps() {
-  const queryProjects = `
-    *[_type == "projects"] | order(projectIndex asc) {
-      projectIndex,
-      title,
-      slug,
-      mainImageDesktop,
-      mainImageMobile,
-      websiteUrl,
-      "types": types[]->value,
-    }`;
-
-  const queryProjectType = `
-    *[_type == "projectType"] {
-      labelFr,
-      labelEn,
-      value,
-    }`;
-
+  const projects = await fetchProjects();
   const paths = await fetchPaths();
-  const projects = await client.fetch(queryProjects);
-  const projectTypes = await client.fetch(queryProjectType);
-  const filters = [
-    {
-      labelFr: 'Tous',
-      labelEn: 'All',
-      value: 'all',
-    },
-    ...projectTypes,
-  ];
+  const filters = await fetchFilters();
 
   return {
     props: {
