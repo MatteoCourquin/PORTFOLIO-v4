@@ -1,3 +1,4 @@
+import { TypePaths } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
 import clsx from 'clsx';
 import { motion, TargetAndTransition } from 'framer-motion';
@@ -111,7 +112,7 @@ export default function PageTransition({
   paths,
 }: {
   children: ReactNode;
-  paths: { slug: string; title: string }[];
+  paths: TypePaths[];
 }) {
   const pathname = usePathname();
   const { language } = useContext(LanguageContext);
@@ -145,7 +146,7 @@ export default function PageTransition({
       '/contact/success': language === 'fr' ? 'Succès' : 'Success',
     };
 
-    paths.forEach((path) => {
+    paths?.forEach((path) => {
       baseRoutes[`/projects/${path.slug}`] = path.title;
     });
 
@@ -161,7 +162,7 @@ export default function PageTransition({
         onAnimationComplete={() => setIsAnimationComplete(true)}
         {...anim(text)}
       >
-        <Typography type={TYPOGRAPHY_TYPE.HEADING1} className="uppercase">
+        <Typography type={TYPOGRAPHY_TYPE.HEADING1} className="whitespace-nowrap uppercase">
           {routes[pathname] || '404'}
         </Typography>
       </motion.div>

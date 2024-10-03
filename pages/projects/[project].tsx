@@ -9,7 +9,6 @@ import { LanguageContext } from '@/layout/default';
 import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
 import { fetchPaths } from '@/services/paths.sevices';
-import { fetchProject } from '@/services/project.sevices';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
@@ -231,8 +230,29 @@ export default function Page({ project }: { project: TypeProject; paths: TypePat
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const { params } = context;
 
+  const query = `
+    *[_type == "projects" && slug.current == $project][0] {
+      projectIndex,
+      title,
+      slug,
+      ogImage,
+      mainImageDesktop,
+      mainImageMobile,
+      descriptionEn,
+      descriptionFr,
+      websiteUrl,
+      gallery,
+      "authors": authors[]->{
+        name,
+        websiteUrl
+      },
+    }
+  `;
+
   const paths = await fetchPaths();
-  const project = await fetchProject(params);
+  const project = await client.fetch(query, {
+    project: params?.project,
+  });
 
   return {
     props: {

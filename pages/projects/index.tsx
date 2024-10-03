@@ -181,8 +181,8 @@ export default function Projects({
 }
 
 export async function getStaticProps() {
-  const projects = await fetchProjects();
   const paths = await fetchPaths();
+  const projects = await fetchProjects();
   const filters = await fetchFilters();
 
   return {
