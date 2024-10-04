@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       {pathname?.includes('studio') ? (
-        <Component {...pageProps} />
+        <Component key={pathname} {...pageProps} />
       ) : (
         <Layout>
           <SmoothScrolling>
