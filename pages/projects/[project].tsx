@@ -6,9 +6,9 @@ import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
 import SEO from '@/components/SEO';
 import { TypePaths, TypeProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
-import { client } from '@/sanity/lib/client';
 import { urlForImage } from '@/sanity/lib/image';
 import { fetchPaths } from '@/services/paths.sevices';
+import { fetchProject } from '@/services/project.sevices';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
@@ -129,20 +129,20 @@ export default function Page({ project }: { project: TypeProject; paths: TypePat
                 ></div>
                 <div
                   ref={heroRefs.wrappers.wrapperImg}
-                  className="h-screen w-0 overflow-hidden p-px"
+                  className="h-screen-header w-0 overflow-hidden p-px"
                 >
                   <div ref={heroRefs.img} className="h-full py-px">
                     <Image
                       width={1920}
                       height={1080}
-                      className="hidden h-[calc(100%+100px)] w-full object-cover object-top md:block"
+                      className="absolute bottom-0 hidden h-[calc(100%+100px)] w-full object-cover object-top md:block"
                       src={urlForImage(project.mainImageDesktop).toString()}
                       alt=""
                     />
                     <Image
                       width={1080}
                       height={1920}
-                      className="block h-[calc(100%+100px)] w-full object-cover object-top md:hidden"
+                      className="absolute bottom-0 block h-[calc(100%+100px)] w-full object-cover md:hidden"
                       src={urlForImage(project.mainImageMobile).toString()}
                       alt=""
                     />
@@ -173,7 +173,9 @@ export default function Page({ project }: { project: TypeProject; paths: TypePat
               <div className="flex justify-between gap-2">
                 <Typography className="text-primary">Made by 🤝</Typography>
                 <div>
-                  <p className="text block font-medium">Matteo Courquin</p>
+                  <p className="text block font-medium">
+                    Matteo Courquin ({language === 'fr' ? 'moi' : 'me'})
+                  </p>
                   {project.authors?.map((author: { name: string; websiteUrl: string }) => {
                     if (!author.websiteUrl) {
                       return (
@@ -230,29 +232,8 @@ export default function Page({ project }: { project: TypeProject; paths: TypePat
 export const getStaticProps = async (context: GetStaticPropsContext) => {
   const { params } = context;
 
-  const query = `
-    *[_type == "projects" && slug.current == $project][0] {
-      projectIndex,
-      title,
-      slug,
-      ogImage,
-      mainImageDesktop,
-      mainImageMobile,
-      descriptionEn,
-      descriptionFr,
-      websiteUrl,
-      gallery,
-      "authors": authors[]->{
-        name,
-        websiteUrl
-      },
-    }
-  `;
-
   const paths = await fetchPaths();
-  const project = await client.fetch(query, {
-    project: params?.project,
-  });
+  const project = await fetchProject(params);
 
   return {
     props: {
@@ -264,16 +245,8 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 };
 
 export const getStaticPaths = async () => {
-  const query = `
-    *[_type == "projects"] {
-      slug
-    }
-  `;
-
-  const projects = await client.fetch(query);
-
-  const paths = projects.map((project: TypeProject) => ({
-    params: { project: project.slug.current },
+  const paths = (await fetchPaths()).map((project: TypeProject) => ({
+    params: { project: project.slug },
   }));
 
   return {

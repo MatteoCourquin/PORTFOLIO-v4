@@ -24,6 +24,9 @@ $font-clash-display: 'Clash Display', sans-serif
 // TRANSITIONS
 $transition-default: all 0.3s cubic-bezier(0.84, 0, 0.16, 1)
 
+.h-screen-header
+  height: calc(100vh - (clamp(20px, 8vh, 100px) * 2))
+
 .transition-default
   transition: $transition-default
 

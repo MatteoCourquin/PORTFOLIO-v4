@@ -26,27 +26,30 @@ const Cursor = () => {
     });
   };
 
-  // const hideCursor = () => {
-  //   if (!pointerRef.current || !pointerOutlineRef.current) return;
-  //   pointerRef.current.style.opacity = '0';
-  //   pointerOutlineRef.current.style.opacity = '0';
-  // };
+  const hideCursor = () => {
+    if (!pointerRef.current || !pointerOutlineRef.current) return;
+    pointerRef.current.style.opacity = '0';
+    pointerOutlineRef.current.style.opacity = '0';
+  };
 
   useEffect(() => {
     window.addEventListener('mousemove', moveCursor);
-    // window.addEventListener('mouseout', hideCursor);
+    window.addEventListener('mouseout', hideCursor);
     return () => {
       window.removeEventListener('mousemove', moveCursor);
-      // window.removeEventListener('mouseout', hideCursor);
+      window.removeEventListener('mouseout', hideCursor);
     };
   }, []);
 
   return (
     <>
-      <div ref={pointerRef} className="pointer-events-none fixed left-0 top-0 z-[9999]">
+      <div ref={pointerRef} className="pointer-events-none fixed left-0 top-0 z-[9999] opacity-0">
         <div className="absolute h-10 w-10 border-spacing-8 -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-slate-400" />
       </div>
-      <div ref={pointerOutlineRef} className="pointer-events-none fixed left-0 top-0 z-[9999]">
+      <div
+        ref={pointerOutlineRef}
+        className="pointer-events-none fixed left-0 top-0 z-[9999] opacity-0"
+      >
         <div className="absolute h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full brightness-200 contrast-200 grayscale saturate-200 backdrop-invert" />
       </div>
     </>

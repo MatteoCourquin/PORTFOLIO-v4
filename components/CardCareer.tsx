@@ -27,7 +27,8 @@ const CardCareer = ({
       borderWidth: 10,
       duration: 0.2,
       scrollTrigger: {
-        start: window.innerWidth <= 768 ? 'top 160px' : 'top 33%',
+        start: window.innerWidth <= 768 ? 'top 33%' : 'top 33%',
+        end: window.innerWidth <= 768 ? '33% top' : '33% top',
         toggleActions: 'restart none none reverse',
         trigger: dotRef.current,
       },
@@ -43,7 +44,7 @@ const CardCareer = ({
 
   useGSAP(() => {
     scrollTriggerAnimation();
-  }, [dotRef.current, language]);
+  }, []);
 
   return (
     <div className="md:min-h-screen">
