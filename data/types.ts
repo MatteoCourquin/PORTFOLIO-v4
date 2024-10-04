@@ -73,6 +73,7 @@ export type Language = {
     projects: string;
     about: string;
     contact: string;
+    success: string;
   };
   footer: {
     title: string;

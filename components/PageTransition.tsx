@@ -115,7 +115,7 @@ export default function PageTransition({
   paths: TypePaths[];
 }) {
   const pathname = usePathname();
-  const { language } = useContext(LanguageContext);
+  const { data } = useContext(LanguageContext);
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({
     width: 0,
@@ -139,11 +139,11 @@ export default function PageTransition({
 
   const routes = useMemo(() => {
     const baseRoutes: { [key: string]: string } = {
-      '/': language === 'fr' ? 'Accueil' : 'Home',
-      '/about': language === 'fr' ? 'À propos' : 'About',
-      '/contact': 'Contact',
-      '/projects': language === 'fr' ? 'Projets' : 'Projects',
-      '/contact/success': language === 'fr' ? 'Succès' : 'Success',
+      '/': data.nav.home,
+      '/about': data.nav.about,
+      '/contact': data.nav.contact,
+      '/projects': data.nav.projects,
+      '/contact/success': data.nav.success,
     };
 
     paths?.forEach((path) => {
