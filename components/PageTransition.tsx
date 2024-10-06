@@ -3,7 +3,7 @@ import { LanguageContext } from '@/layout/default';
 import clsx from 'clsx';
 import { motion, TargetAndTransition } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import { ReactNode, useContext, useEffect, useMemo, useState } from 'react';
+import { ReactNode, useContext, useEffect, useState } from 'react';
 import Typography, { TYPOGRAPHY_TYPE } from './atoms/Typography';
 
 const curve = (initialPath: string, targetPath: string) => {
@@ -137,21 +137,17 @@ export default function PageTransition({
     };
   }, []);
 
-  const routes = useMemo(() => {
-    const baseRoutes: { [key: string]: string } = {
-      '/': data.nav.home,
-      '/about': data.nav.about,
-      '/contact': data.nav.contact,
-      '/projects': data.nav.projects,
-      '/contact/success': data.nav.success,
-    };
+  const baseRoutes: { [key: string]: string } = {
+    '/': data.nav.home,
+    '/about': data.nav.about,
+    '/contact': data.nav.contact,
+    '/projects': data.nav.projects,
+    '/contact/success': data.nav.success,
+  };
 
-    paths?.forEach((path) => {
-      baseRoutes[`/projects/${path.slug}`] = path.title;
-    });
-
-    return baseRoutes;
-  }, [paths]);
+  paths?.forEach((path) => {
+    baseRoutes[`/projects/${path.slug}`] = path.title;
+  });
 
   return (
     <div className="page curve">
@@ -163,7 +159,7 @@ export default function PageTransition({
         {...anim(text)}
       >
         <Typography type={TYPOGRAPHY_TYPE.HEADING1} className="whitespace-nowrap uppercase">
-          {routes[pathname] || '404'}
+          {baseRoutes[pathname] || '404'}
         </Typography>
       </motion.div>
 

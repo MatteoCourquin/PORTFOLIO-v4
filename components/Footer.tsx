@@ -10,7 +10,7 @@ const Footer = () => {
 
   return (
     <footer className="relative bg-black px-x-default py-y-default text-white">
-      <div className="mx-auto flex max-w-default text-center md:gap-10 md:text-left">
+      <div className="mx-auto flex max-w-default justify-between text-center md:gap-10 md:text-left">
         <div className="flex flex-col items-center gap-4 md:items-start">
           <Typography
             type={TYPOGRAPHY_TYPE.HEADING4}

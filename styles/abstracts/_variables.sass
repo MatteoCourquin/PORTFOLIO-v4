@@ -66,9 +66,9 @@ $transition-default: all 0.3s cubic-bezier(0.84, 0, 0.16, 1)
     position: absolute
     top: 0
     right: 0
-    width: 20px
+    width: clamp(20px, 8vw, 100px)
     height: 100%
-    background: linear-gradient(90deg, #ffffff00, #ffffff)
+    background: linear-gradient(90deg, #ffffff00 0%, #ffffff 80%, #ffffff 100%)
     z-index: 1
 
   &::before
@@ -76,9 +76,9 @@ $transition-default: all 0.3s cubic-bezier(0.84, 0, 0.16, 1)
     position: absolute
     top: 0
     left: 0
-    width: 20px
+    width: clamp(20px, 8vw, 100px)
     height: 100%
-    background: linear-gradient(-90deg, #ffffff00, #ffffff)
+    background: linear-gradient(-90deg, #ffffff00 0%, #ffffff 80%, #ffffff 100%)
     z-index: 1
 
 .shadow-bakground
