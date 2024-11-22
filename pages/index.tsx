@@ -100,28 +100,6 @@ export default function Home({
       },
     });
 
-    gsap.to(heroRefs.button.current, {
-      y: 50,
-      ease: 'power4.out',
-      scrollTrigger: {
-        start: 'top top',
-        end: 'bottom bottom',
-        toggleActions: 'play reverse play reverse',
-        scrub: true,
-      },
-    });
-
-    gsap.to(heroRefs.texts.subtitle.current, {
-      y: 150,
-      ease: 'power4.out',
-      scrollTrigger: {
-        start: 'top top',
-        end: 'bottom bottom',
-        toggleActions: 'play reverse play reverse',
-        scrub: true,
-      },
-    });
-
     gsap.to(aboutRefs.line.current, {
       width: '100%',
       scrollTrigger: {
@@ -250,7 +228,7 @@ export default function Home({
           height={1920}
           src="/images/gradient1.png"
           alt=""
-          className="absolute inset-0 h-screen w-screen object-cover"
+          className="absolute inset-0 -z-10 h-screen w-screen object-cover"
         />
         <div
           ref={heroRefs.lines.H1}
@@ -269,7 +247,7 @@ export default function Home({
             ref={heroRefs.lines.V2}
             className="absolute -bottom-y-default left-0 h-0 w-px bg-white"
           ></div>
-          <div className="absolute top-0 overflow-hidden">
+          {/* <div className="absolute top-0 right-0 overflow-hidden">
             <div
               ref={heroRefs.texts.testimonials}
               className="flex w-full -translate-x-full justify-center gap-2 p-4 pb-10 uppercase opacity-0 md:justify-start"
@@ -284,8 +262,8 @@ export default function Home({
               </div>
               {data.home.hero.rating}
             </div>
-          </div>
-          <div className="flex h-full w-full flex-col justify-center overflow-hidden px-x-default">
+          </div> */}
+          <div className="flex h-full w-full flex-col justify-center overflow-hidden px-x-default pb-28">
             <Typography
               ref={heroRefs.texts.firstName}
               type={TYPOGRAPHY_TYPE.HEADING1}
@@ -297,20 +275,20 @@ export default function Home({
               ref={heroRefs.texts.lastName}
               type={TYPOGRAPHY_TYPE.HEADING2}
               as={TYPOGRAPHY_TYPE.HEADING1}
-              className="text-home w-full shrink translate-x-full self-end whitespace-nowrap pb-4 text-center opacity-0 sm:text-right"
+              className="text-home w-full shrink translate-x-full self-end whitespace-nowrap text-center opacity-0 sm:text-left"
             >
               COURQUIN
             </Typography>
             <div
               ref={heroRefs.texts.subtitle}
-              className="flex -translate-x-full flex-col items-center py-10 opacity-0 sm:items-start"
+              className="flex -translate-x-full flex-col items-center pt-10 opacity-0 sm:items-start"
             >
               <Typography
                 type={TYPOGRAPHY_TYPE.SUBTITLE}
                 dangerouslySetInnerHTML={data.home.hero.subtitle}
                 className="text-center md:text-left"
               />
-              <Link
+              {/* <Link
                 scroll={false}
                 href="/contact"
                 className="hidden w-fit items-center gap-3 text-green-500 md:flex"
@@ -324,14 +302,28 @@ export default function Home({
                   className="$ font-medium"
                   dangerouslySetInnerHTML={data.home.hero.avaible}
                 />
-              </Link>
+              </Link> */}
+            </div>
+            <div
+              ref={heroRefs.texts.testimonials}
+              className="flex w-full -translate-x-full justify-center gap-2 pb-10 uppercase opacity-0 md:justify-start"
+            >
+              5/5
+              <div className="flex">
+                <IconStar />
+                <IconStar />
+                <IconStar />
+                <IconStar />
+                <IconStar />
+              </div>
+              {data.home.hero.rating}
             </div>
             <Button
               ref={heroRefs.button}
-              size={BUTTON_SIZE.L}
+              size={BUTTON_SIZE.M}
               as="a"
               href="/contact"
-              className="translate-x-full self-center opacity-0 sm:self-end"
+              className="translate-x-full self-center opacity-0 sm:self-start"
             >
               {data.home.hero.button}
               <IconArrowTopRight className="ml-2 h-full w-3 py-[0.6vw] md:w-5" />
@@ -442,7 +434,7 @@ export default function Home({
           </div>
         </div>
       </section>
-      <section className="px-x-default py-y-default">
+      <section className="bg-white px-x-default py-y-default">
         <div className="mx-auto max-w-default">
           <Typography className="w-full text-center sm:text-left" type={TYPOGRAPHY_TYPE.HEADING3}>
             {data.home.projects.title}
@@ -462,7 +454,7 @@ export default function Home({
           <Testimonials testimonials={testimonials} />
         </div>
       </section>
-      <section className="px-x-default py-y-default">
+      <section className="bg-white px-x-default py-y-default">
         <div className="mx-auto max-w-default">
           <Questions questions={questions} />
         </div>

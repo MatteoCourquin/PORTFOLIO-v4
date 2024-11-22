@@ -111,7 +111,7 @@ export default function Projects({
               className="absolute bottom-0 left-0 h-px w-0 bg-black"
             ></div>
             <div className="px-x-default">
-              <div className="relative mx-auto max-w-default ">
+              <div className="relative mx-auto max-w-default">
                 <div
                   ref={heroRefs.lines.V1}
                   className="absolute right-0 top-0 h-0 w-px bg-black"
@@ -125,7 +125,7 @@ export default function Projects({
                     <div className="no-scrollbar h-24 w-full overflow-scroll">
                       <div
                         ref={heroRefs.buttons.wrapperFilters}
-                        className="mx-auto flex h-full w-fit items-center gap-4 px-x-default overflow-hidden justify-center"
+                        className="mx-auto flex h-full w-fit items-center justify-center gap-4 overflow-hidden px-x-default"
                       >
                         {filters.map((filter, index) => (
                           <Button
