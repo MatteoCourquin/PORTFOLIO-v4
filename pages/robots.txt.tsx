@@ -8,8 +8,7 @@ Allow: /
 Allow: /projects
 Allow: /about
 Allow: /contact
-Disallow: /projects/*
-Sitemap: https://matteo.courqu.in/sitemap.xml`;
+Sitemap: https://matteo.courqu.in/sitemap2.xml`;
 
   res.setHeader('Content-Type', 'text/plain');
   res.write(robots);
