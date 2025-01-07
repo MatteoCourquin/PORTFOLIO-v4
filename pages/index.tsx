@@ -333,9 +333,9 @@ export default function Home({
             <Link
               ref={heroRefs.texts.mail}
               className="-translate-x-full uppercase underline opacity-0"
-              href="mailto:matteo.courquin@gmail.com"
+              href="mailto:contact@matteocourquin.com"
             >
-              matteo.courquin@gmail.com
+              contact@matteocourquin.com
             </Link>
             <div ref={heroRefs.icons} className="hidden h-6 items-center gap-2 lg:flex">
               <DropUp

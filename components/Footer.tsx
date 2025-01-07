@@ -28,14 +28,14 @@ const Footer = () => {
             {data.footer.button}
           </Button>
           <Button
-            href="mailto:matteo.courquin@gmail.com"
+            href="mailto:contact@matteocourquin.com"
             as="a"
             className="uppercase underline"
             color="white"
             size={BUTTON_SIZE.M}
             type={BUTTON_TYPE.SECONDARY}
           >
-            matteo.courquin@gmail.com
+            contact@matteocourquin.com
           </Button>
         </div>
         <div className="hidden flex-col items-end gap-3 md:flex">
