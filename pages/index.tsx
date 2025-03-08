@@ -223,15 +223,13 @@ export default function Home({
         ref={heroRefs.triggerRef}
         className="relative h-screen w-screen overflow-hidden px-x-default py-y-default text-center text-white"
       >
-        <div
-          className="absolute inset-0 z-0 h-screen w-screen object-cover bg-black opacity-30"
-        />
+        <div className="absolute inset-0 z-0 h-screen w-screen bg-black object-cover opacity-50 lg:opacity-30" />
         <Image
           width={2080}
           height={1920}
           src="/images/matteo.jpg"
           alt="Matteo Courquin"
-          className="absolute inset-0 -z-10 h-screen w-screen object-cover"
+          className="absolute inset-0 -z-10 h-screen w-screen object-cover object-[80%] lg:object-right"
         />
         <div
           ref={heroRefs.lines.H1}
