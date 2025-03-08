@@ -223,11 +223,14 @@ export default function Home({
         ref={heroRefs.triggerRef}
         className="relative h-screen w-screen overflow-hidden px-x-default py-y-default text-center text-white"
       >
+        <div
+          className="absolute inset-0 z-0 h-screen w-screen object-cover bg-black opacity-30"
+        />
         <Image
           width={2080}
           height={1920}
-          src="/images/gradient1.png"
-          alt=""
+          src="/images/matteo.jpg"
+          alt="Matteo Courquin"
           className="absolute inset-0 -z-10 h-screen w-screen object-cover"
         />
         <div
@@ -247,22 +250,6 @@ export default function Home({
             ref={heroRefs.lines.V2}
             className="absolute -bottom-y-default left-0 h-0 w-px bg-white"
           ></div>
-          {/* <div className="absolute top-0 right-0 overflow-hidden">
-            <div
-              ref={heroRefs.texts.testimonials}
-              className="flex w-full -translate-x-full justify-center gap-2 p-4 pb-10 uppercase opacity-0 md:justify-start"
-            >
-              5/5
-              <div className="flex">
-                <IconStar />
-                <IconStar />
-                <IconStar />
-                <IconStar />
-                <IconStar />
-              </div>
-              {data.home.hero.rating}
-            </div>
-          </div> */}
           <div className="flex h-full w-full flex-col justify-center overflow-hidden px-x-default pb-28">
             <Typography
               ref={heroRefs.texts.firstName}

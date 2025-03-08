@@ -140,6 +140,7 @@ export type Language = {
       };
     };
     consultation: string;
+    bookConsultation: string;
   };
   success: {
     title: string;

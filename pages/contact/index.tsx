@@ -32,12 +32,12 @@ export default function Contact(_: { paths: TypePaths[] }) {
               />
               <Button
                 as="a"
-                href="https://calendly.com/matteo-courquin/consultation-projet-client"
+                href="https://cal.com/matteo-courquin/30min"
                 target="_blank"
                 size={BUTTON_SIZE.L}
                 type={BUTTON_TYPE.SECONDARY}
               >
-                CALENDLY
+                {data.contact.bookConsultation}
               </Button>
             </div>
           </div>

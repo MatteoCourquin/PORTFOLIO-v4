@@ -166,8 +166,8 @@ export default function About({
               height={1080}
               ref={heroRefs.img}
               className="h-[calc(100%+200px)] w-full -translate-y-[100px] object-cover object-top"
-              src="/images/matteo.webp"
-              alt=""
+              src="/images/matteo-work.webp"
+              alt="Matteo Courquin"
             />
           </div>
         </div>
