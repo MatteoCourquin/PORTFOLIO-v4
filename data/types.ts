@@ -15,9 +15,25 @@ export type TypeProject = {
   descriptionEn: TypedObject[];
   descriptionFr: TypedObject[];
   authors: TypeAuthor[];
-  gallery?: Image[];
+  sections: TypeSection[];
   websiteUrl?: string;
   types: string[];
+};
+
+export type TypeSection = {
+  sectionType: string;
+  text: {
+    contentFr: TypedObject[];
+    contentEn: TypedObject[];
+  };
+  image: {
+    url: string;
+    mockuped: boolean;
+  };
+  video: {
+    url: string;
+    mockuped: boolean;
+  };
 };
 
 export type TypeAuthor = {

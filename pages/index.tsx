@@ -223,7 +223,7 @@ export default function Home({
         ref={heroRefs.triggerRef}
         className="relative h-screen w-screen overflow-hidden px-x-default py-y-default text-center text-white"
       >
-        <div className="absolute inset-0 z-0 h-screen w-screen bg-black object-cover opacity-50 lg:opacity-30" />
+        {/* <div className="absolute inset-0 z-0 h-screen w-screen bg-black object-cover opacity-50 lg:opacity-30" /> */}
         <Image
           width={2080}
           height={1920}
@@ -254,7 +254,7 @@ export default function Home({
               type={TYPOGRAPHY_TYPE.HEADING1}
               className="text-home w-full -translate-x-full whitespace-nowrap text-center opacity-0 sm:text-left"
             >
-              MA<span className="inline-block -translate-x-2">TTEO</span>
+              MATTEO
             </Typography>
             <Typography
               ref={heroRefs.texts.lastName}
@@ -291,24 +291,24 @@ export default function Home({
             </div>
             <div
               ref={heroRefs.texts.testimonials}
-              className="flex w-full -translate-x-full justify-center gap-2 pb-10 uppercase opacity-0 md:justify-start"
+              className="flex w-full -translate-x-full flex-col items-center justify-center gap-2 pb-10 pt-8 uppercase opacity-0 sm:flex-row sm:justify-start"
             >
-              5/5
               <div className="flex">
+                5/5
                 <IconStar />
                 <IconStar />
                 <IconStar />
                 <IconStar />
                 <IconStar />
               </div>
-              {data.home.hero.rating}
+              <p>{data.home.hero.rating}</p>
             </div>
             <Button
               ref={heroRefs.button}
               size={BUTTON_SIZE.M}
               as="a"
               href="/contact"
-              className="translate-x-full self-center opacity-0 sm:self-start"
+              className="translate-x-full self-center !bg-white opacity-0 sm:self-start sm:!bg-black"
             >
               {data.home.hero.button}
               <IconArrowTopRight className="ml-2 h-full w-3 py-[0.6vw] md:w-5" />
@@ -426,7 +426,7 @@ export default function Home({
           </Typography>
           <div className="grid grid-cols-1 gap-10 pt-y-default md:grid-cols-2">
             {projects.map((project, index) => (
-              <CardProject {...project} key={project.title + index} />
+              <CardProject {...project} projectIndex={index + 1} key={project.title} />
             ))}
           </div>
           <Button as="a" href="/projects" size={BUTTON_SIZE.L} className="mx-auto my-20">
@@ -457,7 +457,7 @@ export async function getStaticProps() {
   return {
     props: {
       paths,
-      projects,
+      projects: projects.slice(0, 4),
       testimonials,
       questions,
     },

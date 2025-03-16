@@ -1,8 +1,10 @@
 import ArrowBack from '@/components/ArrowBack';
 import Button, { BUTTON_SIZE } from '@/components/atoms/Button';
 import { IconArrowTopRight } from '@/components/atoms/Icons';
+import ImageMockup from '@/components/atoms/ImageMockuped';
 import RichText from '@/components/atoms/RichText';
 import Typography, { TYPOGRAPHY_TYPE } from '@/components/atoms/Typography';
+import Video from '@/components/atoms/Video';
 import SEO from '@/components/SEO';
 import { TypePaths, TypeProject } from '@/data/types';
 import { LanguageContext } from '@/layout/default';
@@ -16,6 +18,12 @@ import { GetStaticPropsContext } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useContext, useRef } from 'react';
+
+export enum SECTIONS_TYPES {
+  TEXT = 'text',
+  IMAGE = 'image',
+  VIDEO = 'video',
+}
 
 export default function Page({ project }: { project: TypeProject; paths: TypePaths[] }) {
   const { language } = useContext(LanguageContext);
@@ -209,19 +217,191 @@ export default function Page({ project }: { project: TypeProject; paths: TypePat
                 </Button>
               )}
             </section>
-            <section className="flex flex-col gap-y-default pb-y-default">
-              {project.gallery?.map((image, index) => (
-                <div key={index}>
-                  <Image
-                    width={1920}
-                    height={1080}
-                    src={urlForImage(image).toString()}
-                    alt=""
-                    className="w-full shadow"
-                  />
-                </div>
-              ))}
-            </section>
+            {project.sections && (
+              <section className="pb-y-default">
+                {(() => {
+                  const elements: JSX.Element[] = [];
+                  let skipNext = false;
+
+                  project.sections.forEach((section, index) => {
+                    if (skipNext) {
+                      skipNext = false;
+                      return;
+                    }
+
+                    if (
+                      section.sectionType === SECTIONS_TYPES.TEXT &&
+                      section.text.contentEn &&
+                      section.text.contentFr
+                    ) {
+                      const textKey = `text-${section.text.contentEn.slice(0, 20)}`;
+                      elements.push(
+                        <div
+                          key={textKey}
+                          className="md:py-y-double-default w-full py-y-default md:w-2/3 lg:w-1/2"
+                        >
+                          <RichText
+                            value={
+                              language === 'fr' ? section.text.contentFr : section.text.contentEn
+                            }
+                          />
+                        </div>,
+                      );
+                      return;
+                    }
+
+                    if (
+                      section.sectionType === SECTIONS_TYPES.VIDEO &&
+                      section.video.url &&
+                      section.video.mockuped
+                    ) {
+                      elements.push(
+                        <div key={`video-${section.video.url}`} className="w-full pb-y-default">
+                          <Video mockuped={true}>
+                            <source src={section.video.url} type="video/mp4" />
+                          </Video>
+                        </div>,
+                      );
+                      return;
+                    }
+
+                    if (
+                      section.sectionType === SECTIONS_TYPES.IMAGE &&
+                      section.image &&
+                      section.image.mockuped
+                    ) {
+                      elements.push(
+                        <div
+                          key={`image-mockup-${section.image.url}`}
+                          className="w-full pb-y-default"
+                        >
+                          <ImageMockup
+                            mockuped={true}
+                            alt="Project image"
+                            className="w-full"
+                            height={1080}
+                            src={section.image.url}
+                            width={1920}
+                          />
+                        </div>,
+                      );
+                      return;
+                    }
+
+                    const nextSection = project.sections[index + 1];
+                    const isCurrentMediaNonMockup =
+                      (section.sectionType === SECTIONS_TYPES.IMAGE &&
+                        section.image &&
+                        !section.image.mockuped) ||
+                      (section.sectionType === SECTIONS_TYPES.VIDEO &&
+                        section.video.url &&
+                        !section.video.mockuped);
+
+                    const isNextMediaNonMockup =
+                      nextSection &&
+                      ((nextSection.sectionType === SECTIONS_TYPES.IMAGE &&
+                        nextSection.image &&
+                        !nextSection.image.mockuped) ||
+                        (nextSection.sectionType === SECTIONS_TYPES.VIDEO &&
+                          nextSection.video.url &&
+                          !nextSection.video.mockuped));
+
+                    if (isCurrentMediaNonMockup && isNextMediaNonMockup) {
+                      const currentKey =
+                        section.sectionType === SECTIONS_TYPES.IMAGE
+                          ? `image-${section.image.url}`
+                          : `video-${section.video.url}`;
+
+                      const nextKey =
+                        nextSection.sectionType === SECTIONS_TYPES.IMAGE
+                          ? `image-${nextSection.image.url}`
+                          : `video-${nextSection.video.url}`;
+
+                      elements.push(
+                        <div
+                          key={`group-${currentKey}-${nextKey}`}
+                          className="grid w-full grid-cols-1 gap-y-default gap-x-4 pb-y-default md:grid-cols-2"
+                        >
+                          {section.sectionType === SECTIONS_TYPES.IMAGE ? (
+                            <div className="w-full border border-gray-100">
+                              <ImageMockup
+                                mockuped={false}
+                                alt="Project image"
+                                className="w-full"
+                                height={1080}
+                                src={section.image.url}
+                                width={1920}
+                              />
+                            </div>
+                          ) : (
+                            <div className="w-full">
+                              <Video mockuped={false}>
+                                <source src={section.video.url} type="video/mp4" />
+                              </Video>
+                            </div>
+                          )}
+
+                          {nextSection.sectionType === SECTIONS_TYPES.IMAGE ? (
+                            <div className="w-full border border-gray-100">
+                              <ImageMockup
+                                alt="Project image"
+                                className="w-full"
+                                mockuped={false}
+                                height={1080}
+                                src={nextSection.image.url}
+                                width={1920}
+                              />
+                            </div>
+                          ) : (
+                            <div className="w-full">
+                              <Video mockuped={false}>
+                                <source src={nextSection.video.url} type="video/mp4" />
+                              </Video>
+                            </div>
+                          )}
+                        </div>,
+                      );
+
+                      skipNext = true;
+                      return;
+                    }
+
+                    if (isCurrentMediaNonMockup) {
+                      if (section.sectionType === SECTIONS_TYPES.IMAGE) {
+                        elements.push(
+                          <div
+                            key={'single-image-' + section.image.url}
+                            className="w-full border border-gray-100 pb-y-default"
+                          >
+                            <ImageMockup
+                              alt="Project image"
+                              className="w-full"
+                              mockuped={false}
+                              height={1080}
+                              src={section.image.url}
+                              width={1920}
+                            />
+                          </div>,
+                        );
+                      } else {
+                        elements.push(
+                          <div
+                            key={'single-video-' + section.video.url}
+                            className="w-full border border-gray-100 pb-y-default"
+                          >
+                            <Video mockuped={false}>
+                              <source src={section.video.url} type="video/mp4" />
+                            </Video>
+                          </div>,
+                        );
+                      }
+                    }
+                  });
+
+                  return elements;
+                })()}
+              </section>
+            )}
           </div>
         </div>
       </div>

@@ -13,7 +13,21 @@ export const fetchProject = async (params: ParsedUrlQuery | undefined) => {
       descriptionEn,
       descriptionFr,
       websiteUrl,
-      gallery,
+      sections[]{
+        sectionType,
+        "text": {
+          "contentFr": contentFr[],
+          "contentEn": contentEn[]
+        },
+        "image": {
+          "url" : image.asset->url,
+          mockuped
+        },
+        "video": {
+          "url" : video.asset->url,
+          mockuped
+        }
+      },
       "authors": authors[]->{
         name,
         websiteUrl

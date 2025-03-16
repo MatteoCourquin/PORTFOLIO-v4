@@ -1,8 +1,8 @@
 import { LanguageContext } from '@/layout/default';
 import { useGSAP } from '@gsap/react';
-import { useLenis } from '@studio-freight/react-lenis';
 import clsx from 'clsx';
 import gsap from 'gsap';
+import { useLenis } from 'lenis/react';
 import Link from 'next/link';
 import { useContext, useEffect, useRef, useState } from 'react';
 import Button, { BUTTON_TYPE } from './atoms/Button';

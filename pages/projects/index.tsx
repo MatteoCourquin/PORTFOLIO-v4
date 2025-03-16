@@ -169,7 +169,7 @@ export default function Projects({
                       delay: index * 0.02,
                     }}
                   >
-                    <CardProject {...project} />
+                    <CardProject {...project} projectIndex={index + 1} />
                   </motion.div>
                 ))}
             </AnimatePresence>

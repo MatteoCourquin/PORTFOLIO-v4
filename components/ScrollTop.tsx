@@ -1,5 +1,5 @@
-import { useLenis } from '@studio-freight/react-lenis';
 import clsx from 'clsx';
+import { useLenis } from 'lenis/react';
 import { useState } from 'react';
 
 const ScrollTop = () => {
