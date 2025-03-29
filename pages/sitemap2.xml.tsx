@@ -2,7 +2,7 @@ import { TypeProject } from '@/data/types';
 import { fetchPaths } from '@/services/paths.sevices';
 import { GetServerSideProps } from 'next';
 
-const Sitemap = () => null;
+const SitemapXML = () => null;
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const projects = await fetchPaths();
@@ -54,10 +54,10 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 </urlset>`;
 
   res.setHeader('Content-Type', 'application/xml');
-  res.write(sitemap.trim());
+  res.write(sitemap);
   res.end();
 
   return { props: {} };
 };
 
-export default Sitemap;
+export default SitemapXML;
