@@ -8,7 +8,14 @@ Allow: /
 Allow: /projects
 Allow: /about
 Allow: /contact
-Sitemap: https://matteo.courqu.in/sitemap2.xml`;
+Disallow: /api
+Disallow: /_next
+Disallow: /static
+Disallow: /favicon.ico
+Disallow: /robots.txt
+Disallow: /sitemap.xml
+Disallow: /images
+Sitemap: https://matteo.courqu.in/sitemap.xml`;
 
   res.setHeader('Content-Type', 'text/plain');
   res.write(robots);
