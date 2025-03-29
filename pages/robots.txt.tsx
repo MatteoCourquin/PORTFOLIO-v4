@@ -15,7 +15,7 @@ Disallow: /favicon.ico
 Disallow: /robots.txt
 Disallow: /sitemap.xml
 Disallow: /images
-Sitemap: https://matteo.courqu.in/sitemap.xml`;
+Sitemap: https://matteocourquin.com/sitemap2.xml`;
 
   res.setHeader('Content-Type', 'text/plain');
   res.write(robots);
