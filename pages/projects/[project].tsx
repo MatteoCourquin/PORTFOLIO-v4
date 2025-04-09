@@ -179,7 +179,9 @@ export default function Page({ project }: { project: TypeProject; paths: TypePat
             </div>
             <section className="flex flex-col-reverse items-center justify-between gap-4 py-y-default sm:flex-row">
               <div className="flex justify-between gap-2">
-                <Typography className="text-primary">Made by 🤝</Typography>
+                <Typography className="text-primary">
+                  {project.types.includes('design') ? 'Made' : 'Code'} by 🤝
+                </Typography>
                 <div>
                   <p className="text block font-medium">
                     Matteo Courquin ({language === 'fr' ? 'moi' : 'me'})

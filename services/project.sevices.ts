@@ -28,6 +28,7 @@ export const fetchProject = async (params: ParsedUrlQuery | undefined) => {
           mockuped
         }
       },
+      "types": types[]->value,
       "authors": authors[]->{
         name,
         websiteUrl
