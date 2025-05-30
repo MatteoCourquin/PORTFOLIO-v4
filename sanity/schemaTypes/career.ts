@@ -1,3 +1,4 @@
+import { orderRankField } from '@sanity/orderable-document-list';
 import { defineField, defineType } from 'sanity';
 
 export default defineType({
@@ -22,6 +23,7 @@ export default defineType({
     },
   ],
   fields: [
+    orderRankField({ type: 'careers' }),
     defineField({
       name: 'startDate',
       title: 'Start Date 📅',

@@ -17,9 +17,13 @@ export const structure: StructureResolver = (S, context) =>
         .title('PROJECT TYPES')
         .icon(() => '🏷️'),
       S.divider(),
-      S.documentTypeListItem('careers')
-        .title('CAREERS')
-        .icon(() => '👔'),
+      orderableDocumentListDeskItem({
+        type: 'careers',
+        title: 'CAREERS',
+        icon: () => '👔',
+        S,
+        context,
+      }),
       S.documentTypeListItem('questions')
         .title('QUESTIONS')
         .icon(() => '❓'),

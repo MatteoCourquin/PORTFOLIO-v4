@@ -2,7 +2,7 @@ import { client } from '@/sanity/lib/client';
 
 export const fetchCarreer = async () => {
   const query = `
-  *[_type == "careers"] | order(endDate desc) {
+  *[_type == "careers"] | order(orderRank) {
     startDate,
     endDate,
     titleEn,
