@@ -20,13 +20,13 @@
   "home": {
     "hero": {
       "rating": "client testimonials",
-      "subtitle": "<span class='text-white'>EXPERIENCED</span> FULLSTACK DEVELOPER",
+      "subtitle": "<span class='text-white'>EXPERIENCED</span> CREATIVE DEVELOPER",
       "avaible": "Avaible for new projects 🚀",
       "button": "Contact me"
     },
     "about": {
       "title": "Who am I?",
-      "description": "<p>Hi 👋 ! I’m Matteo, a FullStack developer for over {{yearsExperience}} years. <br /><br />Originally set on becoming an architect, my passion for web development emerged during the lockdown, strengthened by a Bachelor’s degree at the <a href=\"https://www.iim.fr/cursus/bachelor-coding-digital-innovation/\" target=\"_blank\" class=\"underline\">IIM</a> and a Master’s at <a href=\"https://www.hetic.net/formations/mastere-cto-tech-lead\" target=\"_blank\" class=\"underline\">HETIC</a>. I have honed my technical skills and aesthetic sensibility. 💻<br /><br />It all started with <a href=\"https://openclassrooms.com/fr/\" target=\"_blank\" class=\"underline\">OpenClassrooms</a>. The first site you turn to when you’re interested in the web!<br /><br />Today, as a freelancer, I create a variety of custom projects for my clients. 🚀<br /><br />My attention to detail, precision, and aesthetic approach allow me to deliver elegant and efficient solutions.<br /><br />My philosophy? “Clean code is worth 10” 😉</p>"
+      "description": "<p>Hi 👋 ! I’m Matteo, a Creative developer for over {{yearsExperience}} years. <br /><br />Originally set on becoming an architect, my passion for web development emerged during the lockdown, strengthened by a Bachelor’s degree at the <a href=\"https://www.iim.fr/cursus/bachelor-coding-digital-innovation/\" target=\"_blank\" class=\"underline\">IIM</a> and a Master’s at <a href=\"https://www.hetic.net/formations/mastere-cto-tech-lead\" target=\"_blank\" class=\"underline\">HETIC</a>. I have honed my technical skills and aesthetic sensibility. 💻<br /><br />It all started with <a href=\"https://openclassrooms.com/fr/\" target=\"_blank\" class=\"underline\">OpenClassrooms</a>. The first site you turn to when you’re interested in the web!<br /><br />Today, as a freelancer, I create a variety of custom projects for my clients. 🚀<br /><br />My attention to detail, precision, and aesthetic approach allow me to deliver elegant and efficient solutions.<br /><br />My philosophy? “Clean code is worth 10” 😉</p>"
     },
     "projects": {
       "title": "Projects",

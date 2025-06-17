@@ -35,7 +35,7 @@ const SEO = ({
 
       <meta
         name="keywords"
-        content="Matteo Courquin, FullStack Developer, Développeur FullStack, Web Developer, Développeur Web, Freelance, React, Node.js, Express, MongoDB, JavaScript, TypeScript, HTML, CSS, Sass, TailwindCSS, IIM, HETIC, AWS"
+        content="Matteo Courquin, Creative Developer, Développeur creatif, FullStack Developer, Développeur FullStack, Web Developer, Développeur Web, Freelance, React, Node.js, Express, MongoDB, JavaScript, TypeScript, HTML, CSS, Sass, TailwindCSS, IIM, HETIC, AWS"
       />
 
       <link rel="icon" href="/favicon.ico" type="image/x-icon" />
